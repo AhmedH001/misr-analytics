@@ -352,7 +352,7 @@ input[type=range]{padding:0;background:transparent;border:none;accent-color:var(
           <div class="form-section-title">Condition & Status</div>
           <div class="frow f2">
             <div><label>Finishing Level</label>
-              <select id="f_finish">
+              <select id="f_finishing">
                 <option value="finished">Fully Finished</option>
                 <option value="semi">Semi-Finished</option>
                 <option value="core">Core &amp; Shell (Raw)</option>
@@ -373,8 +373,8 @@ input[type=range]{padding:0;background:transparent;border:none;accent-color:var(
           <div>
             <label>Luxury / Amenities Score</label>
             <div class="range-row">
-              <input type="range" id="f_lux" min="0" max="100" value="50" style="flex:1" oninput="document.getElementById('luxVal').textContent=this.value"/>
-              <span class="range-val" id="luxVal">50</span>
+              <input type="range" id="f_luxury" min="0" max="100" value="50" style="flex:1" oninput="document.getElementById('luxVal').textContent=(this.value/100).toFixed(2)"/>
+              <span class="range-val" id="luxVal">0.50</span>
             </div>
             <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--slate3);margin-top:2px">
               <span>Basic</span><span>Standard</span><span>Premium</span><span>Ultra-Lux</span>
@@ -387,11 +387,18 @@ input[type=range]{padding:0;background:transparent;border:none;accent-color:var(
           <div class="frow f2">
             <div>
               <label>Your Price (EGP)</label>
-              <input type="number" id="f_price_egp" placeholder="e.g. 4,500,000" min="100000"/>
+              <input type="number" id="f_price" placeholder="e.g. 4,500,000" min="100000"/>
             </div>
             <div>
-              <label>Or Price (USD) — auto-converts</label>
-              <input type="number" id="f_price_usd" placeholder="e.g. 87,000" min="1000"/>
+              <label>Month (1–12)</label>
+              <select id="f_month">
+                <option value="1">January</option><option value="2">February</option>
+                <option value="3">March</option><option value="4">April</option>
+                <option value="5">May</option><option value="6" selected>June</option>
+                <option value="7">July</option><option value="8">August</option>
+                <option value="9">September</option><option value="10">October</option>
+                <option value="11">November</option><option value="12">December</option>
+              </select>
             </div>
           </div>
           <div class="frow f3">
@@ -407,8 +414,9 @@ input[type=range]{padding:0;background:transparent;border:none;accent-color:var(
           </div>
         </div>
 
-        <button class="btn btn-g" style="width:100%;padding:11px;font-size:13px" id="analyzeBtn" onclick="analyze()">
-          ◈ &nbsp;Analyze Pricing
+        <form id="advisorForm" style="display:none"></form>
+        <button class="btn btn-g" style="width:100%;padding:11px;font-size:13px">
+          ◈ &nbsp;Assess Price
         </button>
       </div>
     </div>
@@ -496,7 +504,8 @@ input[type=range]{padding:0;background:transparent;border:none;accent-color:var(
         <div>⑦ <span style="color:var(--txt)">Ready for predictions</span> — all adjustments applied server-side</div>
       </div>
       <div class="sep"></div>
-      <button class="btn btn-o" style="width:100%" onclick="loadDemo()">◉ &nbsp;Reset to Demo Dataset</button>
+      <button class="btn btn-o" style="width:100%;margin-bottom:8px" onclick="loadDemo()">◉ &nbsp;Reset to Demo Dataset</button>
+      <button class="btn btn-o" style="width:100%" id="downloadDataBtn">⬇ &nbsp;Download Sample Data (CSV)</button>
     </div>
   </div>
 
@@ -540,556 +549,14 @@ input[type=range]{padding:0;background:transparent;border:none;accent-color:var(
 </main>
 </div>
 
+<script src="/js/services/api.js"></script>
+<script src="/js/pages/advisor.js"></script>
+<script src="/js/pages/dashboard.js"></script>
+<script src="/js/pages/upload.js"></script>
+<script src="/js/pages/market.js"></script>
+<script src="/js/app.js"></script>
+
 <script>
-// ═══════════════════════════════════════════════════════
-// GLOBAL STATS CACHE
-// ═══════════════════════════════════════════════════════
+// Compatibility layer for old code
 let STATS = null;
 const CHARTS = {};
-
-// ═══════════════════════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════════════════════
-function nav(page, el) {
-  document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
-  document.querySelectorAll('.nb').forEach(n => n.classList.remove('on'));
-  document.getElementById('pg-' + page).classList.add('on');
-  if (el) el.classList.add('on');
-  if (page === 'dashboard' && STATS) buildDashCharts(STATS);
-  if (page === 'market'    && STATS) buildMarketCharts(STATS);
-}
-
-// ═══════════════════════════════════════════════════════
-// HEALTH CHECK + INITIAL LOAD
-// ═══════════════════════════════════════════════════════
-async function ping() {
-  try {
-    const r = await fetch('/api/health');
-    const d = await r.json();
-    const el = document.getElementById('ds');
-    const tx = document.getElementById('dsTxt');
-    if (d.ready) {
-      el.classList.add('ok');
-      tx.textContent = `${(d.rows||0).toLocaleString()} rows · R²=${d.model?.r2?.toFixed(3)}`;
-      document.getElementById('modelMetaTxt').textContent =
-        `R²=${d.model?.r2?.toFixed(3)}  RMSE=${d.model?.rmse?.toLocaleString()} EGP/m²  n=${d.rows?.toLocaleString()}`;
-    } else {
-      tx.textContent = 'Initializing…';
-    }
-    return d.ready;
-  } catch { return false; }
-}
-
-async function loadStats() {
-  try {
-    const r = await fetch('/api/stats');
-    if (!r.ok) return;
-    STATS = await r.json();
-    updateDashKpis(STATS);
-  } catch {}
-}
-
-function updateDashKpis(s) {
-  document.getElementById('dk1').textContent = (s.totalRows||0).toLocaleString();
-  document.getElementById('dk2').textContent = (s.avgPpm||0).toLocaleString();
-  document.getElementById('dk3').textContent = s.avgUsd||'—';
-  document.getElementById('dk4').textContent = (s.avgArea||0) + ' m²';
-  document.getElementById('dashSub').textContent =
-    `${(s.totalRows||0).toLocaleString()} listings · source: ${s.source||'demo'}`;
-}
-
-// ═══════════════════════════════════════════════════════
-// CHART HELPERS
-// ═══════════════════════════════════════════════════════
-const GC = 'rgba(37,40,48,.7)', TC = '#3A3E50';
-const gold='#D4AE52', blue='#5A8FD4', grn='#52B07A', red='#C05A4A', amb='#C48A3A';
-
-function kill(id) { if (CHARTS[id]) { CHARTS[id].destroy(); delete CHARTS[id]; } }
-function ctx(id) { const c = document.getElementById(id); return c ? c.getContext('2d') : null; }
-function grad(c, col) {
-  const g = c.createLinearGradient(0,0,0,280);
-  g.addColorStop(0, col+'55'); g.addColorStop(1,'transparent'); return g;
-}
-function baseOpts(extra={}) {
-  return {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { backgroundColor:'#191C24', borderColor:'#252830', borderWidth:1,
-                 titleColor:'#E8E4DC', bodyColor:'#858DA8', padding:9, cornerRadius:5 },
-    },
-    scales: {
-      x: { grid:{ color:GC }, ticks:{ color:TC, font:{ size:9, family:'JetBrains Mono' }}},
-      y: { grid:{ color:GC }, ticks:{ color:TC, font:{ size:9, family:'JetBrains Mono' }}},
-    },
-    ...extra
-  };
-}
-
-// ═══════════════════════════════════════════════════════
-// DASHBOARD CHARTS
-// ═══════════════════════════════════════════════════════
-function buildDashCharts(s) {
-  // Trend
-  kill('cTrend');
-  const c1 = ctx('cTrend'); if (!c1) return;
-  const ml = Object.keys(s.monthly), mv = Object.values(s.monthly);
-  CHARTS.cTrend = new Chart(c1, {
-    type:'line', data:{ labels:ml, datasets:[{
-      data:mv, borderColor:gold, borderWidth:2, backgroundColor:grad(c1,gold),
-      tension:.4, fill:true, pointRadius:2, pointBackgroundColor:gold }]},
-    options: baseOpts()
-  });
-
-  // Type donut
-  kill('cType');
-  const c2 = ctx('cType'); if (!c2) return;
-  CHARTS.cType = new Chart(c2, {
-    type:'doughnut',
-    data:{ labels:Object.keys(s.byType), datasets:[{
-      data:Object.values(s.byType), backgroundColor:[gold,blue,grn,amb,'#8A5AD4'], borderWidth:0 }]},
-    options:{ responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{ display:true, position:'right', labels:{ color:TC, font:{ size:10 }}}}}
-  });
-
-  // City
-  kill('cCity');
-  const c3 = ctx('cCity'); if (!c3) return;
-  CHARTS.cCity = new Chart(c3, {
-    type:'bar',
-    data:{ labels:Object.keys(s.byCity), datasets:[{
-      data:Object.values(s.byCity), backgroundColor:[gold+'AA',blue+'AA',grn+'AA',amb+'AA'],
-      borderRadius:5 }]},
-    options: baseOpts()
-  });
-
-  // USD
-  kill('cUsd');
-  const c4 = ctx('cUsd'); if (!c4) return;
-  const ul = Object.keys(s.usdByMonth), uv = Object.values(s.usdByMonth);
-  CHARTS.cUsd = new Chart(c4, {
-    type:'line', data:{ labels:ul, datasets:[{
-      data:uv, borderColor:red, borderWidth:2, backgroundColor:grad(c4,red),
-      fill:true, tension:.3, pointRadius:1 }]},
-    options: baseOpts()
-  });
-
-  // Compound table
-  const tbody = document.getElementById('compBody');
-  const avg = s.avgPpm;
-  tbody.innerHTML = Object.entries(s.byCompound).map(([name,{avg:a,count:c}]) => {
-    const diff = ((a-avg)/avg*100).toFixed(1);
-    const cls  = diff > 0 ? 'tgrn' : 'tred';
-    const pct  = Math.min(100, Math.round(a/avg*72));
-    return `<tr>
-      <td>${name||'(none)'}</td>
-      <td class="tg">${a.toLocaleString()}</td>
-      <td style="color:var(--slate3);font-family:'JetBrains Mono';font-size:10.5px">${c}</td>
-      <td class="${cls}">${diff>0?'+':''}${diff}%</td>
-      <td style="width:100px"><div class="prog"><div class="prog-f" style="width:${pct}%"></div></div></td>
-    </tr>`;
-  }).join('');
-
-  // Bedrooms
-  kill('cBeds');
-  const c5 = ctx('cBeds'); if (!c5) return;
-  CHARTS.cBeds = new Chart(c5, {
-    type:'bar',
-    data:{ labels:Object.keys(s.byBeds), datasets:[{
-      data:Object.values(s.byBeds), backgroundColor:gold+'AA', borderRadius:5 }]},
-    options: baseOpts()
-  });
-
-  // Model stats
-  document.getElementById('modelStats').innerHTML = `
-    <div class="adj-row"><span class="adj-label">R² Score</span><span class="adj-val" style="color:var(--grn)">${s.model.r2}</span></div>
-    <div class="adj-row"><span class="adj-label">RMSE (EGP/m²)</span><span class="adj-val" style="color:var(--amb)">${s.model.rmse.toLocaleString()}</span></div>
-    <div class="adj-row"><span class="adj-label">Training samples</span><span class="adj-val">${s.model.nSamples.toLocaleString()}</span></div>
-    <div class="adj-row"><span class="adj-label">Features</span><span class="adj-val">18 (OLS + ridge)</span></div>
-    <div class="adj-row"><span class="adj-label">Delivery adjustments</span><span class="adj-val" style="color:var(--slate)">0–48 month bands</span></div>
-    <div class="adj-row"><span class="adj-label">Finishing adjustments</span><span class="adj-val" style="color:var(--slate)">Full / Semi / Core</span></div>
-  `;
-}
-
-// ═══════════════════════════════════════════════════════
-// MARKET CHARTS
-// ═══════════════════════════════════════════════════════
-function buildMarketCharts(s) {
-  kill('mCorr');
-  const c1 = ctx('mCorr'); if (!c1) return;
-  const corrPts = Object.keys(s.usdByMonth).filter(k => s.monthly[k])
-    .map(k => ({ x: s.usdByMonth[k], y: s.monthly[k] }));
-  CHARTS.mCorr = new Chart(c1, {
-    type:'scatter',
-    data:{ datasets:[{ data:corrPts, backgroundColor:gold+'77', borderColor:gold, pointRadius:5 }]},
-    options: baseOpts({ plugins:{ ...baseOpts().plugins,
-      tooltip:{ ...baseOpts().plugins.tooltip, callbacks:{ label:p=>`Rate: ${p.raw.x} | Price/m²: ${p.raw.y.toLocaleString()}` }}}})
-  });
-
-  kill('mMat');
-  const c2 = ctx('mMat'); if (!c2) return;
-  const ironPts = [28000,30000,32000,35000,37500,40000,43000,46000,50000];
-  const base = s.avgPpm || 24000;
-  const impact = ironPts.map(p => Math.round(base * (1 + (p-37500)/37500*0.18)));
-  CHARTS.mMat = new Chart(c2, {
-    type:'line',
-    data:{ labels:ironPts.map(p=>`${(p/1000).toFixed(0)}K`), datasets:[{
-      data:impact, borderColor:gold, borderWidth:2, tension:.3, pointRadius:3, fill:false }]},
-    options: baseOpts({ plugins:{ ...baseOpts().plugins, legend:{ display:false }}})
-  });
-}
-
-// ═══════════════════════════════════════════════════════
-// UPLOAD
-// ═══════════════════════════════════════════════════════
-function dzDrag(e, on) {
-  e.preventDefault();
-  document.getElementById('dz').classList.toggle('drag', on);
-}
-function dzDrop(e) {
-  e.preventDefault();
-  document.getElementById('dz').classList.remove('drag');
-  const f = e.dataTransfer?.files?.[0];
-  if (f) sendFile(f);
-}
-function uploadFile(inp) { if (inp.files[0]) sendFile(inp.files[0]); }
-
-async function sendFile(file) {
-  const dz   = document.getElementById('dz');
-  const btn  = document.getElementById('analyzeBtn');
-  document.getElementById('dzIco').textContent   = '⏳';
-  document.getElementById('dzTitle').textContent  = `Uploading ${file.name}…`;
-  document.getElementById('dzSub').textContent    = 'Parsing CSV and training model…';
-  dz.classList.remove('done');
-
-  const fd = new FormData();
-  fd.append('file', file);
-
-  try {
-    const r = await fetch('/api/upload', { method:'POST', body:fd });
-    const d = await r.json();
-    if (!r.ok) throw new Error(d.error);
-
-    dz.classList.add('done');
-    document.getElementById('dzIco').textContent   = '✅';
-    document.getElementById('dzTitle').textContent  = file.name;
-    document.getElementById('dzSub').textContent    = `${d.rows.toLocaleString()} rows · R²=${d.model.r2.toFixed(3)} · RMSE=${d.model.rmse.toLocaleString()} EGP/m²`;
-
-    // Update status bar
-    await ping(); await loadStats();
-
-    // Show result block
-    document.getElementById('uploadResult').style.display = 'block';
-    document.getElementById('uploadKpis').innerHTML = `
-      <div class="kpi"><div class="kl">Rows Loaded</div><div class="kv">${d.rows.toLocaleString()}</div><div class="ks" style="color:var(--grn)">✓ Parsed</div></div>
-      <div class="kpi"><div class="kl">Avg Price/m²</div><div class="kv">${(d.stats.avgPpm||0).toLocaleString()}</div><div class="ks" style="color:var(--slate3)">EGP</div></div>
-      <div class="kpi"><div class="kl">Model R²</div><div class="kv">${d.model.r2.toFixed(3)}</div><div class="ks" style="color:var(--slate3)">Higher = better</div></div>
-      <div class="kpi"><div class="kl">RMSE</div><div class="kv">${d.model.rmse.toLocaleString()}</div><div class="ks" style="color:var(--slate3)">EGP/m²</div></div>
-    `;
-
-    document.getElementById('colMapBody').innerHTML = Object.entries(d.colMap).map(([k,v]) => {
-      const found = v && !v.includes('not found');
-      return `<tr>
-        <td style="font-family:'JetBrains Mono';font-size:10.5px">${k}</td>
-        <td style="font-family:'JetBrains Mono';font-size:10px;color:${found?'var(--txt)':'var(--slate3)'}">${v}</td>
-        <td style="font-size:10.5px;color:${found?'var(--grn)':'var(--amb)'}">${found?'✓ Mapped':'⚠ Not found'}</td>
-      </tr>`;
-    }).join('');
-
-  } catch (err) {
-    dz.classList.remove('done');
-    document.getElementById('dzIco').textContent   = '❌';
-    document.getElementById('dzTitle').textContent  = 'Upload failed';
-    document.getElementById('dzSub').textContent    = err.message;
-  }
-}
-
-async function loadDemo() {
-  // Re-ping to ensure demo is loaded server-side
-  document.getElementById('uploadResult').style.display = 'none';
-  document.getElementById('dzIco').textContent   = '⏳';
-  document.getElementById('dzTitle').textContent  = 'Loading demo dataset…';
-  document.getElementById('dzSub').textContent    = '';
-  await ping(); await loadStats();
-  document.getElementById('dzIco').textContent   = '◉';
-  document.getElementById('dzTitle').textContent  = 'Demo dataset active';
-  document.getElementById('dzSub').textContent    = '15,000 synthetic rows · Egypt 2024–2025';
-}
-
-// ═══════════════════════════════════════════════════════
-// USD ↔ EGP AUTO-CONVERT
-// ═══════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('f_price_usd').addEventListener('input', function() {
-    const usd = parseFloat(this.value)||0;
-    const rate = parseFloat(document.getElementById('f_usd').value)||51.9;
-    if (usd) document.getElementById('f_price_egp').value = Math.round(usd * rate);
-  });
-  document.getElementById('f_price_egp').addEventListener('input', function() {
-    const egp  = parseFloat(this.value)||0;
-    const rate = parseFloat(document.getElementById('f_usd').value)||51.9;
-    if (egp) document.getElementById('f_price_usd').value = Math.round(egp / rate);
-  });
-  document.getElementById('f_usd').addEventListener('input', function() {
-    const egp = parseFloat(document.getElementById('f_price_egp').value)||0;
-    if (egp) document.getElementById('f_price_usd').value = Math.round(egp / (parseFloat(this.value)||51.9));
-  });
-});
-
-// ═══════════════════════════════════════════════════════
-// ANALYZE PRICE
-// ═══════════════════════════════════════════════════════
-async function analyze() {
-  const btn = document.getElementById('analyzeBtn');
-  const egp = parseFloat(document.getElementById('f_price_egp').value);
-  if (!egp || egp < 10000) {
-    showError('Please enter a valid price in EGP (minimum 10,000)');
-    return;
-  }
-  const area = parseFloat(document.getElementById('f_area').value);
-  if (!area || area < 20) {
-    showError('Please enter a valid area in m²');
-    return;
-  }
-
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spin"></span>Analyzing…';
-
-  const payload = {
-    area_m2:             area,
-    bedrooms:            document.getElementById('f_beds').value,
-    bathrooms:           document.getElementById('f_baths').value,
-    property_type:       document.getElementById('f_type').value,
-    city:                document.getElementById('f_city').value,
-    distance_to_center:  document.getElementById('f_dist').value || 25,
-    luxury_score:        parseFloat(document.getElementById('f_lux').value) / 100,
-    usd_to_egp_rate:     document.getElementById('f_usd').value,
-    iron:                document.getElementById('f_iron').value,
-    cement:              document.getElementById('f_cement').value,
-    month:               new Date().getMonth() + 1,
-    delivery_months:     document.getElementById('f_delivery').value,
-    finishing:           document.getElementById('f_finish').value,
-    entered_price:       egp,
-  };
-
-  try {
-    const r = await fetch('/api/predict', {
-      method: 'POST', headers: { 'Content-Type':'application/json' },
-      body: JSON.stringify(payload),
-    });
-    const d = await r.json();
-    if (!r.ok) throw new Error(d.error);
-    renderResult(d, payload);
-  } catch (err) {
-    showError(err.message);
-  }
-
-  btn.disabled = false;
-  btn.innerHTML = '◈ &nbsp;Analyze Pricing';
-}
-
-function showError(msg) {
-  document.getElementById('resultPanel').innerHTML = `
-    <div class="card"><div class="ae alert">⚠ ${msg}</div></div>`;
-}
-
-// ═══════════════════════════════════════════════════════
-// RENDER RESULT
-// ═══════════════════════════════════════════════════════
-function renderResult(d, inp) {
-  const p      = d.predicted, e = d.entered, m = d.market;
-  const gap    = d.gap, adj = d.adjustments;
-  const maxBar = Math.max(e.ppm, p.ppm, m.city_avg, m.type_avg) * 1.1;
-  const vClass = d.verdict.replace('_','-').replace('_','-');
-
-  // Gauge position: 0=very cheap ... 100=very expensive
-  // Map gap% -30 to +30 → 0 to 100
-  const gaugePos = Math.max(2, Math.min(98, 50 + gap.pct * 1.4));
-
-  // Price comparison bars
-  const bars = [
-    { label:'Your Price',          val: e.ppm,          color: d.verdictColor },
-    { label:'Predicted Fair Value',val: p.ppm,          color: gold },
-    { label:`${inp.city} Avg`,     val: m.city_avg,     color: blue },
-    { label:`${inp.property_type} Avg`, val: m.type_avg, color: '#858DA8' },
-  ];
-
-  const barsHTML = bars.map(b => {
-    const w = Math.round(b.val/maxBar*100);
-    const v = b.val.toLocaleString();
-    return `<div class="cmp-bar-wrap">
-      <div class="cmp-label"><span>${b.label}</span><span style="font-family:'JetBrains Mono';font-size:11px">${v} EGP/m²</span></div>
-      <div class="cmp-bar">
-        <div class="cmp-fill" style="width:${w}%;background:${b.color}33;color:${b.color}">
-          ${v}
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-
-  // CI bar
-  const ciMin  = p.ci_low, ciMax  = p.ci_high;
-  const ciPctL = Math.round(ciMin/maxBar*100), ciPctH = Math.round(ciMax/maxBar*100);
-
-  // Adjustment breakdown
-  const finishLabel = { finished:'Fully Finished', semi:'Semi-Finished', core:'Core & Shell' };
-  const delivLabel  = adj.delivery_months===0 ? 'Ready Now' : `${adj.delivery_months} months`;
-
-  document.getElementById('resultPanel').innerHTML = `
-
-    <!-- VERDICT CARD -->
-    <div class="vc ${d.verdict}">
-      <div class="vc-top">
-        <div>
-          <div class="vc-label">Pricing Assessment</div>
-          <div class="vc-verdict" style="color:${d.verdictColor}">${d.verdictEmoji} ${d.verdictLabel}</div>
-        </div>
-        <div class="vc-right">
-          <div class="vc-meta">Your Price / m²</div>
-          <div class="vc-val" style="color:${d.verdictColor}">${e.ppm.toLocaleString()} EGP</div>
-          <div class="vc-meta" style="margin-top:5px">Price in USD</div>
-          <div class="vc-val">${Math.round(e.ppm / parseFloat(document.getElementById('f_usd').value)).toLocaleString()} USD/m²</div>
-        </div>
-      </div>
-
-      <!-- Price Gauge -->
-      <div style="margin-bottom:10px">
-        <div style="font-size:9px;color:var(--slate3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px">Market Position</div>
-        <div class="gauge-wrap">
-          <div class="gauge-track"></div>
-          <div class="gauge-mark" style="left:${gaugePos}%"></div>
-        </div>
-        <div class="gauge-labels"><span style="color:var(--grn)">Underpriced</span><span>Fair Range</span><span style="color:var(--red)">Overpriced</span></div>
-      </div>
-
-      <div class="vc-metrics">
-        <div class="vc-m">
-          <div class="vc-mk">vs Predicted</div>
-          <div class="vc-mv" style="color:${d.verdictColor}">${gap.pct>0?'+':''}${gap.pct}%</div>
-        </div>
-        <div class="vc-m">
-          <div class="vc-mk">Difference</div>
-          <div class="vc-mv" style="color:${d.verdictColor}">${gap.egp>0?'+':''}${gap.egp.toLocaleString()} EGP</div>
-        </div>
-        <div class="vc-m">
-          <div class="vc-mk">Market %ile</div>
-          <div class="vc-mv">${m.percentile}<span style="font-size:9px;color:var(--slate3)">th</span></div>
-        </div>
-        <div class="vc-m">
-          <div class="vc-mk">Comparables</div>
-          <div class="vc-mv">${m.comparable_count.toLocaleString()}</div>
-        </div>
-        <div class="vc-m">
-          <div class="vc-mk">Model R²</div>
-          <div class="vc-mv">${d.model_metrics.r2}</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PRICE COMPARISON BARS -->
-    <div class="card">
-      <div class="ch"><div class="ct">Price / m² Comparison</div><span class="badge">EGP</span></div>
-      ${barsHTML}
-      <div style="margin-top:10px;font-size:9px;color:var(--slate3)">
-        Confidence Interval: <span style="font-family:'JetBrains Mono';color:var(--slate)">${ciMin.toLocaleString()} – ${ciMax.toLocaleString()} EGP/m²</span>
-        &nbsp;·&nbsp; <span style="font-family:'JetBrains Mono';color:var(--gold)">${p.ppm.toLocaleString()} EGP predicted</span>
-      </div>
-    </div>
-
-    <!-- ADJUSTMENT BREAKDOWN -->
-    <div class="card">
-      <div class="ch"><div class="ct">Prediction Breakdown</div></div>
-      <div class="adj-row">
-        <span class="adj-label">① Base model prediction (OLS)</span>
-        <span class="adj-val">${adj.base_ppm.toLocaleString()} EGP/m²</span>
-      </div>
-      <div class="adj-row">
-        <span class="adj-label">② Delivery adjustment — ${delivLabel}</span>
-        <span class="adj-val" style="color:${adj.delivery_factor<1?'var(--amb)':'var(--grn)'}">× ${adj.delivery_factor}</span>
-      </div>
-      <div class="adj-row">
-        <span class="adj-label">③ Finishing adjustment — ${finishLabel[adj.finishing]}</span>
-        <span class="adj-val" style="color:${adj.finish_factor<1?'var(--amb)':'var(--grn)'}">× ${adj.finish_factor}</span>
-      </div>
-      <div class="adj-row" style="border-top:1px solid var(--brgold);margin-top:2px;padding-top:9px">
-        <span class="adj-label" style="color:var(--txt);font-weight:600">→ Adjusted Fair Value</span>
-        <span class="adj-val" style="color:var(--gold);font-size:13px">${p.ppm.toLocaleString()} EGP/m² (${(p.total/1e6).toFixed(2)}M total)</span>
-      </div>
-    </div>
-
-    <!-- RECOMMENDATION -->
-    <div class="card">
-      <div class="ch"><div class="ct">Recommendation</div></div>
-      <div style="font-size:12.5px;line-height:1.8;color:var(--slate2)">
-        ${buildRecommendation(d, inp)}
-      </div>
-      <div class="sep"></div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn btn-g" onclick="nav('dashboard',document.querySelectorAll('.nb')[1])">View Dashboard</button>
-        <button class="btn btn-o" onclick="nav('market',document.querySelectorAll('.nb')[3])">Market Analysis</button>
-      </div>
-    </div>
-  `;
-}
-
-function buildRecommendation(d, inp) {
-  const gap = d.gap, m = d.market, adj = d.adjustments;
-  const type = inp.property_type, city = inp.city;
-  const delivStr = adj.delivery_months===0 ? 'ready for handover' : `${adj.delivery_months} months until delivery`;
-  const finStr   = { finished:'fully finished', semi:'semi-finished', core:'core & shell' }[adj.finishing] || '';
-
-  if (d.verdict === 'fair') {
-    return `<span style="color:var(--gold);font-weight:600">✓ This unit is priced fairly</span> relative to comparable ${type}s in ${city}. 
-    At <strong style="color:var(--txt)">${d.entered.ppm.toLocaleString()} EGP/m²</strong>, it sits within the model's confidence interval 
-    (${d.predicted.ci_low.toLocaleString()}–${d.predicted.ci_high.toLocaleString()} EGP/m²). 
-    The property is ${delivStr} and ${finStr}, which have been factored into the assessment. 
-    The current USD/EGP rate of ${inp.usd_to_egp_rate} EGP was used in the model.`;
-  }
-  if (d.verdict.includes('underpriced')) {
-    const saving = Math.abs(gap.egp);
-    return `<span style="color:var(--grn);font-weight:600">↓ This unit appears underpriced</span> by 
-    <strong style="color:var(--txt)">${Math.abs(gap.pct)}% (${saving.toLocaleString()} EGP)</strong> relative to comparable ${type}s in ${city}. 
-    Fair value is estimated at <strong style="color:var(--txt)">${d.predicted.ppm.toLocaleString()} EGP/m²</strong>. 
-    This ${delivStr} ${finStr} unit offers good value at current pricing. 
-    ${d.verdict==='significantly_underpriced' ? 'Consider whether there are unlisted risk factors (legal, structural, location-specific) that may explain the discount.' : 
-    'If you are a buyer, this is a favourable entry. If you are a developer, consider revising the list price upward.'}`;
-  }
-  if (d.verdict.includes('overpriced')) {
-    const excess = gap.egp;
-    return `<span style="color:var(--red);font-weight:600">↑ This unit appears overpriced</span> by 
-    <strong style="color:var(--txt)">${gap.pct}% (${excess.toLocaleString()} EGP)</strong> versus comparable ${type}s in ${city}. 
-    The model estimates fair value at <strong style="color:var(--txt)">${d.predicted.ppm.toLocaleString()} EGP/m²</strong> 
-    (total: ${(d.predicted.total/1e6).toFixed(2)}M EGP) for a ${delivStr}, ${finStr} unit. 
-    At ${m.percentile}th percentile, this price is above most comparable listings. 
-    ${d.verdict==='significantly_overpriced' ? 
-    'A price correction of 15–20% is strongly advisable to align with market conditions.' :
-    'A modest 5–10% price adjustment would bring it within the fair value band.'}`;
-  }
-  return '';
-}
-
-// ═══════════════════════════════════════════════════════
-// CLOCK
-// ═══════════════════════════════════════════════════════
-setInterval(() => {
-  document.getElementById('clock').textContent =
-    new Date().toLocaleString('en-GB',{ day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
-}, 1000);
-
-// ═══════════════════════════════════════════════════════
-// BOOT
-// ═══════════════════════════════════════════════════════
-(async () => {
-  document.getElementById('clock').textContent =
-    new Date().toLocaleString('en-GB',{ day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
-  let ready = false;
-  for (let i = 0; i < 8; i++) {
-    ready = await ping();
-    if (ready) break;
-    await new Promise(r => setTimeout(r, 600));
-  }
-  if (ready) await loadStats();
-})();
-</script>
-</body>
-</html>
