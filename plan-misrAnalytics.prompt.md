@@ -37,4 +37,7 @@ What can be done to make this more realistic and better:
 - Add tests for CSV parsing, model training, and endpoint behavior.
 - Consider using a real ML library for reliability and easier experimentation.
 
+8. Add download demo data
+- Add download button for the CSV dataset so users can see the real data structure and experiment locally.
+
 Bottom line: make it more realistic by using real data, training and validating properly, adding richer features, and making adjustment factors data-driven.
