@@ -24,16 +24,6 @@ class PageUpload {
       const files = e.dataTransfer.files;
       if (files.length > 0) this.uploadFile(files[0]);
     });
-
-    dropzone.addEventListener('click', () => {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = '.csv';
-      input.addEventListener('change', (e) => {
-        if (e.target.files.length > 0) this.uploadFile(e.target.files[0]);
-      });
-      input.click();
-    });
   }
 
   static setupDownloadButton() {
@@ -56,6 +46,7 @@ class PageUpload {
     }
 
     try {
+      result.style.display = 'block';
       result.innerHTML = '<div class="spin"></div><span>Uploading and training model…</span>';
       const response = await APIService.uploadFile(file);
       result.innerHTML = `<div class="alert ag">

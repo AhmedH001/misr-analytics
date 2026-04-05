@@ -45,7 +45,7 @@ misr-analytics/
         └── pages/
             ├── advisor.js     ← Price Advisor page
             ├── dashboard.js   ← Market Dashboard page
-            ├── upload.js      ← Data Upload page + download button
+            ├── upload.js      ← Data Upload page
             └── market.js      ← Market Analysis page
 ```
 

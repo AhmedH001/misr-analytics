@@ -9,8 +9,13 @@ class PageAdvisor {
 
   static setupForm() {
     const form = document.getElementById('advisorForm');
-    if (!form) return;
-    form.addEventListener('submit', (e) => this.handleSubmit(e));
+    const button = document.getElementById('advisorSubmitBtn');
+    if (button) {
+      button.addEventListener('click', (e) => this.handleSubmit(e));
+    }
+    if (form) {
+      form.addEventListener('submit', (e) => this.handleSubmit(e));
+    }
   }
 
   static updateModelBadge() {
@@ -23,9 +28,11 @@ class PageAdvisor {
 
   static async handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    btn.disabled = true;
-    btn.textContent = 'Predicting…';
+    const btn = document.getElementById('advisorSubmitBtn') || e.target.querySelector('button');
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Predicting…';
+    }
 
     try {
       const input = {

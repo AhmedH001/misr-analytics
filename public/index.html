@@ -414,8 +414,8 @@ input[type=range]{padding:0;background:transparent;border:none;accent-color:var(
           </div>
         </div>
 
-        <form id="advisorForm" style="display:none"></form>
-        <button class="btn btn-g" style="width:100%;padding:11px;font-size:13px">
+        <form id="advisorForm"></form>
+        <button id="advisorSubmitBtn" type="button" class="btn btn-g" style="width:100%;padding:11px;font-size:13px">
           ◈ &nbsp;Assess Price
         </button>
       </div>
@@ -472,13 +472,12 @@ input[type=range]{padding:0;background:transparent;border:none;accent-color:var(
   <div class="g2">
     <div class="card">
       <div class="ch"><div class="ct">Upload Project CSV</div><span class="badge">Auto Column Detection</span></div>
-      <div class="dropzone" id="dz" onclick="document.getElementById('csvFile').click()"
-           ondragover="dzDrag(event,true)" ondragleave="dzDrag(event,false)" ondrop="dzDrop(event)">
+      <div class="dropzone" id="dropzone" onclick="document.getElementById('csvFile').click()">
         <span class="dz-ico" id="dzIco">📂</span>
         <div class="dz-t" id="dzTitle">Drop CSV here or click to browse</div>
         <div class="dz-s" id="dzSub">Accepts any real estate CSV — columns are auto-detected<br/>Max 60 MB · UTF-8 or Latin-1 encoding</div>
       </div>
-      <input type="file" id="csvFile" accept=".csv,.txt" style="display:none" onchange="uploadFile(this)"/>
+      <input type="file" id="csvFile" accept=".csv,.txt" style="display:none" onchange="PageUpload.uploadFile(this.files[0])"/>
       <div style="margin-top:13px">
         <div class="ct" style="margin-bottom:7px">Recognised Column Names</div>
         <div style="display:flex;flex-wrap:wrap;gap:4px">
