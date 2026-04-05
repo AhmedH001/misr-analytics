@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MISR Analytics — Egypt Real Estate Intelligence</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0B0C10; --bg2:#12141A; --bg3:#191C24; --bg4:#20232E;
+  --br:#252830; --brgold:rgba(212,174,82,.22);
+  --gold:#D4AE52; --goldl:#F0CE7A; --goldd:#8A6E2A;
+  --slate:#858DA8; --slate2:#545B78; --slate3:#333848;
+  --txt:#E8E4DC; --txt2:#A8ADBF; --txt3:#555A6E;
+  --grn:#52B07A; --grnd:#2A7A4A; --red:#C05A4A; --redd:#8A3020;
+  --blu:#5A8FD4; --amb:#C48A3A;
+  --r:10px; --r2:6px; --r3:3px;
+  --sh: 0 4px 24px rgba(0,0,0,.4);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden;
+  background-image:
+    radial-gradient(ellipse 70% 45% at 10% 0%,rgba(212,174,82,.055) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 55% at 90% 100%,rgba(90,143,212,.04) 0%,transparent 55%),
+    repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(255,255,255,.013) 48px),
+    repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(255,255,255,.013) 48px);
+}
+
+/* ── TOP BAR ── */
+.topbar{
+  position:sticky;top:0;z-index:200;height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 22px;
+  background:rgba(11,12,16,.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--br);
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.gem{
+  width:28px;height:28px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--gold),var(--goldd));
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond';font-size:13px;font-weight:700;color:#000;
+}
+.brand-txt{font-family:'Cormorant Garamond';font-size:19px;color:var(--txt)}
+.brand-sub{font-size:8.5px;color:var(--slate2);letter-spacing:2.5px;text-transform:uppercase;margin-left:3px}
+.topbar-r{display:flex;align-items:center;gap:14px}
+.ds{
+  display:flex;align-items:center;gap:5px;
+  font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 10px;border-radius:20px;border:1px solid var(--br);
+  color:var(--slate);transition:all .3s;
+}
+.ds.ok{color:var(--grn);border-color:rgba(82,176,122,.3);background:rgba(82,176,122,.06)}
+.ds .dot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-date{font-family:'JetBrains Mono';font-size:9.5px;color:var(--slate3)}
+
+/* ── SHELL ── */
+.shell{display:grid;grid-template-columns:192px 1fr;min-height:calc(100vh - 56px)}
+
+/* ── SIDEBAR ── */
+.sidebar{background:var(--bg2);border-right:1px solid var(--br);padding:18px 0;display:flex;flex-direction:column;gap:2px}
+.sg{padding:8px 14px 2px;font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--slate3);margin-top:6px}
+.nb{
+  display:flex;align-items:center;gap:9px;padding:8px 14px;cursor:pointer;
+  font-size:12px;color:var(--slate);border-left:2px solid transparent;
+  transition:all .15s;border-radius:0 5px 5px 0;margin:0 6px;
+}
+.nb:hover{color:var(--txt2);background:var(--bg3)}
+.nb.on{color:var(--gold);border-left-color:var(--gold);background:rgba(212,174,82,.07)}
+.ni{font-size:13px;width:15px;text-align:center;flex-shrink:0}
+
+/* ── MAIN ── */
+.main{padding:22px 26px;overflow-y:auto}
+.pg{display:none;animation:up .22s ease}
+.pg.on{display:block}
+@keyframes up{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── PAGE HEADER ── */
+.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
+.ph-h{font-family:'Cormorant Garamond';font-size:26px;font-weight:600;line-height:1.1}
+.ph-s{font-size:11.5px;color:var(--slate);margin-top:3px}
+
+/* ── CARDS ── */
+.card{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r);padding:17px;margin-bottom:13px}
+.ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+.ct{font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate)}
+.badge{font-size:8.5px;padding:2px 8px;border-radius:20px;border:1px solid var(--brgold);color:var(--gold);background:rgba(212,174,82,.07);letter-spacing:1px}
+
+/* ── GRIDS ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px}
+.g21{display:grid;grid-template-columns:2fr 1fr;gap:13px}
+.g12{display:grid;grid-template-columns:1fr 2fr;gap:13px}
+.gap{gap:13px}
+
+/* ── KPI STRIP ── */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.kpi{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r);padding:14px;position:relative;overflow:hidden;transition:border-color .2s}
+.kpi:hover{border-color:var(--brgold)}
+.kpi::after{content:'';position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:.2s}
+.kpi:hover::after{opacity:.5}
+.kl{font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:var(--slate3)}
+.kv{font-family:'Cormorant Garamond';font-size:28px;color:var(--txt);margin:3px 0 2px;line-height:1}
+.ks{font-size:10.5px}
+.ki{position:absolute;right:13px;top:13px;font-size:17px;opacity:.11}
+
+/* ── PREDICT FORM ── */
+.advisor-grid{display:grid;grid-template-columns:420px 1fr;gap:16px;align-items:start}
+.form-section{border-left:2px solid var(--br);padding-left:13px;margin-bottom:16px}
+.form-section-title{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--slate2);margin-bottom:11px}
+.frow{display:grid;gap:10px;margin-bottom:10px}
+.f2{grid-template-columns:1fr 1fr}
+.f3{grid-template-columns:1fr 1fr 1fr}
+.f4{grid-template-columns:1fr 1fr 1fr 1fr}
+label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate3);display:block;margin-bottom:3px}
+input,select,textarea{
+  width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:var(--r2);
+  color:var(--txt);font-family:'Syne';font-size:12px;padding:8px 11px;outline:none;
+  transition:border-color .18s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--brgold)}
+input::placeholder{color:var(--slate3)}
+select option{background:var(--bg3)}
+
+/* ── BUTTONS ── */
+.btn{padding:8px 16px;border-radius:var(--r2);border:none;cursor:pointer;font-family:'Syne';font-size:12px;font-weight:500;transition:all .18s;letter-spacing:.3px}
+.btn-g{background:linear-gradient(135deg,var(--gold),var(--goldd));color:#000}
+.btn-g:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(212,174,82,.28)}
+.btn-o{background:var(--bg3);border:1px solid var(--br);color:var(--slate)}
+.btn-o:hover{border-color:var(--brgold);color:var(--txt)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+
+/* ── RESULT PANEL ── */
+.result-empty{text-align:center;padding:50px 20px}
+.result-empty-ico{font-size:38px;opacity:.3;display:block;margin-bottom:10px}
+.result-empty-t{font-family:'Cormorant Garamond';font-size:20px;color:var(--txt);margin-bottom:5px}
+.result-empty-s{font-size:12px;color:var(--slate3)}
+
+/* Verdict card */
+.vc{border-radius:var(--r);padding:20px;border:2px solid;position:relative;overflow:hidden;margin-bottom:13px}
+.vc.fair{border-color:rgba(212,174,82,.45);background:linear-gradient(135deg,rgba(212,174,82,.08),rgba(212,174,82,.03))}
+.vc.underpriced,.vc.significantly_underpriced{border-color:rgba(82,176,122,.45);background:linear-gradient(135deg,rgba(82,176,122,.08),rgba(82,176,122,.03))}
+.vc.overpriced,.vc.significantly_overpriced{border-color:rgba(192,90,74,.45);background:linear-gradient(135deg,rgba(192,90,74,.08),rgba(192,90,74,.03))}
+.vc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.vc-label{font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--slate3);margin-bottom:3px}
+.vc-verdict{font-family:'Cormorant Garamond';font-size:38px;font-weight:700;line-height:1}
+.vc-right{text-align:right}
+.vc-meta{font-size:9.5px;color:var(--slate3)}
+.vc-val{font-family:'JetBrains Mono';font-size:15px;color:var(--txt);margin-top:2px}
+.vc-metrics{display:flex;gap:20px;padding-top:12px;border-top:1px solid rgba(255,255,255,.07);flex-wrap:wrap}
+.vc-m{flex:1;min-width:80px}
+.vc-mk{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate3)}
+.vc-mv{font-family:'JetBrains Mono';font-size:13px;margin-top:2px}
+
+/* Price gauge */
+.gauge-wrap{position:relative;height:8px;background:var(--br);border-radius:4px;overflow:visible;margin:8px 0}
+.gauge-track{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--grn),var(--gold),var(--red));opacity:.4}
+.gauge-mark{
+  position:absolute;top:-4px;width:3px;height:16px;border-radius:2px;
+  background:var(--txt);box-shadow:0 0 8px rgba(255,255,255,.4);
+  transition:left .5s cubic-bezier(.34,1.56,.64,1);
+}
+.gauge-labels{display:flex;justify-content:space-between;font-size:9px;color:var(--slate3);margin-top:4px}
+
+/* Comparison bars */
+.cmp-bar-wrap{margin-bottom:10px}
+.cmp-label{font-size:10px;color:var(--slate);display:flex;justify-content:space-between;margin-bottom:4px}
+.cmp-bar{height:22px;border-radius:var(--r3);overflow:hidden;background:var(--br);position:relative}
+.cmp-fill{height:100%;border-radius:var(--r3);display:flex;align-items:center;padding:0 8px;font-family:'JetBrains Mono';font-size:10px;font-weight:500;transition:width .6s ease;white-space:nowrap;overflow:hidden}
+
+/* Adjustments table */
+.adj-row{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(37,40,48,.5)}
+.adj-row:last-child{border-bottom:none}
+.adj-label{font-size:11px;color:var(--slate)}
+.adj-val{font-family:'JetBrains Mono';font-size:11px}
+
+/* ── UPLOAD ── */
+.dropzone{
+  border:2px dashed var(--br);border-radius:var(--r);padding:42px 20px;
+  text-align:center;cursor:pointer;transition:all .2s;background:var(--bg2);
+}
+.dropzone:hover,.dropzone.drag{border-color:var(--gold);background:rgba(212,174,82,.04)}
+.dropzone.done{border-style:solid;border-color:var(--grn);background:rgba(82,176,122,.04)}
+.dz-ico{font-size:34px;margin-bottom:10px;display:block}
+.dz-t{font-family:'Cormorant Garamond';font-size:19px;margin-bottom:4px}
+.dz-s{font-size:11.5px;color:var(--slate);line-height:1.6}
+
+/* ── TABLES ── */
+table{width:100%;border-collapse:collapse;font-size:11.5px}
+th{text-align:left;padding:7px 10px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--slate3);border-bottom:1px solid var(--br);font-weight:500}
+td{padding:8px 10px;border-bottom:1px solid rgba(37,40,48,.5);color:var(--slate)}
+tr:hover td{background:var(--bg3)}
+td:first-child{color:var(--txt);font-weight:500}
+.tg{color:var(--gold);font-family:'JetBrains Mono';font-size:11px}
+.tgrn{color:var(--grn);font-family:'JetBrains Mono';font-size:11px}
+.tred{color:var(--red);font-family:'JetBrains Mono';font-size:11px}
+.tblu{color:var(--blu);font-family:'JetBrains Mono';font-size:11px}
+
+/* ── MISC ── */
+.alert{display:flex;gap:9px;padding:10px 13px;border-radius:var(--r2);margin-bottom:11px;font-size:11.5px;line-height:1.6}
+.aw{background:rgba(196,138,58,.07);border:1px solid rgba(196,138,58,.22);color:var(--amb)}
+.ai{background:rgba(90,143,212,.07);border:1px solid rgba(90,143,212,.22);color:var(--blu)}
+.ag{background:rgba(82,176,122,.07);border:1px solid rgba(82,176,122,.22);color:var(--grn)}
+.ae{background:rgba(192,90,74,.07);border:1px solid rgba(192,90,74,.22);color:var(--red)}
+.sep{height:1px;background:var(--br);margin:14px 0}
+.slbl{font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--slate3);margin-bottom:9px}
+.mono{font-family:'JetBrains Mono'}
+.pill{display:inline-block;font-size:8.5px;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:20px;border:1px solid var(--brgold);color:var(--gold);background:rgba(212,174,82,.07)}
+.prog{height:3px;background:var(--br);border-radius:2px;overflow:hidden;margin-top:4px}
+.prog-f{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--goldd),var(--gold))}
+.ch-wrap{position:relative}
+
+/* ── LUXURY SLIDER ── */
+input[type=range]{padding:0;background:transparent;border:none;accent-color:var(--gold);cursor:pointer}
+.range-row{display:flex;align-items:center;gap:8px}
+.range-val{font-family:'JetBrains Mono';font-size:11px;color:var(--gold);min-width:28px;text-align:center;background:var(--bg3);border:1px solid var(--br);border-radius:4px;padding:2px 5px}
+
+/* ── LOADING SPINNER ── */
+.spin{width:18px;height:18px;border:2px solid var(--br);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;display:inline-block;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--br);border-radius:2px}::-webkit-scrollbar-thumb:hover{background:var(--goldd)}
+
+@media(max-width:900px){
+  .shell{grid-template-columns:1fr}.sidebar{display:none}
+  .advisor-grid{grid-template-columns:1fr}
+  .kpis{grid-template-columns:1fr 1fr}
+  .g2,.g3,.g21,.g12{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#">
+    <div class="gem">M</div>
+    <div>
+      <span class="brand-txt">MISR Analytics</span>
+      <span class="brand-sub">v3</span>
+    </div>
+  </a>
+  <div class="topbar-r">
+    <div class="ds" id="ds"><div class="dot"></div><span id="dsTxt">Connecting…</span></div>
+    <div class="topbar-date mono" id="clock">—</div>
+  </div>
+</header>
+
+<div class="shell">
+<aside class="sidebar">
+  <div class="sg">Core</div>
+  <div class="nb on" onclick="nav('advisor',this)"><span class="ni">◈</span>Price Advisor</div>
+  <div class="nb" onclick="nav('dashboard',this)"><span class="ni">◉</span>Dashboard</div>
+
+  <div class="sg">Data</div>
+  <div class="nb" onclick="nav('upload',this)"><span class="ni">⬆</span>Upload Data</div>
+  <div class="nb" onclick="nav('market',this)"><span class="ni">◍</span>Market Analysis</div>
+</aside>
+
+<main class="main">
+
+<!-- ════════ PRICE ADVISOR ════════ -->
+<div class="pg on" id="pg-advisor">
+  <div class="ph">
+    <div>
+      <div class="ph-h">Price Advisor</div>
+      <div class="ph-s">Enter your unit details — get an instant pricing assessment against the market</div>
+    </div>
+    <div id="modelBadge" style="text-align:right">
+      <div class="pill">OLS Regression</div><br/>
+      <span style="font-size:9.5px;color:var(--slate3)" id="modelMetaTxt">Loading model…</span>
+    </div>
+  </div>
+
+  <div class="advisor-grid">
+    <!-- LEFT: FORM -->
+    <div>
+      <div class="card">
+
+        <div class="form-section">
+          <div class="form-section-title">Property Details</div>
+          <div class="frow f2">
+            <div>
+              <label>Property Type</label>
+              <select id="f_type">
+                <option value="Villa">Villa</option>
+                <option value="Apartment" selected>Apartment</option>
+                <option value="Chalet">Chalet</option>
+                <option value="Townhouse">Townhouse</option>
+                <option value="Duplex">Duplex</option>
+              </select>
+            </div>
+            <div>
+              <label>Area (m²)</label>
+              <input type="number" id="f_area" placeholder="e.g. 180" min="20" max="2000"/>
+            </div>
+          </div>
+          <div class="frow f3">
+            <div><label>Bedrooms</label>
+              <select id="f_beds">
+                <option>1</option><option>2</option><option selected>3</option>
+                <option>4</option><option>5</option><option>6</option>
+              </select>
+            </div>
+            <div><label>Bathrooms</label>
+              <select id="f_baths">
+                <option>1</option><option selected>2</option><option>3</option><option>4</option>
+              </select>
+            </div>
+            <div><label>Floor / Level</label>
+              <select id="f_floor">
+                <option value="0">Ground</option>
+                <option value="1">1st</option><option value="2">2nd</option>
+                <option value="3" selected>3rd–5th</option><option value="6">6th+</option>
+                <option value="-1">Penthouse</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Location</div>
+          <div class="frow f2">
+            <div><label>City</label>
+              <select id="f_city">
+                <option>Cairo</option><option>Giza</option>
+                <option>Alexandria</option><option>North Coast</option>
+                <option>New Administrative Capital</option><option>October City</option>
+                <option>Ain Sokhna</option><option>Other</option>
+              </select>
+            </div>
+            <div><label>District / Area</label>
+              <input type="text" id="f_district" placeholder="e.g. New Cairo, Maadi"/>
+            </div>
+          </div>
+          <div class="frow f2">
+            <div><label>Compound / Project</label>
+              <input type="text" id="f_compound" placeholder="e.g. Palm Hills, Rehab"/>
+            </div>
+            <div><label>Distance from City Centre (km)</label>
+              <input type="number" id="f_dist" placeholder="e.g. 25" min="0" max="200" step="0.5"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Condition & Status</div>
+          <div class="frow f2">
+            <div><label>Finishing Level</label>
+              <select id="f_finish">
+                <option value="finished">Fully Finished</option>
+                <option value="semi">Semi-Finished</option>
+                <option value="core">Core &amp; Shell (Raw)</option>
+              </select>
+            </div>
+            <div><label>Delivery / Handover</label>
+              <select id="f_delivery">
+                <option value="0">Ready Now</option>
+                <option value="6">6 Months</option>
+                <option value="12">12 Months</option>
+                <option value="18">18 Months</option>
+                <option value="24">24 Months</option>
+                <option value="36">36 Months</option>
+                <option value="48">48 Months</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label>Luxury / Amenities Score</label>
+            <div class="range-row">
+              <input type="range" id="f_lux" min="0" max="100" value="50" style="flex:1" oninput="document.getElementById('luxVal').textContent=this.value"/>
+              <span class="range-val" id="luxVal">50</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--slate3);margin-top:2px">
+              <span>Basic</span><span>Standard</span><span>Premium</span><span>Ultra-Lux</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Pricing & Economic Conditions</div>
+          <div class="frow f2">
+            <div>
+              <label>Your Price (EGP)</label>
+              <input type="number" id="f_price_egp" placeholder="e.g. 4,500,000" min="100000"/>
+            </div>
+            <div>
+              <label>Or Price (USD) — auto-converts</label>
+              <input type="number" id="f_price_usd" placeholder="e.g. 87,000" min="1000"/>
+            </div>
+          </div>
+          <div class="frow f3">
+            <div><label>USD / EGP Rate</label>
+              <input type="number" id="f_usd" value="51.9" step="0.1" min="1"/>
+            </div>
+            <div><label>Iron Price (EGP/ton)</label>
+              <input type="number" id="f_iron" value="37500" step="100"/>
+            </div>
+            <div><label>Cement Price (EGP/ton)</label>
+              <input type="number" id="f_cement" value="3600" step="50"/>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-g" style="width:100%;padding:11px;font-size:13px" id="analyzeBtn" onclick="analyze()">
+          ◈ &nbsp;Analyze Pricing
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT: RESULTS -->
+    <div id="resultPanel">
+      <div class="card result-empty">
+        <span class="result-empty-ico">◈</span>
+        <div class="result-empty-t">Awaiting Analysis</div>
+        <div class="result-empty-s">Fill in the form on the left and click<br/>"Analyze Pricing" to get your assessment.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ DASHBOARD ════════ -->
+<div class="pg" id="pg-dashboard">
+  <div class="ph">
+    <div><div class="ph-h">Market Dashboard</div><div class="ph-s" id="dashSub">Loading…</div></div>
+    <button class="btn btn-g" onclick="nav('advisor',document.querySelector('.nb'))">◈ Price Advisor</button>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="ki">🏛</div><div class="kl">Total Listings</div><div class="kv" id="dk1">—</div><div class="ks" style="color:var(--slate3)">In dataset</div></div>
+    <div class="kpi"><div class="ki">💰</div><div class="kl">Avg Price / m²</div><div class="kv" id="dk2">—</div><div class="ks" style="color:var(--slate3)">EGP</div></div>
+    <div class="kpi"><div class="ki">💱</div><div class="kl">Avg USD / EGP</div><div class="kv" id="dk3">—</div><div class="ks" id="dk3s" style="color:var(--slate3)">Exchange rate</div></div>
+    <div class="kpi"><div class="ki">📐</div><div class="kl">Avg Unit Size</div><div class="kv" id="dk4">—</div><div class="ks" style="color:var(--slate3)">m²</div></div>
+  </div>
+  <div class="g21">
+    <div class="card"><div class="ch"><div class="ct">Price / m² — Monthly Trend</div><span class="badge" id="trendBadge">EGP</span></div><div class="ch-wrap" style="height:210px"><canvas id="cTrend"></canvas></div></div>
+    <div class="card"><div class="ch"><div class="ct">By Property Type</div></div><div class="ch-wrap" style="height:210px"><canvas id="cType"></canvas></div></div>
+  </div>
+  <div class="g2">
+    <div class="card"><div class="ch"><div class="ct">Average Price / m² by City</div></div><div class="ch-wrap" style="height:175px"><canvas id="cCity"></canvas></div></div>
+    <div class="card"><div class="ch"><div class="ct">USD / EGP Rate Timeline</div><span class="badge" style="color:var(--red);border-color:rgba(192,90,74,.3)">CRITICAL</span></div><div class="ch-wrap" style="height:175px"><canvas id="cUsd"></canvas></div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><div class="ct">Top Compounds by Avg Price / m²</div></div>
+    <table><thead><tr><th>Compound</th><th>Avg EGP/m²</th><th>Listings</th><th>vs Market</th><th>Performance</th></tr></thead>
+    <tbody id="compBody"></tbody></table>
+  </div>
+  <div class="g2">
+    <div class="card"><div class="ch"><div class="ct">Price by Bedroom Count</div></div><div class="ch-wrap" style="height:175px"><canvas id="cBeds"></canvas></div></div>
+    <div class="card"><div class="ch"><div class="ct">Model Performance</div><span class="badge">OLS Regression</span></div>
+      <div id="modelStats" style="padding:8px 0"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ UPLOAD ════════ -->
+<div class="pg" id="pg-upload">
+  <div class="ph"><div><div class="ph-h">Data Upload</div><div class="ph-s">Import your project CSV — the model retrains automatically on your data</div></div></div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><div class="ct">Upload Project CSV</div><span class="badge">Auto Column Detection</span></div>
+      <div class="dropzone" id="dz" onclick="document.getElementById('csvFile').click()"
+           ondragover="dzDrag(event,true)" ondragleave="dzDrag(event,false)" ondrop="dzDrop(event)">
+        <span class="dz-ico" id="dzIco">📂</span>
+        <div class="dz-t" id="dzTitle">Drop CSV here or click to browse</div>
+        <div class="dz-s" id="dzSub">Accepts any real estate CSV — columns are auto-detected<br/>Max 60 MB · UTF-8 or Latin-1 encoding</div>
+      </div>
+      <input type="file" id="csvFile" accept=".csv,.txt" style="display:none" onchange="uploadFile(this)"/>
+      <div style="margin-top:13px">
+        <div class="ct" style="margin-bottom:7px">Recognised Column Names</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px">
+          <span class="pill">price_per_m2</span><span class="pill">area_m2</span><span class="pill">price</span>
+          <span class="pill">city</span><span class="pill">property_type</span><span class="pill">bedrooms</span>
+          <span class="pill">compound</span><span class="pill">usd_to_egp_rate</span><span class="pill">luxury_score</span>
+          <span class="pill">distance_to_center</span><span class="pill">year / month</span>
+          <span class="pill">iron / cement</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div class="ct">Server-Side Processing Pipeline</div></div>
+      <div style="font-size:11.5px;color:var(--slate);line-height:1.9">
+        <div style="color:var(--txt);font-weight:500;margin-bottom:6px">When you upload a CSV, the server:</div>
+        <div>① <span style="color:var(--txt)">Parses & detects delimiter</span> — comma, semicolon, or tab</div>
+        <div>② <span style="color:var(--txt)">Maps column names</span> — fuzzy-matches 16 standard fields</div>
+        <div>③ <span style="color:var(--txt)">Cleans & validates</span> — filters invalid prices, nulls</div>
+        <div>④ <span style="color:var(--txt)">Computes 18 features</span> — including cyclical month encoding</div>
+        <div>⑤ <span style="color:var(--txt)">Trains OLS regression</span> — normal equations with ridge (λ=0.001)</div>
+        <div>⑥ <span style="color:var(--txt)">Reports R² and RMSE</span> — model quality on your data</div>
+        <div>⑦ <span style="color:var(--txt)">Ready for predictions</span> — all adjustments applied server-side</div>
+      </div>
+      <div class="sep"></div>
+      <button class="btn btn-o" style="width:100%" onclick="loadDemo()">◉ &nbsp;Reset to Demo Dataset</button>
+    </div>
+  </div>
+
+  <div id="uploadResult" style="display:none">
+    <div class="ag alert">✓ <strong>Dataset uploaded and model retrained successfully.</strong></div>
+    <div class="kpis" id="uploadKpis"></div>
+    <div class="card">
+      <div class="ch"><div class="ct">Column Mapping Report</div></div>
+      <table><thead><tr><th>Field</th><th>Mapped To</th><th>Status</th></tr></thead>
+      <tbody id="colMapBody"></tbody></table>
+    </div>
+    <button class="btn btn-g" onclick="nav('advisor',document.querySelector('.nb'))">◈ Go to Price Advisor →</button>
+  </div>
+</div>
+
+<!-- ════════ MARKET ════════ -->
+<div class="pg" id="pg-market">
+  <div class="ph"><div><div class="ph-h">Market Analysis</div><div class="ph-s">Price segmentation by location, type, and economic drivers</div></div></div>
+  <div class="alert aw">⚠ USD/EGP devalued 68% in 2024 — this is the dominant pricing risk factor in the Egyptian market.</div>
+  <div class="g2">
+    <div class="card"><div class="ch"><div class="ct">USD/EGP vs Price/m² Correlation</div></div><div class="ch-wrap" style="height:220px"><canvas id="mCorr"></canvas></div></div>
+    <div class="card"><div class="ch"><div class="ct">Material Cost → Price Impact</div></div><div class="ch-wrap" style="height:220px"><canvas id="mMat"></canvas></div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><div class="ct">Variable Sensitivity Index</div><span class="badge">Impact on Price/m²</span></div>
+    <table>
+      <thead><tr><th>Variable</th><th>Correlation</th><th>Effect</th><th>In Dataset</th><th>Recommended Action</th></tr></thead>
+      <tbody>
+        <tr><td>USD/EGP Rate</td><td class="tred">−0.42 (strong)</td><td style="font-size:10.5px;color:var(--red)">↑ Rate → ↓ USD value of property</td><td><span class="pill">✓</span></td><td style="font-size:10.5px;color:var(--slate)">Primary model feature</td></tr>
+        <tr><td>Iron Price</td><td class="tg">+0.18</td><td style="font-size:10.5px;color:var(--amb)">↑ Cost → ↑ price floor</td><td><span class="pill">✓</span></td><td style="font-size:10.5px;color:var(--slate)">Cost-side input</td></tr>
+        <tr><td>Cement Price</td><td class="tg">+0.12</td><td style="font-size:10.5px;color:var(--amb)">Moderate cost driver</td><td><span class="pill">✓</span></td><td style="font-size:10.5px;color:var(--slate)">Cost-side input</td></tr>
+        <tr><td>Luxury Score</td><td class="tblu">+0.38</td><td style="font-size:10.5px;color:var(--grn)">↑ Amenities → ↑ premium</td><td><span class="pill">✓</span></td><td style="font-size:10.5px;color:var(--slate)">Key model feature</td></tr>
+        <tr><td>CPI / Inflation</td><td class="tblu">+0.55 (est.)</td><td style="font-size:10.5px;color:var(--grn)">↑ Inflation → ↑ nominal price</td><td><span style="font-size:8.5px;color:var(--amb);border:1px solid rgba(196,138,58,.3);padding:2px 7px;border-radius:20px">⚠ Missing</span></td><td style="font-size:10.5px;color:var(--slate)">Add CAPMAS monthly CPI</td></tr>
+        <tr><td>CBE Interest Rate</td><td class="tred">−0.38 (est.)</td><td style="font-size:10.5px;color:var(--red)">↑ Rates → ↓ demand</td><td><span style="font-size:8.5px;color:var(--amb);border:1px solid rgba(196,138,58,.3);padding:2px 7px;border-radius:20px">⚠ Missing</span></td><td style="font-size:10.5px;color:var(--slate)">Add CBE policy rate feed</td></tr>
+        <tr><td>Labor Cost Index</td><td class="tg">+0.22 (est.)</td><td style="font-size:10.5px;color:var(--amb)">Supply-side cost pressure</td><td><span style="font-size:8.5px;color:var(--amb);border:1px solid rgba(196,138,58,.3);padding:2px 7px;border-radius:20px">⚠ Missing</span></td><td style="font-size:10.5px;color:var(--slate)">Quarterly survey needed</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// GLOBAL STATS CACHE
+// ═══════════════════════════════════════════════════════
+let STATS = null;
+const CHARTS = {};
+
+// ═══════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════
+function nav(page, el) {
+  document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(n => n.classList.remove('on'));
+  document.getElementById('pg-' + page).classList.add('on');
+  if (el) el.classList.add('on');
+  if (page === 'dashboard' && STATS) buildDashCharts(STATS);
+  if (page === 'market'    && STATS) buildMarketCharts(STATS);
+}
+
+// ═══════════════════════════════════════════════════════
+// HEALTH CHECK + INITIAL LOAD
+// ═══════════════════════════════════════════════════════
+async function ping() {
+  try {
+    const r = await fetch('/api/health');
+    const d = await r.json();
+    const el = document.getElementById('ds');
+    const tx = document.getElementById('dsTxt');
+    if (d.ready) {
+      el.classList.add('ok');
+      tx.textContent = `${(d.rows||0).toLocaleString()} rows · R²=${d.model?.r2?.toFixed(3)}`;
+      document.getElementById('modelMetaTxt').textContent =
+        `R²=${d.model?.r2?.toFixed(3)}  RMSE=${d.model?.rmse?.toLocaleString()} EGP/m²  n=${d.rows?.toLocaleString()}`;
+    } else {
+      tx.textContent = 'Initializing…';
+    }
+    return d.ready;
+  } catch { return false; }
+}
+
+async function loadStats() {
+  try {
+    const r = await fetch('/api/stats');
+    if (!r.ok) return;
+    STATS = await r.json();
+    updateDashKpis(STATS);
+  } catch {}
+}
+
+function updateDashKpis(s) {
+  document.getElementById('dk1').textContent = (s.totalRows||0).toLocaleString();
+  document.getElementById('dk2').textContent = (s.avgPpm||0).toLocaleString();
+  document.getElementById('dk3').textContent = s.avgUsd||'—';
+  document.getElementById('dk4').textContent = (s.avgArea||0) + ' m²';
+  document.getElementById('dashSub').textContent =
+    `${(s.totalRows||0).toLocaleString()} listings · source: ${s.source||'demo'}`;
+}
+
+// ═══════════════════════════════════════════════════════
+// CHART HELPERS
+// ═══════════════════════════════════════════════════════
+const GC = 'rgba(37,40,48,.7)', TC = '#3A3E50';
+const gold='#D4AE52', blue='#5A8FD4', grn='#52B07A', red='#C05A4A', amb='#C48A3A';
+
+function kill(id) { if (CHARTS[id]) { CHARTS[id].destroy(); delete CHARTS[id]; } }
+function ctx(id) { const c = document.getElementById(id); return c ? c.getContext('2d') : null; }
+function grad(c, col) {
+  const g = c.createLinearGradient(0,0,0,280);
+  g.addColorStop(0, col+'55'); g.addColorStop(1,'transparent'); return g;
+}
+function baseOpts(extra={}) {
+  return {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { backgroundColor:'#191C24', borderColor:'#252830', borderWidth:1,
+                 titleColor:'#E8E4DC', bodyColor:'#858DA8', padding:9, cornerRadius:5 },
+    },
+    scales: {
+      x: { grid:{ color:GC }, ticks:{ color:TC, font:{ size:9, family:'JetBrains Mono' }}},
+      y: { grid:{ color:GC }, ticks:{ color:TC, font:{ size:9, family:'JetBrains Mono' }}},
+    },
+    ...extra
+  };
+}
+
+// ═══════════════════════════════════════════════════════
+// DASHBOARD CHARTS
+// ═══════════════════════════════════════════════════════
+function buildDashCharts(s) {
+  // Trend
+  kill('cTrend');
+  const c1 = ctx('cTrend'); if (!c1) return;
+  const ml = Object.keys(s.monthly), mv = Object.values(s.monthly);
+  CHARTS.cTrend = new Chart(c1, {
+    type:'line', data:{ labels:ml, datasets:[{
+      data:mv, borderColor:gold, borderWidth:2, backgroundColor:grad(c1,gold),
+      tension:.4, fill:true, pointRadius:2, pointBackgroundColor:gold }]},
+    options: baseOpts()
+  });
+
+  // Type donut
+  kill('cType');
+  const c2 = ctx('cType'); if (!c2) return;
+  CHARTS.cType = new Chart(c2, {
+    type:'doughnut',
+    data:{ labels:Object.keys(s.byType), datasets:[{
+      data:Object.values(s.byType), backgroundColor:[gold,blue,grn,amb,'#8A5AD4'], borderWidth:0 }]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ display:true, position:'right', labels:{ color:TC, font:{ size:10 }}}}}
+  });
+
+  // City
+  kill('cCity');
+  const c3 = ctx('cCity'); if (!c3) return;
+  CHARTS.cCity = new Chart(c3, {
+    type:'bar',
+    data:{ labels:Object.keys(s.byCity), datasets:[{
+      data:Object.values(s.byCity), backgroundColor:[gold+'AA',blue+'AA',grn+'AA',amb+'AA'],
+      borderRadius:5 }]},
+    options: baseOpts()
+  });
+
+  // USD
+  kill('cUsd');
+  const c4 = ctx('cUsd'); if (!c4) return;
+  const ul = Object.keys(s.usdByMonth), uv = Object.values(s.usdByMonth);
+  CHARTS.cUsd = new Chart(c4, {
+    type:'line', data:{ labels:ul, datasets:[{
+      data:uv, borderColor:red, borderWidth:2, backgroundColor:grad(c4,red),
+      fill:true, tension:.3, pointRadius:1 }]},
+    options: baseOpts()
+  });
+
+  // Compound table
+  const tbody = document.getElementById('compBody');
+  const avg = s.avgPpm;
+  tbody.innerHTML = Object.entries(s.byCompound).map(([name,{avg:a,count:c}]) => {
+    const diff = ((a-avg)/avg*100).toFixed(1);
+    const cls  = diff > 0 ? 'tgrn' : 'tred';
+    const pct  = Math.min(100, Math.round(a/avg*72));
+    return `<tr>
+      <td>${name||'(none)'}</td>
+      <td class="tg">${a.toLocaleString()}</td>
+      <td style="color:var(--slate3);font-family:'JetBrains Mono';font-size:10.5px">${c}</td>
+      <td class="${cls}">${diff>0?'+':''}${diff}%</td>
+      <td style="width:100px"><div class="prog"><div class="prog-f" style="width:${pct}%"></div></div></td>
+    </tr>`;
+  }).join('');
+
+  // Bedrooms
+  kill('cBeds');
+  const c5 = ctx('cBeds'); if (!c5) return;
+  CHARTS.cBeds = new Chart(c5, {
+    type:'bar',
+    data:{ labels:Object.keys(s.byBeds), datasets:[{
+      data:Object.values(s.byBeds), backgroundColor:gold+'AA', borderRadius:5 }]},
+    options: baseOpts()
+  });
+
+  // Model stats
+  document.getElementById('modelStats').innerHTML = `
+    <div class="adj-row"><span class="adj-label">R² Score</span><span class="adj-val" style="color:var(--grn)">${s.model.r2}</span></div>
+    <div class="adj-row"><span class="adj-label">RMSE (EGP/m²)</span><span class="adj-val" style="color:var(--amb)">${s.model.rmse.toLocaleString()}</span></div>
+    <div class="adj-row"><span class="adj-label">Training samples</span><span class="adj-val">${s.model.nSamples.toLocaleString()}</span></div>
+    <div class="adj-row"><span class="adj-label">Features</span><span class="adj-val">18 (OLS + ridge)</span></div>
+    <div class="adj-row"><span class="adj-label">Delivery adjustments</span><span class="adj-val" style="color:var(--slate)">0–48 month bands</span></div>
+    <div class="adj-row"><span class="adj-label">Finishing adjustments</span><span class="adj-val" style="color:var(--slate)">Full / Semi / Core</span></div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════
+// MARKET CHARTS
+// ═══════════════════════════════════════════════════════
+function buildMarketCharts(s) {
+  kill('mCorr');
+  const c1 = ctx('mCorr'); if (!c1) return;
+  const corrPts = Object.keys(s.usdByMonth).filter(k => s.monthly[k])
+    .map(k => ({ x: s.usdByMonth[k], y: s.monthly[k] }));
+  CHARTS.mCorr = new Chart(c1, {
+    type:'scatter',
+    data:{ datasets:[{ data:corrPts, backgroundColor:gold+'77', borderColor:gold, pointRadius:5 }]},
+    options: baseOpts({ plugins:{ ...baseOpts().plugins,
+      tooltip:{ ...baseOpts().plugins.tooltip, callbacks:{ label:p=>`Rate: ${p.raw.x} | Price/m²: ${p.raw.y.toLocaleString()}` }}}})
+  });
+
+  kill('mMat');
+  const c2 = ctx('mMat'); if (!c2) return;
+  const ironPts = [28000,30000,32000,35000,37500,40000,43000,46000,50000];
+  const base = s.avgPpm || 24000;
+  const impact = ironPts.map(p => Math.round(base * (1 + (p-37500)/37500*0.18)));
+  CHARTS.mMat = new Chart(c2, {
+    type:'line',
+    data:{ labels:ironPts.map(p=>`${(p/1000).toFixed(0)}K`), datasets:[{
+      data:impact, borderColor:gold, borderWidth:2, tension:.3, pointRadius:3, fill:false }]},
+    options: baseOpts({ plugins:{ ...baseOpts().plugins, legend:{ display:false }}})
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// UPLOAD
+// ═══════════════════════════════════════════════════════
+function dzDrag(e, on) {
+  e.preventDefault();
+  document.getElementById('dz').classList.toggle('drag', on);
+}
+function dzDrop(e) {
+  e.preventDefault();
+  document.getElementById('dz').classList.remove('drag');
+  const f = e.dataTransfer?.files?.[0];
+  if (f) sendFile(f);
+}
+function uploadFile(inp) { if (inp.files[0]) sendFile(inp.files[0]); }
+
+async function sendFile(file) {
+  const dz   = document.getElementById('dz');
+  const btn  = document.getElementById('analyzeBtn');
+  document.getElementById('dzIco').textContent   = '⏳';
+  document.getElementById('dzTitle').textContent  = `Uploading ${file.name}…`;
+  document.getElementById('dzSub').textContent    = 'Parsing CSV and training model…';
+  dz.classList.remove('done');
+
+  const fd = new FormData();
+  fd.append('file', file);
+
+  try {
+    const r = await fetch('/api/upload', { method:'POST', body:fd });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error);
+
+    dz.classList.add('done');
+    document.getElementById('dzIco').textContent   = '✅';
+    document.getElementById('dzTitle').textContent  = file.name;
+    document.getElementById('dzSub').textContent    = `${d.rows.toLocaleString()} rows · R²=${d.model.r2.toFixed(3)} · RMSE=${d.model.rmse.toLocaleString()} EGP/m²`;
+
+    // Update status bar
+    await ping(); await loadStats();
+
+    // Show result block
+    document.getElementById('uploadResult').style.display = 'block';
+    document.getElementById('uploadKpis').innerHTML = `
+      <div class="kpi"><div class="kl">Rows Loaded</div><div class="kv">${d.rows.toLocaleString()}</div><div class="ks" style="color:var(--grn)">✓ Parsed</div></div>
+      <div class="kpi"><div class="kl">Avg Price/m²</div><div class="kv">${(d.stats.avgPpm||0).toLocaleString()}</div><div class="ks" style="color:var(--slate3)">EGP</div></div>
+      <div class="kpi"><div class="kl">Model R²</div><div class="kv">${d.model.r2.toFixed(3)}</div><div class="ks" style="color:var(--slate3)">Higher = better</div></div>
+      <div class="kpi"><div class="kl">RMSE</div><div class="kv">${d.model.rmse.toLocaleString()}</div><div class="ks" style="color:var(--slate3)">EGP/m²</div></div>
+    `;
+
+    document.getElementById('colMapBody').innerHTML = Object.entries(d.colMap).map(([k,v]) => {
+      const found = v && !v.includes('not found');
+      return `<tr>
+        <td style="font-family:'JetBrains Mono';font-size:10.5px">${k}</td>
+        <td style="font-family:'JetBrains Mono';font-size:10px;color:${found?'var(--txt)':'var(--slate3)'}">${v}</td>
+        <td style="font-size:10.5px;color:${found?'var(--grn)':'var(--amb)'}">${found?'✓ Mapped':'⚠ Not found'}</td>
+      </tr>`;
+    }).join('');
+
+  } catch (err) {
+    dz.classList.remove('done');
+    document.getElementById('dzIco').textContent   = '❌';
+    document.getElementById('dzTitle').textContent  = 'Upload failed';
+    document.getElementById('dzSub').textContent    = err.message;
+  }
+}
+
+async function loadDemo() {
+  // Re-ping to ensure demo is loaded server-side
+  document.getElementById('uploadResult').style.display = 'none';
+  document.getElementById('dzIco').textContent   = '⏳';
+  document.getElementById('dzTitle').textContent  = 'Loading demo dataset…';
+  document.getElementById('dzSub').textContent    = '';
+  await ping(); await loadStats();
+  document.getElementById('dzIco').textContent   = '◉';
+  document.getElementById('dzTitle').textContent  = 'Demo dataset active';
+  document.getElementById('dzSub').textContent    = '15,000 synthetic rows · Egypt 2024–2025';
+}
+
+// ═══════════════════════════════════════════════════════
+// USD ↔ EGP AUTO-CONVERT
+// ═══════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('f_price_usd').addEventListener('input', function() {
+    const usd = parseFloat(this.value)||0;
+    const rate = parseFloat(document.getElementById('f_usd').value)||51.9;
+    if (usd) document.getElementById('f_price_egp').value = Math.round(usd * rate);
+  });
+  document.getElementById('f_price_egp').addEventListener('input', function() {
+    const egp  = parseFloat(this.value)||0;
+    const rate = parseFloat(document.getElementById('f_usd').value)||51.9;
+    if (egp) document.getElementById('f_price_usd').value = Math.round(egp / rate);
+  });
+  document.getElementById('f_usd').addEventListener('input', function() {
+    const egp = parseFloat(document.getElementById('f_price_egp').value)||0;
+    if (egp) document.getElementById('f_price_usd').value = Math.round(egp / (parseFloat(this.value)||51.9));
+  });
+});
+
+// ═══════════════════════════════════════════════════════
+// ANALYZE PRICE
+// ═══════════════════════════════════════════════════════
+async function analyze() {
+  const btn = document.getElementById('analyzeBtn');
+  const egp = parseFloat(document.getElementById('f_price_egp').value);
+  if (!egp || egp < 10000) {
+    showError('Please enter a valid price in EGP (minimum 10,000)');
+    return;
+  }
+  const area = parseFloat(document.getElementById('f_area').value);
+  if (!area || area < 20) {
+    showError('Please enter a valid area in m²');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span>Analyzing…';
+
+  const payload = {
+    area_m2:             area,
+    bedrooms:            document.getElementById('f_beds').value,
+    bathrooms:           document.getElementById('f_baths').value,
+    property_type:       document.getElementById('f_type').value,
+    city:                document.getElementById('f_city').value,
+    distance_to_center:  document.getElementById('f_dist').value || 25,
+    luxury_score:        parseFloat(document.getElementById('f_lux').value) / 100,
+    usd_to_egp_rate:     document.getElementById('f_usd').value,
+    iron:                document.getElementById('f_iron').value,
+    cement:              document.getElementById('f_cement').value,
+    month:               new Date().getMonth() + 1,
+    delivery_months:     document.getElementById('f_delivery').value,
+    finishing:           document.getElementById('f_finish').value,
+    entered_price:       egp,
+  };
+
+  try {
+    const r = await fetch('/api/predict', {
+      method: 'POST', headers: { 'Content-Type':'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error);
+    renderResult(d, payload);
+  } catch (err) {
+    showError(err.message);
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '◈ &nbsp;Analyze Pricing';
+}
+
+function showError(msg) {
+  document.getElementById('resultPanel').innerHTML = `
+    <div class="card"><div class="ae alert">⚠ ${msg}</div></div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// RENDER RESULT
+// ═══════════════════════════════════════════════════════
+function renderResult(d, inp) {
+  const p      = d.predicted, e = d.entered, m = d.market;
+  const gap    = d.gap, adj = d.adjustments;
+  const maxBar = Math.max(e.ppm, p.ppm, m.city_avg, m.type_avg) * 1.1;
+  const vClass = d.verdict.replace('_','-').replace('_','-');
+
+  // Gauge position: 0=very cheap ... 100=very expensive
+  // Map gap% -30 to +30 → 0 to 100
+  const gaugePos = Math.max(2, Math.min(98, 50 + gap.pct * 1.4));
+
+  // Price comparison bars
+  const bars = [
+    { label:'Your Price',          val: e.ppm,          color: d.verdictColor },
+    { label:'Predicted Fair Value',val: p.ppm,          color: gold },
+    { label:`${inp.city} Avg`,     val: m.city_avg,     color: blue },
+    { label:`${inp.property_type} Avg`, val: m.type_avg, color: '#858DA8' },
+  ];
+
+  const barsHTML = bars.map(b => {
+    const w = Math.round(b.val/maxBar*100);
+    const v = b.val.toLocaleString();
+    return `<div class="cmp-bar-wrap">
+      <div class="cmp-label"><span>${b.label}</span><span style="font-family:'JetBrains Mono';font-size:11px">${v} EGP/m²</span></div>
+      <div class="cmp-bar">
+        <div class="cmp-fill" style="width:${w}%;background:${b.color}33;color:${b.color}">
+          ${v}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // CI bar
+  const ciMin  = p.ci_low, ciMax  = p.ci_high;
+  const ciPctL = Math.round(ciMin/maxBar*100), ciPctH = Math.round(ciMax/maxBar*100);
+
+  // Adjustment breakdown
+  const finishLabel = { finished:'Fully Finished', semi:'Semi-Finished', core:'Core & Shell' };
+  const delivLabel  = adj.delivery_months===0 ? 'Ready Now' : `${adj.delivery_months} months`;
+
+  document.getElementById('resultPanel').innerHTML = `
+
+    <!-- VERDICT CARD -->
+    <div class="vc ${d.verdict}">
+      <div class="vc-top">
+        <div>
+          <div class="vc-label">Pricing Assessment</div>
+          <div class="vc-verdict" style="color:${d.verdictColor}">${d.verdictEmoji} ${d.verdictLabel}</div>
+        </div>
+        <div class="vc-right">
+          <div class="vc-meta">Your Price / m²</div>
+          <div class="vc-val" style="color:${d.verdictColor}">${e.ppm.toLocaleString()} EGP</div>
+          <div class="vc-meta" style="margin-top:5px">Price in USD</div>
+          <div class="vc-val">${Math.round(e.ppm / parseFloat(document.getElementById('f_usd').value)).toLocaleString()} USD/m²</div>
+        </div>
+      </div>
+
+      <!-- Price Gauge -->
+      <div style="margin-bottom:10px">
+        <div style="font-size:9px;color:var(--slate3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px">Market Position</div>
+        <div class="gauge-wrap">
+          <div class="gauge-track"></div>
+          <div class="gauge-mark" style="left:${gaugePos}%"></div>
+        </div>
+        <div class="gauge-labels"><span style="color:var(--grn)">Underpriced</span><span>Fair Range</span><span style="color:var(--red)">Overpriced</span></div>
+      </div>
+
+      <div class="vc-metrics">
+        <div class="vc-m">
+          <div class="vc-mk">vs Predicted</div>
+          <div class="vc-mv" style="color:${d.verdictColor}">${gap.pct>0?'+':''}${gap.pct}%</div>
+        </div>
+        <div class="vc-m">
+          <div class="vc-mk">Difference</div>
+          <div class="vc-mv" style="color:${d.verdictColor}">${gap.egp>0?'+':''}${gap.egp.toLocaleString()} EGP</div>
+        </div>
+        <div class="vc-m">
+          <div class="vc-mk">Market %ile</div>
+          <div class="vc-mv">${m.percentile}<span style="font-size:9px;color:var(--slate3)">th</span></div>
+        </div>
+        <div class="vc-m">
+          <div class="vc-mk">Comparables</div>
+          <div class="vc-mv">${m.comparable_count.toLocaleString()}</div>
+        </div>
+        <div class="vc-m">
+          <div class="vc-mk">Model R²</div>
+          <div class="vc-mv">${d.model_metrics.r2}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICE COMPARISON BARS -->
+    <div class="card">
+      <div class="ch"><div class="ct">Price / m² Comparison</div><span class="badge">EGP</span></div>
+      ${barsHTML}
+      <div style="margin-top:10px;font-size:9px;color:var(--slate3)">
+        Confidence Interval: <span style="font-family:'JetBrains Mono';color:var(--slate)">${ciMin.toLocaleString()} – ${ciMax.toLocaleString()} EGP/m²</span>
+        &nbsp;·&nbsp; <span style="font-family:'JetBrains Mono';color:var(--gold)">${p.ppm.toLocaleString()} EGP predicted</span>
+      </div>
+    </div>
+
+    <!-- ADJUSTMENT BREAKDOWN -->
+    <div class="card">
+      <div class="ch"><div class="ct">Prediction Breakdown</div></div>
+      <div class="adj-row">
+        <span class="adj-label">① Base model prediction (OLS)</span>
+        <span class="adj-val">${adj.base_ppm.toLocaleString()} EGP/m²</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">② Delivery adjustment — ${delivLabel}</span>
+        <span class="adj-val" style="color:${adj.delivery_factor<1?'var(--amb)':'var(--grn)'}">× ${adj.delivery_factor}</span>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">③ Finishing adjustment — ${finishLabel[adj.finishing]}</span>
+        <span class="adj-val" style="color:${adj.finish_factor<1?'var(--amb)':'var(--grn)'}">× ${adj.finish_factor}</span>
+      </div>
+      <div class="adj-row" style="border-top:1px solid var(--brgold);margin-top:2px;padding-top:9px">
+        <span class="adj-label" style="color:var(--txt);font-weight:600">→ Adjusted Fair Value</span>
+        <span class="adj-val" style="color:var(--gold);font-size:13px">${p.ppm.toLocaleString()} EGP/m² (${(p.total/1e6).toFixed(2)}M total)</span>
+      </div>
+    </div>
+
+    <!-- RECOMMENDATION -->
+    <div class="card">
+      <div class="ch"><div class="ct">Recommendation</div></div>
+      <div style="font-size:12.5px;line-height:1.8;color:var(--slate2)">
+        ${buildRecommendation(d, inp)}
+      </div>
+      <div class="sep"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-g" onclick="nav('dashboard',document.querySelectorAll('.nb')[1])">View Dashboard</button>
+        <button class="btn btn-o" onclick="nav('market',document.querySelectorAll('.nb')[3])">Market Analysis</button>
+      </div>
+    </div>
+  `;
+}
+
+function buildRecommendation(d, inp) {
+  const gap = d.gap, m = d.market, adj = d.adjustments;
+  const type = inp.property_type, city = inp.city;
+  const delivStr = adj.delivery_months===0 ? 'ready for handover' : `${adj.delivery_months} months until delivery`;
+  const finStr   = { finished:'fully finished', semi:'semi-finished', core:'core & shell' }[adj.finishing] || '';
+
+  if (d.verdict === 'fair') {
+    return `<span style="color:var(--gold);font-weight:600">✓ This unit is priced fairly</span> relative to comparable ${type}s in ${city}. 
+    At <strong style="color:var(--txt)">${d.entered.ppm.toLocaleString()} EGP/m²</strong>, it sits within the model's confidence interval 
+    (${d.predicted.ci_low.toLocaleString()}–${d.predicted.ci_high.toLocaleString()} EGP/m²). 
+    The property is ${delivStr} and ${finStr}, which have been factored into the assessment. 
+    The current USD/EGP rate of ${inp.usd_to_egp_rate} EGP was used in the model.`;
+  }
+  if (d.verdict.includes('underpriced')) {
+    const saving = Math.abs(gap.egp);
+    return `<span style="color:var(--grn);font-weight:600">↓ This unit appears underpriced</span> by 
+    <strong style="color:var(--txt)">${Math.abs(gap.pct)}% (${saving.toLocaleString()} EGP)</strong> relative to comparable ${type}s in ${city}. 
+    Fair value is estimated at <strong style="color:var(--txt)">${d.predicted.ppm.toLocaleString()} EGP/m²</strong>. 
+    This ${delivStr} ${finStr} unit offers good value at current pricing. 
+    ${d.verdict==='significantly_underpriced' ? 'Consider whether there are unlisted risk factors (legal, structural, location-specific) that may explain the discount.' : 
+    'If you are a buyer, this is a favourable entry. If you are a developer, consider revising the list price upward.'}`;
+  }
+  if (d.verdict.includes('overpriced')) {
+    const excess = gap.egp;
+    return `<span style="color:var(--red);font-weight:600">↑ This unit appears overpriced</span> by 
+    <strong style="color:var(--txt)">${gap.pct}% (${excess.toLocaleString()} EGP)</strong> versus comparable ${type}s in ${city}. 
+    The model estimates fair value at <strong style="color:var(--txt)">${d.predicted.ppm.toLocaleString()} EGP/m²</strong> 
+    (total: ${(d.predicted.total/1e6).toFixed(2)}M EGP) for a ${delivStr}, ${finStr} unit. 
+    At ${m.percentile}th percentile, this price is above most comparable listings. 
+    ${d.verdict==='significantly_overpriced' ? 
+    'A price correction of 15–20% is strongly advisable to align with market conditions.' :
+    'A modest 5–10% price adjustment would bring it within the fair value band.'}`;
+  }
+  return '';
+}
+
+// ═══════════════════════════════════════════════════════
+// CLOCK
+// ═══════════════════════════════════════════════════════
+setInterval(() => {
+  document.getElementById('clock').textContent =
+    new Date().toLocaleString('en-GB',{ day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+}, 1000);
+
+// ═══════════════════════════════════════════════════════
+// BOOT
+// ═══════════════════════════════════════════════════════
+(async () => {
+  document.getElementById('clock').textContent =
+    new Date().toLocaleString('en-GB',{ day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+  let ready = false;
+  for (let i = 0; i < 8; i++) {
+    ready = await ping();
+    if (ready) break;
+    await new Promise(r => setTimeout(r, 600));
+  }
+  if (ready) await loadStats();
+})();
+</script>
+</body>
+</html>
