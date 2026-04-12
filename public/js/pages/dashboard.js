@@ -57,15 +57,27 @@ class PageDashboard {
     if (compBody) {
       const compRows = stats.byCompound ? Object.entries(stats.byCompound).slice(0, 6) : [];
       if (compRows.length) {
-        compBody.innerHTML = compRows.map(([compound, info]) => `
+        const maxAvg = Math.max(...compRows.map(r => r[1].avg));
+        compBody.innerHTML = compRows.map(([compound, info]) => {
+          const isAbove = info.avg >= stats.avgPpm;
+          const diff = info.avg - stats.avgPpm;
+          const diffColor = isAbove ? 'var(--gold)' : 'var(--slate)';
+          const diffSign = isAbove ? '+' : '';
+          const barPct = Math.round((info.avg / maxAvg) * 100);
+          
+          return `
           <tr>
-            <td>${compound}</td>
-            <td>${info.avg.toLocaleString()}</td>
+            <td style="font-weight:600">${compound}</td>
+            <td class="mono">${info.avg.toLocaleString()}</td>
             <td>${info.count}</td>
-            <td>${Math.round(info.avg - stats.avgPpm)} EGP/m²</td>
-            <td>${info.avg > stats.avgPpm ? 'Above market' : 'Below market'}</td>
+            <td class="mono" style="color:${diffColor}; font-size:10px">${diffSign}${Math.round(diff).toLocaleString()}</td>
+            <td style="width:120px; vertical-align:middle">
+              <div class="prog" style="background:var(--bg3); height:4px">
+                 <div class="prog-f" style="width:${barPct}%; background:${diffColor}"></div>
+              </div>
+            </td>
           </tr>
-        `).join('');
+        `}).join('');
       } else {
         compBody.innerHTML = '<tr><td colspan="5" style="color:var(--slate3)">Upload data or use the demo dataset to populate market insights.</td></tr>';
       }

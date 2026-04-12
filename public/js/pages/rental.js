@@ -30,6 +30,18 @@ class PageRental {
       const mortgageChk = document.getElementById('r_use_mortgage');
       const useMortgage = mortgageChk && mortgageChk.checked;
 
+      const resultPanel = document.getElementById('rentalResultPanel');
+      resultPanel.innerHTML = `
+        <div class="card result-loading" style="padding:24px; border-color:transparent">
+           <div class="skeleton" style="height: 150px; width: 150px; border-radius: 50%; margin: 0 auto 24px"></div>
+           <div class="skeleton" style="height: 18px; width: 40%; margin: 0 auto 30px"></div>
+           <div class="skeleton" style="height: 80px; margin-bottom: 12px; border-radius: var(--r)"></div>
+           <div class="skeleton" style="height: 140px; border-radius: var(--r)"></div>
+        </div>
+      `;
+      // Simulate network request for premium loader
+      await new Promise(resolve => setTimeout(resolve, 500));
+
       const input = {
         area_m2:           parseFloat(document.getElementById('r_area').value),
         purchase_price:    parseFloat(document.getElementById('r_purchase').value),

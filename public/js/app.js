@@ -4,10 +4,31 @@ class AppController {
     this.currentPage = 'advisor';
     this.model = null;
     this.stats = null;
+    this.setupGlobalAesthetics();
     this.setupNavigation();
     this.loadInitialData();
     this.updateClock();
     setInterval(() => this.updateClock(), 1000);
+  }
+
+  static setupGlobalAesthetics() {
+    if (window.Chart) {
+      Chart.defaults.font.family = 'JetBrains Mono';
+      Chart.defaults.scale.grid.borderDash = [3, 4];
+      Chart.defaults.elements.line.tension = 0.4;
+      Chart.defaults.elements.line.borderWidth = 3;
+      Chart.defaults.elements.point.radius = 0;
+      Chart.defaults.elements.point.hoverRadius = 6;
+      Chart.defaults.elements.point.hitRadius = 24;
+      Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(25, 28, 36, 0.85)';
+      Chart.defaults.plugins.tooltip.titleColor = '#F0CE7A';
+      Chart.defaults.plugins.tooltip.bodyFont = { family: 'Syne', size: 13 };
+      Chart.defaults.plugins.tooltip.padding = 14;
+      Chart.defaults.plugins.tooltip.cornerRadius = 10;
+      Chart.defaults.plugins.tooltip.displayColors = false;
+      Chart.defaults.plugins.tooltip.backdropFilter = 'blur(6px)'; // Supported in some browsers or custom html tooltip
+      Chart.defaults.hover.mode = 'index';
+    }
   }
 
   static setupNavigation() {
@@ -15,13 +36,26 @@ class AppController {
       document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
       document.querySelectorAll('.nb').forEach(n => n.classList.remove('on'));
       document.getElementById(`pg-${page}`).classList.add('on');
-      if (element) element.classList.add('on');
+      if (element) {
+        element.classList.add('on');
+        const glider = document.getElementById('sbGlider');
+        if (glider) {
+          glider.style.opacity = '1';
+          glider.style.transform = `translateY(${element.offsetTop}px)`;
+        }
+      }
       this.currentPage = page;
       // Notify page that it's active
       if (window[`page${page.charAt(0).toUpperCase() + page.slice(1)}`]) {
         window[`page${page.charAt(0).toUpperCase() + page.slice(1)}`].onActive?.();
       }
     };
+
+    // Set initial glider position
+    setTimeout(() => {
+      const active = document.querySelector('.nb.on');
+      if (active) window.nav(this.currentPage, active);
+    }, 50);
   }
 
   static async loadInitialData() {

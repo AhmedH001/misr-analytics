@@ -35,6 +35,20 @@ class PageAdvisor {
     }
 
     try {
+      const resultPanel = document.getElementById('resultPanel');
+      resultPanel.innerHTML = `
+        <div class="card result-loading" style="padding:24px; border-color: transparent">
+           <div class="skeleton" style="height: 120px; margin-bottom: 24px; border-radius: var(--r)"></div>
+           <div class="skeleton" style="height: 10px; width: 50%; margin-bottom: 30px"></div>
+           <div class="skeleton" style="height: 24px; margin-bottom: 12px"></div>
+           <div class="skeleton" style="height: 24px; margin-bottom: 12px"></div>
+           <div class="skeleton" style="height: 24px;"></div>
+        </div>
+      `;
+      
+      // Simulate network latency for the premium UX
+      await new Promise(resolve => setTimeout(resolve, 600));
+
       const input = {
         area_m2: parseFloat(document.getElementById('f_area').value),
         bedrooms: parseInt(document.getElementById('f_beds').value, 10),

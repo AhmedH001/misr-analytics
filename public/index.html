@@ -32,11 +32,11 @@
       --redd: #8A3020;
       --blu: #5A8FD4;
       --amb: #C48A3A;
-      --r: 10px;
-      --r2: 6px;
-      --r3: 3px;
-      --sh: 0 4px 24px rgba(0, 0, 0, .4);
-      --topbar-bg: rgba(11, 12, 16, .94);
+      --r: 16px;
+      --r2: 12px;
+      --r3: 6px;
+      --sh: 0 8px 30px rgba(0, 0, 0, .5);
+      --topbar-bg: rgba(11, 12, 16, .85);
       --scrollbar-thumb: var(--br);
     }
 
@@ -79,23 +79,24 @@
     }
 
     body {
-      background: var(--bg);
+      background-color: var(--bg);
       color: var(--txt);
       font-family: 'Syne', sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
       background-image:
-        radial-gradient(ellipse 70% 45% at 10% 0%, rgba(212, 174, 82, .055) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 55% at 90% 100%, rgba(90, 143, 212, .04) 0%, transparent 55%),
-        repeating-linear-gradient(0deg, transparent, transparent 47px, rgba(255, 255, 255, .013) 48px),
-        repeating-linear-gradient(90deg, transparent, transparent 47px, rgba(255, 255, 255, .013) 48px);
-      transition: background .35s ease, color .35s ease;
+        radial-gradient(ellipse 80% 60% at 0% -10%, rgba(212, 174, 82, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 60% at 100% 110%, rgba(90, 143, 212, 0.05) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+      transition: background 0.35s ease, color 0.35s ease;
     }
 
     [data-theme="light"] body {
+      background-color: var(--bg);
       background-image:
-        radial-gradient(ellipse 70% 45% at 10% 0%, rgba(180, 140, 40, .04) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 55% at 90% 100%, rgba(90, 143, 212, .03) 0%, transparent 55%);
+        radial-gradient(ellipse 70% 45% at 0% -10%, rgba(160, 130, 51, 0.04) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 55% at 100% 110%, rgba(90, 143, 212, 0.03) 0%, transparent 55%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
     }
 
     /* ── TOP BAR ── */
@@ -216,7 +217,27 @@
       padding: 18px 0;
       display: flex;
       flex-direction: column;
-      gap: 2px
+      gap: 2px;
+      position: relative;
+    }
+
+    .sidebar-glider {
+      position: absolute;
+      left: 6px;
+      right: 0;
+      height: 38px;
+      background: rgba(212, 174, 82, .07);
+      border-left: 2px solid var(--gold);
+      border-radius: 0 5px 5px 0;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+      pointer-events: none;
+      z-index: 0;
+      top: 0;
+      opacity: 0;
+    }
+
+    [data-theme="light"] .sidebar-glider {
+      background: rgba(160, 130, 51, 0.08);
     }
 
     .sg {
@@ -225,7 +246,9 @@
       letter-spacing: 2.5px;
       text-transform: uppercase;
       color: var(--slate3);
-      margin-top: 6px
+      margin-top: 6px;
+      position: relative;
+      z-index: 1;
     }
 
     .nb {
@@ -237,20 +260,20 @@
       font-size: 12px;
       color: var(--slate);
       border-left: 2px solid transparent;
-      transition: all .15s;
+      transition: all .2s;
       border-radius: 0 5px 5px 0;
       margin: 0 6px;
+      position: relative;
+      z-index: 1;
+      height: 38px;
     }
 
     .nb:hover {
       color: var(--txt2);
-      background: var(--bg3)
     }
 
     .nb.on {
       color: var(--gold);
-      border-left-color: var(--gold);
-      background: rgba(212, 174, 82, .07)
     }
 
     .ni {
@@ -371,54 +394,47 @@
     }
 
     /* ── GRIDS ── */
-    .g2 {
+    .bento-12 {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 13px
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
     }
-
-    .g3 {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 13px
-    }
-
-    .g21 {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 13px
-    }
-
-    .g12 {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 13px
-    }
-
-    .gap {
-      gap: 13px
-    }
+    
+    .b-col-8 { grid-column: span 8; }
+    .b-col-4 { grid-column: span 4; }
+    .b-col-6 { grid-column: span 6; }
+    .b-col-12 { grid-column: span 12; }
+    
+    /* Legacy fallback equivalents using 12-col logic if preferred */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px }
+    .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px }
+    .g21 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 16px }
+    .g12 { display: grid; grid-template-columns: 1fr 2fr; gap: 16px; margin-bottom: 16px }
+    .gap { gap: 16px }
 
     /* ── KPI STRIP ── */
     .kpis {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 14px
+      gap: 16px;
+      margin-bottom: 20px
     }
 
     .kpi {
       background: var(--bg2);
       border: 1px solid var(--br);
       border-radius: var(--r);
-      padding: 14px;
+      padding: 18px;
       position: relative;
       overflow: hidden;
-      transition: border-color .2s
+      transition: border-color .2s, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
     }
 
     .kpi:hover {
-      border-color: var(--brgold)
+      border-color: var(--brgold);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
 
     .kpi::after {
@@ -611,6 +627,31 @@
     .result-empty-s {
       font-size: 12px;
       color: var(--slate3)
+    }
+
+    /* Skeleton Loader */
+    @keyframes shimmer {
+      100% { transform: translateX(100%); }
+    }
+    
+    .skeleton {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg3);
+      border-radius: var(--r2);
+    }
+    
+    .skeleton::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+      animation: shimmer 1.5s infinite;
+    }
+    
+    [data-theme="light"] .skeleton::after {
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,0.03), transparent);
     }
 
     /* Verdict card */
@@ -1138,13 +1179,10 @@
     }
 
     [data-theme="light"] .nb:hover {
-      background: var(--bg3);
       color: var(--txt2)
     }
 
     [data-theme="light"] .nb.on {
-      background: rgba(154, 120, 32, .08);
-      border-left-color: var(--gold);
       color: var(--gold);
     }
 
@@ -1319,16 +1357,17 @@
 
   <div class="shell">
     <aside class="sidebar">
+      <div class="sidebar-glider" id="sbGlider"></div>
       <div class="sg">Core</div>
-      <div class="nb on" onclick="nav('advisor',this)"><span class="ni">◈</span>Price Advisor</div>
-      <div class="nb" onclick="nav('dashboard',this)"><span class="ni">◉</span>Dashboard</div>
+      <div class="nb on" id="nb_advisor" onclick="nav('advisor',this)"><span class="ni">◈</span>Price Advisor</div>
+      <div class="nb" id="nb_dashboard" onclick="nav('dashboard',this)"><span class="ni">◉</span>Dashboard</div>
 
       <div class="sg">Tools</div>
-      <div class="nb" onclick="nav('rental',this)"><span class="ni">🏠</span>Rental Advisor</div>
+      <div class="nb" id="nb_rental" onclick="nav('rental',this)"><span class="ni">🏠</span>Rental Advisor</div>
 
       <div class="sg">Data</div>
-      <div class="nb" onclick="nav('upload',this)"><span class="ni">⬆</span>Upload Data</div>
-      <div class="nb" onclick="nav('market',this)"><span class="ni">◍</span>Market Analysis</div>
+      <div class="nb" id="nb_upload" onclick="nav('upload',this)"><span class="ni">⬆</span>Upload Data</div>
+      <div class="nb" id="nb_market" onclick="nav('market',this)"><span class="ni">◍</span>Market Analysis</div>
     </aside>
 
     <main class="main">
