@@ -1,564 +1,1997 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>MISR Analytics — Egypt Real Estate Intelligence</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --bg:#0B0C10; --bg2:#12141A; --bg3:#191C24; --bg4:#20232E;
-  --br:#252830; --brgold:rgba(212,174,82,.22);
-  --gold:#D4AE52; --goldl:#F0CE7A; --goldd:#8A6E2A;
-  --slate:#858DA8; --slate2:#545B78; --slate3:#333848;
-  --txt:#E8E4DC; --txt2:#A8ADBF; --txt3:#555A6E;
-  --grn:#52B07A; --grnd:#2A7A4A; --red:#C05A4A; --redd:#8A3020;
-  --blu:#5A8FD4; --amb:#C48A3A;
-  --r:10px; --r2:6px; --r3:3px;
-  --sh: 0 4px 24px rgba(0,0,0,.4);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);color:var(--txt);
-  font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden;
-  background-image:
-    radial-gradient(ellipse 70% 45% at 10% 0%,rgba(212,174,82,.055) 0%,transparent 55%),
-    radial-gradient(ellipse 50% 55% at 90% 100%,rgba(90,143,212,.04) 0%,transparent 55%),
-    repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(255,255,255,.013) 48px),
-    repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(255,255,255,.013) 48px);
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>DART AI Real estate — Egypt Real Estate Intelligence</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0B0C10;
+      --bg2: #12141A;
+      --bg3: #191C24;
+      --bg4: #20232E;
+      --br: #252830;
+      --brgold: rgba(212, 174, 82, .22);
+      --gold: #D4AE52;
+      --goldl: #F0CE7A;
+      --goldd: #8A6E2A;
+      --slate: #858DA8;
+      --slate2: #545B78;
+      --slate3: #333848;
+      --txt: #E8E4DC;
+      --txt2: #A8ADBF;
+      --txt3: #555A6E;
+      --grn: #52B07A;
+      --grnd: #2A7A4A;
+      --red: #C05A4A;
+      --redd: #8A3020;
+      --blu: #5A8FD4;
+      --amb: #C48A3A;
+      --r: 10px;
+      --r2: 6px;
+      --r3: 3px;
+      --sh: 0 4px 24px rgba(0, 0, 0, .4);
+      --topbar-bg: rgba(11, 12, 16, .94);
+      --scrollbar-thumb: var(--br);
+    }
 
-/* ── TOP BAR ── */
-.topbar{
-  position:sticky;top:0;z-index:200;height:56px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 22px;
-  background:rgba(11,12,16,.94);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--br);
-}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-.gem{
-  width:28px;height:28px;flex-shrink:0;
-  background:linear-gradient(135deg,var(--gold),var(--goldd));
-  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cormorant Garamond';font-size:13px;font-weight:700;color:#000;
-}
-.brand-txt{font-family:'Cormorant Garamond';font-size:19px;color:var(--txt)}
-.brand-sub{font-size:8.5px;color:var(--slate2);letter-spacing:2.5px;text-transform:uppercase;margin-left:3px}
-.topbar-r{display:flex;align-items:center;gap:14px}
-.ds{
-  display:flex;align-items:center;gap:5px;
-  font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;
-  padding:4px 10px;border-radius:20px;border:1px solid var(--br);
-  color:var(--slate);transition:all .3s;
-}
-.ds.ok{color:var(--grn);border-color:rgba(82,176,122,.3);background:rgba(82,176,122,.06)}
-.ds .dot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.topbar-date{font-family:'JetBrains Mono';font-size:9.5px;color:var(--slate3)}
+    /* ── LIGHT MODE (Eye-Friendly Cream) ── */
+    [data-theme="light"] {
+      --bg: #F4F5F2;          /* Softer, warmest gray-white background */
+      --bg2: #FCFCFA;         /* Creamy off-white for cards, less blinding than #FFF */
+      --bg3: #EBEAE5;         /* Soft beige-gray for inputs */
+      --bg4: #DFDED9;         
+      --br: #E2E1DC;          /* Very subtle, warm border color */
+      --brgold: rgba(160, 120, 30, .15);
+      --gold: #A08233;        /* Subdued, elegant gold */
+      --goldl: #CAB068;
+      --goldd: #7A6223;
+      --slate: #6E727A;       /* Smoother, less stark slate */
+      --slate2: #8B8F9A;
+      --slate3: #A9AEBA;
+      --txt: #2F3136;         /* Charcoal instead of stark black */
+      --txt2: #4D5058;
+      --txt3: #757984;
+      --grn: #2A8253;         /* Slightly muted, deep green */
+      --grnd: #1A5E3A;
+      --red: #B5423E;         /* Calmer, terracotta red */
+      --redd: #8A2D2B;
+      --blu: #3567B5;
+      --amb: #A1711A;
+      --sh: 0 2px 14px rgba(45, 40, 35, 0.05), 0 1px 3px rgba(45, 40, 35, 0.03); /* Warmer shadow mix */
+      --topbar-bg: rgba(252, 252, 250, .96);
+      --scrollbar-thumb: #D1D0CB;
+    }
 
-/* ── SHELL ── */
-.shell{display:grid;grid-template-columns:192px 1fr;min-height:calc(100vh - 56px)}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
 
-/* ── SIDEBAR ── */
-.sidebar{background:var(--bg2);border-right:1px solid var(--br);padding:18px 0;display:flex;flex-direction:column;gap:2px}
-.sg{padding:8px 14px 2px;font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--slate3);margin-top:6px}
-.nb{
-  display:flex;align-items:center;gap:9px;padding:8px 14px;cursor:pointer;
-  font-size:12px;color:var(--slate);border-left:2px solid transparent;
-  transition:all .15s;border-radius:0 5px 5px 0;margin:0 6px;
-}
-.nb:hover{color:var(--txt2);background:var(--bg3)}
-.nb.on{color:var(--gold);border-left-color:var(--gold);background:rgba(212,174,82,.07)}
-.ni{font-size:13px;width:15px;text-align:center;flex-shrink:0}
+    html {
+      scroll-behavior: smooth
+    }
 
-/* ── MAIN ── */
-.main{padding:22px 26px;overflow-y:auto}
-.pg{display:none;animation:up .22s ease}
-.pg.on{display:block}
-@keyframes up{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+    body {
+      background: var(--bg);
+      color: var(--txt);
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(ellipse 70% 45% at 10% 0%, rgba(212, 174, 82, .055) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 55% at 90% 100%, rgba(90, 143, 212, .04) 0%, transparent 55%),
+        repeating-linear-gradient(0deg, transparent, transparent 47px, rgba(255, 255, 255, .013) 48px),
+        repeating-linear-gradient(90deg, transparent, transparent 47px, rgba(255, 255, 255, .013) 48px);
+      transition: background .35s ease, color .35s ease;
+    }
 
-/* ── PAGE HEADER ── */
-.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
-.ph-h{font-family:'Cormorant Garamond';font-size:26px;font-weight:600;line-height:1.1}
-.ph-s{font-size:11.5px;color:var(--slate);margin-top:3px}
+    [data-theme="light"] body {
+      background-image:
+        radial-gradient(ellipse 70% 45% at 10% 0%, rgba(180, 140, 40, .04) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 55% at 90% 100%, rgba(90, 143, 212, .03) 0%, transparent 55%);
+    }
 
-/* ── CARDS ── */
-.card{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r);padding:17px;margin-bottom:13px}
-.ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
-.ct{font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate)}
-.badge{font-size:8.5px;padding:2px 8px;border-radius:20px;border:1px solid var(--brgold);color:var(--gold);background:rgba(212,174,82,.07);letter-spacing:1px}
+    /* ── TOP BAR ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      background: var(--topbar-bg);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--br);
+      transition: background .35s ease, border-color .35s ease;
+    }
 
-/* ── GRIDS ── */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px}
-.g21{display:grid;grid-template-columns:2fr 1fr;gap:13px}
-.g12{display:grid;grid-template-columns:1fr 2fr;gap:13px}
-.gap{gap:13px}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none
+    }
 
-/* ── KPI STRIP ── */
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
-.kpi{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r);padding:14px;position:relative;overflow:hidden;transition:border-color .2s}
-.kpi:hover{border-color:var(--brgold)}
-.kpi::after{content:'';position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:.2s}
-.kpi:hover::after{opacity:.5}
-.kl{font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:var(--slate3)}
-.kv{font-family:'Cormorant Garamond';font-size:28px;color:var(--txt);margin:3px 0 2px;line-height:1}
-.ks{font-size:10.5px}
-.ki{position:absolute;right:13px;top:13px;font-size:17px;opacity:.11}
+    .gem {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--gold), var(--goldd));
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond';
+      font-size: 13px;
+      font-weight: 700;
+      color: #000;
+    }
 
-/* ── PREDICT FORM ── */
-.advisor-grid{display:grid;grid-template-columns:420px 1fr;gap:16px;align-items:start}
-.form-section{border-left:2px solid var(--br);padding-left:13px;margin-bottom:16px}
-.form-section-title{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--slate2);margin-bottom:11px}
-.frow{display:grid;gap:10px;margin-bottom:10px}
-.f2{grid-template-columns:1fr 1fr}
-.f3{grid-template-columns:1fr 1fr 1fr}
-.f4{grid-template-columns:1fr 1fr 1fr 1fr}
-label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate3);display:block;margin-bottom:3px}
-input,select,textarea{
-  width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:var(--r2);
-  color:var(--txt);font-family:'Syne';font-size:12px;padding:8px 11px;outline:none;
-  transition:border-color .18s;
-}
-input:focus,select:focus,textarea:focus{border-color:var(--brgold)}
-input::placeholder{color:var(--slate3)}
-select option{background:var(--bg3)}
+    .brand-txt {
+      font-family: 'Cormorant Garamond';
+      font-size: 19px;
+      color: var(--txt)
+    }
 
-/* ── BUTTONS ── */
-.btn{padding:8px 16px;border-radius:var(--r2);border:none;cursor:pointer;font-family:'Syne';font-size:12px;font-weight:500;transition:all .18s;letter-spacing:.3px}
-.btn-g{background:linear-gradient(135deg,var(--gold),var(--goldd));color:#000}
-.btn-g:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(212,174,82,.28)}
-.btn-o{background:var(--bg3);border:1px solid var(--br);color:var(--slate)}
-.btn-o:hover{border-color:var(--brgold);color:var(--txt)}
-.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+    .brand-sub {
+      font-size: 8.5px;
+      color: var(--slate2);
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-left: 3px
+    }
 
-/* ── RESULT PANEL ── */
-.result-empty{text-align:center;padding:50px 20px}
-.result-empty-ico{font-size:38px;opacity:.3;display:block;margin-bottom:10px}
-.result-empty-t{font-family:'Cormorant Garamond';font-size:20px;color:var(--txt);margin-bottom:5px}
-.result-empty-s{font-size:12px;color:var(--slate3)}
+    .topbar-r {
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
 
-/* Verdict card */
-.vc{border-radius:var(--r);padding:20px;border:2px solid;position:relative;overflow:hidden;margin-bottom:13px}
-.vc.fair{border-color:rgba(212,174,82,.45);background:linear-gradient(135deg,rgba(212,174,82,.08),rgba(212,174,82,.03))}
-.vc.underpriced,.vc.significantly_underpriced{border-color:rgba(82,176,122,.45);background:linear-gradient(135deg,rgba(82,176,122,.08),rgba(82,176,122,.03))}
-.vc.overpriced,.vc.significantly_overpriced{border-color:rgba(192,90,74,.45);background:linear-gradient(135deg,rgba(192,90,74,.08),rgba(192,90,74,.03))}
-.vc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
-.vc-label{font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--slate3);margin-bottom:3px}
-.vc-verdict{font-family:'Cormorant Garamond';font-size:38px;font-weight:700;line-height:1}
-.vc-right{text-align:right}
-.vc-meta{font-size:9.5px;color:var(--slate3)}
-.vc-val{font-family:'JetBrains Mono';font-size:15px;color:var(--txt);margin-top:2px}
-.vc-metrics{display:flex;gap:20px;padding-top:12px;border-top:1px solid rgba(255,255,255,.07);flex-wrap:wrap}
-.vc-m{flex:1;min-width:80px}
-.vc-mk{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate3)}
-.vc-mv{font-family:'JetBrains Mono';font-size:13px;margin-top:2px}
+    .ds {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--br);
+      color: var(--slate);
+      transition: all .3s;
+    }
 
-/* Price gauge */
-.gauge-wrap{position:relative;height:8px;background:var(--br);border-radius:4px;overflow:visible;margin:8px 0}
-.gauge-track{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--grn),var(--gold),var(--red));opacity:.4}
-.gauge-mark{
-  position:absolute;top:-4px;width:3px;height:16px;border-radius:2px;
-  background:var(--txt);box-shadow:0 0 8px rgba(255,255,255,.4);
-  transition:left .5s cubic-bezier(.34,1.56,.64,1);
-}
-.gauge-labels{display:flex;justify-content:space-between;font-size:9px;color:var(--slate3);margin-top:4px}
+    .ds.ok {
+      color: var(--grn);
+      border-color: rgba(82, 176, 122, .3);
+      background: rgba(82, 176, 122, .06)
+    }
 
-/* Comparison bars */
-.cmp-bar-wrap{margin-bottom:10px}
-.cmp-label{font-size:10px;color:var(--slate);display:flex;justify-content:space-between;margin-bottom:4px}
-.cmp-bar{height:22px;border-radius:var(--r3);overflow:hidden;background:var(--br);position:relative}
-.cmp-fill{height:100%;border-radius:var(--r3);display:flex;align-items:center;padding:0 8px;font-family:'JetBrains Mono';font-size:10px;font-weight:500;transition:width .6s ease;white-space:nowrap;overflow:hidden}
+    .ds .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse 2s infinite
+    }
 
-/* Adjustments table */
-.adj-row{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(37,40,48,.5)}
-.adj-row:last-child{border-bottom:none}
-.adj-label{font-size:11px;color:var(--slate)}
-.adj-val{font-family:'JetBrains Mono';font-size:11px}
+    @keyframes pulse {
 
-/* ── UPLOAD ── */
-.dropzone{
-  border:2px dashed var(--br);border-radius:var(--r);padding:42px 20px;
-  text-align:center;cursor:pointer;transition:all .2s;background:var(--bg2);
-}
-.dropzone:hover,.dropzone.drag{border-color:var(--gold);background:rgba(212,174,82,.04)}
-.dropzone.done{border-style:solid;border-color:var(--grn);background:rgba(82,176,122,.04)}
-.dz-ico{font-size:34px;margin-bottom:10px;display:block}
-.dz-t{font-family:'Cormorant Garamond';font-size:19px;margin-bottom:4px}
-.dz-s{font-size:11.5px;color:var(--slate);line-height:1.6}
+      0%,
+      100% {
+        opacity: 1
+      }
 
-/* ── TABLES ── */
-table{width:100%;border-collapse:collapse;font-size:11.5px}
-th{text-align:left;padding:7px 10px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--slate3);border-bottom:1px solid var(--br);font-weight:500}
-td{padding:8px 10px;border-bottom:1px solid rgba(37,40,48,.5);color:var(--slate)}
-tr:hover td{background:var(--bg3)}
-td:first-child{color:var(--txt);font-weight:500}
-.tg{color:var(--gold);font-family:'JetBrains Mono';font-size:11px}
-.tgrn{color:var(--grn);font-family:'JetBrains Mono';font-size:11px}
-.tred{color:var(--red);font-family:'JetBrains Mono';font-size:11px}
-.tblu{color:var(--blu);font-family:'JetBrains Mono';font-size:11px}
+      50% {
+        opacity: .3
+      }
+    }
 
-/* ── MISC ── */
-.alert{display:flex;gap:9px;padding:10px 13px;border-radius:var(--r2);margin-bottom:11px;font-size:11.5px;line-height:1.6}
-.aw{background:rgba(196,138,58,.07);border:1px solid rgba(196,138,58,.22);color:var(--amb)}
-.ai{background:rgba(90,143,212,.07);border:1px solid rgba(90,143,212,.22);color:var(--blu)}
-.ag{background:rgba(82,176,122,.07);border:1px solid rgba(82,176,122,.22);color:var(--grn)}
-.ae{background:rgba(192,90,74,.07);border:1px solid rgba(192,90,74,.22);color:var(--red)}
-.sep{height:1px;background:var(--br);margin:14px 0}
-.slbl{font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--slate3);margin-bottom:9px}
-.mono{font-family:'JetBrains Mono'}
-.pill{display:inline-block;font-size:8.5px;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:20px;border:1px solid var(--brgold);color:var(--gold);background:rgba(212,174,82,.07)}
-.prog{height:3px;background:var(--br);border-radius:2px;overflow:hidden;margin-top:4px}
-.prog-f{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--goldd),var(--gold))}
-.ch-wrap{position:relative}
+    .topbar-date {
+      font-family: 'JetBrains Mono';
+      font-size: 9.5px;
+      color: var(--slate3)
+    }
 
-/* ── LUXURY SLIDER ── */
-input[type=range]{padding:0;background:transparent;border:none;accent-color:var(--gold);cursor:pointer}
-.range-row{display:flex;align-items:center;gap:8px}
-.range-val{font-family:'JetBrains Mono';font-size:11px;color:var(--gold);min-width:28px;text-align:center;background:var(--bg3);border:1px solid var(--br);border-radius:4px;padding:2px 5px}
+    /* ── SHELL ── */
+    .shell {
+      display: grid;
+      grid-template-columns: 192px 1fr;
+      min-height: calc(100vh - 56px)
+    }
 
-/* ── LOADING SPINNER ── */
-.spin{width:18px;height:18px;border:2px solid var(--br);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;display:inline-block;vertical-align:middle;margin-right:6px}
-@keyframes spin{to{transform:rotate(360deg)}}
+    /* ── SIDEBAR ── */
+    .sidebar {
+      background: var(--bg2);
+      border-right: 1px solid var(--br);
+      padding: 18px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px
+    }
 
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--br);border-radius:2px}::-webkit-scrollbar-thumb:hover{background:var(--goldd)}
+    .sg {
+      padding: 8px 14px 2px;
+      font-size: 8px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--slate3);
+      margin-top: 6px
+    }
 
-@media(max-width:900px){
-  .shell{grid-template-columns:1fr}.sidebar{display:none}
-  .advisor-grid{grid-template-columns:1fr}
-  .kpis{grid-template-columns:1fr 1fr}
-  .g2,.g3,.g21,.g12{grid-template-columns:1fr}
-}
-</style>
+    .nb {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 12px;
+      color: var(--slate);
+      border-left: 2px solid transparent;
+      transition: all .15s;
+      border-radius: 0 5px 5px 0;
+      margin: 0 6px;
+    }
+
+    .nb:hover {
+      color: var(--txt2);
+      background: var(--bg3)
+    }
+
+    .nb.on {
+      color: var(--gold);
+      border-left-color: var(--gold);
+      background: rgba(212, 174, 82, .07)
+    }
+
+    .ni {
+      font-size: 13px;
+      width: 15px;
+      text-align: center;
+      flex-shrink: 0
+    }
+
+    /* ── MAIN ── */
+    .main {
+      padding: 22px 26px;
+      overflow-y: auto
+    }
+
+    .pg {
+      display: none;
+    }
+
+    .pg.on {
+      display: block;
+      animation: up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .pg.on .card, .pg.on .kpi {
+      opacity: 0;
+      animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    
+    .pg.on > *:nth-child(1) { animation-delay: 0.05s; }
+    .pg.on > *:nth-child(2) { animation-delay: 0.1s; }
+    .pg.on > *:nth-child(3) { animation-delay: 0.15s; }
+    .pg.on > *:nth-child(4) { animation-delay: 0.2s; }
+    .pg.on > *:nth-child(5) { animation-delay: 0.25s; }
+    
+    .pg.on .card:nth-child(1) { animation-delay: 0.1s; }
+    .pg.on .card:nth-child(2) { animation-delay: 0.15s; }
+    .pg.on .card:nth-child(3) { animation-delay: 0.2s; }
+    
+    .pg.on .kpi:nth-child(1) { animation-delay: 0.1s; }
+    .pg.on .kpi:nth-child(2) { animation-delay: 0.15s; }
+    .pg.on .kpi:nth-child(3) { animation-delay: 0.2s; }
+    .pg.on .kpi:nth-child(4) { animation-delay: 0.25s; }
+
+    @keyframes up {
+      from { opacity: 0; transform: translateY(12px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+    
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(15px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+
+    /* ── PAGE HEADER ── */
+    .ph {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px
+    }
+
+    .ph-h {
+      font-family: 'Cormorant Garamond';
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.1
+    }
+
+    .ph-s {
+      font-size: 11.5px;
+      color: var(--slate);
+      margin-top: 3px
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--br);
+      border-radius: var(--r);
+      padding: 17px;
+      margin-bottom: 13px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease, background 0.35s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      border-color: var(--brgold);
+    }
+
+    [data-theme="light"] .card:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+
+    .ch {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 13px
+    }
+
+    .ct {
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--slate)
+    }
+
+    .badge {
+      font-size: 8.5px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      border: 1px solid var(--brgold);
+      color: var(--gold);
+      background: rgba(212, 174, 82, .07);
+      letter-spacing: 1px
+    }
+
+    /* ── GRIDS ── */
+    .g2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px
+    }
+
+    .g3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 13px
+    }
+
+    .g21 {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 13px
+    }
+
+    .g12 {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 13px
+    }
+
+    .gap {
+      gap: 13px
+    }
+
+    /* ── KPI STRIP ── */
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 14px
+    }
+
+    .kpi {
+      background: var(--bg2);
+      border: 1px solid var(--br);
+      border-radius: var(--r);
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s
+    }
+
+    .kpi:hover {
+      border-color: var(--brgold)
+    }
+
+    .kpi::after {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: .2s
+    }
+
+    .kpi:hover::after {
+      opacity: .5
+    }
+
+    .kl {
+      font-size: 8.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--slate3)
+    }
+
+    .kv {
+      font-family: 'Cormorant Garamond';
+      font-size: 28px;
+      color: var(--txt);
+      margin: 3px 0 2px;
+      line-height: 1
+    }
+
+    .ks {
+      font-size: 10.5px
+    }
+
+    .ki {
+      position: absolute;
+      right: 13px;
+      top: 13px;
+      font-size: 17px;
+      opacity: .11
+    }
+
+    /* ── PREDICT FORM ── */
+    .advisor-grid {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 16px;
+      align-items: start
+    }
+
+    .form-section {
+      border-left: 2px solid var(--br);
+      padding-left: 13px;
+      margin-bottom: 16px
+    }
+
+    .form-section-title {
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--slate2);
+      margin-bottom: 11px
+    }
+
+    .frow {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 10px
+    }
+
+    .f2 {
+      grid-template-columns: 1fr 1fr
+    }
+
+    .f3 {
+      grid-template-columns: 1fr 1fr 1fr
+    }
+
+    .f4 {
+      grid-template-columns: 1fr 1fr 1fr 1fr
+    }
+
+    label {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--slate3);
+      display: block;
+      margin-bottom: 3px
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--br);
+      border-radius: var(--r2);
+      color: var(--txt);
+      font-family: 'Syne';
+      font-size: 12px;
+      padding: 8px 11px;
+      outline: none;
+      transition: border-color .18s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 174, 82, 0.15);
+    }
+
+    [data-theme="light"] input:focus,
+    [data-theme="light"] select:focus,
+    [data-theme="light"] textarea:focus {
+      box-shadow: 0 0 0 3px rgba(154, 120, 32, 0.15);
+    }
+
+    input::placeholder {
+      color: var(--slate3)
+    }
+
+    select option {
+      background: var(--bg3)
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      padding: 8px 16px;
+      border-radius: var(--r2);
+      border: none;
+      cursor: pointer;
+      font-family: 'Syne';
+      font-size: 12px;
+      font-weight: 500;
+      transition: all .18s;
+      letter-spacing: .3px
+    }
+
+    .btn-g {
+      background: linear-gradient(135deg, var(--gold), var(--goldd));
+      color: #000
+    }
+
+    .btn-g:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(212, 174, 82, .28)
+    }
+
+    .btn-o {
+      background: var(--bg3);
+      border: 1px solid var(--br);
+      color: var(--slate)
+    }
+
+    .btn-o:hover {
+      border-color: var(--brgold);
+      color: var(--txt)
+    }
+
+    .btn:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important
+    }
+
+    /* ── RESULT PANEL ── */
+    .result-empty {
+      text-align: center;
+      padding: 50px 20px
+    }
+
+    .result-empty-ico {
+      font-size: 38px;
+      opacity: .3;
+      display: block;
+      margin-bottom: 10px
+    }
+
+    .result-empty-t {
+      font-family: 'Cormorant Garamond';
+      font-size: 20px;
+      color: var(--txt);
+      margin-bottom: 5px
+    }
+
+    .result-empty-s {
+      font-size: 12px;
+      color: var(--slate3)
+    }
+
+    /* Verdict card */
+    .vc {
+      border-radius: var(--r);
+      padding: 20px;
+      border: 2px solid;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 13px
+    }
+
+    .vc.fair {
+      border-color: rgba(212, 174, 82, .45);
+      background: linear-gradient(135deg, rgba(212, 174, 82, .08), rgba(212, 174, 82, .03))
+    }
+
+    .vc.underpriced,
+    .vc.significantly_underpriced {
+      border-color: rgba(82, 176, 122, .45);
+      background: linear-gradient(135deg, rgba(82, 176, 122, .08), rgba(82, 176, 122, .03))
+    }
+
+    .vc.overpriced,
+    .vc.significantly_overpriced {
+      border-color: rgba(192, 90, 74, .45);
+      background: linear-gradient(135deg, rgba(192, 90, 74, .08), rgba(192, 90, 74, .03))
+    }
+
+    .vc-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 14px
+    }
+
+    .vc-label {
+      font-size: 8.5px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--slate3);
+      margin-bottom: 3px
+    }
+
+    .vc-verdict {
+      font-family: 'Cormorant Garamond';
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1
+    }
+
+    .vc-right {
+      text-align: right
+    }
+
+    .vc-meta {
+      font-size: 9.5px;
+      color: var(--slate3)
+    }
+
+    .vc-val {
+      font-family: 'JetBrains Mono';
+      font-size: 15px;
+      color: var(--txt);
+      margin-top: 2px
+    }
+
+    .vc-metrics {
+      display: flex;
+      gap: 20px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+      flex-wrap: wrap
+    }
+
+    .vc-m {
+      flex: 1;
+      min-width: 80px
+    }
+
+    .vc-mk {
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--slate3)
+    }
+
+    .vc-mv {
+      font-family: 'JetBrains Mono';
+      font-size: 13px;
+      margin-top: 2px
+    }
+
+    /* Price gauge */
+    .gauge-wrap {
+      position: relative;
+      height: 8px;
+      background: var(--br);
+      border-radius: 4px;
+      overflow: visible;
+      margin: 8px 0
+    }
+
+    .gauge-track {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--grn), var(--gold), var(--red));
+      opacity: .4
+    }
+
+    .gauge-mark {
+      position: absolute;
+      top: -4px;
+      width: 3px;
+      height: 16px;
+      border-radius: 2px;
+      background: var(--txt);
+      box-shadow: 0 0 8px rgba(255, 255, 255, .4);
+      transition: left .5s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .gauge-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: var(--slate3);
+      margin-top: 4px
+    }
+
+    /* Comparison bars */
+    .cmp-bar-wrap {
+      margin-bottom: 10px
+    }
+
+    .cmp-label {
+      font-size: 10px;
+      color: var(--slate);
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px
+    }
+
+    .cmp-bar {
+      height: 22px;
+      border-radius: var(--r3);
+      overflow: hidden;
+      background: var(--br);
+      position: relative
+    }
+
+    .cmp-fill {
+      height: 100%;
+      border-radius: var(--r3);
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      font-family: 'JetBrains Mono';
+      font-size: 10px;
+      font-weight: 500;
+      transition: width .6s ease;
+      white-space: nowrap;
+      overflow: hidden
+    }
+
+    /* Adjustments table */
+    .adj-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(37, 40, 48, .5)
+    }
+
+    .adj-row:last-child {
+      border-bottom: none
+    }
+
+    .adj-label {
+      font-size: 11px;
+      color: var(--slate)
+    }
+
+    .adj-val {
+      font-family: 'JetBrains Mono';
+      font-size: 11px
+    }
+
+    /* ── UPLOAD ── */
+    .dropzone {
+      border: 2px dashed var(--br);
+      border-radius: var(--r);
+      padding: 42px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+      background: var(--bg2);
+    }
+
+    .dropzone:hover,
+    .dropzone.drag {
+      border-color: var(--gold);
+      background: rgba(212, 174, 82, .04)
+    }
+
+    .dropzone.done {
+      border-style: solid;
+      border-color: var(--grn);
+      background: rgba(82, 176, 122, .04)
+    }
+
+    .dz-ico {
+      font-size: 34px;
+      margin-bottom: 10px;
+      display: block
+    }
+
+    .dz-t {
+      font-family: 'Cormorant Garamond';
+      font-size: 19px;
+      margin-bottom: 4px
+    }
+
+    .dz-s {
+      font-size: 11.5px;
+      color: var(--slate);
+      line-height: 1.6
+    }
+
+    /* ── TABLES ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px
+    }
+
+    th {
+      text-align: left;
+      padding: 7px 10px;
+      font-size: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--slate3);
+      border-bottom: 1px solid var(--br);
+      font-weight: 500
+    }
+
+    td {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(37, 40, 48, .5);
+      color: var(--slate)
+    }
+
+    tr:hover td {
+      background: var(--bg3)
+    }
+
+    td:first-child {
+      color: var(--txt);
+      font-weight: 500
+    }
+
+    .tg {
+      color: var(--gold);
+      font-family: 'JetBrains Mono';
+      font-size: 11px
+    }
+
+    .tgrn {
+      color: var(--grn);
+      font-family: 'JetBrains Mono';
+      font-size: 11px
+    }
+
+    .tred {
+      color: var(--red);
+      font-family: 'JetBrains Mono';
+      font-size: 11px
+    }
+
+    .tblu {
+      color: var(--blu);
+      font-family: 'JetBrains Mono';
+      font-size: 11px
+    }
+
+    /* ── MISC ── */
+    .alert {
+      display: flex;
+      gap: 9px;
+      padding: 10px 13px;
+      border-radius: var(--r2);
+      margin-bottom: 11px;
+      font-size: 11.5px;
+      line-height: 1.6
+    }
+
+    .aw {
+      background: rgba(196, 138, 58, .07);
+      border: 1px solid rgba(196, 138, 58, .22);
+      color: var(--amb)
+    }
+
+    .ai {
+      background: rgba(90, 143, 212, .07);
+      border: 1px solid rgba(90, 143, 212, .22);
+      color: var(--blu)
+    }
+
+    .ag {
+      background: rgba(82, 176, 122, .07);
+      border: 1px solid rgba(82, 176, 122, .22);
+      color: var(--grn)
+    }
+
+    .ae {
+      background: rgba(192, 90, 74, .07);
+      border: 1px solid rgba(192, 90, 74, .22);
+      color: var(--red)
+    }
+
+    .sep {
+      height: 1px;
+      background: var(--br);
+      margin: 14px 0
+    }
+
+    .slbl {
+      font-size: 8.5px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--slate3);
+      margin-bottom: 9px
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono'
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 8.5px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 20px;
+      border: 1px solid var(--brgold);
+      color: var(--gold);
+      background: rgba(212, 174, 82, .07)
+    }
+
+    .prog {
+      height: 3px;
+      background: var(--br);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 4px
+    }
+
+    .prog-f {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--goldd), var(--gold))
+    }
+
+    .ch-wrap {
+      position: relative
+    }
+
+    /* ── LUXURY SLIDER ── */
+    input[type=range] {
+      padding: 0;
+      background: transparent;
+      border: none;
+      accent-color: var(--gold);
+      cursor: pointer
+    }
+
+    .range-row {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .range-val {
+      font-family: 'JetBrains Mono';
+      font-size: 11px;
+      color: var(--gold);
+      min-width: 28px;
+      text-align: center;
+      background: var(--bg3);
+      border: 1px solid var(--br);
+      border-radius: 4px;
+      padding: 2px 5px
+    }
+
+    /* ── LOADING SPINNER ── */
+    .spin {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--br);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 6px
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 2px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--goldd)
+    }
+
+    /* ── THEME TOGGLE ── */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .theme-toggle-label {
+      font-size: 9px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--slate);
+      transition: color .2s;
+    }
+
+    .theme-toggle-track {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      background: var(--bg3);
+      border: 1px solid var(--br);
+      border-radius: 11px;
+      transition: all .35s ease;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle-track::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--goldd));
+      box-shadow: 0 2px 6px rgba(212, 174, 82, .3);
+      transition: transform .35s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    [data-theme="light"] .theme-toggle-track {
+      background: var(--bg3);
+      border-color: var(--br);
+    }
+
+    [data-theme="light"] .theme-toggle-track::after {
+      transform: translateX(18px);
+      background: linear-gradient(135deg, #F9D54A, #E8A820);
+      box-shadow: 0 2px 6px rgba(233, 168, 32, .35);
+    }
+
+    .theme-toggle-icon {
+      font-size: 13px;
+      line-height: 1;
+      transition: opacity .2s;
+    }
+
+    /* ── LIGHT MODE TRANSITIONS ── */
+    .kpi,
+    .sidebar,
+    .dropzone,
+    input,
+    select,
+    textarea {
+      transition: background .35s ease, border-color .35s ease, color .35s ease, box-shadow .3s ease;
+    }
+
+    [data-theme="light"] .card {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .04), 0 0 0 1px rgba(0, 0, 0, .03);
+      background: var(--bg2);
+    }
+
+    [data-theme="light"] .kpi {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .04), 0 0 0 1px rgba(0, 0, 0, .03);
+      background: var(--bg2);
+    }
+
+    [data-theme="light"] .sidebar {
+      background: #F8F9FC;
+      border-right: 1px solid var(--br);
+      box-shadow: 4px 0 16px rgba(0, 0, 0, .03);
+    }
+
+    [data-theme="light"] .topbar {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .05);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    [data-theme="light"] .nb {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] .nb:hover {
+      background: var(--bg3);
+      color: var(--txt2)
+    }
+
+    [data-theme="light"] .nb.on {
+      background: rgba(154, 120, 32, .08);
+      border-left-color: var(--gold);
+      color: var(--gold);
+    }
+
+    [data-theme="light"] select option {
+      background: #fff;
+      color: #12141F
+    }
+
+    [data-theme="light"] .gauge-track {
+      opacity: .6
+    }
+
+    [data-theme="light"] .gauge-mark {
+      background: #12141F;
+      box-shadow: 0 0 8px rgba(0, 0, 0, .15)
+    }
+
+    [data-theme="light"] tr:hover td {
+      background: var(--bg3)
+    }
+
+    [data-theme="light"] .gem {
+      background: linear-gradient(135deg, #9A7820, #6A5010);
+      color: #FFF
+    }
+
+    [data-theme="light"] .badge {
+      background: rgba(154, 120, 32, .1);
+      border-color: rgba(154, 120, 32, .3)
+    }
+
+    [data-theme="light"] .pill {
+      background: rgba(154, 120, 32, .1);
+      border-color: rgba(154, 120, 32, .3)
+    }
+
+    [data-theme="light"] .btn-g {
+      background: linear-gradient(135deg, #9A7820, #7A5E10);
+      color: #FFF
+    }
+
+    [data-theme="light"] .btn-o {
+      background: var(--bg3);
+      border-color: var(--br);
+      color: var(--slate)
+    }
+
+    [data-theme="light"] .btn-o:hover {
+      border-color: var(--gold);
+      color: var(--txt)
+    }
+
+    [data-theme="light"] .dropzone {
+      background: var(--bg2)
+    }
+
+    [data-theme="light"] .aw {
+      background: rgba(138, 96, 16, .07);
+      border-color: rgba(138, 96, 16, .2);
+      color: var(--amb)
+    }
+
+    [data-theme="light"] .ai {
+      background: rgba(42, 95, 175, .07);
+      border-color: rgba(42, 95, 175, .2);
+      color: var(--blu)
+    }
+
+    [data-theme="light"] .ag {
+      background: rgba(33, 122, 74, .07);
+      border-color: rgba(33, 122, 74, .2);
+      color: var(--grn)
+    }
+
+    [data-theme="light"] .ae {
+      background: rgba(176, 53, 48, .07);
+      border-color: rgba(176, 53, 48, .2);
+      color: var(--red)
+    }
+
+    [data-theme="light"] .brand-txt {
+      color: var(--txt)
+    }
+
+    [data-theme="light"] .brand-sub {
+      color: var(--slate3)
+    }
+
+    [data-theme="light"] .ph-h {
+      color: var(--txt)
+    }
+
+    [data-theme="light"] .ph-s {
+      color: var(--slate)
+    }
+
+    [data-theme="light"] th {
+      color: var(--slate3)
+    }
+
+    [data-theme="light"] td {
+      color: var(--slate);
+      border-color: rgba(200, 204, 214, .5)
+    }
+
+    [data-theme="light"] td:first-child {
+      color: var(--txt)
+    }
+
+    [data-theme="light"] .range-val {
+      background: var(--bg3);
+      border-color: var(--br);
+      color: var(--gold)
+    }
+
+    [data-theme="light"] .prog {
+      background: var(--bg3)
+    }
+
+    [data-theme="light"] input::placeholder {
+      color: var(--slate3)
+    }
+
+    @media(max-width:900px) {
+      .shell {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        display: none
+      }
+
+      .advisor-grid {
+        grid-template-columns: 1fr
+      }
+
+      .kpis {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .g2,
+      .g3,
+      .g21,
+      .g12 {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header class="topbar">
-  <a class="brand" href="#">
-    <div class="gem">M</div>
-    <div>
-      <span class="brand-txt">MISR Analytics</span>
-      <span class="brand-sub">v3</span>
+  <header class="topbar">
+    <a class="brand" href="#">
+      <div class="gem">D</div>
+      <div>
+        <span class="brand-txt">DART AI Real estate</span>
+        <span class="brand-sub">v3</span>
+      </div>
+    </a>
+    <div class="topbar-r">
+      <div class="theme-toggle" id="themeToggle" title="Toggle light / dark mode">
+        <span class="theme-toggle-icon" id="themeIcon">🌙</span>
+        <div class="theme-toggle-track"></div>
+      </div>
+      <div class="ds" id="ds">
+        <div class="dot"></div><span id="dsTxt">Connecting…</span>
+      </div>
+      <div class="topbar-date mono" id="clock">—</div>
     </div>
-  </a>
-  <div class="topbar-r">
-    <div class="ds" id="ds"><div class="dot"></div><span id="dsTxt">Connecting…</span></div>
-    <div class="topbar-date mono" id="clock">—</div>
-  </div>
-</header>
+  </header>
 
-<div class="shell">
-<aside class="sidebar">
-  <div class="sg">Core</div>
-  <div class="nb on" onclick="nav('advisor',this)"><span class="ni">◈</span>Price Advisor</div>
-  <div class="nb" onclick="nav('dashboard',this)"><span class="ni">◉</span>Dashboard</div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="sg">Core</div>
+      <div class="nb on" onclick="nav('advisor',this)"><span class="ni">◈</span>Price Advisor</div>
+      <div class="nb" onclick="nav('dashboard',this)"><span class="ni">◉</span>Dashboard</div>
 
-  <div class="sg">Data</div>
-  <div class="nb" onclick="nav('upload',this)"><span class="ni">⬆</span>Upload Data</div>
-  <div class="nb" onclick="nav('market',this)"><span class="ni">◍</span>Market Analysis</div>
-</aside>
+      <div class="sg">Tools</div>
+      <div class="nb" onclick="nav('rental',this)"><span class="ni">🏠</span>Rental Advisor</div>
 
-<main class="main">
+      <div class="sg">Data</div>
+      <div class="nb" onclick="nav('upload',this)"><span class="ni">⬆</span>Upload Data</div>
+      <div class="nb" onclick="nav('market',this)"><span class="ni">◍</span>Market Analysis</div>
+    </aside>
 
-<!-- ════════ PRICE ADVISOR ════════ -->
-<div class="pg on" id="pg-advisor">
-  <div class="ph">
-    <div>
-      <div class="ph-h">Price Advisor</div>
-      <div class="ph-s">Enter your unit details — get an instant pricing assessment against the market</div>
-    </div>
-    <div id="modelBadge" style="text-align:right">
-      <div class="pill">OLS Regression</div><br/>
-      <span style="font-size:9.5px;color:var(--slate3)" id="modelMetaTxt">Loading model…</span>
-    </div>
-  </div>
+    <main class="main">
 
-  <div class="advisor-grid">
-    <!-- LEFT: FORM -->
-    <div>
-      <div class="card">
-
-        <div class="form-section">
-          <div class="form-section-title">Property Details</div>
-          <div class="frow f2">
-            <div>
-              <label>Property Type</label>
-              <select id="f_type">
-                <option value="Villa">Villa</option>
-                <option value="Apartment" selected>Apartment</option>
-                <option value="Chalet">Chalet</option>
-                <option value="Townhouse">Townhouse</option>
-                <option value="Duplex">Duplex</option>
-              </select>
-            </div>
-            <div>
-              <label>Area (m²)</label>
-              <input type="number" id="f_area" placeholder="e.g. 180" min="20" max="2000"/>
-            </div>
-          </div>
-          <div class="frow f3">
-            <div><label>Bedrooms</label>
-              <select id="f_beds">
-                <option>1</option><option>2</option><option selected>3</option>
-                <option>4</option><option>5</option><option>6</option>
-              </select>
-            </div>
-            <div><label>Bathrooms</label>
-              <select id="f_baths">
-                <option>1</option><option selected>2</option><option>3</option><option>4</option>
-              </select>
-            </div>
-            <div><label>Floor / Level</label>
-              <select id="f_floor">
-                <option value="0">Ground</option>
-                <option value="1">1st</option><option value="2">2nd</option>
-                <option value="3" selected>3rd–5th</option><option value="6">6th+</option>
-                <option value="-1">Penthouse</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">Location</div>
-          <div class="frow f2">
-            <div><label>City</label>
-              <select id="f_city">
-                <option>Cairo</option><option>Giza</option>
-                <option>Alexandria</option><option>North Coast</option>
-                <option>New Administrative Capital</option><option>October City</option>
-                <option>Ain Sokhna</option><option>Other</option>
-              </select>
-            </div>
-            <div><label>District / Area</label>
-              <input type="text" id="f_district" placeholder="e.g. New Cairo, Maadi"/>
-            </div>
-          </div>
-          <div class="frow f2">
-            <div><label>Compound / Project</label>
-              <input type="text" id="f_compound" placeholder="e.g. Palm Hills, Rehab"/>
-            </div>
-            <div><label>Distance from City Centre (km)</label>
-              <input type="number" id="f_dist" placeholder="e.g. 25" min="0" max="200" step="0.5"/>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">Condition & Status</div>
-          <div class="frow f2">
-            <div><label>Finishing Level</label>
-              <select id="f_finishing">
-                <option value="finished">Fully Finished</option>
-                <option value="semi">Semi-Finished</option>
-                <option value="core">Core &amp; Shell (Raw)</option>
-              </select>
-            </div>
-            <div><label>Delivery / Handover</label>
-              <select id="f_delivery">
-                <option value="0">Ready Now</option>
-                <option value="6">6 Months</option>
-                <option value="12">12 Months</option>
-                <option value="18">18 Months</option>
-                <option value="24">24 Months</option>
-                <option value="36">36 Months</option>
-                <option value="48">48 Months</option>
-              </select>
-            </div>
-          </div>
+      <!-- ════════ PRICE ADVISOR ════════ -->
+      <div class="pg on" id="pg-advisor">
+        <div class="ph">
           <div>
-            <label>Luxury / Amenities Score</label>
-            <div class="range-row">
-              <input type="range" id="f_luxury" min="0" max="100" value="50" style="flex:1" oninput="document.getElementById('luxVal').textContent=(this.value/100).toFixed(2)"/>
-              <span class="range-val" id="luxVal">0.50</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--slate3);margin-top:2px">
-              <span>Basic</span><span>Standard</span><span>Premium</span><span>Ultra-Lux</span>
-            </div>
+            <div class="ph-h">Price Advisor</div>
+            <div class="ph-s">Enter your unit details — get an instant pricing assessment against the market</div>
+          </div>
+          <div id="modelBadge" style="text-align:right">
+            <div class="pill">OLS Regression</div><br />
+            <span style="font-size:9.5px;color:var(--slate3)" id="modelMetaTxt">Loading model…</span>
           </div>
         </div>
 
-        <div class="form-section">
-          <div class="form-section-title">Pricing & Economic Conditions</div>
-          <div class="frow f2">
-            <div>
-              <label>Your Price (EGP)</label>
-              <input type="number" id="f_price" placeholder="e.g. 4,500,000" min="100000"/>
-            </div>
-            <div>
-              <label>Month (1–12)</label>
-              <select id="f_month">
-                <option value="1">January</option><option value="2">February</option>
-                <option value="3">March</option><option value="4">April</option>
-                <option value="5">May</option><option value="6" selected>June</option>
-                <option value="7">July</option><option value="8">August</option>
-                <option value="9">September</option><option value="10">October</option>
-                <option value="11">November</option><option value="12">December</option>
-              </select>
+        <div class="advisor-grid">
+          <!-- LEFT: FORM -->
+          <div>
+            <div class="card">
+
+              <div class="form-section">
+                <div class="form-section-title">Property Details</div>
+                <div class="frow f2">
+                  <div>
+                    <label>Property Type</label>
+                    <select id="f_type">
+                      <option value="Villa">Villa</option>
+                      <option value="Apartment" selected>Apartment</option>
+                      <option value="Chalet">Chalet</option>
+                      <option value="Townhouse">Townhouse</option>
+                      <option value="Duplex">Duplex</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label>Area (m²)</label>
+                    <input type="number" id="f_area" placeholder="e.g. 180" min="20" max="2000" />
+                  </div>
+                </div>
+                <div class="frow f3">
+                  <div><label>Bedrooms</label>
+                    <select id="f_beds">
+                      <option>1</option>
+                      <option>2</option>
+                      <option selected>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                    </select>
+                  </div>
+                  <div><label>Bathrooms</label>
+                    <select id="f_baths">
+                      <option>1</option>
+                      <option selected>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </select>
+                  </div>
+                  <div><label>Floor / Level</label>
+                    <select id="f_floor">
+                      <option value="0">Ground</option>
+                      <option value="1">1st</option>
+                      <option value="2">2nd</option>
+                      <option value="3" selected>3rd–5th</option>
+                      <option value="6">6th+</option>
+                      <option value="-1">Penthouse</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <div class="form-section-title">Location</div>
+                <div class="frow f2">
+                  <div><label>City</label>
+                    <select id="f_city">
+                      <option>Cairo</option>
+                      <option>Giza</option>
+                      <option>Alexandria</option>
+                      <option>North Coast</option>
+                      <option>New Administrative Capital</option>
+                      <option>October City</option>
+                      <option>Ain Sokhna</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div><label>District / Area</label>
+                    <input type="text" id="f_district" placeholder="e.g. New Cairo, Maadi" />
+                  </div>
+                </div>
+                <div class="frow f2">
+                  <div><label>Compound / Project</label>
+                    <input type="text" id="f_compound" placeholder="e.g. Palm Hills, Rehab" />
+                  </div>
+                  <div><label>Distance from City Centre (km)</label>
+                    <input type="number" id="f_dist" placeholder="e.g. 25" min="0" max="200" step="0.5" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <div class="form-section-title">Condition & Status</div>
+                <div class="frow f2">
+                  <div><label>Finishing Level</label>
+                    <select id="f_finishing">
+                      <option value="finished">Fully Finished</option>
+                      <option value="semi">Semi-Finished</option>
+                      <option value="core">Core &amp; Shell (Raw)</option>
+                    </select>
+                  </div>
+                  <div><label>Delivery / Handover</label>
+                    <select id="f_delivery">
+                      <option value="0">Ready Now</option>
+                      <option value="6">6 Months</option>
+                      <option value="12">12 Months</option>
+                      <option value="18">18 Months</option>
+                      <option value="24">24 Months</option>
+                      <option value="36">36 Months</option>
+                      <option value="48">48 Months</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label>Luxury / Amenities Score</label>
+                  <div class="range-row">
+                    <input type="range" id="f_luxury" min="0" max="100" value="50" style="flex:1"
+                      oninput="document.getElementById('luxVal').textContent=(this.value/100).toFixed(2)" />
+                    <span class="range-val" id="luxVal">0.50</span>
+                  </div>
+                  <div
+                    style="display:flex;justify-content:space-between;font-size:9px;color:var(--slate3);margin-top:2px">
+                    <span>Basic</span><span>Standard</span><span>Premium</span><span>Ultra-Lux</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <div class="form-section-title">Pricing & Economic Conditions</div>
+                <div class="frow f2">
+                  <div>
+                    <label>Your Price (EGP)</label>
+                    <input type="number" id="f_price" placeholder="e.g. 4,500,000" min="100000" />
+                  </div>
+                  <div>
+                    <label>Month (1–12)</label>
+                    <select id="f_month">
+                      <option value="1">January</option>
+                      <option value="2">February</option>
+                      <option value="3">March</option>
+                      <option value="4">April</option>
+                      <option value="5">May</option>
+                      <option value="6" selected>June</option>
+                      <option value="7">July</option>
+                      <option value="8">August</option>
+                      <option value="9">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="frow f3">
+                  <div><label>USD / EGP Rate</label>
+                    <input type="number" id="f_usd" value="51.9" step="0.1" min="1" />
+                  </div>
+                  <div><label>Iron Price (EGP/ton)</label>
+                    <input type="number" id="f_iron" value="37500" step="100" />
+                  </div>
+                  <div><label>Cement Price (EGP/ton)</label>
+                    <input type="number" id="f_cement" value="3600" step="50" />
+                  </div>
+                </div>
+              </div>
+
+              <form id="advisorForm"></form>
+              <button id="advisorSubmitBtn" type="button" class="btn btn-g"
+                style="width:100%;padding:11px;font-size:13px">
+                ◈ &nbsp;Assess Price
+              </button>
             </div>
           </div>
-          <div class="frow f3">
-            <div><label>USD / EGP Rate</label>
-              <input type="number" id="f_usd" value="51.9" step="0.1" min="1"/>
-            </div>
-            <div><label>Iron Price (EGP/ton)</label>
-              <input type="number" id="f_iron" value="37500" step="100"/>
-            </div>
-            <div><label>Cement Price (EGP/ton)</label>
-              <input type="number" id="f_cement" value="3600" step="50"/>
+
+          <!-- RIGHT: RESULTS -->
+          <div id="resultPanel">
+            <div class="card result-empty">
+              <span class="result-empty-ico">◈</span>
+              <div class="result-empty-t">Awaiting Analysis</div>
+              <div class="result-empty-s">Fill in the form on the left and click<br />"Analyze Pricing" to get your
+                assessment.</div>
             </div>
           </div>
         </div>
-
-        <form id="advisorForm"></form>
-        <button id="advisorSubmitBtn" type="button" class="btn btn-g" style="width:100%;padding:11px;font-size:13px">
-          ◈ &nbsp;Assess Price
-        </button>
       </div>
-    </div>
 
-    <!-- RIGHT: RESULTS -->
-    <div id="resultPanel">
-      <div class="card result-empty">
-        <span class="result-empty-ico">◈</span>
-        <div class="result-empty-t">Awaiting Analysis</div>
-        <div class="result-empty-s">Fill in the form on the left and click<br/>"Analyze Pricing" to get your assessment.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════ DASHBOARD ════════ -->
-<div class="pg" id="pg-dashboard">
-  <div class="ph">
-    <div><div class="ph-h">Market Dashboard</div><div class="ph-s" id="dashSub">Loading…</div></div>
-    <button class="btn btn-g" onclick="nav('advisor',document.querySelector('.nb'))">◈ Price Advisor</button>
-  </div>
-  <div class="kpis">
-    <div class="kpi"><div class="ki">🏛</div><div class="kl">Total Listings</div><div class="kv" id="dk1">—</div><div class="ks" style="color:var(--slate3)">In dataset</div></div>
-    <div class="kpi"><div class="ki">💰</div><div class="kl">Avg Price / m²</div><div class="kv" id="dk2">—</div><div class="ks" style="color:var(--slate3)">EGP</div></div>
-    <div class="kpi"><div class="ki">💱</div><div class="kl">Avg USD / EGP</div><div class="kv" id="dk3">—</div><div class="ks" id="dk3s" style="color:var(--slate3)">Exchange rate</div></div>
-    <div class="kpi"><div class="ki">📐</div><div class="kl">Avg Unit Size</div><div class="kv" id="dk4">—</div><div class="ks" style="color:var(--slate3)">m²</div></div>
-  </div>
-  <div class="g21">
-    <div class="card"><div class="ch"><div class="ct">Price / m² — Monthly Trend</div><span class="badge" id="trendBadge">EGP</span></div><div class="ch-wrap" style="height:210px"><canvas id="cTrend"></canvas></div></div>
-    <div class="card"><div class="ch"><div class="ct">By Property Type</div></div><div class="ch-wrap" style="height:210px"><canvas id="cType"></canvas></div></div>
-  </div>
-  <div class="g2">
-    <div class="card"><div class="ch"><div class="ct">Average Price / m² by City</div></div><div class="ch-wrap" style="height:175px"><canvas id="cCity"></canvas></div></div>
-    <div class="card"><div class="ch"><div class="ct">USD / EGP Rate Timeline</div><span class="badge" style="color:var(--red);border-color:rgba(192,90,74,.3)">CRITICAL</span></div><div class="ch-wrap" style="height:175px"><canvas id="cUsd"></canvas></div></div>
-  </div>
-  <div class="card">
-    <div class="ch"><div class="ct">Top Compounds by Avg Price / m²</div></div>
-    <table><thead><tr><th>Compound</th><th>Avg EGP/m²</th><th>Listings</th><th>vs Market</th><th>Performance</th></tr></thead>
-    <tbody id="compBody"></tbody></table>
-  </div>
-  <div class="g2">
-    <div class="card"><div class="ch"><div class="ct">Price by Bedroom Count</div></div><div class="ch-wrap" style="height:175px"><canvas id="cBeds"></canvas></div></div>
-    <div class="card"><div class="ch"><div class="ct">Model Performance</div><span class="badge">OLS Regression</span></div>
-      <div id="modelStats" style="padding:8px 0"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════ UPLOAD ════════ -->
-<div class="pg" id="pg-upload">
-  <div class="ph"><div><div class="ph-h">Data Upload</div><div class="ph-s">Import your project CSV — the model retrains automatically on your data</div></div></div>
-
-  <div class="g2">
-    <div class="card">
-      <div class="ch"><div class="ct">Upload Project CSV</div><span class="badge">Auto Column Detection</span></div>
-      <div class="dropzone" id="dropzone" onclick="document.getElementById('csvFile').click()">
-        <span class="dz-ico" id="dzIco">📂</span>
-        <div class="dz-t" id="dzTitle">Drop CSV here or click to browse</div>
-        <div class="dz-s" id="dzSub">Accepts any real estate CSV — columns are auto-detected<br/>Max 60 MB · UTF-8 or Latin-1 encoding</div>
-      </div>
-      <input type="file" id="csvFile" accept=".csv,.txt" style="display:none" onchange="PageUpload.uploadFile(this.files[0])"/>
-      <div style="margin-top:13px">
-        <div class="ct" style="margin-bottom:7px">Recognised Column Names</div>
-        <div style="display:flex;flex-wrap:wrap;gap:4px">
-          <span class="pill">price_per_m2</span><span class="pill">area_m2</span><span class="pill">price</span>
-          <span class="pill">city</span><span class="pill">property_type</span><span class="pill">bedrooms</span>
-          <span class="pill">compound</span><span class="pill">usd_to_egp_rate</span><span class="pill">luxury_score</span>
-          <span class="pill">distance_to_center</span><span class="pill">year / month</span>
-          <span class="pill">iron / cement</span>
+      <!-- ════════ DASHBOARD ════════ -->
+      <div class="pg" id="pg-dashboard">
+        <div class="ph">
+          <div>
+            <div class="ph-h">Market Dashboard</div>
+            <div class="ph-s" id="dashSub">Loading…</div>
+          </div>
+          <button class="btn btn-g" onclick="nav('advisor',document.querySelector('.nb'))">◈ Price Advisor</button>
+        </div>
+        <div class="kpis">
+          <div class="kpi">
+            <div class="ki">🏛</div>
+            <div class="kl">Total Listings</div>
+            <div class="kv" id="dk1">—</div>
+            <div class="ks" style="color:var(--slate3)">In dataset</div>
+          </div>
+          <div class="kpi">
+            <div class="ki">💰</div>
+            <div class="kl">Avg Price / m²</div>
+            <div class="kv" id="dk2">—</div>
+            <div class="ks" style="color:var(--slate3)">EGP</div>
+          </div>
+          <div class="kpi">
+            <div class="ki">💱</div>
+            <div class="kl">Avg USD / EGP</div>
+            <div class="kv" id="dk3">—</div>
+            <div class="ks" id="dk3s" style="color:var(--slate3)">Exchange rate</div>
+          </div>
+          <div class="kpi">
+            <div class="ki">📐</div>
+            <div class="kl">Avg Unit Size</div>
+            <div class="kv" id="dk4">—</div>
+            <div class="ks" style="color:var(--slate3)">m²</div>
+          </div>
+        </div>
+        <div class="g21">
+          <div class="card">
+            <div class="ch">
+              <div class="ct">Price / m² — Monthly Trend</div><span class="badge" id="trendBadge">EGP</span>
+            </div>
+            <div class="ch-wrap" style="height:210px"><canvas id="cTrend"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="ch">
+              <div class="ct">By Property Type</div>
+            </div>
+            <div class="ch-wrap" style="height:210px"><canvas id="cType"></canvas></div>
+          </div>
+        </div>
+        <div class="g2">
+          <div class="card">
+            <div class="ch">
+              <div class="ct">Average Price / m² by City</div>
+            </div>
+            <div class="ch-wrap" style="height:175px"><canvas id="cCity"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="ch">
+              <div class="ct">USD / EGP Rate Timeline</div><span class="badge"
+                style="color:var(--red);border-color:rgba(192,90,74,.3)">CRITICAL</span>
+            </div>
+            <div class="ch-wrap" style="height:175px"><canvas id="cUsd"></canvas></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch">
+            <div class="ct">Top Compounds by Avg Price / m²</div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Compound</th>
+                <th>Avg EGP/m²</th>
+                <th>Listings</th>
+                <th>vs Market</th>
+                <th>Performance</th>
+              </tr>
+            </thead>
+            <tbody id="compBody"></tbody>
+          </table>
+        </div>
+        <div class="g2">
+          <div class="card">
+            <div class="ch">
+              <div class="ct">Price by Bedroom Count</div>
+            </div>
+            <div class="ch-wrap" style="height:175px"><canvas id="cBeds"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="ch">
+              <div class="ct">Model Performance</div><span class="badge">OLS Regression</span>
+            </div>
+            <div id="modelStats" style="padding:8px 0"></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="card">
-      <div class="ch"><div class="ct">Server-Side Processing Pipeline</div></div>
-      <div style="font-size:11.5px;color:var(--slate);line-height:1.9">
-        <div style="color:var(--txt);font-weight:500;margin-bottom:6px">When you upload a CSV, the server:</div>
-        <div>① <span style="color:var(--txt)">Parses & detects delimiter</span> — comma, semicolon, or tab</div>
-        <div>② <span style="color:var(--txt)">Maps column names</span> — fuzzy-matches 16 standard fields</div>
-        <div>③ <span style="color:var(--txt)">Cleans & validates</span> — filters invalid prices, nulls</div>
-        <div>④ <span style="color:var(--txt)">Computes 18 features</span> — including cyclical month encoding</div>
-        <div>⑤ <span style="color:var(--txt)">Trains OLS regression</span> — normal equations with ridge (λ=0.001)</div>
-        <div>⑥ <span style="color:var(--txt)">Reports R² and RMSE</span> — model quality on your data</div>
-        <div>⑦ <span style="color:var(--txt)">Ready for predictions</span> — all adjustments applied server-side</div>
+      <!-- ════════ UPLOAD ════════ -->
+      <div class="pg" id="pg-upload">
+        <div class="ph">
+          <div>
+            <div class="ph-h">Data Upload</div>
+            <div class="ph-s">Import your project CSV — the model retrains automatically on your data</div>
+          </div>
+        </div>
+
+        <div class="g2">
+          <div class="card">
+            <div class="ch">
+              <div class="ct">Upload Project CSV</div><span class="badge">Auto Column Detection</span>
+            </div>
+            <div class="dropzone" id="dropzone" onclick="document.getElementById('csvFile').click()">
+              <span class="dz-ico" id="dzIco">📂</span>
+              <div class="dz-t" id="dzTitle">Drop CSV here or click to browse</div>
+              <div class="dz-s" id="dzSub">Accepts any real estate CSV — columns are auto-detected<br />Max 60 MB ·
+                UTF-8 or Latin-1 encoding</div>
+            </div>
+            <input type="file" id="csvFile" accept=".csv,.txt" style="display:none"
+              onchange="PageUpload.uploadFile(this.files[0])" />
+            <div style="margin-top:13px">
+              <div class="ct" style="margin-bottom:7px">Recognised Column Names</div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="pill">price_per_m2</span><span class="pill">area_m2</span><span class="pill">price</span>
+                <span class="pill">city</span><span class="pill">property_type</span><span class="pill">bedrooms</span>
+                <span class="pill">compound</span><span class="pill">usd_to_egp_rate</span><span
+                  class="pill">luxury_score</span>
+                <span class="pill">distance_to_center</span><span class="pill">year / month</span>
+                <span class="pill">iron / cement</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="ch">
+              <div class="ct">Server-Side Processing Pipeline</div>
+            </div>
+            <div style="font-size:11.5px;color:var(--slate);line-height:1.9">
+              <div style="color:var(--txt);font-weight:500;margin-bottom:6px">When you upload a CSV, the server:</div>
+              <div>① <span style="color:var(--txt)">Parses & detects delimiter</span> — comma, semicolon, or tab</div>
+              <div>② <span style="color:var(--txt)">Maps column names</span> — fuzzy-matches 16 standard fields</div>
+              <div>③ <span style="color:var(--txt)">Cleans & validates</span> — filters invalid prices, nulls</div>
+              <div>④ <span style="color:var(--txt)">Computes 18 features</span> — including cyclical month encoding
+              </div>
+              <div>⑤ <span style="color:var(--txt)">Trains OLS regression</span> — normal equations with ridge (λ=0.001)
+              </div>
+              <div>⑥ <span style="color:var(--txt)">Reports R² and RMSE</span> — model quality on your data</div>
+              <div>⑦ <span style="color:var(--txt)">Ready for predictions</span> — all adjustments applied server-side
+              </div>
+            </div>
+            <div class="sep"></div>
+            <button class="btn btn-o" style="width:100%;margin-bottom:8px" onclick="loadDemo()">◉ &nbsp;Reset to Demo
+              Dataset</button>
+            <button class="btn btn-o" style="width:100%" id="downloadDataBtn">⬇ &nbsp;Download Sample Data
+              (CSV)</button>
+          </div>
+        </div>
+
+        <div id="uploadResult" style="display:none">
+          <div class="ag alert">✓ <strong>Dataset uploaded and model retrained successfully.</strong></div>
+          <div class="kpis" id="uploadKpis"></div>
+          <div class="card">
+            <div class="ch">
+              <div class="ct">Column Mapping Report</div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Mapped To</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="colMapBody"></tbody>
+            </table>
+          </div>
+          <button class="btn btn-g" onclick="nav('advisor',document.querySelector('.nb'))">◈ Go to Price Advisor
+            →</button>
+        </div>
       </div>
-      <div class="sep"></div>
-      <button class="btn btn-o" style="width:100%;margin-bottom:8px" onclick="loadDemo()">◉ &nbsp;Reset to Demo Dataset</button>
-      <button class="btn btn-o" style="width:100%" id="downloadDataBtn">⬇ &nbsp;Download Sample Data (CSV)</button>
-    </div>
+
+      <!-- ════════ MARKET ════════ -->
+      <div class="pg" id="pg-market">
+        <div class="ph">
+          <div>
+            <div class="ph-h">Market Analysis</div>
+            <div class="ph-s">Price segmentation by location, type, and economic drivers</div>
+          </div>
+        </div>
+        <div class="alert aw">⚠ USD/EGP devalued 68% in 2024 — this is the dominant pricing risk factor in the Egyptian
+          market.</div>
+        <div class="g2">
+          <div class="card">
+            <div class="ch">
+              <div class="ct">USD/EGP vs Price/m² Correlation</div>
+            </div>
+            <div class="ch-wrap" style="height:220px"><canvas id="mCorr"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="ch">
+              <div class="ct">Material Cost → Price Impact</div>
+            </div>
+            <div class="ch-wrap" style="height:220px"><canvas id="mMat"></canvas></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch">
+            <div class="ct">Variable Sensitivity Index</div><span class="badge">Impact on Price/m²</span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Correlation</th>
+                <th>Effect</th>
+                <th>In Dataset</th>
+                <th>Recommended Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>USD/EGP Rate</td>
+                <td class="tred">−0.42 (strong)</td>
+                <td style="font-size:10.5px;color:var(--red)">↑ Rate → ↓ USD value of property</td>
+                <td><span class="pill">✓</span></td>
+                <td style="font-size:10.5px;color:var(--slate)">Primary model feature</td>
+              </tr>
+              <tr>
+                <td>Iron Price</td>
+                <td class="tg">+0.18</td>
+                <td style="font-size:10.5px;color:var(--amb)">↑ Cost → ↑ price floor</td>
+                <td><span class="pill">✓</span></td>
+                <td style="font-size:10.5px;color:var(--slate)">Cost-side input</td>
+              </tr>
+              <tr>
+                <td>Cement Price</td>
+                <td class="tg">+0.12</td>
+                <td style="font-size:10.5px;color:var(--amb)">Moderate cost driver</td>
+                <td><span class="pill">✓</span></td>
+                <td style="font-size:10.5px;color:var(--slate)">Cost-side input</td>
+              </tr>
+              <tr>
+                <td>Luxury Score</td>
+                <td class="tblu">+0.38</td>
+                <td style="font-size:10.5px;color:var(--grn)">↑ Amenities → ↑ premium</td>
+                <td><span class="pill">✓</span></td>
+                <td style="font-size:10.5px;color:var(--slate)">Key model feature</td>
+              </tr>
+              <tr>
+                <td>CPI / Inflation</td>
+                <td class="tblu">+0.55 (est.)</td>
+                <td style="font-size:10.5px;color:var(--grn)">↑ Inflation → ↑ nominal price</td>
+                <td><span
+                    style="font-size:8.5px;color:var(--amb);border:1px solid rgba(196,138,58,.3);padding:2px 7px;border-radius:20px">⚠
+                    Missing</span></td>
+                <td style="font-size:10.5px;color:var(--slate)">Add CAPMAS monthly CPI</td>
+              </tr>
+              <tr>
+                <td>CBE Interest Rate</td>
+                <td class="tred">−0.38 (est.)</td>
+                <td style="font-size:10.5px;color:var(--red)">↑ Rates → ↓ demand</td>
+                <td><span
+                    style="font-size:8.5px;color:var(--amb);border:1px solid rgba(196,138,58,.3);padding:2px 7px;border-radius:20px">⚠
+                    Missing</span></td>
+                <td style="font-size:10.5px;color:var(--slate)">Add CBE policy rate feed</td>
+              </tr>
+              <tr>
+                <td>Labor Cost Index</td>
+                <td class="tg">+0.22 (est.)</td>
+                <td style="font-size:10.5px;color:var(--amb)">Supply-side cost pressure</td>
+                <td><span
+                    style="font-size:8.5px;color:var(--amb);border:1px solid rgba(196,138,58,.3);padding:2px 7px;border-radius:20px">⚠
+                    Missing</span></td>
+                <td style="font-size:10.5px;color:var(--slate)">Quarterly survey needed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ════════ RENTAL ADVISOR ════════ -->
+      <div class="pg" id="pg-rental">
+        <div class="ph">
+          <div>
+            <div class="ph-h">🏠 Rental Advisor</div>
+            <div class="ph-s">Estimate rental yield, net income, and Return on Rent (ROR) score for any unit</div>
+          </div>
+          <div id="rentalModelBadge" style="text-align:right">
+            <span class="pill">Yield & ROR Engine</span>
+          </div>
+        </div>
+
+        <div class="advisor-grid">
+          <!-- LEFT: FORM -->
+          <div>
+            <div class="card">
+
+              <div class="form-section">
+                <div class="form-section-title">Property Details</div>
+                <div class="frow f2">
+                  <div>
+                    <label>Property Type</label>
+                    <select id="r_type">
+                      <option value="Villa">Villa</option>
+                      <option value="Apartment" selected>Apartment</option>
+                      <option value="Chalet">Chalet</option>
+                      <option value="Townhouse">Townhouse</option>
+                      <option value="Duplex">Duplex</option>
+                      <option value="Penthouse">Penthouse</option>
+                      <option value="Studio">Studio</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label>Area (m²)</label>
+                    <input type="number" id="r_area" placeholder="e.g. 120" min="20" max="2000" />
+                  </div>
+                </div>
+                <div class="frow f2">
+                  <div>
+                    <label>City / Governorate</label>
+                    <select id="r_city">
+                      <option>Cairo</option>
+                      <option>Giza</option>
+                      <option>Alexandria</option>
+                      <option>North Coast</option>
+                      <option>New Administrative Capital</option>
+                      <option>Ain Sokhna</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label>Furnished?</label>
+                    <select id="r_furnished">
+                      <option value="unfurnished">Unfurnished</option>
+                      <option value="furnished">Furnished</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <div class="form-section-title">Financials</div>
+                <div class="frow f2">
+                  <div>
+                    <label>Purchase Price (EGP)</label>
+                    <input type="number" id="r_purchase" placeholder="e.g. 5,000,000" min="100000" />
+                  </div>
+                  <div>
+                    <label>Monthly Rent (EGP)</label>
+                    <input type="number" id="r_rent" placeholder="e.g. 25,000" min="500" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <div class="form-section-title">Operating Costs</div>
+                <div class="frow f3">
+                  <div>
+                    <label>Mgmt Fee %</label>
+                    <input type="number" id="r_mgmt" value="10" min="0" max="30" step="0.5" />
+                  </div>
+                  <div>
+                    <label>Maintenance %</label>
+                    <input type="number" id="r_maint" value="1" min="0" max="10" step="0.1" />
+                  </div>
+                  <div>
+                    <label>Vacancy %</label>
+                    <input type="number" id="r_vacancy" value="8" min="0" max="50" step="1" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <div class="form-section-title">Leverage (Optional)</div>
+                <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px">
+                  <input type="checkbox" id="r_use_mortgage" style="width:auto;accent-color:var(--gold)" />
+                  <label style="text-transform:none;font-size:12px;color:var(--txt2);letter-spacing:0;margin:0">Include
+                    mortgage / financing</label>
+                </div>
+                <div id="mortgageBox" style="display:none">
+                  <div class="frow f3">
+                    <div>
+                      <label>Down Payment %</label>
+                      <input type="number" id="r_dp" value="30" min="10" max="100" step="5" />
+                    </div>
+                    <div>
+                      <label>Annual Rate %</label>
+                      <input type="number" id="r_mrate" value="22" min="0" max="50" step="0.5" />
+                    </div>
+                    <div>
+                      <label>Term (years)</label>
+                      <input type="number" id="r_term" value="20" min="1" max="30" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button id="rentalSubmitBtn" class="btn btn-g" style="width:100%;padding:11px;font-size:13px">
+                ◈ &nbsp;Calculate ROR
+              </button>
+            </div>
+          </div>
+
+          <!-- RIGHT: RESULTS -->
+          <div id="rentalResultPanel">
+            <div class="card result-empty">
+              <span class="result-empty-ico">🏠</span>
+              <div class="result-empty-t">Awaiting Rental Analysis</div>
+              <div class="result-empty-s">Enter your unit details and rental income<br />to get a full ROR & yield
+                breakdown.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
   </div>
 
-  <div id="uploadResult" style="display:none">
-    <div class="ag alert">✓ <strong>Dataset uploaded and model retrained successfully.</strong></div>
-    <div class="kpis" id="uploadKpis"></div>
-    <div class="card">
-      <div class="ch"><div class="ct">Column Mapping Report</div></div>
-      <table><thead><tr><th>Field</th><th>Mapped To</th><th>Status</th></tr></thead>
-      <tbody id="colMapBody"></tbody></table>
-    </div>
-    <button class="btn btn-g" onclick="nav('advisor',document.querySelector('.nb'))">◈ Go to Price Advisor →</button>
-  </div>
-</div>
+  <script src="/js/services/api.js"></script>
+  <script src="/js/pages/advisor.js"></script>
+  <script src="/js/pages/dashboard.js"></script>
+  <script src="/js/pages/upload.js"></script>
+  <script src="/js/pages/market.js"></script>
+  <script src="/js/pages/rental.js"></script>
+  <script src="/js/app.js"></script>
 
-<!-- ════════ MARKET ════════ -->
-<div class="pg" id="pg-market">
-  <div class="ph"><div><div class="ph-h">Market Analysis</div><div class="ph-s">Price segmentation by location, type, and economic drivers</div></div></div>
-  <div class="alert aw">⚠ USD/EGP devalued 68% in 2024 — this is the dominant pricing risk factor in the Egyptian market.</div>
-  <div class="g2">
-    <div class="card"><div class="ch"><div class="ct">USD/EGP vs Price/m² Correlation</div></div><div class="ch-wrap" style="height:220px"><canvas id="mCorr"></canvas></div></div>
-    <div class="card"><div class="ch"><div class="ct">Material Cost → Price Impact</div></div><div class="ch-wrap" style="height:220px"><canvas id="mMat"></canvas></div></div>
-  </div>
-  <div class="card">
-    <div class="ch"><div class="ct">Variable Sensitivity Index</div><span class="badge">Impact on Price/m²</span></div>
-    <table>
-      <thead><tr><th>Variable</th><th>Correlation</th><th>Effect</th><th>In Dataset</th><th>Recommended Action</th></tr></thead>
-      <tbody>
-        <tr><td>USD/EGP Rate</td><td class="tred">−0.42 (strong)</td><td style="font-size:10.5px;color:var(--red)">↑ Rate → ↓ USD value of property</td><td><span class="pill">✓</span></td><td style="font-size:10.5px;color:var(--slate)">Primary model feature</td></tr>
-        <tr><td>Iron Price</td><td class="tg">+0.18</td><td style="font-size:10.5px;color:var(--amb)">↑ Cost → ↑ price floor</td><td><span class="pill">✓</span></td><td style="font-size:10.5px;color:var(--slate)">Cost-side input</td></tr>
-        <tr><td>Cement Price</td><td class="tg">+0.12</td><td style="font-size:10.5px;color:var(--amb)">Moderate cost driver</td><td><span class="pill">✓</span></td><td style="font-size:10.5px;color:var(--slate)">Cost-side input</td></tr>
-        <tr><td>Luxury Score</td><td class="tblu">+0.38</td><td style="font-size:10.5px;color:var(--grn)">↑ Amenities → ↑ premium</td><td><span class="pill">✓</span></td><td style="font-size:10.5px;color:var(--slate)">Key model feature</td></tr>
-        <tr><td>CPI / Inflation</td><td class="tblu">+0.55 (est.)</td><td style="font-size:10.5px;color:var(--grn)">↑ Inflation → ↑ nominal price</td><td><span style="font-size:8.5px;color:var(--amb);border:1px solid rgba(196,138,58,.3);padding:2px 7px;border-radius:20px">⚠ Missing</span></td><td style="font-size:10.5px;color:var(--slate)">Add CAPMAS monthly CPI</td></tr>
-        <tr><td>CBE Interest Rate</td><td class="tred">−0.38 (est.)</td><td style="font-size:10.5px;color:var(--red)">↑ Rates → ↓ demand</td><td><span style="font-size:8.5px;color:var(--amb);border:1px solid rgba(196,138,58,.3);padding:2px 7px;border-radius:20px">⚠ Missing</span></td><td style="font-size:10.5px;color:var(--slate)">Add CBE policy rate feed</td></tr>
-        <tr><td>Labor Cost Index</td><td class="tg">+0.22 (est.)</td><td style="font-size:10.5px;color:var(--amb)">Supply-side cost pressure</td><td><span style="font-size:8.5px;color:var(--amb);border:1px solid rgba(196,138,58,.3);padding:2px 7px;border-radius:20px">⚠ Missing</span></td><td style="font-size:10.5px;color:var(--slate)">Quarterly survey needed</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+  <script>
+    // Compatibility layer for old code
+    let STATS = null;
+    const CHARTS = {};
 
-</main>
-</div>
+    // ── Theme Toggle ──
+    (function () {
+      const html = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+      const saved = localStorage.getItem('dart-theme');
 
-<script src="/js/services/api.js"></script>
-<script src="/js/pages/advisor.js"></script>
-<script src="/js/pages/dashboard.js"></script>
-<script src="/js/pages/upload.js"></script>
-<script src="/js/pages/market.js"></script>
-<script src="/js/app.js"></script>
+      function applyTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        icon.textContent = theme === 'light' ? '☀️' : '🌙';
+        localStorage.setItem('dart-theme', theme);
+        // Update chart colors if charts exist
+        updateChartTheme(theme);
+      }
 
-<script>
-// Compatibility layer for old code
-let STATS = null;
-const CHARTS = {};
-</script>
+      function updateChartTheme(theme) {
+        const gridColor = theme === 'light' ? 'rgba(0,0,0,.07)' : 'rgba(255,255,255,.06)';
+        const tickColor = theme === 'light' ? '#5A6175' : '#858DA8';
+        Object.values(CHARTS).forEach(chart => {
+          if (!chart || !chart.options) return;
+          if (chart.options.scales) {
+            Object.values(chart.options.scales).forEach(scale => {
+              if (scale.grid) scale.grid.color = gridColor;
+              if (scale.ticks) scale.ticks.color = tickColor;
+            });
+          }
+          chart.update('none');
+        });
+      }
+
+      // Apply initial theme
+      if (saved) applyTheme(saved);
+
+      toggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        applyTheme(current === 'light' ? 'dark' : 'light');
+      });
+    })();
+  </script>
 </body>
+
 </html>

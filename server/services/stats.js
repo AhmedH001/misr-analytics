@@ -9,33 +9,31 @@ const pctile = (arr, p) => {
 };
 
 module.exports = {
-  buildStats(rows, cm) {
-    const g  = (r, k) => { const c = cm[k]; return c ? toNum(r[c]) : null; };
-    const gs = (r, k) => { const c = cm[k]; return c ? (r[c] || '').trim() : ''; };
-
+  buildStats(parsedRows) {
     const ppms = [], areas = [], prices = [], usds = [];
     const monthly = {}, usdM = {}, byCity = {}, byType = {}, byCompound = {}, byBeds = {};
 
-    for (const row of rows) {
-      const ppm = g(row, 'price_per_m2');
+    for (const row of parsedRows) {
+      const ppm = row.price_per_m2;
+      // Skip invalid or extreme outliers
       if (!ppm || ppm < 500 || ppm > 500000) continue;
       ppms.push(ppm);
 
-      const area = g(row, 'area_m2'); if (area && area > 5) areas.push(area);
-      const px   = g(row, 'price');   if (px   && px > 0)  prices.push(px);
-      const usd  = g(row, 'usd_to_egp_rate'); if (usd && usd > 1) usds.push(usd);
+      const area = row.area_m2; if (area && area > 5) areas.push(area);
+      const px   = row.price;   if (px   && px > 0)  prices.push(px);
+      const usd  = row.usd_to_egp_rate; if (usd && usd > 1) usds.push(usd);
 
-      const yr = g(row, 'year'), mo = g(row, 'month');
+      const yr = row.year, mo = row.month;
       if (yr && mo) {
         const k = `${yr}-${String(parseInt(mo)).padStart(2,'0')}`;
         (monthly[k] = monthly[k] || []).push(ppm);
         if (usd) (usdM[k] = usdM[k] || []).push(usd);
       }
 
-      const city = gs(row,'city');          if (city) (byCity[city]     = byCity[city]     || []).push(ppm);
-      const type = gs(row,'property_type'); if (type) (byType[type]     = byType[type]     || []).push(ppm);
-      const cmpd = gs(row,'compound');      if (cmpd) (byCompound[cmpd] = byCompound[cmpd] || []).push(ppm);
-      const beds = g(row,'bedrooms');
+      const city = row.city;                if (city) (byCity[city]     = byCity[city]     || []).push(ppm);
+      const type = row.property_type;       if (type) (byType[type]     = byType[type]     || []).push(ppm);
+      const cmpd = row.compound;            if (cmpd) (byCompound[cmpd] = byCompound[cmpd] || []).push(ppm);
+      const beds = row.bedrooms;
       if (beds) { const bk = `${parseInt(beds)} Bed`; (byBeds[bk] = byBeds[bk] || []).push(ppm); }
     }
 
@@ -47,7 +45,7 @@ module.exports = {
       );
 
     return {
-      totalRows: rows.length, validRows: ppms.length,
+      totalRows: parsedRows.length, validRows: ppms.length,
       avgPpm:   Math.round(mean(ppms)),
       avgPrice: Math.round(mean(prices)),
       avgArea:  Math.round(mean(areas)),

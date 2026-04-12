@@ -56,6 +56,11 @@ class APIService {
     return this.post('/api/predict', input);
   }
 
+  // Rental yield & ROR
+  static rentalPredict(input) {
+    return this.post('/api/rental-predict', input);
+  }
+
   // Download sample data
   static downloadData() {
     window.open('/api/download-data', '_blank');

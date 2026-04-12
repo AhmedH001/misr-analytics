@@ -19,15 +19,28 @@ class PageDashboard {
     const stats = this.stats || {};
     const model = this.model || {};
 
-    const updateText = (id, value) => {
+    const animateValue = (id, end, duration, formatStr = '') => {
       const el = document.getElementById(id);
-      if (el) el.textContent = value ?? '—';
+      if (!el || typeof end !== 'number') return;
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const current = progress * end;
+        el.textContent = Math.floor(current).toLocaleString() + formatStr;
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          el.textContent = end.toLocaleString() + formatStr;
+        }
+      };
+      window.requestAnimationFrame(step);
     };
 
-    updateText('dk1', stats.totalRows?.toLocaleString());
-    updateText('dk2', stats.avgPpm?.toLocaleString());
-    updateText('dk3', stats.avgUsd?.toLocaleString());
-    updateText('dk4', stats.avgArea?.toLocaleString());
+    if (stats.totalRows) animateValue('dk1', stats.totalRows, 1500);
+    if (stats.avgPpm) animateValue('dk2', stats.avgPpm, 1500);
+    if (stats.avgUsd) animateValue('dk3', stats.avgUsd, 1500);
+    if (stats.avgArea) animateValue('dk4', stats.avgArea, 1500);
 
     const dashSub = document.getElementById('dashSub');
     if (dashSub) dashSub.textContent = `Dataset source: ${stats.source || 'demo'} · ${stats.validRows?.toLocaleString() || 0} valid samples`;
@@ -80,6 +93,10 @@ class PageDashboard {
         scales: {
           x: { grid: { display: false } },
           y: { beginAtZero: false }
+        },
+        animation: {
+          duration: 2000,
+          easing: 'easeOutQuart'
         }
       }
     });
@@ -95,7 +112,14 @@ class PageDashboard {
           backgroundColor: 'rgba(90,143,212,0.75)'
         }]
       },
-      options: { maintainAspectRatio: false, plugins: { legend: { display: false } } }
+      options: { 
+        maintainAspectRatio: false, 
+        plugins: { legend: { display: false } },
+        animation: {
+          duration: 1500,
+          easing: 'easeOutBack'
+        }
+      }
     });
 
     const cityEntries = Object.entries(stats.byCity || {}).sort((a,b)=>b[1]-a[1]).slice(0, 8);
@@ -109,7 +133,16 @@ class PageDashboard {
           backgroundColor: 'rgba(82,176,122,0.75)'
         }]
       },
-      options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { maxRotation: 45, minRotation: 0 } } } }
+      options: { 
+        maintainAspectRatio: false, 
+        plugins: { legend: { display: false } }, 
+        scales: { x: { ticks: { maxRotation: 45, minRotation: 0 } } },
+        animation: {
+          duration: 1800,
+          easing: 'easeOutCirc',
+          delay: (context) => context.dataIndex * 100
+        }
+      }
     });
 
     const usdKeys = Object.keys(stats.usdByMonth || {}).sort();
@@ -128,7 +161,14 @@ class PageDashboard {
           pointRadius: 3,
         }]
       },
-      options: { maintainAspectRatio: false, plugins: { legend: { display: false } } }
+      options: { 
+        maintainAspectRatio: false, 
+        plugins: { legend: { display: false } },
+        animation: {
+          duration: 2500,
+          easing: 'easeOutQuint'
+        }
+      }
     });
 
     const bedsEntries = Object.entries(stats.byBeds || {}).sort((a,b)=>parseInt(a[0]) - parseInt(b[0]));
@@ -142,7 +182,14 @@ class PageDashboard {
           backgroundColor: 'rgba(212,174,82,0.8)'
         }]
       },
-      options: { maintainAspectRatio: false, plugins: { legend: { display: false } } }
+      options: { 
+        maintainAspectRatio: false, 
+        plugins: { legend: { display: false } },
+        animation: {
+          duration: 1200,
+          easing: 'easeOutSine'
+        }
+      }
     });
   }
 

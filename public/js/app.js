@@ -38,6 +38,7 @@ class AppController {
       PageDashboard.init(stats, model);
       PageUpload.init();
       PageMarket.init(stats);
+      PageRental.init(stats);
     } catch (err) {
       console.error('Failed to load initial data:', err);
       this.setHealthStatus(false, 'Failed to connect');

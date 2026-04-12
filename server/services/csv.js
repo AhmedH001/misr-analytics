@@ -18,7 +18,11 @@ const canonicalType = type => {
   if (!normalized) return '';
   if (normalized.includes('villa')) return 'villa';
   if (normalized.includes('chalet')) return 'chalet';
-  if (normalized.includes('apt')) return 'apartment';
+  if (normalized.includes('apt') || normalized === 'apartment') return 'apartment';
+  if (normalized.includes('penthouse')) return 'penthouse';
+  if (normalized.includes('townhouse') || normalized.includes('town house')) return 'townhouse';
+  if (normalized.includes('duplex')) return 'duplex';
+  if (normalized.includes('studio')) return 'studio';
   return normalized;
 };
 
@@ -59,29 +63,42 @@ function detectDelim(line) {
 function autoMap(headers) {
   const lh = headers.map(h => h.toLowerCase().replace(/[\s\-\/]/g, '_'));
   const find = (...alts) => {
+    // Pass 1: exact match (prevents 'price_egp' matching 'cement_price_egp_per_ton')
     for (const a of alts) {
-      const i = lh.findIndex(h => h === a || h.includes(a));
+      const i = lh.findIndex(h => h === a);
+      if (i >= 0) return headers[i];
+    }
+    // Pass 2: partial / includes match
+    for (const a of alts) {
+      const i = lh.findIndex(h => h.includes(a));
       if (i >= 0) return headers[i];
     }
     return null;
   };
   return {
+    // v3 uses price_egp / price_usd; older uses price / total_price
     price_per_m2:          find('price_per_m2','price_m2','ppm2','price/m2'),
-    price:                 find('total_price','price','list_price','sale_price'),
-    area_m2:               find('area_m2','area','size','sqm','m2','unit_size'),
+    price:                 find('price_egp','total_price','price','list_price','sale_price'),
+    // v3 uses size_sqm; older uses area_m2 / area / sqm
+    area_m2:               find('size_sqm','area_m2','area_sqm','sqm','m2','unit_size'),
     bedrooms:              find('bedrooms','beds','bedroom_count','bed'),
     bathrooms:             find('bathrooms','baths','bathroom_count'),
-    city:                  find('city','location','governorate'),
+    // v3 uses 'area' as governorate/city column
+    city:                  find('city','location','governorate','area'),
     district:              find('district','area_name','sub_area','zone','neighborhood'),
     compound:              find('compound','project','development','complex'),
     property_type:         find('property_type','type','unit_type','prop_type'),
+    // v3 uses listing_date; older uses year/month separately
+    listing_date:          find('listing_date','date','listed_date'),
     year:                  find('year','listing_year','yr'),
     month:                 find('month','listing_month','mo'),
-    usd_to_egp_rate:       find('usd_to_egp_rate','usd_rate','exchange_rate','fx_rate','usd_egp'),
+    // v3 uses usd_to_egp; older uses usd_to_egp_rate
+    usd_to_egp_rate:       find('usd_to_egp_rate','usd_to_egp','usd_rate','exchange_rate','fx_rate','usd_egp'),
     luxury_score:          find('luxury_score','luxury','quality_score','premium_score'),
     distance_to_center:    find('distance_to_center','distance','dist_center','dist_km'),
-    material_costs_iron:   find('material_costs_iron','iron_price','iron_cost','iron'),
-    material_costs_cement: find('material_costs_cement','cement_price','cement_cost','cement'),
+    // v3 uses iron_price_egp_per_ton / cement_price_egp_per_ton
+    material_costs_iron:   find('iron_price_egp_per_ton','material_costs_iron','iron_price','iron_cost','iron'),
+    material_costs_cement: find('cement_price_egp_per_ton','material_costs_cement','cement_price','cement_cost','cement'),
     latitude:              find('latitude','lat'),
     longitude:             find('longitude','lon','lng'),
     project_avg_price:     find('project_avg_price','avg_price','project_price'),
@@ -100,6 +117,16 @@ function resolveValue(row, cm, key) {
   return col ? row[col] : '';
 }
 
+function parseDateField(row, cm) {
+  // Try listing_date column first (v3 format: "2024-01-15 00:00:00.000000000")
+  const col = cm['listing_date'];
+  if (col && row[col]) {
+    const match = String(row[col]).match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (match) return { year: parseInt(match[1]), month: parseInt(match[2]) };
+  }
+  return { year: null, month: null };
+}
+
 function sanitizeRow(row, cm) {
   const getRaw = key => String(resolveValue(row, cm, key) || '').trim();
   const getNum = key => toNum(resolveValue(row, cm, key));
@@ -109,6 +136,8 @@ function sanitizeRow(row, cm) {
   const area = getNum('area_m2') || getNum('area') || getNum('sqm') || 0;
   const price = getNum('price');
   const finalPpm = pricePerM2 || (price && area ? price / area : null);
+  // Parse year/month from listing_date if not available as separate columns
+  const dateFields = parseDateField(row, cm);
 
   return {
     price_per_m2: finalPpm,
@@ -121,8 +150,8 @@ function sanitizeRow(row, cm) {
     usd_to_egp_rate: getNum('usd_to_egp_rate') || getNum('usd_rate') || getNum('exchange_rate') || 0,
     iron: getNum('material_costs_iron') || getNum('iron_price') || getNum('iron_cost') || DEFAULT_MATERIAL_COSTS.iron,
     cement: getNum('material_costs_cement') || getNum('cement_price') || getNum('cement_cost') || DEFAULT_MATERIAL_COSTS.cement,
-    month: getNum('month') || 6,
-    year: getNum('year') || new Date().getFullYear(),
+    month: getNum('month') || dateFields.month || 6,
+    year: getNum('year') || dateFields.year || new Date().getFullYear(),
     property_type: type,
     city,
     district: getRaw('district'),
@@ -135,9 +164,10 @@ function sanitizeRow(row, cm) {
 }
 
 function isRowEligible(row) {
+  // Only strictly require a valid price_per_m2 and area — other fields (bedrooms,
+  // luxury_score, distance) may be absent in v3 CSV and default to 0, which is fine.
   return row.price_per_m2 && row.price_per_m2 > 500 && row.price_per_m2 < 500000
-    && row.area_m2 >= 10 && row.bedrooms >= 0 && row.bathrooms >= 0
-    && row.distance_to_center >= 0 && row.luxury_score >= 0 && row.luxury_score <= 1;
+    && row.area_m2 >= 10;
 }
 
 module.exports = {

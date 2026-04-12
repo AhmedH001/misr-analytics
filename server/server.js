@@ -36,7 +36,7 @@ function bootstrap() {
 
   STATE.rows   = data.rows;
   STATE.colMap = data.colMap;
-  STATE.stats  = statsService.buildStats(data.rows, data.colMap);
+  STATE.stats  = statsService.buildStats(parsed);
   STATE.model  = modelService.trainModel(parsed);
   STATE.ready  = true;
   STATE.source = data.source;
@@ -121,7 +121,7 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
     const parsed = csvService.sanitizeAndValidate(rows, colMap);
     STATE.rows   = rows;
     STATE.colMap = colMap;
-    STATE.stats  = statsService.buildStats(rows, colMap);
+    STATE.stats  = statsService.buildStats(parsed);
     STATE.model  = modelService.trainModel(parsed);
     STATE.ready  = true;
     STATE.source = req.file.originalname;
@@ -188,11 +188,114 @@ app.post('/api/predict', (req, res) => {
   }
 });
 
+// ── RENTAL ADVISOR ──────────────────────────────────────────────────
+app.post('/api/rental-predict', (req, res) => {
+  if (!STATE.ready) return res.status(503).json({ error: 'Model not ready' });
+  try {
+    const b = req.body;
+    const area = parseFloat(b.area_m2);
+    const purchasePrice = parseFloat(b.purchase_price);
+    const monthlyRent = parseFloat(b.monthly_rent);
+    const city = String(b.city || '');
+    const propType = String(b.property_type || '');
+    const furnished = String(b.furnished || 'unfurnished');
+    const managementFeesPct = parseFloat(b.management_fees_pct) || 10;
+    const maintenancePct = parseFloat(b.maintenance_pct) || 1;
+    const vacancyPct = parseFloat(b.vacancy_pct) || 8;
+    const downPaymentPct = parseFloat(b.down_payment_pct) || 30;
+    const mortgageRatePct = parseFloat(b.mortgage_rate_pct) || 0;
+    const loanTermYears = parseFloat(b.loan_term_years) || 20;
+
+    if (!area || area < 10) return res.status(400).json({ error: 'area_m2 must be ≥ 10' });
+    if (!purchasePrice || purchasePrice < 10000) return res.status(400).json({ error: 'purchase_price is required' });
+    if (!monthlyRent || monthlyRent <= 0) return res.status(400).json({ error: 'monthly_rent is required' });
+
+    // --- Market rental benchmarks from dataset ---
+    const s = STATE.stats;
+    const cityAvgPpm = s.byCity[city.toLowerCase()] || s.avgPpm;
+    const marketRentFactor = furnished === 'furnished' ? 0.0065 : 0.005;
+    const marketMonthlyRent = Math.round(cityAvgPpm * area * marketRentFactor);
+    const rentVsMarket = monthlyRent / marketMonthlyRent;
+
+    // --- Annual cashflow ---
+    const annualGrossRent = monthlyRent * 12;
+    const effectiveVacancy = vacancyPct / 100;
+    const annualEffectiveRent = annualGrossRent * (1 - effectiveVacancy);
+    const managementFees = annualEffectiveRent * (managementFeesPct / 100);
+    const maintenanceCost = purchasePrice * (maintenancePct / 100);
+    const annualNetRent = annualEffectiveRent - managementFees - maintenanceCost;
+
+    // --- Gross / Net Yield ---
+    const grossYield = (annualGrossRent / purchasePrice) * 100;
+    const netYield = (annualNetRent / purchasePrice) * 100;
+
+    // --- Cash-on-Cash (leveraged) ---
+    const downPayment = purchasePrice * (downPaymentPct / 100);
+    let annualMortgage = 0;
+    if (mortgageRatePct > 0 && loanTermYears > 0) {
+      const loanAmount = purchasePrice - downPayment;
+      const monthlyRate = (mortgageRatePct / 100) / 12;
+      const n = loanTermYears * 12;
+      const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+      annualMortgage = monthlyPayment * 12;
+    }
+    const leveragedCashflow = annualNetRent - annualMortgage;
+    const cashOnCash = downPayment > 0 ? (leveragedCashflow / downPayment) * 100 : netYield;
+
+    // --- Break-even & payback ---
+    const paybackYears = netYield > 0 ? 100 / netYield : null;
+    const breakEvenRent = Math.round((managementFees + maintenanceCost + annualMortgage) / (12 * (1 - effectiveVacancy)));
+
+    // --- ROR Score (0-100) ---
+    const rorScore = Math.min(100, Math.max(0, Math.round(
+      (netYield / 0.12) * 40 +
+      (Math.min(rentVsMarket, 1.5) / 1.5) * 30 +
+      (cashOnCash / 0.15) * 30
+    )));
+
+    let rorLabel, rorEmoji;
+    if (rorScore >= 75)     { rorLabel = 'Excellent Investment'; rorEmoji = '🏆'; }
+    else if (rorScore >= 55) { rorLabel = 'Good Return';          rorEmoji = '✅'; }
+    else if (rorScore >= 35) { rorLabel = 'Average Return';       rorEmoji = '⚖️'; }
+    else                     { rorLabel = 'Below Market';          rorEmoji = '⚠️'; }
+
+    res.json({
+      ok: true,
+      gross_yield: Math.round(grossYield * 100) / 100,
+      net_yield: Math.round(netYield * 100) / 100,
+      cash_on_cash: Math.round(cashOnCash * 100) / 100,
+      ror_score: rorScore,
+      ror_label: rorLabel,
+      ror_emoji: rorEmoji,
+      annual: {
+        gross_rent: Math.round(annualGrossRent),
+        effective_rent: Math.round(annualEffectiveRent),
+        net_rent: Math.round(annualNetRent),
+        management_fees: Math.round(managementFees),
+        maintenance: Math.round(maintenanceCost),
+        mortgage: Math.round(annualMortgage),
+        cashflow: Math.round(leveragedCashflow),
+      },
+      market: {
+        city_avg_ppm: Math.round(cityAvgPpm),
+        market_rent_estimate: marketMonthlyRent,
+        rent_vs_market_pct: Math.round(rentVsMarket * 100),
+      },
+      payback_years: paybackYears ? Math.round(paybackYears * 10) / 10 : null,
+      break_even_rent: breakEvenRent,
+    });
+  } catch (err) {
+    console.error('Rental predict error:', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 // ───────────────────────────────────────────────────────────────────
 // START
 // ───────────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3000;
 bootstrap();
 app.listen(PORT, () => {
-  console.log(`\n🏛  MISR Analytics  →  http://localhost:${PORT}\n`);
+  console.log(`\n🏛  DART AI Real estate  →  http://localhost:${PORT}\n`);
 });

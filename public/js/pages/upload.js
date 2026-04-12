@@ -58,7 +58,13 @@ class PageUpload {
         </div>
       </div>`;
       // Reload app data
-      AppController.loadInitialData();
+      await AppController.loadInitialData();
+      
+      // Dynamically switch to the dashboard tab so the user can see the animated numbers roll up
+      setTimeout(() => {
+        nav('dashboard', document.querySelectorAll('.nb')[1]); // Index 1 is the Dashboard tab
+      }, 800);
+      
     } catch (err) {
       result.innerHTML = `<div class="alert ae"><span>✕</span><span>${err.message}</span></div>`;
     } finally {

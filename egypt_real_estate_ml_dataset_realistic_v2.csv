@@ -1,0 +1,1001 @@
+listing_date,area,area_tier,region,property_type,size_sqm,bedrooms,bathrooms,floor,compound,standalone,sea_view,balcony,parking_spot,elevator,finishing_level,furnishing_level,property_age_years,distance_to_cbd_km,price_per_sqm_egp,price_egp,price_usd_est,estimated_rent_egp_month
+2025-08-03,Ain Sokhna,Premium,Coastal,Duplex,408,3,3,1,1,0,0,0,0,0,Semi Finished,Unfurnished,10,131.2,37229,15189409,303788,98731
+2024-07-08,North Coast,Premium,Coastal,Penthouse,80,4,4,12,1,0,1,1,0,1,Fully Finished,Fully Furnished,5,208.7,120000,9600000,192000,52800
+2024-05-08,6th of October,Standard,Urban,Chalet,147,3,3,3,1,0,0,0,0,0,Fully Finished,Unfurnished,9,38.6,36107,5307773,106155,29193
+2025-07-11,North Coast,Premium,Coastal,Chalet,209,3,2,3,1,0,0,0,1,0,Luxury Finished,Fully Furnished,6,225.8,101647,21244228,424885,116843
+2024-01-07,North Coast,Premium,Coastal,Duplex,473,4,4,7,0,0,0,0,1,0,Fully Finished,Partly Furnished,4,259.5,41003,19394244,387885,126063
+2025-09-29,Heliopolis,Premium,Urban,Apartment,373,1,1,1,0,0,0,1,0,1,Core & Shell,Unfurnished,17,11.7,13366,4985587,99712,32406
+2024-08-22,Alexandria,Standard,Urban,Apartment,118,1,1,11,0,0,0,1,0,1,Fully Finished,Partly Furnished,8,221.5,17095,2017193,40344,13112
+2025-08-24,6th of October,Standard,Urban,Duplex,114,3,3,7,1,0,0,1,1,1,Fully Finished,Unfurnished,5,32.3,25999,2963882,59278,19265
+2024-04-08,Alexandria,Standard,Urban,Chalet,366,2,1,2,0,0,0,0,0,0,Fully Finished,Fully Furnished,8,228.6,25555,9353183,187064,51443
+2026-01-21,Heliopolis,Premium,Urban,Apartment,226,1,1,6,0,0,0,1,1,1,Semi Finished,Fully Furnished,11,11.2,16361,3697657,73953,24035
+2025-06-25,Alexandria,Standard,Urban,Duplex,73,4,4,1,0,0,0,1,1,1,Fully Finished,Unfurnished,13,246.9,28005,2044331,40887,13288
+2025-04-29,Haram,Standard,Urban,Apartment,405,1,1,12,0,0,0,1,0,1,Luxury Finished,Unfurnished,13,8.8,11813,4784340,95687,31098
+2025-04-21,Sheikh Zayed,Premium,Urban,Duplex,151,5,4,2,1,0,0,1,1,1,Fully Finished,Unfurnished,11,30.6,31517,4759124,95182,30934
+2025-07-13,North Coast,Premium,Coastal,Chalet,265,3,2,3,1,0,0,0,0,0,Semi Finished,Fully Furnished,0,194.5,76564,20289434,405789,111592
+2025-11-04,Nasr City,Standard,Urban,Villa,419,6,5,2,0,1,0,0,1,0,Fully Finished,Unfurnished,6,10.5,41131,17578721,351574,96683
+2026-01-12,Maadi,Premium,Urban,Villa,319,4,3,1,0,0,0,0,1,0,Fully Finished,Fully Furnished,8,15.9,58244,18951467,379029,104233
+2026-02-19,Sheikh Zayed,Premium,Urban,Villa,103,7,6,1,1,1,0,0,1,0,Semi Finished,Partly Furnished,0,26.8,73736,7746713,154934,42607
+2024-04-29,Haram,Standard,Urban,Duplex,329,4,4,4,0,0,0,1,1,1,Fully Finished,Unfurnished,10,7.2,15268,5023225,100464,32651
+2025-08-18,North Coast,Premium,Coastal,Duplex,249,2,2,1,0,0,0,1,1,0,Fully Finished,Unfurnished,11,234.2,71686,17849923,356998,116024
+2024-01-21,Heliopolis,Premium,Urban,Villa,276,7,6,2,0,0,0,1,1,0,Fully Finished,Fully Furnished,24,10.8,46349,13048082,260962,71764
+2024-01-15,Alexandria,Standard,Urban,Penthouse,74,2,2,15,0,0,1,1,0,1,Fully Finished,Partly Furnished,7,187.9,38192,2826229,56525,15544
+2024-07-25,Alexandria,Standard,Urban,Apartment,403,1,1,7,0,0,0,1,0,1,Semi Finished,Unfurnished,8,218.6,9721,3917570,78351,25464
+2026-02-06,North Coast,Premium,Coastal,Chalet,140,4,3,4,1,0,1,1,1,0,Core & Shell,Unfurnished,7,205.3,85410,11957371,239147,65766
+2024-09-21,6th of October,Standard,Urban,Chalet,348,4,3,4,1,0,0,0,0,0,Semi Finished,Unfurnished,20,42.5,19985,6954749,139095,38251
+2024-11-07,Heliopolis,Premium,Urban,Villa,290,7,6,1,0,1,0,0,1,0,Luxury Finished,Unfurnished,17,12.7,66862,19777847,395557,108778
+2025-06-19,Ain Sokhna,Premium,Coastal,Apartment,387,1,1,8,0,0,0,1,1,1,Luxury Finished,Unfurnished,4,122.5,38198,14782657,295653,96087
+2024-12-13,Sheikh Zayed,Premium,Urban,Apartment,107,1,1,2,1,0,0,1,1,1,Semi Finished,Partly Furnished,4,34.7,38891,4161327,83227,27049
+2025-03-22,North Coast,Premium,Coastal,Penthouse,158,5,5,12,0,0,0,1,1,1,Fully Finished,Fully Furnished,0,240.7,54488,8609051,172181,47350
+2025-08-27,6th of October,Standard,Urban,Apartment,286,1,1,8,1,0,0,0,1,0,Fully Finished,Partly Furnished,9,31.1,16068,4595314,91906,29870
+2024-03-20,6th of October,Standard,Urban,Apartment,64,1,1,1,1,0,0,1,0,1,Fully Finished,Unfurnished,6,35.7,11561,739893,14798,4809
+2024-04-09,Ain Sokhna,Premium,Coastal,Chalet,452,4,3,4,1,0,1,0,1,0,Luxury Finished,Partly Furnished,11,123.4,94687,42798628,855973,235392
+2024-09-18,Haram,Standard,Urban,Villa,439,6,5,2,0,1,0,1,0,0,Fully Finished,Unfurnished,21,7.3,18616,8335657,166713,45846
+2024-11-09,Ain Sokhna,Premium,Coastal,Apartment,111,1,1,2,0,0,0,1,0,1,Luxury Finished,Partly Furnished,0,143.1,52478,5825081,116502,37863
+2025-11-18,Nasr City,Standard,Urban,Penthouse,466,3,4,14,0,0,0,1,1,1,Fully Finished,Fully Furnished,12,8.3,16858,7855660,157113,43206
+2025-11-28,Nasr City,Standard,Urban,Penthouse,219,2,2,14,0,0,0,1,0,1,Fully Finished,Unfurnished,12,10.6,17881,3915952,78319,21538
+2024-06-14,6th of October,Standard,Urban,Duplex,125,3,3,7,0,0,0,0,1,1,Core & Shell,Partly Furnished,0,28.0,17755,2219336,44387,14426
+2026-02-11,Alexandria,Standard,Urban,Penthouse,193,2,2,15,0,0,0,1,0,1,Fully Finished,Unfurnished,10,244.1,23851,4603245,92065,25318
+2025-09-03,Nasr City,Standard,Urban,Chalet,187,3,3,4,0,0,0,1,1,0,Luxury Finished,Fully Furnished,1,10.5,26329,4923613,98472,27080
+2025-08-14,Alexandria,Standard,Urban,Apartment,444,1,1,6,0,0,0,1,1,1,Luxury Finished,Unfurnished,13,205.2,19669,8733070,174661,56765
+2024-09-08,Alexandria,Standard,Urban,Duplex,292,4,4,5,0,0,0,1,1,1,Luxury Finished,Unfurnished,10,218.8,18324,5350523,107010,34778
+2024-08-19,Ain Sokhna,Premium,Coastal,Chalet,196,4,3,4,1,0,1,1,0,0,Fully Finished,Unfurnished,0,90.1,92218,18074703,361494,99411
+2025-01-29,New Cairo,Premium,Urban,Chalet,293,2,2,2,1,0,0,1,0,0,Luxury Finished,Partly Furnished,6,26.9,46840,13724004,274480,75482
+2025-06-05,Maadi,Premium,Urban,Apartment,239,1,1,7,1,0,0,1,0,1,Luxury Finished,Unfurnished,9,12.7,24349,5819404,116388,37826
+2025-12-02,Haram,Standard,Urban,Duplex,327,3,3,7,0,0,0,1,1,1,Semi Finished,Unfurnished,0,7.7,13865,4533865,90677,29470
+2024-05-07,6th of October,Standard,Urban,Apartment,160,1,1,9,1,0,0,1,1,0,Luxury Finished,Partly Furnished,3,35.9,27664,4426175,88524,28770
+2024-01-09,Maadi,Premium,Urban,Penthouse,283,2,2,12,1,0,0,1,1,1,Luxury Finished,Fully Furnished,4,12.5,63135,17867153,357343,98269
+2024-11-23,New Cairo,Premium,Urban,Chalet,185,4,3,4,1,0,0,0,1,0,Fully Finished,Unfurnished,1,23.7,31770,5877388,117548,32326
+2025-02-12,Maadi,Premium,Urban,Duplex,498,3,3,2,0,0,0,1,1,1,Luxury Finished,Partly Furnished,9,13.6,37498,18673859,373477,121380
+2025-03-25,North Coast,Premium,Coastal,Chalet,460,3,2,3,1,0,0,1,0,0,Luxury Finished,Partly Furnished,4,200.1,75826,34880113,697602,191841
+2024-11-27,North Coast,Premium,Coastal,Penthouse,431,2,2,10,0,0,1,1,1,1,Core & Shell,Fully Furnished,8,225.0,47882,20637327,412747,113505
+2025-08-08,Maadi,Premium,Urban,Chalet,299,2,2,1,0,0,0,0,0,0,Fully Finished,Fully Furnished,13,10.0,38639,11552931,231059,63541
+2024-04-05,Maadi,Premium,Urban,Penthouse,318,2,2,10,0,0,0,1,0,1,Luxury Finished,Fully Furnished,12,17.1,36734,11681308,233626,64247
+2025-02-11,Nasr City,Standard,Urban,Chalet,405,1,1,4,0,0,0,0,1,0,Luxury Finished,Unfurnished,6,11.5,28934,11718193,234364,64450
+2025-11-16,6th of October,Standard,Urban,Duplex,411,3,3,4,1,0,0,1,1,1,Fully Finished,Partly Furnished,8,30.7,24139,9921284,198426,64488
+2024-07-14,Nasr City,Standard,Urban,Apartment,476,1,1,11,0,0,0,1,0,1,Fully Finished,Partly Furnished,14,9.4,16152,7688452,153769,49975
+2025-12-11,Ain Sokhna,Premium,Coastal,Villa,419,6,5,2,1,0,1,1,1,0,Fully Finished,Fully Furnished,0,128.3,89733,38350272,767005,210926
+2026-04-11,Alexandria,Standard,Urban,Apartment,493,1,1,7,0,0,0,1,1,1,Fully Finished,Fully Furnished,2,166.4,8753,4315054,86301,28048
+2024-04-21,Haram,Standard,Urban,Chalet,322,3,3,2,0,0,0,1,1,0,Semi Finished,Unfurnished,4,8.2,12695,4087721,81754,22482
+2025-09-18,Haram,Standard,Urban,Apartment,119,2,1,12,0,0,0,1,1,1,Semi Finished,Unfurnished,14,7.5,10946,1302568,26051,8467
+2024-09-06,Sheikh Zayed,Premium,Urban,Apartment,363,1,1,1,1,0,0,1,1,1,Semi Finished,Partly Furnished,7,29.4,23210,8425174,168503,54764
+2025-07-15,Heliopolis,Premium,Urban,Penthouse,219,5,5,13,0,0,0,0,0,1,Fully Finished,Unfurnished,7,11.4,34480,7551015,151020,41531
+2026-03-10,Alexandria,Standard,Urban,Apartment,158,1,1,12,0,0,0,1,1,1,Core & Shell,Unfurnished,9,238.0,9299,1469312,29386,9551
+2024-02-20,6th of October,Standard,Urban,Duplex,211,3,3,7,1,0,0,1,1,1,Fully Finished,Unfurnished,9,29.8,18397,3881843,77637,25232
+2024-10-04,Nasr City,Standard,Urban,Chalet,172,3,2,1,0,0,0,1,0,0,Luxury Finished,Unfurnished,18,7.3,28182,4847356,96947,26660
+2024-10-02,Maadi,Premium,Urban,Duplex,313,2,3,6,0,0,0,1,1,0,Semi Finished,Unfurnished,9,14.5,22693,7102757,142055,46168
+2024-04-02,Alexandria,Standard,Urban,Chalet,212,4,3,1,0,0,1,1,0,0,Fully Finished,Fully Furnished,11,233.5,32352,6858626,137173,37722
+2025-12-13,Sheikh Zayed,Premium,Urban,Villa,253,7,6,3,1,0,0,1,1,0,Luxury Finished,Unfurnished,1,33.1,48928,12626326,252527,69445
+2024-12-10,6th of October,Standard,Urban,Penthouse,228,4,5,13,1,0,0,1,1,1,Core & Shell,Unfurnished,0,40.9,23292,5310632,106213,29208
+2025-05-09,New Cairo,Premium,Urban,Penthouse,363,5,5,10,1,0,0,1,0,1,Fully Finished,Fully Furnished,5,24.8,22581,8196924,163938,45083
+2026-01-17,North Coast,Premium,Coastal,Chalet,460,4,3,3,0,0,1,1,1,0,Semi Finished,Partly Furnished,8,230.3,75220,34601148,692023,190306
+2024-07-11,New Cairo,Premium,Urban,Duplex,430,2,2,2,0,0,0,1,1,1,Fully Finished,Partly Furnished,12,28.3,28785,12377757,247555,80455
+2025-03-04,Ain Sokhna,Premium,Coastal,Penthouse,110,3,3,15,1,0,0,1,1,1,Luxury Finished,Unfurnished,7,123.9,78714,8658535,173171,47622
+2025-12-16,North Coast,Premium,Coastal,Chalet,86,2,2,4,0,0,1,1,0,0,Luxury Finished,Unfurnished,5,252.1,108154,9301224,186024,51157
+2024-03-28,Heliopolis,Premium,Urban,Apartment,343,1,1,6,0,0,0,0,0,1,Semi Finished,Partly Furnished,8,14.7,24231,8311288,166226,54023
+2024-11-24,New Cairo,Premium,Urban,Penthouse,376,5,5,13,1,0,0,1,0,1,Fully Finished,Fully Furnished,3,27.7,33102,12446402,248928,68455
+2024-05-15,6th of October,Standard,Urban,Duplex,94,4,4,3,1,0,0,1,0,1,Core & Shell,Partly Furnished,6,31.2,19139,1799103,35982,11694
+2025-01-25,New Cairo,Premium,Urban,Duplex,279,3,3,1,1,0,0,1,1,0,Fully Finished,Unfurnished,0,25.0,39463,11010272,220205,71567
+2026-01-21,Heliopolis,Premium,Urban,Chalet,439,3,3,4,0,0,0,0,0,0,Semi Finished,Unfurnished,19,11.4,28352,12446618,248932,68456
+2025-03-27,North Coast,Premium,Coastal,Penthouse,361,2,2,12,1,0,1,1,0,1,Luxury Finished,Unfurnished,0,230.3,92764,33487690,669754,184182
+2026-02-23,6th of October,Standard,Urban,Duplex,175,3,3,5,1,0,0,0,1,1,Luxury Finished,Unfurnished,7,36.3,22344,3910214,78204,25416
+2025-12-29,Heliopolis,Premium,Urban,Apartment,315,1,1,7,1,0,0,1,1,1,Semi Finished,Fully Furnished,11,11.2,18173,5724393,114488,37209
+2025-03-22,Haram,Standard,Urban,Villa,382,7,6,2,0,1,0,1,1,0,Luxury Finished,Partly Furnished,22,8.3,19277,7511001,150220,41311
+2024-01-26,North Coast,Premium,Coastal,Villa,347,5,5,3,1,0,1,1,1,0,Fully Finished,Partly Furnished,7,142.6,76322,27013465,540269,148574
+2024-05-07,Maadi,Premium,Urban,Villa,186,3,3,3,0,1,0,1,1,0,Luxury Finished,Partly Furnished,10,14.7,48951,9287037,185741,51079
+2025-06-16,Haram,Standard,Urban,Villa,332,7,6,1,0,1,0,0,1,0,Semi Finished,Partly Furnished,11,7.7,30147,10208816,204176,56148
+2024-09-22,Alexandria,Standard,Urban,Chalet,305,3,3,3,0,0,0,1,0,0,Fully Finished,Partly Furnished,14,171.4,18932,5774353,115487,31759
+2024-02-03,Ain Sokhna,Premium,Coastal,Penthouse,229,4,4,13,1,0,0,1,0,1,Fully Finished,Unfurnished,13,145.8,76747,17575058,351501,96663
+2025-08-22,6th of October,Standard,Urban,Villa,468,7,6,1,1,0,0,1,1,0,Fully Finished,Unfurnished,9,34.0,28338,13527443,270549,74401
+2025-07-06,Haram,Standard,Urban,Apartment,95,2,1,9,0,0,0,1,1,1,Fully Finished,Fully Furnished,3,7.0,22978,2182927,43659,14189
+2024-08-24,Nasr City,Standard,Urban,Apartment,323,1,1,4,0,0,0,1,0,1,Fully Finished,Partly Furnished,8,7.4,13413,4332251,86645,28160
+2026-03-24,6th of October,Standard,Urban,Duplex,413,3,3,6,1,0,0,0,1,1,Luxury Finished,Partly Furnished,3,37.3,21673,8951015,179020,58182
+2025-02-12,Ain Sokhna,Premium,Coastal,Chalet,212,3,3,3,1,0,1,1,0,0,Luxury Finished,Fully Furnished,8,102.1,117956,25006689,500134,137537
+2025-01-15,Maadi,Premium,Urban,Villa,117,5,6,2,1,0,0,1,1,0,Fully Finished,Unfurnished,21,13.2,63917,7627896,152558,41953
+2024-10-06,Haram,Standard,Urban,Chalet,160,4,3,1,0,0,0,0,0,0,Semi Finished,Fully Furnished,3,7.8,23993,3838876,76778,21114
+2024-12-18,North Coast,Premium,Coastal,Penthouse,119,2,2,10,1,0,0,0,1,1,Luxury Finished,Unfurnished,6,209.2,71823,8546995,170940,47008
+2024-12-18,Heliopolis,Premium,Urban,Duplex,321,2,2,2,0,0,0,1,1,1,Luxury Finished,Fully Furnished,10,14.3,30741,9867937,197359,64142
+2025-01-19,Nasr City,Standard,Urban,Chalet,370,4,3,2,0,0,0,1,1,0,Fully Finished,Unfurnished,15,8.4,19944,7379297,147586,40586
+2025-09-15,Nasr City,Standard,Urban,Penthouse,429,4,4,11,0,0,0,1,1,1,Semi Finished,Fully Furnished,18,9.6,17663,7577229,151545,41675
+2024-01-01,6th of October,Standard,Urban,Apartment,179,1,1,3,1,0,0,1,1,1,Fully Finished,Unfurnished,4,25.4,21415,3833244,76665,24916
+2024-03-18,Haram,Standard,Urban,Villa,288,4,4,1,0,1,0,0,1,0,Luxury Finished,Partly Furnished,11,9.7,30864,9066516,181330,49866
+2025-09-17,Ain Sokhna,Premium,Coastal,Apartment,455,1,1,8,1,0,0,1,1,1,Fully Finished,Unfurnished,10,123.9,40126,18257524,365150,118674
+2025-12-29,New Cairo,Premium,Urban,Villa,181,5,5,1,0,0,0,1,1,0,Fully Finished,Unfurnished,0,22.0,65828,12153249,243065,66843
+2024-01-23,Sheikh Zayed,Premium,Urban,Apartment,296,2,2,6,1,0,0,1,1,1,Fully Finished,Partly Furnished,0,27.3,19427,5750315,115006,37377
+2024-09-19,New Cairo,Premium,Urban,Penthouse,251,4,4,10,1,0,0,1,1,1,Fully Finished,Fully Furnished,7,26.8,32638,8192238,163845,45057
+2026-02-18,Heliopolis,Premium,Urban,Penthouse,306,4,4,15,1,0,0,1,0,1,Luxury Finished,Unfurnished,3,10.1,36370,11129327,222587,61211
+2025-12-17,Haram,Standard,Urban,Chalet,145,3,3,3,0,0,0,1,1,0,Semi Finished,Unfurnished,13,8.9,23099,3349326,66987,18421
+2024-03-24,Heliopolis,Premium,Urban,Apartment,153,1,1,9,1,0,0,1,0,1,Luxury Finished,Partly Furnished,20,12.6,28150,4306937,86139,27995
+2024-09-26,Nasr City,Standard,Urban,Penthouse,263,4,4,10,0,0,0,0,0,1,Fully Finished,Fully Furnished,2,10.1,34753,9139997,182800,50270
+2024-09-24,Haram,Standard,Urban,Villa,491,5,5,2,0,1,0,1,0,0,Fully Finished,Unfurnished,7,9.0,22603,11320001,226400,62260
+2024-11-22,Ain Sokhna,Premium,Coastal,Villa,69,5,4,3,1,1,1,1,1,0,Fully Finished,Unfurnished,9,119.4,115622,8137472,162749,44756
+2024-11-20,Heliopolis,Premium,Urban,Duplex,349,5,4,8,1,0,0,1,0,1,Fully Finished,Fully Furnished,15,12.9,43693,15248870,304977,99118
+2026-02-08,Haram,Standard,Urban,Villa,206,7,6,1,0,0,0,1,1,0,Fully Finished,Partly Furnished,9,9.1,19873,4175802,83516,22967
+2024-01-05,New Cairo,Premium,Urban,Penthouse,63,2,2,12,0,0,0,1,0,1,Fully Finished,Unfurnished,3,23.8,40017,2521047,50421,13866
+2026-03-13,Sheikh Zayed,Premium,Urban,Apartment,443,1,1,1,0,0,0,1,0,1,Semi Finished,Unfurnished,9,32.7,18735,8299573,165991,53947
+2024-12-20,North Coast,Premium,Coastal,Duplex,237,2,2,8,1,0,0,1,1,0,Luxury Finished,Unfurnished,8,268.5,62087,14714579,294292,95645
+2025-07-28,New Cairo,Premium,Urban,Apartment,238,1,1,6,1,0,0,1,1,1,Core & Shell,Unfurnished,7,20.2,17725,4218498,84370,27420
+2024-03-21,6th of October,Standard,Urban,Apartment,476,1,1,3,0,0,0,1,0,0,Core & Shell,Partly Furnished,19,33.1,11201,5331529,106631,34655
+2025-03-21,Haram,Standard,Urban,Chalet,103,3,3,1,0,0,0,0,0,0,Semi Finished,Fully Furnished,17,7.9,15707,1617826,32357,8898
+2024-04-07,Sheikh Zayed,Premium,Urban,Penthouse,301,4,3,15,1,0,0,1,1,1,Luxury Finished,Partly Furnished,4,28.6,48067,14468129,289363,79575
+2024-06-06,Ain Sokhna,Premium,Coastal,Apartment,149,1,1,10,1,0,0,0,1,1,Fully Finished,Fully Furnished,10,125.8,50714,7556407,151128,49117
+2025-03-30,Haram,Standard,Urban,Villa,477,3,3,1,0,1,0,0,0,0,Luxury Finished,Partly Furnished,8,7.8,20540,9993588,199872,54965
+2024-03-05,Ain Sokhna,Premium,Coastal,Duplex,373,2,2,6,0,0,0,1,0,1,Core & Shell,Unfurnished,0,146.8,40587,15138867,302777,98403
+2026-03-25,North Coast,Premium,Coastal,Duplex,276,4,4,7,1,0,0,1,1,1,Semi Finished,Partly Furnished,7,237.2,53708,14823359,296467,96352
+2025-05-29,Heliopolis,Premium,Urban,Apartment,467,1,1,11,0,0,0,0,1,1,Semi Finished,Unfurnished,17,12.0,13614,6357832,127157,41326
+2024-09-24,6th of October,Standard,Urban,Apartment,158,1,1,8,1,0,0,1,1,1,Fully Finished,Unfurnished,4,30.2,16345,2582537,51651,16786
+2025-02-27,New Cairo,Premium,Urban,Penthouse,327,2,2,10,1,0,0,0,1,1,Fully Finished,Unfurnished,0,29.3,46364,15161090,303222,83386
+2025-01-25,Ain Sokhna,Premium,Coastal,Penthouse,338,4,5,10,0,0,1,1,0,1,Luxury Finished,Partly Furnished,5,153.1,74590,25211540,504231,138663
+2025-07-13,6th of October,Standard,Urban,Apartment,345,2,2,10,0,0,0,1,1,1,Fully Finished,Partly Furnished,0,28.2,9193,3171721,63434,20616
+2025-06-06,New Cairo,Premium,Urban,Duplex,427,2,2,3,0,0,0,0,1,1,Luxury Finished,Unfurnished,14,26.3,34002,14518669,290373,94371
+2025-08-12,Maadi,Premium,Urban,Penthouse,246,4,4,11,1,0,0,1,1,1,Fully Finished,Unfurnished,10,13.0,42602,10480165,209603,57641
+2025-10-13,New Cairo,Premium,Urban,Duplex,455,2,2,2,0,0,0,0,1,0,Semi Finished,Unfurnished,7,24.4,15070,6856766,137135,44569
+2024-09-18,6th of October,Standard,Urban,Duplex,324,3,3,2,1,0,0,1,1,1,Semi Finished,Unfurnished,7,31.1,16992,5505558,110111,35786
+2026-04-12,Nasr City,Standard,Urban,Chalet,426,4,3,3,0,0,0,1,0,0,Luxury Finished,Fully Furnished,18,11.4,36409,15510278,310206,85307
+2024-12-05,Heliopolis,Premium,Urban,Penthouse,158,2,2,12,0,0,0,1,0,1,Fully Finished,Fully Furnished,0,10.7,42736,6752218,135044,37137
+2024-11-30,Alexandria,Standard,Urban,Duplex,438,5,4,2,0,0,0,1,1,0,Semi Finished,Unfurnished,14,220.0,13614,5962962,119259,38759
+2024-12-01,Heliopolis,Premium,Urban,Apartment,98,1,1,10,0,0,0,1,1,1,Fully Finished,Unfurnished,8,12.2,26473,2594402,51888,16864
+2024-08-18,Haram,Standard,Urban,Penthouse,222,2,2,15,0,0,0,0,1,1,Fully Finished,Unfurnished,9,8.3,17418,3866685,77334,21267
+2024-01-04,Sheikh Zayed,Premium,Urban,Duplex,68,3,2,6,1,0,0,0,1,1,Fully Finished,Fully Furnished,2,29.6,33810,2299102,45982,14944
+2024-06-11,New Cairo,Premium,Urban,Penthouse,289,2,2,11,1,0,0,1,0,1,Luxury Finished,Fully Furnished,8,26.0,36665,10596224,211924,58279
+2025-09-20,North Coast,Premium,Coastal,Villa,452,7,6,1,1,1,1,1,1,0,Fully Finished,Fully Furnished,4,209.9,110041,50733123,1014662,279032
+2024-04-22,New Cairo,Premium,Urban,Duplex,204,4,4,3,0,0,0,1,1,0,Fully Finished,Unfurnished,8,25.1,29529,6023858,120477,39155
+2025-12-09,Alexandria,Standard,Urban,Penthouse,191,5,5,13,0,0,0,1,1,1,Fully Finished,Partly Furnished,12,209.6,24066,4596552,91931,25281
+2025-01-02,6th of October,Standard,Urban,Penthouse,423,4,3,15,0,0,0,1,0,1,Luxury Finished,Unfurnished,9,27.9,22605,9561749,191235,52590
+2024-11-25,Ain Sokhna,Premium,Coastal,Chalet,261,3,3,4,0,0,0,1,0,0,Fully Finished,Partly Furnished,0,125.6,74109,19342549,386851,106384
+2026-03-30,6th of October,Standard,Urban,Penthouse,200,2,2,10,1,0,0,1,1,0,Semi Finished,Unfurnished,6,35.2,18615,3722962,74459,20476
+2026-01-05,Haram,Standard,Urban,Duplex,376,3,2,4,0,0,0,1,0,1,Fully Finished,Partly Furnished,5,7.7,10873,4088181,81764,26573
+2025-02-16,Ain Sokhna,Premium,Coastal,Apartment,446,1,1,8,1,0,0,1,0,1,Fully Finished,Fully Furnished,3,97.4,50310,22438072,448761,145847
+2025-03-18,Alexandria,Standard,Urban,Duplex,428,2,2,5,0,0,0,0,1,1,Core & Shell,Fully Furnished,7,213.6,19625,8399405,167988,54596
+2025-01-09,New Cairo,Premium,Urban,Penthouse,193,2,3,10,1,0,0,1,0,1,Fully Finished,Partly Furnished,5,22.0,45093,8702986,174060,47866
+2024-05-20,Heliopolis,Premium,Urban,Penthouse,262,3,3,14,1,0,0,1,1,1,Luxury Finished,Unfurnished,11,10.6,30766,8060689,161214,44334
+2026-01-04,Heliopolis,Premium,Urban,Duplex,286,3,3,4,0,0,0,1,1,1,Semi Finished,Unfurnished,9,10.8,35625,10188881,203778,66228
+2025-12-02,Alexandria,Standard,Urban,Villa,106,5,6,3,0,1,0,0,1,0,Luxury Finished,Unfurnished,17,190.5,38681,4182192,83644,23002
+2024-08-29,New Cairo,Premium,Urban,Penthouse,113,3,3,11,1,0,0,1,0,1,Semi Finished,Partly Furnished,2,23.1,41055,4639239,92785,25516
+2024-03-13,6th of October,Standard,Urban,Apartment,71,1,1,6,1,0,0,1,0,1,Fully Finished,Unfurnished,6,28.7,26039,1848785,36976,12017
+2025-02-13,North Coast,Premium,Coastal,Duplex,467,5,4,8,1,0,0,1,1,1,Fully Finished,Unfurnished,1,238.2,43007,20084207,401684,130547
+2024-05-30,Heliopolis,Premium,Urban,Villa,407,7,6,2,1,1,0,1,1,0,Luxury Finished,Fully Furnished,8,11.5,47031,19524518,390490,107385
+2025-06-05,Haram,Standard,Urban,Duplex,237,3,3,4,0,0,0,1,1,1,Fully Finished,Unfurnished,14,8.0,14295,3387920,67758,22021
+2024-07-05,Heliopolis,Premium,Urban,Apartment,287,2,1,10,1,0,0,1,1,1,Luxury Finished,Fully Furnished,14,11.6,31259,8971207,179424,58313
+2025-03-16,Maadi,Premium,Urban,Apartment,260,1,1,5,0,0,0,1,1,0,Luxury Finished,Fully Furnished,16,14.1,45425,11810413,236208,76768
+2025-02-25,Heliopolis,Premium,Urban,Duplex,279,3,3,2,0,0,0,1,1,1,Semi Finished,Unfurnished,17,9.8,23423,6534961,130699,42477
+2025-04-06,6th of October,Standard,Urban,Penthouse,449,2,2,15,1,0,0,1,1,1,Fully Finished,Unfurnished,8,31.2,20104,9026670,180533,49647
+2025-05-20,6th of October,Standard,Urban,Penthouse,362,4,4,13,1,0,0,1,1,1,Luxury Finished,Unfurnished,4,36.8,28462,10303194,206064,56668
+2025-07-03,Sheikh Zayed,Premium,Urban,Villa,371,5,5,3,0,0,0,0,1,0,Fully Finished,Partly Furnished,13,24.1,64588,24441309,488826,134427
+2024-01-16,Ain Sokhna,Premium,Coastal,Apartment,433,2,1,5,1,0,0,1,0,1,Fully Finished,Partly Furnished,11,108.7,29212,12648748,252975,82217
+2024-07-05,New Cairo,Premium,Urban,Chalet,400,1,1,4,1,0,0,1,1,0,Luxury Finished,Fully Furnished,11,26.8,45648,18259111,365182,100425
+2024-01-11,Alexandria,Standard,Urban,Chalet,342,4,3,3,0,0,0,0,0,0,Luxury Finished,Partly Furnished,14,136.5,24504,8380463,167609,46093
+2025-04-21,New Cairo,Premium,Urban,Villa,164,5,5,2,1,0,0,1,1,0,Luxury Finished,Partly Furnished,5,21.4,57158,9561467,191229,52588
+2024-05-25,New Cairo,Premium,Urban,Penthouse,370,2,2,15,1,0,0,1,0,1,Fully Finished,Fully Furnished,5,21.5,44740,16553644,331073,91045
+2024-08-02,New Cairo,Premium,Urban,Penthouse,410,2,2,10,1,0,0,0,1,1,Luxury Finished,Unfurnished,1,31.0,43079,17662318,353246,97143
+2025-12-05,Maadi,Premium,Urban,Chalet,496,4,3,1,0,0,0,0,1,0,Luxury Finished,Partly Furnished,6,14.3,42279,20970417,419408,115337
+2025-07-26,Heliopolis,Premium,Urban,Villa,142,4,4,1,1,1,0,1,1,0,Fully Finished,Partly Furnished,8,12.2,85847,12434074,248681,68387
+2024-03-31,Heliopolis,Premium,Urban,Apartment,425,2,2,10,1,0,0,1,1,1,Fully Finished,Unfurnished,9,10.9,27032,11488486,229770,74675
+2024-12-16,6th of October,Standard,Urban,Penthouse,264,3,3,15,1,0,0,1,0,1,Fully Finished,Fully Furnished,7,35.2,25780,6805793,136116,37432
+2024-02-05,New Cairo,Premium,Urban,Villa,407,5,6,3,1,1,0,1,1,0,Luxury Finished,Unfurnished,0,28.6,62821,26079368,521587,143437
+2025-01-30,North Coast,Premium,Coastal,Villa,309,5,6,1,1,1,0,1,1,0,Semi Finished,Partly Furnished,8,220.4,112683,35515458,710309,195335
+2025-12-16,6th of October,Standard,Urban,Chalet,365,3,3,3,1,0,0,1,0,0,Fully Finished,Partly Furnished,12,32.0,27264,9951367,199027,54733
+2024-06-15,New Cairo,Premium,Urban,Duplex,448,4,4,5,1,0,0,1,1,1,Semi Finished,Unfurnished,15,22.7,18068,8094398,161888,52614
+2024-06-27,Alexandria,Standard,Urban,Apartment,171,1,1,4,0,0,0,0,1,1,Fully Finished,Unfurnished,31,219.2,7962,1361506,27230,8850
+2025-08-14,Heliopolis,Premium,Urban,Penthouse,457,4,3,10,0,0,0,0,1,1,Fully Finished,Partly Furnished,9,13.4,20348,9299238,185985,51146
+2024-02-02,6th of October,Standard,Urban,Duplex,285,4,4,3,1,0,0,1,1,1,Semi Finished,Unfurnished,5,34.2,19930,5679949,113599,36920
+2024-01-21,Sheikh Zayed,Premium,Urban,Villa,397,3,3,2,1,0,0,0,0,0,Fully Finished,Partly Furnished,2,31.7,37517,15192071,303841,83556
+2024-12-27,6th of October,Standard,Urban,Villa,367,6,6,1,0,0,0,1,0,0,Semi Finished,Fully Furnished,7,27.0,22024,8244358,164887,45344
+2025-10-27,Ain Sokhna,Premium,Coastal,Villa,110,5,5,3,1,0,1,1,1,0,Core & Shell,Partly Furnished,6,127.0,120000,13464000,269280,74052
+2026-01-14,Heliopolis,Premium,Urban,Penthouse,447,3,3,15,1,0,0,1,1,1,Fully Finished,Partly Furnished,12,15.2,43297,19353905,387078,106446
+2024-08-01,North Coast,Premium,Coastal,Apartment,389,1,1,12,0,0,0,1,0,1,Semi Finished,Unfurnished,10,228.4,34722,13506935,270139,87795
+2024-04-05,Sheikh Zayed,Premium,Urban,Penthouse,264,5,5,15,1,0,0,1,1,1,Luxury Finished,Unfurnished,6,29.8,26570,7014575,140292,38580
+2026-01-15,6th of October,Standard,Urban,Apartment,210,1,1,4,1,0,0,1,0,1,Fully Finished,Unfurnished,1,39.3,19918,4182823,83656,27188
+2024-04-04,Maadi,Premium,Urban,Duplex,419,4,4,8,0,0,0,0,1,1,Fully Finished,Unfurnished,2,14.6,37235,15601391,312028,101409
+2024-02-02,Alexandria,Standard,Urban,Chalet,411,4,3,3,0,0,0,1,0,0,Semi Finished,Fully Furnished,0,210.4,24946,10252791,205056,56390
+2025-03-23,Sheikh Zayed,Premium,Urban,Penthouse,181,3,4,15,1,0,0,1,1,1,Fully Finished,Unfurnished,5,30.1,41699,7547481,150950,41511
+2025-10-04,6th of October,Standard,Urban,Penthouse,64,3,3,15,1,0,0,1,0,1,Luxury Finished,Fully Furnished,9,32.2,33277,2129697,42594,11713
+2024-03-18,Haram,Standard,Urban,Penthouse,81,5,5,10,0,0,0,1,1,1,Fully Finished,Fully Furnished,0,8.1,39108,3167744,63355,17423
+2025-12-24,Maadi,Premium,Urban,Apartment,192,1,1,7,1,0,0,1,1,1,Fully Finished,Unfurnished,3,11.8,30032,5766059,115321,37479
+2026-01-09,Haram,Standard,Urban,Villa,492,7,6,2,0,0,0,1,1,0,Luxury Finished,Fully Furnished,1,8.9,41646,20899805,417996,114949
+2024-02-05,Alexandria,Standard,Urban,Villa,308,6,5,2,0,1,0,0,0,0,Fully Finished,Partly Furnished,18,180.2,40687,12782201,255644,70302
+2026-01-18,Maadi,Premium,Urban,Chalet,378,4,3,3,0,0,0,1,1,0,Semi Finished,Unfurnished,16,15.0,30077,11369267,227385,62531
+2024-01-28,Haram,Standard,Urban,Duplex,316,2,2,7,0,0,0,1,1,1,Semi Finished,Fully Furnished,2,9.8,11863,3748688,74974,24366
+2024-11-09,Nasr City,Standard,Urban,Villa,87,3,4,1,0,0,0,1,1,0,Fully Finished,Fully Furnished,26,11.2,43021,3817677,76354,20997
+2025-08-29,North Coast,Premium,Coastal,Villa,424,4,4,2,1,0,1,0,0,0,Semi Finished,Unfurnished,3,196.5,97439,42140368,842807,231772
+2025-10-24,North Coast,Premium,Coastal,Chalet,66,1,1,2,1,0,1,0,1,0,Luxury Finished,Unfurnished,12,221.5,114901,7583494,151670,41709
+2024-12-14,Ain Sokhna,Premium,Coastal,Chalet,298,4,3,4,1,0,1,1,1,0,Fully Finished,Unfurnished,0,127.4,90386,26934900,538698,148142
+2025-07-31,Sheikh Zayed,Premium,Urban,Villa,353,4,4,2,0,1,0,1,1,0,Core & Shell,Fully Furnished,19,33.0,50797,18289904,365798,100594
+2025-09-21,6th of October,Standard,Urban,Apartment,178,2,2,5,1,0,0,1,0,0,Semi Finished,Unfurnished,13,37.1,16568,2949020,58980,19169
+2026-01-13,Haram,Standard,Urban,Apartment,332,2,1,6,0,0,0,1,1,1,Semi Finished,Unfurnished,21,9.5,12291,4080614,81612,26524
+2025-02-09,Haram,Standard,Urban,Duplex,84,2,2,8,0,0,0,1,1,1,Core & Shell,Fully Furnished,3,7.8,18344,1540888,30818,10016
+2025-08-27,Nasr City,Standard,Urban,Apartment,127,2,1,12,0,0,0,1,0,1,Fully Finished,Fully Furnished,16,8.2,21205,2693045,53861,17505
+2025-05-04,6th of October,Standard,Urban,Apartment,168,1,1,1,1,0,0,1,0,0,Semi Finished,Unfurnished,7,30.4,17795,2989544,59791,19432
+2025-04-30,Maadi,Premium,Urban,Villa,170,4,4,3,0,0,0,0,1,0,Luxury Finished,Partly Furnished,15,12.5,67722,11743005,234860,64587
+2025-12-28,North Coast,Premium,Coastal,Apartment,295,1,1,12,1,0,0,1,0,1,Fully Finished,Fully Furnished,12,200.3,39491,11649698,232994,75723
+2025-08-25,Haram,Standard,Urban,Apartment,160,1,1,1,0,0,0,1,1,1,Semi Finished,Unfurnished,25,7.4,10473,1675666,33513,10892
+2024-10-08,Sheikh Zayed,Premium,Urban,Chalet,499,4,3,1,0,0,0,1,0,0,Luxury Finished,Unfurnished,0,26.5,43368,21640668,432813,119024
+2026-01-06,Maadi,Premium,Urban,Penthouse,436,4,4,15,0,0,0,1,1,1,Fully Finished,Unfurnished,7,15.3,34695,15127110,302542,83199
+2026-02-22,Ain Sokhna,Premium,Coastal,Duplex,409,4,4,5,0,0,0,1,1,1,Fully Finished,Unfurnished,0,101.9,54126,22137542,442751,143894
+2025-04-01,North Coast,Premium,Coastal,Apartment,306,1,1,11,1,0,0,1,0,1,Fully Finished,Fully Furnished,3,228.7,33983,10398698,207974,67592
+2025-05-31,North Coast,Premium,Coastal,Penthouse,95,3,3,13,1,0,0,1,0,1,Luxury Finished,Unfurnished,5,217.0,83061,7890836,157817,43400
+2024-07-27,Maadi,Premium,Urban,Villa,279,6,6,3,0,1,0,0,1,0,Fully Finished,Unfurnished,18,17.7,55307,15739328,314787,86566
+2025-07-31,Maadi,Premium,Urban,Apartment,153,1,1,7,1,0,0,1,1,1,Fully Finished,Partly Furnished,21,14.6,20641,3158103,63162,20528
+2024-03-24,6th of October,Standard,Urban,Apartment,253,2,1,9,1,0,0,0,1,1,Fully Finished,Fully Furnished,8,27.0,24119,6102146,122043,39664
+2025-11-27,North Coast,Premium,Coastal,Villa,494,7,6,1,1,1,1,1,1,0,Semi Finished,Partly Furnished,8,226.5,87118,43897161,877943,241434
+2026-01-30,Haram,Standard,Urban,Duplex,334,3,3,6,0,0,0,1,1,0,Luxury Finished,Unfurnished,8,8.8,13086,4370771,87415,28410
+2025-05-26,Nasr City,Standard,Urban,Apartment,199,1,1,6,0,0,0,1,0,1,Luxury Finished,Fully Furnished,0,10.5,22718,4520799,90416,29385
+2025-12-18,Haram,Standard,Urban,Penthouse,441,2,2,12,0,0,0,1,0,1,Luxury Finished,Unfurnished,18,7.1,15975,7045185,140904,38749
+2024-08-28,6th of October,Standard,Urban,Apartment,449,1,1,1,1,0,0,1,1,1,Fully Finished,Unfurnished,1,30.1,17687,7941444,158829,51619
+2025-08-19,North Coast,Premium,Coastal,Villa,320,7,6,3,0,0,0,1,0,0,Luxury Finished,Fully Furnished,9,198.0,99700,32542024,650840,178981
+2025-09-12,Sheikh Zayed,Premium,Urban,Penthouse,227,5,5,12,1,0,0,0,1,1,Semi Finished,Unfurnished,13,29.7,39427,8950009,179000,49225
+2025-11-02,New Cairo,Premium,Urban,Penthouse,388,4,3,13,0,0,0,1,0,1,Fully Finished,Partly Furnished,4,19.4,41567,16128073,322561,88704
+2025-11-12,Maadi,Premium,Urban,Chalet,153,3,3,4,0,0,0,1,0,0,Luxury Finished,Unfurnished,7,13.7,49813,7621397,152428,41918
+2024-07-31,New Cairo,Premium,Urban,Penthouse,377,5,4,11,1,0,0,0,1,1,Luxury Finished,Fully Furnished,9,28.6,65396,24654343,493087,135599
+2025-07-27,Sheikh Zayed,Premium,Urban,Penthouse,435,3,3,15,1,0,0,1,0,1,Fully Finished,Fully Furnished,14,28.2,35374,15387784,307756,84633
+2024-07-26,Alexandria,Standard,Urban,Villa,135,7,6,1,0,1,0,1,1,0,Luxury Finished,Unfurnished,4,205.5,40878,5628904,112578,30959
+2024-05-19,6th of October,Standard,Urban,Apartment,355,1,1,6,0,0,0,1,1,1,Luxury Finished,Unfurnished,2,36.8,15630,5548802,110976,36067
+2024-05-31,Maadi,Premium,Urban,Duplex,379,4,4,7,0,0,0,0,1,1,Luxury Finished,Unfurnished,9,15.7,41079,15569060,311381,101199
+2025-02-18,Alexandria,Standard,Urban,Penthouse,329,2,2,14,0,0,1,1,0,1,Semi Finished,Fully Furnished,8,245.3,24839,8172056,163441,44946
+2025-06-27,Heliopolis,Premium,Urban,Chalet,438,4,3,2,0,0,0,1,1,0,Semi Finished,Fully Furnished,12,11.7,34288,15018012,300360,82599
+2025-10-27,Haram,Standard,Urban,Duplex,148,2,2,3,0,0,0,0,1,0,Semi Finished,Partly Furnished,11,8.1,19836,2935794,58716,19083
+2025-06-15,Haram,Standard,Urban,Apartment,461,2,1,2,0,0,0,1,1,1,Fully Finished,Unfurnished,4,7.8,9458,4360103,87202,28341
+2026-04-03,North Coast,Premium,Coastal,Chalet,184,4,3,1,0,0,1,1,1,0,Fully Finished,Fully Furnished,18,256.8,60995,11223167,224463,61727
+2024-07-22,New Cairo,Premium,Urban,Apartment,212,1,1,4,1,0,0,1,1,1,Core & Shell,Fully Furnished,0,26.2,25701,5448623,108972,35416
+2025-05-12,New Cairo,Premium,Urban,Villa,368,4,4,3,1,0,0,1,1,0,Semi Finished,Fully Furnished,0,23.4,52327,19641560,392831,108029
+2025-09-05,North Coast,Premium,Coastal,Chalet,98,4,3,3,1,0,1,1,0,0,Fully Finished,Partly Furnished,5,208.7,84093,8241145,164823,45326
+2024-12-26,Maadi,Premium,Urban,Chalet,450,4,3,2,1,0,0,1,1,0,Fully Finished,Unfurnished,13,14.2,44090,19840545,396811,109123
+2025-11-09,New Cairo,Premium,Urban,Duplex,290,3,3,3,1,0,0,0,0,1,Fully Finished,Partly Furnished,3,26.7,25907,7512886,150258,48834
+2024-12-11,Nasr City,Standard,Urban,Penthouse,97,4,4,12,0,0,0,1,1,1,Luxury Finished,Unfurnished,23,7.7,38823,3765875,75318,20712
+2024-08-16,Heliopolis,Premium,Urban,Chalet,498,3,3,1,1,0,0,1,1,0,Semi Finished,Unfurnished,16,13.1,24411,12156626,243133,66861
+2026-02-23,Nasr City,Standard,Urban,Villa,69,5,5,2,0,1,0,1,1,0,Luxury Finished,Partly Furnished,0,13.0,32612,2295234,45905,12624
+2025-06-03,Haram,Standard,Urban,Apartment,177,1,1,11,0,0,0,1,1,0,Semi Finished,Fully Furnished,11,7.8,12802,2265903,45318,14728
+2025-04-17,North Coast,Premium,Coastal,Duplex,243,5,4,4,1,0,0,1,1,1,Fully Finished,Unfurnished,13,256.1,37119,9019899,180398,58629
+2024-01-07,North Coast,Premium,Coastal,Penthouse,216,3,4,13,1,0,0,1,0,1,Fully Finished,Unfurnished,0,186.8,63156,13641707,272834,75029
+2025-07-09,Nasr City,Standard,Urban,Duplex,232,5,4,8,0,0,0,1,1,1,Semi Finished,Unfurnished,0,8.4,20789,4823013,96460,31350
+2024-12-14,6th of October,Standard,Urban,Chalet,479,3,3,3,1,0,0,0,0,0,Luxury Finished,Unfurnished,8,34.6,29538,14148812,282976,77818
+2024-05-10,Heliopolis,Premium,Urban,Duplex,70,3,2,6,1,0,0,1,0,0,Luxury Finished,Unfurnished,17,12.1,30926,2164797,43296,14071
+2025-04-23,North Coast,Premium,Coastal,Villa,361,5,5,1,1,1,0,1,0,0,Fully Finished,Fully Furnished,8,207.2,102761,37838670,756773,208113
+2024-08-19,Haram,Standard,Urban,Penthouse,163,5,4,14,0,0,0,1,0,1,Fully Finished,Unfurnished,5,8.2,18732,3053298,61066,16793
+2024-09-14,Alexandria,Standard,Urban,Apartment,170,1,1,2,0,0,0,1,0,1,Fully Finished,Unfurnished,17,239.7,13510,2296660,45933,14928
+2025-09-13,Nasr City,Standard,Urban,Duplex,192,4,3,3,0,0,0,1,0,1,Semi Finished,Unfurnished,11,9.6,18754,3600681,72014,23404
+2024-08-20,Haram,Standard,Urban,Apartment,151,1,1,7,0,0,0,1,0,1,Semi Finished,Unfurnished,8,5.6,12543,1894058,37881,12311
+2024-04-27,Alexandria,Standard,Urban,Chalet,88,1,1,2,0,0,1,0,0,0,Fully Finished,Fully Furnished,5,210.7,39314,3459620,69192,19028
+2025-05-29,Alexandria,Standard,Urban,Chalet,466,3,2,3,0,0,1,1,0,0,Fully Finished,Fully Furnished,11,218.0,38499,17940723,358814,98674
+2024-07-26,Heliopolis,Premium,Urban,Penthouse,405,3,3,14,0,0,0,1,0,1,Fully Finished,Partly Furnished,20,12.3,26921,10902886,218058,59966
+2025-01-03,Nasr City,Standard,Urban,Apartment,60,2,2,10,0,0,0,1,0,1,Fully Finished,Unfurnished,2,12.8,23202,1392093,27842,9049
+2025-11-10,Maadi,Premium,Urban,Chalet,483,4,3,1,0,0,0,0,0,0,Fully Finished,Partly Furnished,18,13.5,33787,16318912,326378,89754
+2025-10-12,Alexandria,Standard,Urban,Penthouse,196,5,5,11,0,0,0,1,1,1,Fully Finished,Fully Furnished,0,179.1,18397,3605839,72117,19832
+2024-11-21,Heliopolis,Premium,Urban,Villa,484,7,6,1,1,1,0,0,1,0,Luxury Finished,Fully Furnished,10,12.8,55809,27551956,551039,151536
+2026-02-20,Nasr City,Standard,Urban,Apartment,149,1,1,1,0,0,0,1,1,1,Fully Finished,Unfurnished,10,8.9,18867,2811257,56225,18273
+2024-05-15,Maadi,Premium,Urban,Villa,450,5,5,2,1,1,0,1,1,0,Semi Finished,Partly Furnished,10,13.2,33027,15159353,303187,83376
+2024-03-22,Sheikh Zayed,Premium,Urban,Chalet,76,2,2,3,1,0,0,0,0,0,Luxury Finished,Unfurnished,4,30.0,39376,2992550,59851,16459
+2024-02-23,6th of October,Standard,Urban,Apartment,239,1,2,1,0,0,0,1,0,1,Luxury Finished,Unfurnished,5,27.0,22362,5344469,106889,34739
+2024-10-03,Heliopolis,Premium,Urban,Apartment,236,1,1,6,1,0,0,1,0,1,Luxury Finished,Fully Furnished,12,13.4,33435,7890568,157811,51289
+2024-06-06,Maadi,Premium,Urban,Villa,215,6,6,1,1,0,0,0,1,0,Luxury Finished,Fully Furnished,3,13.1,58555,12841197,256824,70627
+2025-02-26,Heliopolis,Premium,Urban,Apartment,396,2,1,1,0,0,0,1,1,1,Core & Shell,Unfurnished,22,13.1,17941,7104640,142093,46180
+2024-01-23,Alexandria,Standard,Urban,Apartment,207,2,1,8,0,0,0,1,0,1,Fully Finished,Unfurnished,14,216.1,19356,4006682,80134,26043
+2026-02-02,North Coast,Premium,Coastal,Apartment,386,1,1,10,1,0,0,0,1,1,Core & Shell,Unfurnished,0,253.4,39756,15345772,306915,99748
+2024-05-01,Ain Sokhna,Premium,Coastal,Chalet,438,4,3,3,0,0,1,1,1,0,Fully Finished,Unfurnished,10,118.4,68697,30089339,601787,165491
+2025-07-18,6th of October,Standard,Urban,Penthouse,364,5,5,15,1,0,0,1,1,1,Semi Finished,Partly Furnished,0,31.2,18110,6591893,131838,36255
+2024-10-22,North Coast,Premium,Coastal,Chalet,77,4,3,1,1,0,0,1,0,0,Fully Finished,Unfurnished,11,238.2,96182,7406008,148120,40733
+2026-03-20,6th of October,Standard,Urban,Villa,253,7,6,1,1,1,0,1,1,0,Luxury Finished,Unfurnished,2,36.3,36251,9354875,187098,51452
+2024-02-29,New Cairo,Premium,Urban,Villa,281,5,4,1,1,1,0,1,1,0,Luxury Finished,Fully Furnished,5,28.2,82690,23700516,474010,130353
+2025-08-09,6th of October,Standard,Urban,Duplex,444,2,2,5,0,0,0,1,1,1,Semi Finished,Partly Furnished,8,35.3,20603,9147878,182958,59461
+2025-06-07,Ain Sokhna,Premium,Coastal,Chalet,347,4,3,1,1,0,1,1,1,0,Luxury Finished,Partly Furnished,17,134.4,86819,30126104,602522,165694
+2025-02-03,Haram,Standard,Urban,Chalet,425,4,3,4,0,0,0,1,0,0,Fully Finished,Unfurnished,15,6.6,24075,10231719,204634,56274
+2026-02-16,Ain Sokhna,Premium,Coastal,Duplex,347,4,3,1,0,0,0,1,1,1,Core & Shell,Partly Furnished,11,107.7,41756,14489329,289787,94181
+2025-08-12,North Coast,Premium,Coastal,Apartment,372,1,1,10,0,0,0,1,0,1,Luxury Finished,Unfurnished,0,245.5,34696,12906757,258135,83894
+2024-11-01,6th of October,Standard,Urban,Chalet,314,3,3,2,1,0,0,1,0,0,Fully Finished,Partly Furnished,14,32.0,18063,5671738,113435,31195
+2025-07-13,North Coast,Premium,Coastal,Apartment,298,1,1,6,0,0,0,1,0,1,Core & Shell,Unfurnished,0,245.4,28399,8463047,169261,55010
+2025-02-04,6th of October,Standard,Urban,Chalet,156,1,1,4,1,0,0,0,1,0,Fully Finished,Partly Furnished,0,38.4,29792,4647563,92951,25562
+2024-04-22,North Coast,Premium,Coastal,Villa,350,4,4,2,1,0,1,0,1,0,Fully Finished,Partly Furnished,6,234.5,100274,35797979,715960,196889
+2025-12-22,North Coast,Premium,Coastal,Chalet,459,4,3,1,0,0,1,1,0,0,Fully Finished,Fully Furnished,9,215.4,107868,49511476,990230,272313
+2024-01-24,Maadi,Premium,Urban,Penthouse,457,4,4,13,0,0,0,0,1,1,Luxury Finished,Partly Furnished,16,15.5,38632,17654825,353096,97102
+2025-11-07,Ain Sokhna,Premium,Coastal,Villa,66,6,6,3,1,1,1,1,1,0,Semi Finished,Partly Furnished,4,127.0,120000,8078400,161568,44431
+2024-02-17,Ain Sokhna,Premium,Coastal,Apartment,210,1,1,9,0,0,0,0,1,1,Fully Finished,Unfurnished,8,106.8,58819,12352095,247042,80289
+2025-04-13,6th of October,Standard,Urban,Duplex,344,4,4,6,1,0,0,0,1,1,Fully Finished,Unfurnished,6,33.8,20155,6933324,138666,45067
+2024-02-03,New Cairo,Premium,Urban,Penthouse,463,2,2,10,1,0,0,0,1,1,Luxury Finished,Unfurnished,0,20.6,36720,17001299,340026,93507
+2026-04-05,Sheikh Zayed,Premium,Urban,Chalet,178,3,3,1,0,0,0,0,0,0,Core & Shell,Fully Furnished,15,27.6,31744,5650514,113010,31078
+2025-10-22,Heliopolis,Premium,Urban,Apartment,285,1,1,2,0,0,0,1,1,0,Fully Finished,Unfurnished,15,12.9,23757,6770807,135416,44010
+2026-01-27,6th of October,Standard,Urban,Duplex,401,3,2,4,0,0,0,1,1,0,Luxury Finished,Partly Furnished,9,40.8,24830,9956813,199136,64719
+2025-05-23,Haram,Standard,Urban,Chalet,274,4,3,3,0,0,0,1,0,0,Luxury Finished,Fully Furnished,11,8.9,22618,6197370,123947,34086
+2025-06-21,New Cairo,Premium,Urban,Villa,174,7,6,2,1,0,0,1,0,0,Fully Finished,Unfurnished,15,27.4,60860,10801495,216030,59408
+2025-09-21,Alexandria,Standard,Urban,Villa,296,4,4,3,0,0,1,1,0,0,Fully Finished,Fully Furnished,24,211.2,38443,11606607,232132,63836
+2024-05-07,Ain Sokhna,Premium,Coastal,Apartment,305,1,1,12,0,0,0,1,1,1,Fully Finished,Unfurnished,15,130.4,38093,11618220,232364,75518
+2024-09-09,Sheikh Zayed,Premium,Urban,Penthouse,134,4,4,11,0,0,0,1,0,1,Fully Finished,Partly Furnished,8,37.4,44137,5914363,118287,32529
+2025-04-05,Alexandria,Standard,Urban,Villa,76,6,6,2,0,1,1,1,0,0,Fully Finished,Fully Furnished,0,204.4,61519,4768955,95379,26229
+2024-06-02,Ain Sokhna,Premium,Coastal,Penthouse,421,5,5,15,0,0,0,0,1,1,Fully Finished,Fully Furnished,4,102.5,79750,33574614,671492,184660
+2025-11-14,Heliopolis,Premium,Urban,Chalet,372,2,2,1,1,0,0,0,1,0,Luxury Finished,Fully Furnished,9,13.9,41316,15369420,307388,84532
+2025-02-07,Maadi,Premium,Urban,Chalet,227,3,3,1,0,0,0,1,0,0,Fully Finished,Fully Furnished,1,12.9,45034,10222717,204454,56225
+2024-08-26,Alexandria,Standard,Urban,Penthouse,453,5,5,14,0,0,1,1,1,0,Core & Shell,Unfurnished,0,186.8,26882,12177519,243550,66976
+2025-05-27,Haram,Standard,Urban,Penthouse,249,5,4,13,0,0,0,0,0,1,Fully Finished,Unfurnished,14,6.7,13982,3481503,69630,19148
+2025-11-26,Sheikh Zayed,Premium,Urban,Duplex,369,4,4,2,1,0,0,1,0,1,Fully Finished,Unfurnished,14,33.8,23320,8605181,172104,55934
+2024-02-21,6th of October,Standard,Urban,Villa,88,5,5,1,0,1,0,0,1,0,Fully Finished,Unfurnished,8,30.6,47386,4253398,85068,23394
+2024-11-20,New Cairo,Premium,Urban,Chalet,354,4,3,1,1,0,0,0,1,0,Semi Finished,Unfurnished,10,27.2,24255,8586328,171727,47225
+2024-02-17,Maadi,Premium,Urban,Penthouse,371,4,4,13,1,0,0,0,0,1,Fully Finished,Unfurnished,25,14.1,42057,15603076,312062,85817
+2025-05-23,Nasr City,Standard,Urban,Chalet,286,3,3,4,0,0,0,1,1,0,Luxury Finished,Fully Furnished,20,12.2,24110,6895333,137907,37924
+2024-05-22,New Cairo,Premium,Urban,Chalet,424,4,3,1,1,0,0,1,1,0,Semi Finished,Unfurnished,0,29.4,42939,18205989,364120,100133
+2024-03-17,Sheikh Zayed,Premium,Urban,Apartment,213,1,1,8,1,0,0,1,1,1,Core & Shell,Unfurnished,0,33.1,26251,5591539,111831,36345
+2024-10-02,Heliopolis,Premium,Urban,Apartment,260,2,2,8,0,0,0,1,0,1,Fully Finished,Fully Furnished,11,10.7,22852,5941451,118829,38619
+2026-02-17,New Cairo,Premium,Urban,Apartment,276,2,2,10,1,0,0,1,1,1,Fully Finished,Fully Furnished,7,21.0,21220,5856774,117135,38069
+2026-02-18,North Coast,Premium,Coastal,Villa,84,5,5,2,0,0,1,1,0,0,Fully Finished,Fully Furnished,7,242.5,120000,10281600,205632,56549
+2025-03-01,6th of October,Standard,Urban,Chalet,288,4,3,4,1,0,0,0,1,0,Luxury Finished,Unfurnished,3,35.3,27879,8029209,160584,44161
+2025-01-22,6th of October,Standard,Urban,Villa,71,4,4,2,1,1,0,1,0,0,Semi Finished,Fully Furnished,0,42.1,39706,2875521,57510,15815
+2025-03-02,New Cairo,Premium,Urban,Penthouse,76,3,3,15,1,0,0,1,0,0,Luxury Finished,Partly Furnished,0,26.3,58157,4419956,88399,24310
+2025-09-23,Alexandria,Standard,Urban,Apartment,362,3,3,10,0,0,0,0,1,1,Luxury Finished,Unfurnished,9,183.2,15116,5472119,109442,35569
+2025-08-04,North Coast,Premium,Coastal,Chalet,323,2,1,3,1,0,1,1,1,0,Fully Finished,Partly Furnished,4,232.4,107985,34879102,697582,191835
+2024-06-21,Heliopolis,Premium,Urban,Apartment,274,1,1,4,1,0,0,1,1,1,Fully Finished,Partly Furnished,15,13.3,19414,5319425,106388,34576
+2024-02-21,Maadi,Premium,Urban,Apartment,148,2,2,3,1,0,0,1,1,1,Fully Finished,Fully Furnished,8,14.1,41242,6103763,122075,39674
+2025-03-29,Haram,Standard,Urban,Apartment,424,1,1,5,0,0,0,1,1,0,Fully Finished,Unfurnished,30,7.6,11908,5048818,100976,32817
+2025-07-25,Haram,Standard,Urban,Apartment,466,1,1,9,0,0,0,1,0,1,Fully Finished,Partly Furnished,7,7.8,7644,3562142,71243,23154
+2024-08-23,Heliopolis,Premium,Urban,Apartment,430,1,1,1,1,0,0,1,1,1,Fully Finished,Unfurnished,14,13.3,25759,11076529,221531,71997
+2024-01-24,North Coast,Premium,Coastal,Villa,374,6,5,3,1,1,0,1,1,0,Fully Finished,Partly Furnished,7,171.1,75620,28847673,576953,158662
+2026-04-12,Sheikh Zayed,Premium,Urban,Duplex,482,3,4,5,1,0,0,1,0,1,Fully Finished,Partly Furnished,4,32.6,25274,12182045,243641,79183
+2025-12-08,Haram,Standard,Urban,Apartment,73,1,1,2,0,0,0,0,1,1,Fully Finished,Unfurnished,13,8.9,15834,1155912,23118,7513
+2024-04-21,North Coast,Premium,Coastal,Chalet,167,1,1,4,1,0,1,0,0,0,Fully Finished,Unfurnished,3,200.7,115441,19278571,385571,106032
+2025-03-01,6th of October,Standard,Urban,Penthouse,230,4,5,10,1,0,0,0,1,1,Fully Finished,Partly Furnished,10,34.9,30764,7075809,141516,38917
+2024-10-15,Haram,Standard,Urban,Duplex,98,3,2,2,0,0,0,0,1,1,Fully Finished,Fully Furnished,10,7.7,14842,1454476,29090,9454
+2024-01-31,Nasr City,Standard,Urban,Penthouse,468,3,3,14,0,0,0,1,1,1,Fully Finished,Partly Furnished,17,9.0,7500,3510000,70200,19305
+2024-05-28,Sheikh Zayed,Premium,Urban,Apartment,75,1,1,10,0,0,0,1,1,1,Semi Finished,Unfurnished,0,32.6,37098,2782356,55647,18085
+2026-04-03,Sheikh Zayed,Premium,Urban,Chalet,229,3,2,1,0,0,0,1,1,0,Fully Finished,Unfurnished,0,28.2,50817,11637074,232741,64004
+2024-12-25,Ain Sokhna,Premium,Coastal,Penthouse,200,2,2,11,1,0,0,1,1,1,Semi Finished,Unfurnished,2,120.8,61947,12389405,247788,68142
+2025-01-02,6th of October,Standard,Urban,Chalet,98,2,2,3,1,0,0,1,1,0,Semi Finished,Unfurnished,0,28.4,36530,3579975,71600,19690
+2024-03-08,Nasr City,Standard,Urban,Penthouse,377,5,5,14,0,0,0,1,1,1,Semi Finished,Partly Furnished,0,8.7,20831,7853315,157066,43193
+2024-07-19,Alexandria,Standard,Urban,Duplex,298,2,3,4,0,0,0,1,1,1,Semi Finished,Unfurnished,6,215.6,16651,4962061,99241,32253
+2025-04-15,Haram,Standard,Urban,Apartment,418,1,1,6,0,0,0,1,1,1,Core & Shell,Partly Furnished,0,7.3,7500,3135000,62700,20378
+2026-02-27,New Cairo,Premium,Urban,Apartment,62,1,1,4,1,0,0,1,1,0,Fully Finished,Unfurnished,6,24.1,27931,1731700,34634,11256
+2024-11-11,North Coast,Premium,Coastal,Villa,383,5,6,2,0,1,0,1,0,0,Fully Finished,Unfurnished,3,220.7,78716,30751381,615028,169133
+2025-03-31,Heliopolis,Premium,Urban,Apartment,491,1,1,3,1,0,0,1,0,1,Luxury Finished,Unfurnished,5,10.6,21870,10738112,214762,69798
+2024-04-08,Alexandria,Standard,Urban,Apartment,436,1,1,3,0,0,0,1,1,1,Luxury Finished,Unfurnished,13,203.6,12552,5472594,109452,35572
+2024-12-04,Haram,Standard,Urban,Penthouse,120,5,5,14,0,0,0,1,0,1,Fully Finished,Unfurnished,14,9.1,19304,2316524,46330,12741
+2025-03-25,Maadi,Premium,Urban,Chalet,121,3,2,2,0,0,0,1,1,0,Semi Finished,Fully Furnished,6,11.9,43427,5254634,105093,28900
+2025-06-01,Sheikh Zayed,Premium,Urban,Apartment,258,2,2,2,1,0,0,0,1,1,Fully Finished,Unfurnished,7,30.9,22859,5897495,117950,38334
+2025-03-07,Nasr City,Standard,Urban,Chalet,131,4,3,2,0,0,0,1,0,0,Luxury Finished,Partly Furnished,12,10.4,35172,4607486,92150,25341
+2025-02-06,Maadi,Premium,Urban,Penthouse,302,2,2,13,0,0,0,1,0,1,Luxury Finished,Unfurnished,15,15.0,23699,7156947,143139,39363
+2025-06-06,Haram,Standard,Urban,Chalet,285,3,3,4,0,0,0,1,1,0,Fully Finished,Unfurnished,10,6.6,15481,4412131,88243,24267
+2025-03-16,6th of October,Standard,Urban,Penthouse,320,3,3,10,1,0,0,1,1,1,Semi Finished,Partly Furnished,8,35.5,20027,6408701,128174,35248
+2024-01-06,Ain Sokhna,Premium,Coastal,Apartment,68,2,2,1,0,0,0,1,1,1,Fully Finished,Unfurnished,1,118.9,56061,3812163,76243,24779
+2024-12-02,Nasr City,Standard,Urban,Villa,300,4,4,3,0,1,0,1,0,0,Luxury Finished,Fully Furnished,7,9.5,37406,11446173,228923,62954
+2025-06-28,Haram,Standard,Urban,Chalet,237,4,3,4,0,0,0,0,0,0,Semi Finished,Partly Furnished,0,7.6,18336,4345601,86912,23901
+2024-02-27,6th of October,Standard,Urban,Chalet,328,4,3,1,1,0,0,1,0,0,Fully Finished,Fully Furnished,8,33.1,31233,10244410,204888,56344
+2024-03-26,Alexandria,Standard,Urban,Apartment,127,2,1,11,0,0,0,1,0,1,Fully Finished,Partly Furnished,11,224.1,21490,2729285,54586,17740
+2025-08-05,Heliopolis,Premium,Urban,Villa,326,6,6,3,1,1,0,1,1,0,Semi Finished,Partly Furnished,16,10.6,48711,16197344,323947,89085
+2024-10-05,6th of October,Standard,Urban,Chalet,88,4,3,3,1,0,0,1,0,0,Fully Finished,Unfurnished,7,33.7,31788,2797349,55947,15385
+2025-10-05,Sheikh Zayed,Premium,Urban,Duplex,229,2,3,4,1,0,0,1,1,0,Fully Finished,Partly Furnished,4,35.1,29040,6650130,133003,43226
+2024-08-07,North Coast,Premium,Coastal,Apartment,320,1,2,6,0,0,0,1,1,1,Semi Finished,Unfurnished,3,229.5,37855,12113581,242272,78738
+2025-01-22,North Coast,Premium,Coastal,Duplex,97,5,4,5,0,0,0,1,0,0,Semi Finished,Fully Furnished,0,217.5,52030,5046862,100937,32805
+2025-09-22,Heliopolis,Premium,Urban,Villa,461,7,6,1,0,1,0,0,0,0,Semi Finished,Unfurnished,13,9.0,41349,19443222,388864,106938
+2024-10-23,Heliopolis,Premium,Urban,Penthouse,140,3,3,15,0,0,0,1,0,1,Luxury Finished,Unfurnished,25,13.4,45616,6386174,127723,35124
+2025-05-06,North Coast,Premium,Coastal,Penthouse,283,5,4,14,0,0,1,1,0,1,Luxury Finished,Partly Furnished,8,276.0,71853,20334289,406686,111839
+2025-04-06,6th of October,Standard,Urban,Villa,382,7,6,2,1,0,0,1,1,0,Luxury Finished,Unfurnished,5,39.6,32295,12583523,251670,69209
+2024-11-26,North Coast,Premium,Coastal,Villa,99,7,6,3,0,0,1,1,1,0,Fully Finished,Unfurnished,15,202.4,120000,12117600,242352,66647
+2024-02-26,Maadi,Premium,Urban,Chalet,395,4,3,2,0,0,0,0,1,0,Core & Shell,Unfurnished,10,15.1,11135,4398514,87970,24192
+2026-03-02,New Cairo,Premium,Urban,Chalet,118,3,2,2,0,0,0,0,1,0,Luxury Finished,Unfurnished,13,24.2,35762,4219879,84398,23209
+2026-03-04,Alexandria,Standard,Urban,Penthouse,229,3,2,15,0,0,1,1,0,1,Fully Finished,Partly Furnished,18,198.2,26977,6177812,123556,33978
+2024-12-25,Maadi,Premium,Urban,Duplex,66,4,4,6,1,0,0,1,1,1,Fully Finished,Unfurnished,23,14.7,30910,2040067,40801,13260
+2024-09-23,Haram,Standard,Urban,Apartment,90,1,1,10,0,0,0,1,1,1,Luxury Finished,Unfurnished,8,9.6,18462,1661563,33231,10800
+2025-03-08,Haram,Standard,Urban,Villa,219,4,4,1,0,0,0,1,1,0,Semi Finished,Fully Furnished,14,7.7,15526,3468168,69363,19075
+2024-08-15,Ain Sokhna,Premium,Coastal,Villa,415,6,6,2,1,0,0,1,0,0,Semi Finished,Unfurnished,7,85.8,80683,34153315,683066,187843
+2024-01-12,Ain Sokhna,Premium,Coastal,Villa,283,6,6,3,1,1,1,1,1,0,Semi Finished,Partly Furnished,6,98.5,102454,29574463,591489,162660
+2024-09-13,New Cairo,Premium,Urban,Apartment,76,1,1,12,0,0,0,1,1,1,Fully Finished,Fully Furnished,11,26.7,29541,2245080,44902,14593
+2026-01-01,North Coast,Premium,Coastal,Penthouse,222,3,3,10,0,0,1,1,1,1,Fully Finished,Unfurnished,1,160.5,104311,23156964,463139,127363
+2024-10-05,Maadi,Premium,Urban,Chalet,473,4,3,1,1,0,0,1,1,0,Luxury Finished,Partly Furnished,8,13.2,38025,17985906,359718,98922
+2024-05-17,Haram,Standard,Urban,Apartment,283,2,2,8,0,0,0,1,0,1,Luxury Finished,Unfurnished,10,8.7,9318,2636891,52738,17140
+2024-07-17,Heliopolis,Premium,Urban,Penthouse,337,2,2,15,0,0,0,0,1,1,Luxury Finished,Unfurnished,24,12.5,23130,7794715,155894,42871
+2025-03-20,Nasr City,Standard,Urban,Duplex,301,3,3,7,0,0,0,1,0,0,Semi Finished,Unfurnished,19,8.7,14010,4216987,84340,27410
+2024-01-16,New Cairo,Premium,Urban,Duplex,465,2,2,4,1,0,0,1,1,1,Fully Finished,Unfurnished,13,24.8,27137,12618674,252373,82021
+2025-12-31,Maadi,Premium,Urban,Apartment,81,2,2,11,1,0,0,1,1,1,Semi Finished,Partly Furnished,4,16.1,35964,2913118,58262,18935
+2025-09-02,Sheikh Zayed,Premium,Urban,Villa,329,6,6,2,1,0,0,0,1,0,Fully Finished,Fully Furnished,0,29.3,62156,20858414,417168,114721
+2025-07-08,Nasr City,Standard,Urban,Chalet,286,2,1,1,0,0,0,0,1,0,Fully Finished,Unfurnished,8,11.0,37534,10734682,214694,59041
+2026-03-27,Ain Sokhna,Premium,Coastal,Penthouse,454,2,2,14,1,0,0,1,1,1,Core & Shell,Partly Furnished,6,108.9,58829,26708372,534167,146896
+2025-08-09,Maadi,Premium,Urban,Chalet,117,3,3,2,0,0,0,1,1,0,Luxury Finished,Unfurnished,13,13.9,52296,6118600,122372,33652
+2024-09-09,Sheikh Zayed,Premium,Urban,Villa,344,6,6,2,0,1,0,1,0,0,Semi Finished,Fully Furnished,14,33.2,47349,16613810,332276,91376
+2025-12-08,6th of October,Standard,Urban,Penthouse,98,3,3,15,0,0,0,1,0,1,Luxury Finished,Partly Furnished,6,31.4,25855,2533826,50677,13936
+2024-06-25,Ain Sokhna,Premium,Coastal,Penthouse,216,4,4,12,0,0,1,1,1,1,Fully Finished,Fully Furnished,0,123.5,99565,21505974,430119,118283
+2024-06-30,Nasr City,Standard,Urban,Chalet,86,2,2,4,0,0,0,1,0,0,Luxury Finished,Unfurnished,3,8.9,25239,2170584,43412,11938
+2025-04-02,North Coast,Premium,Coastal,Duplex,80,4,4,4,1,0,0,1,1,0,Fully Finished,Fully Furnished,0,192.1,73532,5882599,117652,38237
+2025-01-07,Heliopolis,Premium,Urban,Chalet,143,4,3,1,1,0,0,1,0,0,Semi Finished,Unfurnished,17,12.4,39454,5641866,112837,31030
+2025-01-29,6th of October,Standard,Urban,Apartment,446,2,1,1,1,0,0,1,0,0,Semi Finished,Unfurnished,0,30.1,9737,4342715,86854,28228
+2025-12-25,New Cairo,Premium,Urban,Villa,439,6,5,3,0,1,0,1,1,0,Fully Finished,Fully Furnished,14,29.9,42801,19165335,383307,105409
+2024-10-10,6th of October,Standard,Urban,Apartment,340,2,2,12,0,0,0,1,1,1,Core & Shell,Unfurnished,8,34.5,11783,4006333,80127,26041
+2025-12-29,Sheikh Zayed,Premium,Urban,Duplex,267,2,2,7,0,0,0,1,0,0,Luxury Finished,Unfurnished,7,31.6,29096,7768638,155373,50496
+2024-07-22,Alexandria,Standard,Urban,Apartment,152,2,1,9,0,0,0,1,0,1,Fully Finished,Unfurnished,20,202.6,25353,3853580,77072,25048
+2024-10-12,North Coast,Premium,Coastal,Chalet,233,4,3,4,1,0,1,1,1,0,Fully Finished,Unfurnished,9,242.9,88890,20711356,414227,113912
+2024-10-14,6th of October,Standard,Urban,Penthouse,487,3,3,15,1,0,0,1,1,1,Fully Finished,Unfurnished,0,39.3,17945,8738990,174780,48064
+2025-05-19,North Coast,Premium,Coastal,Duplex,437,2,2,1,1,0,0,1,0,1,Semi Finished,Fully Furnished,19,235.6,46505,20322674,406453,132097
+2024-06-23,Alexandria,Standard,Urban,Apartment,441,1,1,8,0,0,0,1,0,1,Core & Shell,Unfurnished,3,165.7,10765,4747522,94950,30859
+2025-03-17,Nasr City,Standard,Urban,Duplex,68,2,2,2,0,0,0,1,1,0,Fully Finished,Unfurnished,21,9.3,21070,1432738,28655,9313
+2026-02-06,Alexandria,Standard,Urban,Duplex,378,4,4,4,0,0,0,1,1,1,Fully Finished,Partly Furnished,17,220.8,14930,5643406,112868,36682
+2025-01-07,Heliopolis,Premium,Urban,Penthouse,445,3,3,10,1,0,0,1,1,1,Fully Finished,Partly Furnished,6,15.6,36495,16240181,324804,89321
+2025-12-24,New Cairo,Premium,Urban,Penthouse,333,5,5,15,1,0,0,1,1,1,Fully Finished,Unfurnished,7,29.0,37492,12484954,249699,68667
+2025-02-03,Alexandria,Standard,Urban,Apartment,161,2,1,6,0,0,0,1,0,1,Semi Finished,Unfurnished,6,177.7,18015,2900388,58008,18853
+2024-12-29,6th of October,Standard,Urban,Apartment,460,1,1,6,1,0,0,1,0,1,Luxury Finished,Unfurnished,5,38.4,15533,7144968,142899,46442
+2025-08-18,Alexandria,Standard,Urban,Duplex,207,4,4,3,0,0,0,1,1,0,Fully Finished,Unfurnished,5,223.9,29313,6067747,121355,39440
+2024-09-06,Haram,Standard,Urban,Villa,412,6,6,1,0,0,0,0,1,0,Luxury Finished,Unfurnished,12,5.4,20923,8792847,175857,48361
+2024-08-17,New Cairo,Premium,Urban,Apartment,292,1,1,8,1,0,0,1,1,1,Fully Finished,Unfurnished,4,31.7,23450,6847428,136949,44508
+2024-03-13,New Cairo,Premium,Urban,Penthouse,175,2,2,15,0,0,0,1,0,1,Fully Finished,Partly Furnished,5,24.4,32522,5691395,113828,31303
+2024-09-01,Maadi,Premium,Urban,Villa,233,6,5,2,1,1,0,1,1,0,Fully Finished,Partly Furnished,6,14.3,70081,16655345,333107,91604
+2024-11-18,Sheikh Zayed,Premium,Urban,Villa,165,6,6,1,1,1,0,1,1,0,Fully Finished,Fully Furnished,11,24.6,85641,14413325,288266,79273
+2024-08-21,New Cairo,Premium,Urban,Chalet,376,4,3,4,1,0,0,1,0,0,Fully Finished,Unfurnished,5,25.1,38584,14507446,290149,79791
+2024-05-29,Maadi,Premium,Urban,Apartment,321,1,1,11,0,0,0,1,0,1,Semi Finished,Partly Furnished,0,8.8,14656,4704606,94092,30580
+2024-09-26,Sheikh Zayed,Premium,Urban,Duplex,323,4,4,7,0,0,0,0,1,0,Fully Finished,Unfurnished,8,32.0,23307,7528205,150564,48933
+2024-06-29,Sheikh Zayed,Premium,Urban,Duplex,377,4,4,7,1,0,0,0,1,0,Fully Finished,Partly Furnished,5,29.9,22511,8486799,169736,55164
+2025-06-10,Ain Sokhna,Premium,Coastal,Chalet,143,2,2,4,1,0,0,1,0,0,Luxury Finished,Partly Furnished,9,110.6,107824,15418875,308378,84804
+2024-07-08,Nasr City,Standard,Urban,Villa,81,5,6,2,0,0,0,1,0,0,Semi Finished,Unfurnished,5,7.6,33170,2740473,54809,15073
+2024-05-12,6th of October,Standard,Urban,Apartment,247,1,1,9,1,0,0,1,1,1,Semi Finished,Unfurnished,9,31.0,15715,3881685,77634,25231
+2025-12-28,Sheikh Zayed,Premium,Urban,Duplex,146,3,3,6,1,0,0,1,1,1,Fully Finished,Fully Furnished,4,24.3,51004,7446567,148931,48403
+2024-10-04,Alexandria,Standard,Urban,Penthouse,302,4,4,11,0,0,1,1,0,1,Core & Shell,Fully Furnished,12,175.9,21330,6441639,128833,35429
+2025-01-27,North Coast,Premium,Coastal,Penthouse,178,2,2,15,1,0,1,1,0,1,Semi Finished,Unfurnished,8,210.8,87942,15653762,313075,86096
+2024-07-14,Ain Sokhna,Premium,Coastal,Chalet,359,4,3,1,1,0,1,0,1,0,Fully Finished,Partly Furnished,9,138.1,62584,22467730,449355,123573
+2026-01-02,Sheikh Zayed,Premium,Urban,Chalet,209,3,2,3,1,0,0,1,0,0,Fully Finished,Unfurnished,1,28.2,36249,7576035,151521,41668
+2025-03-13,North Coast,Premium,Coastal,Apartment,118,1,1,10,1,0,0,1,0,1,Luxury Finished,Partly Furnished,10,211.1,65261,7700829,154017,50055
+2026-04-12,Haram,Standard,Urban,Chalet,94,4,3,1,0,0,0,1,0,0,Semi Finished,Fully Furnished,18,8.7,23060,2167643,43353,11922
+2024-08-16,Maadi,Premium,Urban,Apartment,450,1,1,7,0,0,0,1,0,1,Semi Finished,Unfurnished,7,13.6,26487,11919251,238385,77475
+2024-10-24,Heliopolis,Premium,Urban,Villa,83,4,5,1,1,1,0,1,1,0,Fully Finished,Partly Furnished,0,13.6,73942,6259958,125199,34430
+2025-08-20,Heliopolis,Premium,Urban,Duplex,279,5,4,8,1,0,0,1,1,1,Luxury Finished,Unfurnished,11,11.4,34951,9751259,195025,63383
+2025-09-24,Nasr City,Standard,Urban,Duplex,211,2,2,1,0,0,0,1,1,0,Fully Finished,Partly Furnished,12,10.7,14222,3000847,60017,19506
+2024-01-19,New Cairo,Premium,Urban,Chalet,155,4,3,3,1,0,0,0,1,0,Semi Finished,Unfurnished,7,23.5,36787,5702016,114040,31361
+2026-02-18,Haram,Standard,Urban,Penthouse,413,3,3,12,0,0,0,1,0,1,Luxury Finished,Unfurnished,11,7.1,20561,8491600,169832,46704
+2025-04-05,Sheikh Zayed,Premium,Urban,Villa,479,5,5,3,1,1,0,1,0,0,Luxury Finished,Unfurnished,9,25.4,46631,22783032,455661,125307
+2024-02-03,Haram,Standard,Urban,Chalet,430,3,3,1,0,0,0,1,0,0,Fully Finished,Partly Furnished,5,9.0,21589,9283439,185669,51059
+2025-02-06,Maadi,Premium,Urban,Penthouse,327,2,2,14,0,0,0,1,0,1,Fully Finished,Unfurnished,19,13.9,25605,8372730,167455,46050
+2024-09-08,Sheikh Zayed,Premium,Urban,Penthouse,458,4,4,10,0,0,0,0,1,1,Fully Finished,Fully Furnished,0,34.9,49893,22851161,457023,125681
+2025-11-28,Ain Sokhna,Premium,Coastal,Villa,487,6,6,3,1,1,1,1,1,0,Fully Finished,Partly Furnished,4,121.0,120000,59608800,1192176,327848
+2025-12-22,Sheikh Zayed,Premium,Urban,Penthouse,384,3,3,10,1,0,0,1,0,1,Fully Finished,Partly Furnished,12,28.3,45150,17337633,346753,95357
+2024-10-13,Alexandria,Standard,Urban,Duplex,440,4,4,3,0,0,0,0,1,1,Semi Finished,Unfurnished,4,193.9,14337,6308305,126166,41004
+2024-03-01,North Coast,Premium,Coastal,Apartment,143,1,1,2,1,0,0,1,1,0,Luxury Finished,Unfurnished,0,220.0,57234,8184453,163689,53199
+2024-03-26,Ain Sokhna,Premium,Coastal,Apartment,438,1,1,6,1,0,0,1,1,1,Fully Finished,Unfurnished,6,108.2,43654,19120610,382412,124284
+2024-12-04,6th of October,Standard,Urban,Penthouse,320,4,4,11,1,0,0,1,0,1,Semi Finished,Partly Furnished,10,33.2,22459,7186835,143737,39528
+2025-01-18,New Cairo,Premium,Urban,Duplex,499,3,3,8,1,0,0,1,1,1,Fully Finished,Unfurnished,7,25.2,27585,13765098,275302,89473
+2025-05-16,Ain Sokhna,Premium,Coastal,Chalet,69,3,3,4,1,0,1,1,0,0,Fully Finished,Unfurnished,5,78.7,69469,4793349,95867,26363
+2026-02-02,Maadi,Premium,Urban,Villa,152,6,5,1,0,0,0,0,0,0,Luxury Finished,Unfurnished,11,16.3,64506,10001081,200022,55006
+2026-03-08,Alexandria,Standard,Urban,Apartment,192,1,1,10,0,0,0,1,0,1,Semi Finished,Unfurnished,12,187.2,19029,3653634,73073,23749
+2025-01-08,North Coast,Premium,Coastal,Chalet,60,2,1,3,0,0,0,0,0,0,Luxury Finished,Unfurnished,5,275.9,74831,4489887,89798,24694
+2024-10-06,Maadi,Premium,Urban,Duplex,343,4,4,5,1,0,0,1,0,1,Semi Finished,Unfurnished,15,14.0,20813,7139020,142780,46404
+2024-02-03,Heliopolis,Premium,Urban,Penthouse,263,3,3,13,0,0,0,1,1,1,Fully Finished,Fully Furnished,6,11.7,45893,12069796,241396,66384
+2024-12-30,North Coast,Premium,Coastal,Duplex,371,3,2,7,1,0,0,0,1,1,Semi Finished,Unfurnished,7,239.5,36236,13443736,268875,87384
+2024-10-09,Maadi,Premium,Urban,Duplex,310,3,3,7,1,0,0,0,1,1,Core & Shell,Partly Furnished,20,14.7,25827,8006421,160128,52042
+2025-07-01,Sheikh Zayed,Premium,Urban,Villa,352,7,6,2,1,0,0,0,1,0,Fully Finished,Unfurnished,2,29.1,52049,18687647,373753,102782
+2026-01-06,New Cairo,Premium,Urban,Chalet,257,3,2,2,0,0,0,1,0,0,Luxury Finished,Unfurnished,6,34.7,51673,13279845,265597,73039
+2024-07-31,Heliopolis,Premium,Urban,Chalet,384,4,3,2,0,0,0,1,0,0,Semi Finished,Partly Furnished,14,10.2,25664,9854992,197100,54202
+2024-06-07,6th of October,Standard,Urban,Duplex,335,2,2,2,1,0,0,0,1,1,Luxury Finished,Unfurnished,9,30.9,21723,7277239,145545,47302
+2024-02-04,North Coast,Premium,Coastal,Chalet,358,4,3,1,1,0,1,1,1,0,Fully Finished,Fully Furnished,0,230.1,95688,34256404,685128,188410
+2025-10-07,Sheikh Zayed,Premium,Urban,Apartment,365,1,1,2,1,0,0,1,0,1,Core & Shell,Fully Furnished,7,38.7,15440,5635442,112709,36630
+2024-01-06,North Coast,Premium,Coastal,Chalet,237,4,3,1,0,0,1,0,0,0,Luxury Finished,Partly Furnished,13,267.6,56851,13473600,269472,74105
+2024-03-17,Maadi,Premium,Urban,Duplex,210,3,3,3,0,0,0,1,0,1,Semi Finished,Fully Furnished,16,16.2,21465,4507584,90152,29299
+2024-10-20,Nasr City,Standard,Urban,Villa,293,3,3,2,0,1,0,1,1,0,Fully Finished,Fully Furnished,5,10.6,48203,14406066,288121,79233
+2024-06-08,North Coast,Premium,Coastal,Villa,400,6,6,2,1,0,1,1,1,0,Semi Finished,Fully Furnished,6,225.3,115696,47203803,944076,259621
+2024-02-22,North Coast,Premium,Coastal,Penthouse,411,2,2,13,0,0,1,1,1,1,Fully Finished,Partly Furnished,1,219.9,52446,21555176,431104,118553
+2026-01-30,Heliopolis,Premium,Urban,Villa,252,5,5,1,0,1,0,1,1,0,Fully Finished,Partly Furnished,24,11.2,51692,13287035,265741,73079
+2024-09-12,Ain Sokhna,Premium,Coastal,Villa,486,7,6,1,1,1,1,1,1,0,Fully Finished,Fully Furnished,12,115.4,103881,51495776,1029916,283227
+2024-03-25,Haram,Standard,Urban,Apartment,135,1,1,6,0,0,0,1,1,1,Semi Finished,Fully Furnished,9,7.1,9849,1329631,26593,8643
+2024-07-26,Alexandria,Standard,Urban,Duplex,348,4,3,3,0,0,0,1,1,1,Luxury Finished,Unfurnished,19,165.6,19455,6770298,135406,44007
+2025-11-30,6th of October,Standard,Urban,Penthouse,363,4,4,12,0,0,0,1,0,1,Core & Shell,Fully Furnished,8,37.2,16407,5955808,119116,32757
+2026-03-20,Alexandria,Standard,Urban,Villa,279,7,6,1,0,0,0,1,1,0,Semi Finished,Unfurnished,2,205.5,32058,9123115,182462,50177
+2025-07-12,Sheikh Zayed,Premium,Urban,Apartment,220,1,1,5,1,0,0,0,1,1,Semi Finished,Fully Furnished,11,26.6,23383,5144269,102885,33438
+2024-05-03,Alexandria,Standard,Urban,Penthouse,132,3,3,10,0,0,1,1,0,1,Semi Finished,Fully Furnished,6,169.6,25765,3400927,68019,18705
+2024-09-27,Nasr City,Standard,Urban,Villa,440,6,6,2,0,0,0,0,0,0,Fully Finished,Unfurnished,0,11.5,55414,24869791,497396,136784
+2024-01-08,Nasr City,Standard,Urban,Chalet,141,4,3,3,0,0,0,1,0,0,Luxury Finished,Unfurnished,16,11.8,38130,5376322,107526,29570
+2026-01-28,Ain Sokhna,Premium,Coastal,Chalet,424,4,3,2,1,0,1,1,0,0,Fully Finished,Fully Furnished,10,105.8,79869,33864566,677291,186255
+2024-07-07,New Cairo,Premium,Urban,Apartment,272,1,1,11,1,0,0,1,0,1,Fully Finished,Unfurnished,4,17.9,17494,4758442,95169,30930
+2025-10-02,New Cairo,Premium,Urban,Duplex,258,3,3,5,1,0,0,1,1,1,Fully Finished,Unfurnished,0,22.8,39975,10313640,206273,67039
+2025-04-13,Heliopolis,Premium,Urban,Chalet,375,3,3,1,1,0,0,0,0,0,Fully Finished,Partly Furnished,20,9.8,33305,12489523,249790,68692
+2026-01-05,New Cairo,Premium,Urban,Apartment,283,1,1,12,1,0,0,1,1,1,Semi Finished,Fully Furnished,10,24.5,27765,7857405,157148,51073
+2025-03-16,Haram,Standard,Urban,Chalet,414,2,2,2,0,0,0,1,1,0,Fully Finished,Unfurnished,12,8.3,18042,7469307,149386,41081
+2024-10-28,Haram,Standard,Urban,Villa,489,3,3,3,0,1,0,1,0,0,Semi Finished,Partly Furnished,10,9.6,26931,13432477,268650,73879
+2025-05-01,6th of October,Standard,Urban,Penthouse,341,5,5,14,1,0,0,1,1,1,Luxury Finished,Fully Furnished,7,36.0,16986,5792097,115842,31857
+2024-04-13,Sheikh Zayed,Premium,Urban,Duplex,176,2,3,2,0,0,0,0,1,0,Core & Shell,Unfurnished,5,30.7,16211,2853211,57064,18546
+2024-02-18,Alexandria,Standard,Urban,Duplex,192,4,3,7,0,0,0,1,0,1,Luxury Finished,Partly Furnished,18,219.8,26579,5103090,102062,33170
+2024-03-24,Heliopolis,Premium,Urban,Duplex,287,5,4,8,0,0,0,1,1,0,Fully Finished,Fully Furnished,12,13.3,26983,7744108,154882,50337
+2026-01-08,Ain Sokhna,Premium,Coastal,Villa,423,6,6,2,1,0,1,0,1,0,Fully Finished,Fully Furnished,5,101.8,120000,51775200,1035504,284764
+2025-07-20,Heliopolis,Premium,Urban,Chalet,395,3,3,2,1,0,0,1,0,0,Luxury Finished,Fully Furnished,8,11.8,54718,21613487,432270,118874
+2025-05-22,Alexandria,Standard,Urban,Duplex,262,3,3,3,0,0,0,1,1,1,Core & Shell,Unfurnished,13,99.4,10833,2838199,56764,18448
+2024-10-19,Nasr City,Standard,Urban,Penthouse,200,5,4,13,0,0,0,1,0,1,Fully Finished,Partly Furnished,19,10.4,22794,4558871,91177,25074
+2024-03-13,Sheikh Zayed,Premium,Urban,Penthouse,432,4,3,15,0,0,0,0,1,1,Fully Finished,Fully Furnished,6,31.4,31937,13796704,275934,75882
+2025-07-29,6th of October,Standard,Urban,Villa,479,4,4,1,1,1,0,0,1,0,Fully Finished,Fully Furnished,7,32.9,35144,17170586,343412,94438
+2025-04-15,Sheikh Zayed,Premium,Urban,Apartment,136,2,1,9,1,0,0,1,0,1,Core & Shell,Partly Furnished,4,28.8,19486,2650055,53001,17225
+2025-10-23,Alexandria,Standard,Urban,Chalet,322,2,2,3,0,0,1,1,1,0,Fully Finished,Partly Furnished,4,166.3,27208,8760841,175217,48185
+2025-07-26,Haram,Standard,Urban,Penthouse,218,5,5,12,0,0,0,1,1,1,Luxury Finished,Unfurnished,26,8.2,17104,3728569,74571,20507
+2025-03-03,North Coast,Premium,Coastal,Apartment,485,1,1,11,1,0,0,1,1,1,Semi Finished,Partly Furnished,8,224.4,45323,21981470,439629,142880
+2025-10-16,Haram,Standard,Urban,Duplex,143,3,2,8,0,0,0,0,0,1,Semi Finished,Unfurnished,18,8.5,11893,1700661,34013,11054
+2025-05-16,Maadi,Premium,Urban,Apartment,231,2,2,6,1,0,0,1,0,1,Semi Finished,Fully Furnished,0,14.1,17178,3968111,79362,25793
+2024-04-09,Haram,Standard,Urban,Chalet,200,4,3,3,0,0,0,1,1,0,Fully Finished,Partly Furnished,16,9.1,17689,3537844,70757,19458
+2025-10-16,Maadi,Premium,Urban,Penthouse,273,4,4,12,0,0,0,1,1,1,Semi Finished,Fully Furnished,18,15.9,26691,7286563,145731,40076
+2024-01-23,Alexandria,Standard,Urban,Villa,68,4,3,2,0,0,1,0,1,0,Semi Finished,Fully Furnished,8,213.3,49521,3434764,68695,18891
+2025-06-13,North Coast,Premium,Coastal,Villa,180,6,6,2,1,1,1,0,1,0,Fully Finished,Unfurnished,6,254.6,75610,13882007,277640,76351
+2024-08-31,Haram,Standard,Urban,Apartment,213,1,1,3,0,0,0,1,1,1,Semi Finished,Partly Furnished,5,9.3,13668,2911197,58224,18923
+2026-04-06,Nasr City,Standard,Urban,Villa,211,7,6,1,0,1,0,1,1,0,Fully Finished,Partly Furnished,5,10.5,44511,9579680,191594,52688
+2025-05-10,Ain Sokhna,Premium,Coastal,Villa,404,4,4,2,1,0,1,1,1,0,Fully Finished,Unfurnished,8,128.2,90490,37289306,745786,205091
+2024-12-24,6th of October,Standard,Urban,Duplex,498,5,4,5,1,0,0,1,1,1,Semi Finished,Unfurnished,4,26.3,16742,8337341,166747,54193
+2025-10-05,Sheikh Zayed,Premium,Urban,Apartment,178,2,2,1,1,0,0,1,0,1,Core & Shell,Unfurnished,0,33.3,22358,3979787,79596,25869
+2024-05-13,New Cairo,Premium,Urban,Penthouse,202,3,2,15,1,0,0,1,1,1,Fully Finished,Partly Furnished,13,26.7,27806,5616830,112337,30893
+2024-03-31,Ain Sokhna,Premium,Coastal,Chalet,197,4,3,3,1,0,0,0,0,0,Fully Finished,Partly Furnished,12,137.3,66990,13197096,263942,72584
+2024-02-20,Alexandria,Standard,Urban,Apartment,317,1,1,7,0,0,0,1,0,1,Fully Finished,Fully Furnished,12,271.7,19743,6258455,125169,40680
+2024-02-18,Ain Sokhna,Premium,Coastal,Penthouse,205,4,3,14,1,0,0,1,0,0,Luxury Finished,Unfurnished,5,131.3,74395,15251072,305021,83881
+2026-02-08,6th of October,Standard,Urban,Duplex,277,5,4,5,1,0,0,1,1,1,Core & Shell,Fully Furnished,6,33.1,17420,4825339,96507,31365
+2025-01-12,Haram,Standard,Urban,Penthouse,95,5,5,12,0,0,0,1,0,0,Fully Finished,Unfurnished,11,9.6,24200,2298970,45979,12644
+2025-03-30,Heliopolis,Premium,Urban,Apartment,223,1,1,2,0,0,0,1,1,1,Semi Finished,Partly Furnished,13,12.1,30932,6897734,137955,44835
+2024-11-30,Alexandria,Standard,Urban,Apartment,438,1,1,12,0,0,0,1,0,1,Semi Finished,Unfurnished,10,232.6,10824,4740706,94814,30815
+2025-11-06,Alexandria,Standard,Urban,Duplex,328,4,4,1,0,0,0,1,1,1,Core & Shell,Fully Furnished,16,216.2,9838,3226723,64534,20974
+2025-10-28,Sheikh Zayed,Premium,Urban,Duplex,64,3,2,6,1,0,0,1,1,0,Core & Shell,Unfurnished,22,21.8,30024,1921516,38430,12490
+2025-06-15,Heliopolis,Premium,Urban,Villa,126,5,5,1,1,0,0,1,0,0,Luxury Finished,Partly Furnished,1,14.3,68473,8800093,176002,48401
+2024-03-11,Haram,Standard,Urban,Chalet,401,4,3,3,0,0,0,1,1,0,Luxury Finished,Unfurnished,12,7.8,15803,6337017,126740,34854
+2024-02-16,Ain Sokhna,Premium,Coastal,Duplex,317,4,4,2,1,0,0,0,1,1,Semi Finished,Unfurnished,5,130.1,46571,14763067,295261,95960
+2025-08-27,Nasr City,Standard,Urban,Duplex,95,2,2,3,0,0,0,1,1,1,Luxury Finished,Unfurnished,8,8.8,30400,2888007,57760,18772
+2025-06-17,Alexandria,Standard,Urban,Villa,217,4,5,2,0,0,0,0,1,0,Luxury Finished,Fully Furnished,14,184.7,34202,7570226,151405,41636
+2024-03-21,Ain Sokhna,Premium,Coastal,Duplex,204,2,2,2,1,0,0,1,1,0,Fully Finished,Partly Furnished,0,135.3,83090,16950428,339009,110178
+2025-01-18,North Coast,Premium,Coastal,Duplex,62,3,2,6,1,0,0,0,0,1,Fully Finished,Unfurnished,10,161.9,76808,4762104,95242,30954
+2024-12-24,Ain Sokhna,Premium,Coastal,Duplex,174,5,4,8,1,0,0,1,0,1,Semi Finished,Partly Furnished,16,119.1,46116,8024243,160485,52158
+2024-04-23,Maadi,Premium,Urban,Penthouse,419,2,2,11,1,0,0,1,1,1,Luxury Finished,Unfurnished,2,17.3,43123,18068386,361368,99376
+2025-07-18,New Cairo,Premium,Urban,Apartment,345,1,1,11,1,0,0,1,1,1,Core & Shell,Partly Furnished,6,26.5,20297,7002490,140050,45516
+2025-08-02,Nasr City,Standard,Urban,Villa,290,7,6,2,0,1,0,1,1,0,Semi Finished,Partly Furnished,13,10.1,37986,11236128,224723,61799
+2025-01-11,New Cairo,Premium,Urban,Penthouse,331,2,2,11,1,0,0,0,1,1,Fully Finished,Unfurnished,0,27.3,37699,12478378,249568,68631
+2025-06-17,Maadi,Premium,Urban,Duplex,285,5,4,8,1,0,0,1,0,1,Core & Shell,Fully Furnished,5,15.7,31500,8977366,179547,58353
+2024-12-23,New Cairo,Premium,Urban,Villa,296,5,5,2,1,0,0,0,1,0,Semi Finished,Partly Furnished,2,24.2,65917,19901609,398032,109459
+2025-01-12,Sheikh Zayed,Premium,Urban,Chalet,308,3,2,3,0,0,0,1,0,0,Core & Shell,Unfurnished,15,33.6,21808,6716764,134335,36942
+2025-08-28,Ain Sokhna,Premium,Coastal,Villa,255,6,6,2,1,0,0,1,0,0,Fully Finished,Unfurnished,10,98.8,90122,23440838,468817,128925
+2024-10-05,Maadi,Premium,Urban,Chalet,465,4,3,2,0,0,0,0,0,0,Luxury Finished,Fully Furnished,10,15.6,37448,17413327,348267,95773
+2026-03-14,Maadi,Premium,Urban,Duplex,160,3,3,4,1,0,0,1,1,1,Fully Finished,Unfurnished,9,17.0,41957,6713150,134263,43635
+2025-12-05,New Cairo,Premium,Urban,Villa,225,7,6,1,0,1,0,0,1,0,Fully Finished,Fully Furnished,8,27.0,48750,11188021,223760,61534
+2024-04-01,North Coast,Premium,Coastal,Villa,217,3,4,1,1,1,0,1,1,0,Fully Finished,Partly Furnished,2,220.9,81666,18075978,361520,99418
+2024-12-22,Maadi,Premium,Urban,Chalet,395,1,1,2,1,0,0,1,0,0,Luxury Finished,Fully Furnished,11,16.9,55254,21825446,436509,120040
+2025-08-28,Alexandria,Standard,Urban,Penthouse,222,3,3,12,0,0,1,1,0,0,Luxury Finished,Partly Furnished,14,191.1,14341,3183784,63676,17511
+2025-06-16,Sheikh Zayed,Premium,Urban,Chalet,265,4,3,1,1,0,0,1,0,0,Fully Finished,Partly Furnished,11,27.8,55492,14705419,294108,80880
+2024-08-24,Sheikh Zayed,Premium,Urban,Villa,84,6,6,3,1,1,0,0,1,0,Fully Finished,Fully Furnished,13,28.9,80963,6936880,138738,38153
+2024-08-17,Maadi,Premium,Urban,Apartment,223,1,1,7,1,0,0,0,1,1,Fully Finished,Unfurnished,10,17.0,32514,7250543,145011,47129
+2025-04-08,New Cairo,Premium,Urban,Penthouse,495,3,3,10,0,0,0,1,1,1,Fully Finished,Unfurnished,13,28.8,27865,13793392,275868,75864
+2024-01-15,6th of October,Standard,Urban,Apartment,449,1,2,6,0,0,0,1,0,1,Semi Finished,Unfurnished,0,34.1,8311,3731625,74632,24256
+2025-07-11,Heliopolis,Premium,Urban,Villa,451,3,3,3,0,1,0,1,1,0,Fully Finished,Partly Furnished,10,11.7,45755,21048331,420967,115766
+2025-05-14,Sheikh Zayed,Premium,Urban,Duplex,84,3,3,5,1,0,0,1,1,0,Fully Finished,Unfurnished,8,39.3,31572,2652016,53040,17238
+2025-07-28,Nasr City,Standard,Urban,Villa,375,5,5,1,0,1,0,0,0,0,Fully Finished,Unfurnished,21,10.1,22246,8508999,170180,46799
+2025-08-25,Maadi,Premium,Urban,Penthouse,102,2,2,10,0,0,0,1,1,1,Luxury Finished,Unfurnished,3,15.7,48291,4925633,98513,27091
+2025-05-20,Ain Sokhna,Premium,Coastal,Chalet,346,4,3,1,0,0,1,1,1,0,Luxury Finished,Partly Furnished,14,148.1,90055,31159056,623181,171375
+2025-09-04,Heliopolis,Premium,Urban,Chalet,477,3,2,4,0,0,0,0,1,0,Fully Finished,Unfurnished,28,11.8,30113,14364016,287280,79002
+2025-12-07,Sheikh Zayed,Premium,Urban,Chalet,237,4,3,2,1,0,0,1,1,0,Fully Finished,Partly Furnished,7,25.1,42534,10080526,201611,55443
+2024-02-03,North Coast,Premium,Coastal,Apartment,142,2,1,3,0,0,0,1,0,1,Fully Finished,Unfurnished,9,220.2,46252,6567840,131357,42691
+2025-06-26,6th of October,Standard,Urban,Penthouse,388,3,4,15,1,0,0,1,0,1,Semi Finished,Unfurnished,11,41.5,13753,5336126,106723,29349
+2024-08-16,Ain Sokhna,Premium,Coastal,Duplex,156,3,3,3,0,0,0,0,1,1,Semi Finished,Unfurnished,3,121.8,47713,7443184,148864,48381
+2026-02-07,Ain Sokhna,Premium,Coastal,Apartment,160,1,1,2,1,0,0,1,0,1,Fully Finished,Partly Furnished,8,149.9,49489,7918213,158364,51468
+2024-05-13,Nasr City,Standard,Urban,Penthouse,367,4,4,14,0,0,0,1,0,1,Luxury Finished,Unfurnished,9,11.4,24235,8894177,177884,48918
+2025-07-29,Maadi,Premium,Urban,Villa,122,3,3,3,0,1,0,1,0,0,Fully Finished,Partly Furnished,9,12.1,81005,10080319,201606,55442
+2026-03-18,Nasr City,Standard,Urban,Penthouse,66,4,4,12,0,0,0,0,0,1,Luxury Finished,Unfurnished,24,9.9,36667,2420037,48401,13310
+2025-03-03,Ain Sokhna,Premium,Coastal,Penthouse,145,4,3,11,1,0,0,1,0,0,Fully Finished,Unfurnished,4,107.0,58320,8456452,169129,46510
+2024-08-14,Ain Sokhna,Premium,Coastal,Villa,121,6,6,3,1,0,1,0,1,0,Semi Finished,Unfurnished,12,118.7,120000,14810400,296208,81457
+2024-04-14,Maadi,Premium,Urban,Penthouse,197,5,5,14,1,0,0,0,1,1,Luxury Finished,Unfurnished,10,12.9,31281,6162384,123248,33893
+2025-04-30,North Coast,Premium,Coastal,Penthouse,124,4,4,13,1,0,0,1,1,1,Fully Finished,Fully Furnished,6,288.5,68639,8511226,170225,46812
+2024-01-20,Heliopolis,Premium,Urban,Penthouse,397,5,5,13,0,0,0,1,1,1,Semi Finished,Unfurnished,9,11.7,36879,14641113,292822,80526
+2025-07-11,Nasr City,Standard,Urban,Apartment,247,1,2,8,0,0,0,1,1,1,Fully Finished,Fully Furnished,18,9.5,14134,3491211,69824,22693
+2025-12-08,Heliopolis,Premium,Urban,Duplex,315,3,3,7,1,0,0,0,0,1,Semi Finished,Fully Furnished,30,13.1,14104,4442740,88855,28878
+2024-04-24,Nasr City,Standard,Urban,Villa,111,6,6,1,0,1,0,0,1,0,Fully Finished,Partly Furnished,10,7.7,37260,4218541,84371,23202
+2026-02-23,Sheikh Zayed,Premium,Urban,Chalet,292,2,1,1,0,0,0,1,1,0,Fully Finished,Unfurnished,7,34.0,25621,7481315,149626,41147
+2024-04-12,New Cairo,Premium,Urban,Apartment,251,2,2,6,0,0,0,1,1,1,Luxury Finished,Unfurnished,0,21.6,25700,6450605,129012,41929
+2024-05-11,North Coast,Premium,Coastal,Apartment,484,1,1,6,1,0,0,0,1,1,Fully Finished,Fully Furnished,0,194.7,51762,25052665,501053,162842
+2024-11-11,Sheikh Zayed,Premium,Urban,Duplex,107,3,3,1,1,0,0,1,1,1,Core & Shell,Unfurnished,5,23.7,14710,1573962,31479,10231
+2025-10-25,New Cairo,Premium,Urban,Villa,301,6,6,1,1,0,0,1,1,0,Luxury Finished,Unfurnished,13,21.6,40734,12506168,250123,68784
+2024-03-22,Ain Sokhna,Premium,Coastal,Villa,323,5,5,2,1,1,1,0,1,0,Fully Finished,Fully Furnished,4,132.2,114562,37743571,754871,207590
+2024-12-10,New Cairo,Premium,Urban,Duplex,402,3,3,3,1,0,0,1,1,0,Fully Finished,Unfurnished,5,22.0,32559,13088591,261772,85076
+2024-10-17,New Cairo,Premium,Urban,Penthouse,67,5,5,10,1,0,0,1,0,1,Fully Finished,Unfurnished,2,17.5,43821,2936016,58720,16148
+2025-05-28,North Coast,Premium,Coastal,Apartment,146,1,1,7,1,0,0,1,1,1,Fully Finished,Partly Furnished,0,257.5,59179,8640201,172804,56161
+2025-04-07,6th of October,Standard,Urban,Chalet,211,3,3,1,0,0,0,1,0,0,Semi Finished,Unfurnished,3,28.5,29734,6273882,125478,34506
+2025-03-14,Heliopolis,Premium,Urban,Duplex,336,3,3,7,0,0,0,1,0,1,Semi Finished,Unfurnished,6,12.0,21273,7147661,142953,46460
+2024-04-12,Nasr City,Standard,Urban,Chalet,495,3,2,1,0,0,0,0,0,0,Luxury Finished,Partly Furnished,13,11.6,22510,11142441,222849,61283
+2025-05-31,6th of October,Standard,Urban,Chalet,87,3,3,3,0,0,0,1,0,0,Fully Finished,Fully Furnished,4,32.3,31495,2740074,54801,15070
+2026-01-16,Maadi,Premium,Urban,Villa,97,6,5,3,0,0,0,0,1,0,Fully Finished,Unfurnished,28,13.3,54589,5401049,108021,29706
+2024-11-04,New Cairo,Premium,Urban,Apartment,388,2,2,11,1,0,0,1,1,1,Semi Finished,Unfurnished,13,30.5,17435,6764761,135295,43971
+2024-09-27,Nasr City,Standard,Urban,Duplex,137,3,2,1,0,0,0,1,1,1,Core & Shell,Partly Furnished,17,9.1,16920,2317990,46360,15067
+2024-07-07,Alexandria,Standard,Urban,Apartment,437,2,2,2,0,0,0,1,1,1,Fully Finished,Unfurnished,19,199.8,12687,5544322,110886,36038
+2026-03-08,Sheikh Zayed,Premium,Urban,Villa,208,5,4,3,1,1,0,1,1,0,Fully Finished,Unfurnished,3,25.0,46674,9902376,198048,54463
+2024-01-12,North Coast,Premium,Coastal,Villa,433,4,4,2,1,0,1,1,1,0,Fully Finished,Partly Furnished,9,267.1,120000,52999200,1059984,291496
+2025-09-14,Heliopolis,Premium,Urban,Duplex,285,4,3,4,0,0,0,0,1,0,Luxury Finished,Unfurnished,13,11.6,31239,8903114,178062,57870
+2024-12-15,New Cairo,Premium,Urban,Villa,242,6,6,2,1,1,0,1,1,0,Luxury Finished,Unfurnished,0,30.2,82260,20304993,406100,111677
+2025-06-20,Alexandria,Standard,Urban,Chalet,393,4,3,3,0,0,0,0,0,0,Semi Finished,Unfurnished,23,174.8,21808,8570566,171411,47138
+2025-10-06,Alexandria,Standard,Urban,Villa,337,7,6,3,0,0,0,0,0,0,Fully Finished,Fully Furnished,19,209.2,34058,11707215,234144,64390
+2025-04-03,Nasr City,Standard,Urban,Penthouse,231,3,3,15,0,0,0,1,0,1,Fully Finished,Partly Furnished,8,10.4,11077,2558866,51177,14074
+2025-04-17,New Cairo,Premium,Urban,Penthouse,181,3,4,14,0,0,0,1,1,0,Fully Finished,Unfurnished,9,27.0,32901,5955114,119102,32753
+2026-03-15,Ain Sokhna,Premium,Coastal,Apartment,327,1,1,1,1,0,0,1,1,1,Fully Finished,Unfurnished,6,112.2,35964,11760187,235204,76441
+2025-03-08,Sheikh Zayed,Premium,Urban,Penthouse,456,4,4,11,0,0,0,1,0,1,Luxury Finished,Fully Furnished,0,28.6,38502,17556830,351137,96563
+2025-01-13,Heliopolis,Premium,Urban,Duplex,283,2,2,6,0,0,0,1,1,1,Core & Shell,Fully Furnished,10,14.6,17177,4861106,97222,31597
+2024-01-23,Sheikh Zayed,Premium,Urban,Villa,88,5,5,2,1,0,0,0,0,0,Fully Finished,Partly Furnished,15,29.9,95528,8574578,171492,47160
+2024-07-09,Nasr City,Standard,Urban,Chalet,109,2,2,3,0,0,0,1,1,0,Semi Finished,Partly Furnished,1,11.9,12200,1329747,26595,7314
+2024-06-13,6th of October,Standard,Urban,Duplex,337,3,3,1,1,0,0,1,0,0,Fully Finished,Unfurnished,4,33.4,13361,4502615,90052,29267
+2024-12-23,Heliopolis,Premium,Urban,Penthouse,412,3,2,15,1,0,0,1,0,1,Fully Finished,Unfurnished,9,12.2,29258,12054418,241088,66299
+2025-11-05,Maadi,Premium,Urban,Chalet,82,3,3,1,0,0,0,0,1,0,Luxury Finished,Partly Furnished,5,14.2,65749,5391429,107829,29653
+2026-04-07,Alexandria,Standard,Urban,Penthouse,170,2,2,12,0,0,1,0,0,1,Luxury Finished,Unfurnished,11,211.3,27570,4686825,93736,25778
+2024-09-30,Haram,Standard,Urban,Apartment,423,3,2,12,0,0,0,1,0,1,Fully Finished,Partly Furnished,8,6.7,13144,5559749,111195,36138
+2024-10-09,New Cairo,Premium,Urban,Duplex,163,4,4,7,1,0,0,1,1,1,Core & Shell,Partly Furnished,0,27.4,38959,6350348,127007,41277
+2025-07-19,Haram,Standard,Urban,Villa,69,6,6,3,0,1,0,0,0,0,Fully Finished,Partly Furnished,0,7.5,37336,2627690,52554,14452
+2025-12-24,Ain Sokhna,Premium,Coastal,Chalet,470,4,3,3,1,0,0,1,1,0,Luxury Finished,Unfurnished,9,117.0,64631,30376444,607529,167070
+2025-07-17,Alexandria,Standard,Urban,Penthouse,452,3,3,12,0,0,1,1,0,1,Fully Finished,Fully Furnished,13,246.4,22535,10185838,203717,56022
+2025-09-28,Haram,Standard,Urban,Villa,373,6,6,2,0,0,0,1,1,0,Luxury Finished,Fully Furnished,14,8.5,31082,11825464,236509,65040
+2024-06-09,New Cairo,Premium,Urban,Apartment,477,2,2,6,1,0,0,1,1,1,Fully Finished,Fully Furnished,2,21.4,33976,16206691,324134,105343
+2025-02-23,Alexandria,Standard,Urban,Duplex,134,3,3,2,0,0,0,1,1,1,Semi Finished,Unfurnished,14,173.2,18616,2494496,49890,16214
+2024-12-29,6th of October,Standard,Urban,Chalet,160,2,2,4,1,0,0,1,1,0,Fully Finished,Unfurnished,0,31.5,39621,6339426,126789,34867
+2025-04-06,Nasr City,Standard,Urban,Duplex,453,3,3,6,0,0,0,1,0,0,Semi Finished,Fully Furnished,19,9.3,17114,7752468,155049,50391
+2025-05-20,Maadi,Premium,Urban,Chalet,213,4,3,4,1,0,0,1,1,0,Semi Finished,Partly Furnished,11,13.3,37797,8050720,161014,44279
+2024-02-26,Maadi,Premium,Urban,Penthouse,369,2,2,15,0,0,0,1,1,1,Fully Finished,Unfurnished,8,14.2,33942,12524479,250490,68885
+2024-09-22,Ain Sokhna,Premium,Coastal,Penthouse,261,4,4,11,1,0,0,1,1,1,Fully Finished,Partly Furnished,3,141.5,57515,15011368,300227,82563
+2025-04-19,Alexandria,Standard,Urban,Penthouse,79,4,4,15,0,0,1,1,0,1,Luxury Finished,Fully Furnished,13,215.6,39896,3151758,63035,17335
+2025-12-11,Nasr City,Standard,Urban,Penthouse,73,4,4,11,0,0,0,1,1,1,Fully Finished,Fully Furnished,19,11.2,27525,2009324,40186,11051
+2024-01-19,North Coast,Premium,Coastal,Penthouse,395,4,4,11,1,0,1,1,0,0,Fully Finished,Fully Furnished,3,228.7,65958,26053569,521071,143295
+2024-11-22,Nasr City,Standard,Urban,Villa,217,6,6,1,0,0,0,1,1,0,Luxury Finished,Unfurnished,9,9.8,29930,6624713,132494,36436
+2024-04-07,6th of October,Standard,Urban,Duplex,119,4,4,8,1,0,0,1,1,1,Fully Finished,Unfurnished,6,29.3,30390,3616369,72327,23506
+2025-06-19,New Cairo,Premium,Urban,Chalet,465,2,2,2,1,0,0,0,0,0,Fully Finished,Partly Furnished,1,22.7,47071,21887798,437756,120383
+2024-11-18,Haram,Standard,Urban,Penthouse,474,3,3,11,0,0,0,1,1,1,Fully Finished,Unfurnished,34,8.4,14863,7044993,140900,38747
+2024-01-31,6th of October,Standard,Urban,Penthouse,287,3,2,14,1,0,0,0,0,1,Luxury Finished,Partly Furnished,3,36.5,27806,7980265,159605,43891
+2025-07-02,Ain Sokhna,Premium,Coastal,Apartment,242,2,2,4,1,0,0,0,0,1,Semi Finished,Fully Furnished,3,124.9,40124,9710098,194202,63116
+2025-03-23,Sheikh Zayed,Premium,Urban,Duplex,172,4,4,6,1,0,0,1,1,1,Core & Shell,Unfurnished,13,35.0,22144,3808684,76174,24756
+2024-04-27,Alexandria,Standard,Urban,Duplex,177,4,4,3,0,0,0,1,1,1,Fully Finished,Fully Furnished,15,194.4,20460,3621403,72428,23539
+2026-01-31,New Cairo,Premium,Urban,Apartment,257,1,1,6,0,0,0,1,0,1,Fully Finished,Unfurnished,5,22.0,27662,7109024,142180,46209
+2024-10-23,Nasr City,Standard,Urban,Chalet,458,4,3,3,0,0,0,1,0,0,Semi Finished,Unfurnished,16,9.2,21986,10069728,201395,55384
+2024-08-05,Ain Sokhna,Premium,Coastal,Apartment,149,1,1,11,1,0,0,1,0,1,Luxury Finished,Unfurnished,1,129.4,71074,10590083,211802,68836
+2025-03-27,Heliopolis,Premium,Urban,Apartment,120,1,1,3,1,0,0,0,0,1,Semi Finished,Partly Furnished,18,10.4,17966,2155907,43118,14013
+2024-06-20,Sheikh Zayed,Premium,Urban,Chalet,166,3,3,2,0,0,0,1,1,0,Semi Finished,Unfurnished,8,21.6,35153,5835436,116709,32095
+2024-05-14,Maadi,Premium,Urban,Penthouse,257,3,2,13,0,0,0,0,0,1,Luxury Finished,Unfurnished,11,13.5,30385,7808984,156180,42949
+2026-02-02,6th of October,Standard,Urban,Penthouse,408,5,5,12,0,0,0,1,0,1,Semi Finished,Partly Furnished,3,36.5,23672,9658151,193163,53120
+2025-05-17,Heliopolis,Premium,Urban,Duplex,108,5,4,1,0,0,0,1,1,0,Semi Finished,Partly Furnished,5,13.7,31721,3425839,68517,22268
+2024-01-03,Heliopolis,Premium,Urban,Duplex,129,2,2,3,1,0,0,1,0,1,Semi Finished,Fully Furnished,23,10.8,30182,3893535,77871,25308
+2024-08-16,Ain Sokhna,Premium,Coastal,Villa,478,5,4,2,1,0,1,0,1,0,Luxury Finished,Unfurnished,3,118.3,114638,55893058,1117861,307412
+2026-02-27,Alexandria,Standard,Urban,Duplex,385,3,3,2,0,0,0,0,0,1,Luxury Finished,Partly Furnished,22,210.5,15815,6088789,121776,39577
+2025-09-02,Alexandria,Standard,Urban,Duplex,211,3,3,5,0,0,0,1,1,1,Fully Finished,Fully Furnished,21,230.9,15717,3316294,66326,21556
+2024-02-19,Heliopolis,Premium,Urban,Duplex,165,5,4,3,0,0,0,0,1,0,Fully Finished,Unfurnished,9,13.9,45855,7566070,151321,49179
+2024-06-06,Ain Sokhna,Premium,Coastal,Chalet,498,4,3,2,1,0,0,0,1,0,Semi Finished,Unfurnished,12,115.0,71429,35571858,711437,195645
+2025-02-26,North Coast,Premium,Coastal,Villa,395,7,6,2,0,1,1,0,1,0,Fully Finished,Fully Furnished,9,205.1,120000,48348000,966960,265914
+2024-01-06,Haram,Standard,Urban,Apartment,264,1,1,9,0,0,0,0,0,1,Semi Finished,Partly Furnished,15,8.6,10514,2775678,55514,18042
+2026-01-31,Alexandria,Standard,Urban,Penthouse,287,2,2,15,0,0,1,1,1,1,Luxury Finished,Unfurnished,11,199.1,25144,7216347,144327,39690
+2024-03-04,Sheikh Zayed,Premium,Urban,Villa,422,7,6,2,1,1,0,0,0,0,Core & Shell,Unfurnished,0,30.1,37318,16062988,321260,88346
+2024-11-10,Heliopolis,Premium,Urban,Duplex,237,4,3,8,1,0,0,0,1,1,Semi Finished,Fully Furnished,0,11.2,25257,5985809,119716,38908
+2025-08-09,Ain Sokhna,Premium,Coastal,Villa,219,3,3,2,1,0,0,0,1,0,Fully Finished,Fully Furnished,0,123.1,120000,26805600,536112,147431
+2025-10-02,Nasr City,Standard,Urban,Penthouse,485,4,4,12,0,0,0,1,0,1,Fully Finished,Fully Furnished,5,11.6,19378,9398244,187965,51690
+2025-09-09,North Coast,Premium,Coastal,Apartment,224,2,1,4,1,0,0,1,1,1,Luxury Finished,Fully Furnished,8,190.6,51280,11486749,229735,74664
+2025-04-25,Heliopolis,Premium,Urban,Apartment,462,1,1,8,1,0,0,1,1,0,Fully Finished,Unfurnished,8,12.5,19877,9183353,183667,59692
+2024-07-30,Alexandria,Standard,Urban,Penthouse,484,4,4,10,0,0,1,1,1,1,Luxury Finished,Unfurnished,14,199.9,23430,11339912,226798,62370
+2025-10-08,Sheikh Zayed,Premium,Urban,Penthouse,255,4,4,15,1,0,0,1,1,0,Fully Finished,Fully Furnished,6,21.5,35007,8926768,178535,49097
+2025-03-02,Ain Sokhna,Premium,Coastal,Apartment,140,1,1,8,0,0,0,1,0,1,Fully Finished,Unfurnished,5,100.8,53887,7544235,150885,49038
+2025-07-11,Sheikh Zayed,Premium,Urban,Duplex,102,3,2,6,1,0,0,0,1,0,Fully Finished,Partly Furnished,0,28.0,41351,4217809,84356,27416
+2024-07-25,Ain Sokhna,Premium,Coastal,Apartment,76,1,1,5,1,0,0,1,0,1,Fully Finished,Unfurnished,6,133.8,52859,4017257,80345,26112
+2024-05-30,Maadi,Premium,Urban,Villa,124,6,6,1,0,1,0,0,1,0,Luxury Finished,Partly Furnished,21,13.2,90642,11464457,229289,63055
+2025-10-02,Heliopolis,Premium,Urban,Penthouse,61,4,5,14,1,0,0,1,0,1,Fully Finished,Fully Furnished,13,10.1,55844,3406500,68130,18736
+2025-06-29,Alexandria,Standard,Urban,Villa,389,4,4,3,0,1,1,1,0,0,Fully Finished,Fully Furnished,14,216.9,25415,10083971,201679,55462
+2025-11-10,6th of October,Standard,Urban,Penthouse,226,4,4,13,0,0,0,1,0,1,Fully Finished,Unfurnished,2,30.7,23095,5219371,104387,28707
+2024-12-19,North Coast,Premium,Coastal,Duplex,118,3,2,8,0,0,0,1,1,1,Fully Finished,Unfurnished,8,219.6,49693,5863755,117275,38114
+2025-08-29,6th of October,Standard,Urban,Chalet,378,3,3,4,1,0,0,0,0,0,Semi Finished,Unfurnished,11,32.1,22219,8398613,167972,46192
+2025-12-28,Ain Sokhna,Premium,Coastal,Penthouse,79,4,3,12,1,0,0,1,1,1,Fully Finished,Unfurnished,0,114.3,64519,5097035,101941,28034
+2025-08-16,Nasr City,Standard,Urban,Duplex,273,4,3,3,0,0,0,1,1,1,Fully Finished,Partly Furnished,23,10.0,14569,3977253,79545,25852
+2025-10-31,North Coast,Premium,Coastal,Penthouse,138,3,3,13,1,0,1,1,0,1,Fully Finished,Fully Furnished,4,215.6,89426,12340831,246817,67875
+2025-04-06,Alexandria,Standard,Urban,Villa,343,5,5,3,0,1,1,0,0,0,Fully Finished,Partly Furnished,7,234.2,31341,10964800,219296,60306
+2025-10-20,New Cairo,Premium,Urban,Villa,468,7,6,3,1,0,0,1,0,0,Fully Finished,Unfurnished,12,18.4,53841,25701774,514035,141360
+2025-09-09,6th of October,Standard,Urban,Duplex,156,4,3,3,1,0,0,0,1,1,Fully Finished,Unfurnished,3,34.1,19663,3067409,61348,19938
+2025-03-31,6th of October,Standard,Urban,Duplex,338,3,3,3,0,0,0,1,1,1,Fully Finished,Unfurnished,16,34.9,17963,6071578,121432,39465
+2024-04-16,6th of October,Standard,Urban,Penthouse,366,5,5,14,1,0,0,1,1,1,Fully Finished,Partly Furnished,2,32.8,24368,8918808,178376,49053
+2025-03-27,Haram,Standard,Urban,Duplex,356,4,3,4,0,0,0,1,1,0,Luxury Finished,Fully Furnished,12,7.5,21141,7526066,150521,48919
+2024-10-26,Heliopolis,Premium,Urban,Penthouse,131,3,3,13,1,0,0,1,0,1,Fully Finished,Fully Furnished,0,11.6,29031,3803052,76061,20917
+2024-03-02,Alexandria,Standard,Urban,Villa,101,5,6,1,0,0,1,1,1,0,Luxury Finished,Partly Furnished,5,180.8,62960,6486113,129722,35674
+2024-10-28,Nasr City,Standard,Urban,Duplex,445,5,4,2,0,0,0,0,1,1,Luxury Finished,Fully Furnished,22,9.7,9574,4260482,85210,27693
+2025-06-26,6th of October,Standard,Urban,Penthouse,318,5,4,13,1,0,0,1,0,1,Fully Finished,Unfurnished,3,33.9,25745,8186754,163735,45027
+2024-02-28,Sheikh Zayed,Premium,Urban,Chalet,99,4,3,4,1,0,0,1,1,0,Semi Finished,Unfurnished,0,25.8,57206,5663405,113268,31149
+2024-07-28,New Cairo,Premium,Urban,Duplex,188,3,2,2,0,0,0,1,1,0,Fully Finished,Partly Furnished,6,22.1,28355,5330762,106615,34650
+2024-08-01,Heliopolis,Premium,Urban,Duplex,425,3,3,4,1,0,0,0,1,1,Fully Finished,Partly Furnished,9,13.5,19500,8287470,165749,53869
+2024-02-05,Alexandria,Standard,Urban,Duplex,454,3,4,4,0,0,0,1,1,1,Core & Shell,Partly Furnished,9,181.9,21554,9785393,195708,63605
+2024-11-27,Ain Sokhna,Premium,Coastal,Apartment,122,2,2,9,0,0,0,0,0,1,Semi Finished,Fully Furnished,0,111.7,38777,4730821,94616,30750
+2024-02-16,Heliopolis,Premium,Urban,Penthouse,217,4,3,13,1,0,0,1,1,1,Luxury Finished,Partly Furnished,13,12.2,39171,8500155,170003,46751
+2025-03-30,Maadi,Premium,Urban,Villa,282,6,5,2,0,0,0,1,0,0,Luxury Finished,Partly Furnished,20,14.0,65161,18742819,374856,103086
+2024-10-02,Heliopolis,Premium,Urban,Apartment,190,2,2,4,0,0,0,1,1,0,Fully Finished,Unfurnished,25,12.4,22512,4277361,85547,27803
+2025-05-07,Nasr City,Standard,Urban,Apartment,463,2,1,1,0,0,0,1,0,1,Core & Shell,Fully Furnished,9,9.1,14035,6498046,129961,42237
+2024-12-08,Alexandria,Standard,Urban,Duplex,493,5,4,1,0,0,0,0,1,0,Semi Finished,Partly Furnished,0,200.2,15576,7679122,153582,49914
+2026-01-27,6th of October,Standard,Urban,Duplex,487,3,3,8,1,0,0,0,1,1,Semi Finished,Partly Furnished,5,33.3,14831,7222749,144455,46948
+2026-02-21,Alexandria,Standard,Urban,Penthouse,275,3,3,12,0,0,1,1,1,1,Luxury Finished,Partly Furnished,14,189.5,33081,9097259,181945,50035
+2024-01-08,Maadi,Premium,Urban,Chalet,135,4,3,4,1,0,0,0,0,0,Semi Finished,Partly Furnished,1,15.0,52973,7151395,143028,39333
+2024-05-24,Haram,Standard,Urban,Penthouse,215,3,3,11,0,0,0,1,1,1,Semi Finished,Unfurnished,25,7.5,14617,3142740,62855,17285
+2025-01-11,Alexandria,Standard,Urban,Chalet,490,4,3,2,0,0,0,1,1,0,Luxury Finished,Fully Furnished,15,203.4,31580,15474291,309486,85109
+2025-05-16,Alexandria,Standard,Urban,Apartment,384,1,1,5,0,0,0,1,1,0,Fully Finished,Unfurnished,18,189.1,12251,4704230,94085,30577
+2024-11-09,6th of October,Standard,Urban,Apartment,271,1,1,5,1,0,0,1,1,0,Semi Finished,Unfurnished,2,38.4,13077,3543905,70878,23035
+2025-10-28,6th of October,Standard,Urban,Duplex,106,3,3,1,0,0,0,1,1,1,Core & Shell,Partly Furnished,0,36.4,26458,2804534,56091,18229
+2025-05-18,Maadi,Premium,Urban,Apartment,207,1,1,10,0,0,0,1,1,1,Core & Shell,Unfurnished,13,15.1,18162,3759466,75189,24437
+2025-12-26,Ain Sokhna,Premium,Coastal,Chalet,63,2,1,2,1,0,1,1,1,0,Fully Finished,Unfurnished,13,121.1,83375,5252614,105052,28889
+2024-06-17,Alexandria,Standard,Urban,Penthouse,286,4,4,15,0,0,1,0,0,1,Fully Finished,Unfurnished,12,210.2,28754,8223629,164473,45230
+2024-07-31,Heliopolis,Premium,Urban,Penthouse,361,3,3,15,0,0,0,1,1,1,Luxury Finished,Unfurnished,13,10.0,40000,14440068,288801,79420
+2024-04-04,Nasr City,Standard,Urban,Duplex,460,3,4,1,0,0,0,0,0,1,Fully Finished,Unfurnished,19,9.5,12255,5637378,112748,36643
+2025-05-09,6th of October,Standard,Urban,Duplex,392,3,3,6,1,0,0,1,1,1,Fully Finished,Fully Furnished,1,38.7,20999,8231747,164635,53506
+2024-02-22,6th of October,Standard,Urban,Apartment,193,2,2,1,0,0,0,1,1,1,Semi Finished,Partly Furnished,10,37.7,14787,2853980,57080,18551
+2024-05-15,Ain Sokhna,Premium,Coastal,Chalet,150,4,3,1,0,0,0,1,1,0,Luxury Finished,Partly Furnished,7,143.6,84155,12623193,252464,69428
+2024-11-06,Maadi,Premium,Urban,Duplex,387,3,3,7,1,0,0,0,0,1,Luxury Finished,Unfurnished,13,15.5,40849,15808410,316168,102755
+2024-04-25,6th of October,Standard,Urban,Chalet,89,4,3,1,0,0,0,0,0,0,Semi Finished,Fully Furnished,1,39.2,38479,3424652,68493,18836
+2025-07-08,Nasr City,Standard,Urban,Apartment,340,2,1,12,0,0,0,0,0,1,Fully Finished,Unfurnished,1,10.2,12588,4279920,85598,27819
+2024-11-05,North Coast,Premium,Coastal,Villa,161,7,6,2,1,0,0,1,1,0,Fully Finished,Unfurnished,5,247.4,110749,18187168,363743,100029
+2024-10-18,Maadi,Premium,Urban,Apartment,142,2,1,1,1,0,0,1,0,1,Core & Shell,Partly Furnished,6,13.6,26593,3776228,75525,24545
+2025-08-10,6th of October,Standard,Urban,Villa,334,5,6,3,1,1,0,1,0,0,Semi Finished,Partly Furnished,11,24.1,26698,9095565,181911,50026
+2024-01-26,Ain Sokhna,Premium,Coastal,Apartment,310,1,1,4,1,0,0,1,1,0,Luxury Finished,Unfurnished,9,123.6,46107,14293315,285866,92907
+2025-12-23,Ain Sokhna,Premium,Coastal,Apartment,334,1,1,6,1,0,0,1,0,1,Fully Finished,Unfurnished,4,101.4,42192,14092164,281843,91599
+2025-11-20,North Coast,Premium,Coastal,Penthouse,376,3,3,11,1,0,1,1,1,1,Luxury Finished,Unfurnished,0,216.8,105756,39764139,795283,218703
+2024-02-12,Alexandria,Standard,Urban,Apartment,435,1,1,1,0,0,0,0,0,1,Semi Finished,Unfurnished,3,205.1,11458,4984073,99681,32396
+2026-01-20,Heliopolis,Premium,Urban,Chalet,393,2,2,3,0,0,0,1,0,0,Luxury Finished,Unfurnished,10,10.4,31286,12295405,245908,67625
+2024-06-20,Nasr City,Standard,Urban,Chalet,127,2,1,2,0,0,0,1,0,0,Fully Finished,Fully Furnished,6,9.8,37786,4798850,95977,26394
+2024-03-31,Alexandria,Standard,Urban,Penthouse,169,4,4,11,0,0,1,1,1,0,Fully Finished,Partly Furnished,15,215.0,25088,4239805,84796,23319
+2024-02-20,Ain Sokhna,Premium,Coastal,Penthouse,121,5,5,12,1,0,1,1,0,1,Fully Finished,Unfurnished,0,127.2,97116,11751011,235020,64631
+2025-08-16,6th of October,Standard,Urban,Chalet,123,3,3,2,0,0,0,0,0,0,Fully Finished,Partly Furnished,8,29.9,41499,5104431,102089,28074
+2024-10-05,Heliopolis,Premium,Urban,Penthouse,363,3,2,11,1,0,0,1,0,1,Luxury Finished,Unfurnished,17,11.4,25492,9253722,185074,50895
+2024-01-07,6th of October,Standard,Urban,Duplex,476,3,3,2,1,0,0,0,1,0,Fully Finished,Unfurnished,3,34.9,14794,7041779,140836,45772
+2024-09-24,Alexandria,Standard,Urban,Penthouse,452,4,3,10,0,0,1,0,1,1,Luxury Finished,Unfurnished,4,181.4,20917,9454345,189087,51999
+2024-06-13,6th of October,Standard,Urban,Apartment,275,2,1,7,1,0,0,0,0,1,Fully Finished,Fully Furnished,6,35.1,16968,4666191,93324,30330
+2024-11-20,North Coast,Premium,Coastal,Penthouse,402,2,2,10,1,0,1,1,1,1,Fully Finished,Unfurnished,8,292.7,65799,26451048,529021,145481
+2025-11-06,Maadi,Premium,Urban,Duplex,233,5,4,7,1,0,0,1,0,1,Fully Finished,Fully Furnished,9,15.2,40597,9459197,189184,61485
+2026-02-15,Alexandria,Standard,Urban,Chalet,85,4,3,3,0,0,1,0,0,0,Fully Finished,Unfurnished,15,188.0,34427,2926316,58526,16095
+2024-05-14,North Coast,Premium,Coastal,Penthouse,366,3,3,14,1,0,0,1,0,1,Luxury Finished,Fully Furnished,9,206.6,44216,16183134,323663,89007
+2025-04-13,Nasr City,Standard,Urban,Apartment,216,1,1,1,0,0,0,0,1,1,Semi Finished,Partly Furnished,25,10.6,7500,1620000,32400,10530
+2025-11-14,Nasr City,Standard,Urban,Duplex,87,4,3,1,0,0,0,0,1,1,Fully Finished,Unfurnished,5,11.0,39169,3407745,68155,22150
+2026-03-01,Maadi,Premium,Urban,Duplex,488,4,4,2,1,0,0,1,1,1,Semi Finished,Fully Furnished,18,13.9,19816,9670251,193405,62857
+2025-07-05,Maadi,Premium,Urban,Duplex,253,2,2,6,0,0,0,1,0,0,Fully Finished,Unfurnished,16,11.9,25002,6325446,126509,41115
+2025-12-23,Sheikh Zayed,Premium,Urban,Chalet,498,2,1,4,1,0,0,1,1,0,Luxury Finished,Partly Furnished,3,30.9,20539,10228474,204569,56257
+2024-11-29,North Coast,Premium,Coastal,Apartment,269,1,1,7,0,0,0,1,1,1,Fully Finished,Unfurnished,10,172.7,40097,10786221,215724,70110
+2024-10-28,Maadi,Premium,Urban,Villa,342,5,6,2,1,1,0,1,1,0,Fully Finished,Unfurnished,21,14.8,55847,19481501,389630,107148
+2025-06-24,6th of October,Standard,Urban,Duplex,421,4,4,7,1,0,0,1,1,1,Semi Finished,Fully Furnished,9,32.0,25047,10544963,210899,68542
+2024-05-08,New Cairo,Premium,Urban,Chalet,483,4,3,2,0,0,0,1,1,0,Semi Finished,Partly Furnished,9,27.1,24273,11723677,234474,64480
+2025-05-15,6th of October,Standard,Urban,Penthouse,399,2,2,11,1,0,0,1,1,1,Fully Finished,Fully Furnished,7,38.9,19578,7811617,156232,42964
+2025-06-14,Maadi,Premium,Urban,Apartment,361,1,1,12,1,0,0,1,1,1,Fully Finished,Unfurnished,13,15.4,22421,8093809,161876,52610
+2024-11-12,Nasr City,Standard,Urban,Duplex,412,3,3,8,0,0,0,0,1,1,Fully Finished,Unfurnished,16,11.7,12904,5316280,106326,34556
+2024-06-04,Ain Sokhna,Premium,Coastal,Penthouse,304,3,4,10,1,0,1,1,1,1,Luxury Finished,Fully Furnished,0,125.6,97045,29501631,590033,162259
+2026-01-10,Haram,Standard,Urban,Chalet,369,3,2,1,0,0,0,1,1,0,Luxury Finished,Unfurnished,11,8.5,26661,9837896,196758,54108
+2025-07-31,Heliopolis,Premium,Urban,Apartment,100,1,1,9,1,0,0,1,0,1,Semi Finished,Unfurnished,9,12.1,31473,3147316,62946,20458
+2024-09-29,Heliopolis,Premium,Urban,Chalet,118,4,3,3,1,0,0,1,0,0,Fully Finished,Unfurnished,25,12.7,44088,5202345,104047,28613
+2024-06-23,Ain Sokhna,Premium,Coastal,Apartment,98,1,1,6,1,0,0,1,1,1,Core & Shell,Unfurnished,0,103.8,55238,5413300,108266,35186
+2024-01-04,6th of October,Standard,Urban,Chalet,392,3,2,2,1,0,0,1,1,0,Fully Finished,Unfurnished,10,26.2,26068,10218772,204375,56203
+2026-02-09,6th of October,Standard,Urban,Duplex,131,2,2,4,0,0,0,1,1,1,Semi Finished,Unfurnished,5,44.1,16031,2100052,42001,13650
+2024-10-06,Heliopolis,Premium,Urban,Penthouse,327,4,4,14,0,0,0,1,1,1,Fully Finished,Fully Furnished,19,12.4,30233,9886122,197722,54374
+2025-03-30,New Cairo,Premium,Urban,Penthouse,149,4,4,14,0,0,0,1,0,1,Semi Finished,Unfurnished,7,25.7,39084,5823564,116471,32030
+2024-03-25,Haram,Standard,Urban,Penthouse,67,4,5,10,0,0,0,1,0,1,Fully Finished,Fully Furnished,18,7.6,14825,993300,19866,5463
+2025-07-19,Ain Sokhna,Premium,Coastal,Penthouse,490,3,2,13,0,0,0,1,1,1,Luxury Finished,Unfurnished,0,126.0,47121,23089286,461786,126991
+2024-07-11,New Cairo,Premium,Urban,Duplex,397,2,3,2,1,0,0,0,1,0,Luxury Finished,Fully Furnished,8,22.9,29802,11831572,236631,76905
+2025-05-15,Sheikh Zayed,Premium,Urban,Duplex,220,3,2,5,1,0,0,1,1,1,Semi Finished,Unfurnished,6,29.0,16902,3718453,74369,24170
+2026-01-03,Heliopolis,Premium,Urban,Chalet,298,4,3,4,0,0,0,0,0,0,Luxury Finished,Fully Furnished,4,15.2,53038,15805225,316104,86929
+2024-11-16,North Coast,Premium,Coastal,Duplex,172,3,3,1,1,0,0,1,1,0,Luxury Finished,Partly Furnished,12,215.0,72141,12408197,248164,80653
+2024-03-16,Haram,Standard,Urban,Chalet,202,3,3,3,0,0,0,1,1,0,Semi Finished,Partly Furnished,21,7.3,17192,3472783,69456,19100
+2024-05-02,Ain Sokhna,Premium,Coastal,Villa,344,6,6,2,1,0,1,0,1,0,Luxury Finished,Fully Furnished,8,115.2,120000,42105600,842112,231581
+2024-06-02,Sheikh Zayed,Premium,Urban,Chalet,390,4,3,3,0,0,0,0,1,0,Semi Finished,Unfurnished,6,25.9,41433,16159050,323181,88875
+2024-03-16,Sheikh Zayed,Premium,Urban,Chalet,177,2,2,2,1,0,0,1,0,0,Fully Finished,Fully Furnished,5,29.1,55614,9843629,196873,54140
+2025-07-29,Ain Sokhna,Premium,Coastal,Duplex,318,4,4,1,1,0,0,1,1,0,Fully Finished,Unfurnished,0,115.3,47841,15213557,304271,98888
+2025-10-14,Maadi,Premium,Urban,Chalet,459,2,2,2,0,0,0,0,1,0,Fully Finished,Unfurnished,7,13.4,35977,16513281,330266,90823
+2026-01-20,Sheikh Zayed,Premium,Urban,Apartment,484,1,1,6,0,0,0,1,0,1,Fully Finished,Fully Furnished,0,25.0,26374,12764973,255299,82972
+2024-12-03,New Cairo,Premium,Urban,Penthouse,416,2,3,14,1,0,0,1,1,1,Luxury Finished,Fully Furnished,3,28.5,45220,18811601,376232,103464
+2025-01-26,New Cairo,Premium,Urban,Apartment,338,1,1,8,0,0,0,0,1,1,Fully Finished,Unfurnished,4,27.9,27202,9194160,183883,59762
+2024-01-15,Maadi,Premium,Urban,Duplex,336,5,4,7,1,0,0,0,1,1,Core & Shell,Partly Furnished,9,12.5,30878,10375069,207501,67438
+2024-05-11,Sheikh Zayed,Premium,Urban,Duplex,158,5,4,4,1,0,0,1,1,0,Fully Finished,Unfurnished,13,31.3,35479,5605614,112112,36436
+2024-11-08,Ain Sokhna,Premium,Coastal,Apartment,496,1,1,12,1,0,0,1,1,1,Fully Finished,Unfurnished,4,110.1,38507,19099587,381992,124147
+2024-02-17,Haram,Standard,Urban,Duplex,423,5,4,7,0,0,0,1,1,1,Luxury Finished,Partly Furnished,10,7.6,12460,5270373,105407,34257
+2025-05-12,6th of October,Standard,Urban,Chalet,215,4,3,2,0,0,0,1,0,0,Core & Shell,Unfurnished,5,35.8,21395,4599976,92000,25300
+2026-02-16,Alexandria,Standard,Urban,Chalet,107,2,2,4,0,0,0,1,0,0,Fully Finished,Fully Furnished,21,235.5,33438,3577864,71557,19678
+2024-04-08,Haram,Standard,Urban,Chalet,372,4,3,4,0,0,0,1,0,0,Core & Shell,Partly Furnished,16,7.8,14540,5408710,108174,29748
+2025-06-25,Nasr City,Standard,Urban,Duplex,476,4,4,2,0,0,0,1,1,0,Semi Finished,Fully Furnished,13,10.6,16028,7629388,152588,49591
+2025-11-19,Ain Sokhna,Premium,Coastal,Villa,499,7,6,1,1,1,1,0,1,0,Luxury Finished,Partly Furnished,0,122.9,120000,61077600,1221552,335927
+2024-04-02,Heliopolis,Premium,Urban,Duplex,480,3,3,8,1,0,0,1,1,1,Core & Shell,Unfurnished,8,9.8,17365,8335165,166703,54179
+2026-02-05,6th of October,Standard,Urban,Penthouse,261,3,2,10,0,0,0,1,0,1,Luxury Finished,Unfurnished,13,39.0,42973,11216011,224320,61688
+2024-06-11,Sheikh Zayed,Premium,Urban,Duplex,478,3,3,3,1,0,0,1,1,1,Semi Finished,Unfurnished,8,28.6,26930,12872363,257447,83670
+2025-11-12,New Cairo,Premium,Urban,Apartment,353,1,1,5,1,0,0,1,1,1,Semi Finished,Unfurnished,8,24.6,28052,9902299,198046,64365
+2025-03-14,Heliopolis,Premium,Urban,Villa,235,4,3,1,1,0,0,1,1,0,Semi Finished,Unfurnished,14,14.6,49979,11979941,239599,65890
+2024-09-18,New Cairo,Premium,Urban,Duplex,172,3,4,4,1,0,0,1,1,0,Fully Finished,Unfurnished,10,28.9,39838,6852159,137043,44539
+2025-02-18,Heliopolis,Premium,Urban,Chalet,126,3,3,3,0,0,0,1,0,0,Semi Finished,Partly Furnished,0,11.3,45448,5726420,114528,31495
+2024-10-17,Nasr City,Standard,Urban,Villa,214,4,3,3,0,0,0,0,1,0,Fully Finished,Unfurnished,9,8.7,38591,8423547,168471,46330
+2024-01-22,Maadi,Premium,Urban,Chalet,293,4,3,1,0,0,0,1,0,0,Fully Finished,Unfurnished,6,15.5,40279,11801739,236035,64910
+2025-08-21,Sheikh Zayed,Premium,Urban,Chalet,184,2,2,4,1,0,0,1,1,0,Semi Finished,Unfurnished,0,29.7,40953,7535264,150705,41444
+2025-01-19,Heliopolis,Premium,Urban,Villa,183,7,6,3,1,1,0,1,1,0,Luxury Finished,Partly Furnished,1,13.2,73337,13689060,273781,75290
+2024-09-09,6th of October,Standard,Urban,Duplex,333,3,2,6,1,0,0,0,1,1,Luxury Finished,Fully Furnished,15,38.1,22379,7452231,149045,48440
+2024-03-24,Alexandria,Standard,Urban,Apartment,344,1,1,8,0,0,0,1,0,1,Luxury Finished,Partly Furnished,22,211.5,21127,7267822,145356,47241
+2025-03-09,Nasr City,Standard,Urban,Apartment,168,1,1,12,0,0,0,1,1,1,Fully Finished,Unfurnished,6,7.3,20262,3404059,68081,22126
+2024-10-20,Maadi,Premium,Urban,Duplex,128,2,2,3,1,0,0,0,1,1,Semi Finished,Partly Furnished,21,14.2,36162,4628738,92575,30087
+2025-09-11,Alexandria,Standard,Urban,Apartment,456,1,1,10,0,0,0,0,0,1,Semi Finished,Fully Furnished,0,249.2,19784,9021619,180432,58641
+2026-04-10,Maadi,Premium,Urban,Penthouse,438,2,2,15,0,0,0,1,1,1,Luxury Finished,Partly Furnished,12,17.6,47518,20812769,416255,114470
+2025-10-18,6th of October,Standard,Urban,Chalet,101,4,3,1,0,0,0,1,1,0,Core & Shell,Unfurnished,18,39.8,18058,1823836,36477,10031
+2025-11-21,6th of October,Standard,Urban,Villa,400,7,6,1,1,1,0,0,0,0,Luxury Finished,Unfurnished,3,34.4,39933,16292731,325855,89610
+2024-04-04,Heliopolis,Premium,Urban,Duplex,198,4,4,4,0,0,0,0,1,0,Fully Finished,Fully Furnished,7,14.9,24953,4940644,98813,32114
+2025-06-01,Nasr City,Standard,Urban,Chalet,444,3,3,1,0,0,0,1,1,0,Luxury Finished,Unfurnished,17,11.1,23588,10473022,209460,57602
+2024-05-27,North Coast,Premium,Coastal,Penthouse,456,4,3,10,1,0,1,0,0,1,Semi Finished,Unfurnished,3,202.0,70333,32072035,641441,176396
+2024-03-25,6th of October,Standard,Urban,Penthouse,332,3,3,14,0,0,0,1,1,1,Fully Finished,Unfurnished,0,34.7,27447,9112339,182247,50118
+2024-10-12,Maadi,Premium,Urban,Apartment,211,1,1,7,0,0,0,1,0,1,Fully Finished,Unfurnished,5,14.3,22470,4741132,94823,30817
+2025-09-08,6th of October,Standard,Urban,Penthouse,400,3,3,10,1,0,0,1,0,1,Fully Finished,Partly Furnished,10,30.4,20502,8200830,164017,45105
+2025-05-25,Heliopolis,Premium,Urban,Apartment,160,1,1,1,0,0,0,1,1,1,Fully Finished,Unfurnished,7,12.0,20207,3233164,64663,21016
+2025-04-25,Maadi,Premium,Urban,Chalet,123,4,3,1,1,0,0,0,0,0,Core & Shell,Fully Furnished,10,12.3,29758,3660173,73203,20131
+2026-03-29,Sheikh Zayed,Premium,Urban,Chalet,369,2,2,4,1,0,0,1,1,0,Fully Finished,Partly Furnished,6,30.9,35628,13146561,262931,72306
+2025-11-11,Maadi,Premium,Urban,Penthouse,305,3,2,12,0,0,0,1,0,1,Luxury Finished,Fully Furnished,5,15.9,41547,12671865,253437,69695
+2024-05-23,Heliopolis,Premium,Urban,Apartment,243,2,2,2,0,0,0,1,1,0,Fully Finished,Unfurnished,12,11.3,23722,5764516,115290,37469
+2025-12-04,Alexandria,Standard,Urban,Villa,71,7,6,2,0,0,1,0,1,0,Fully Finished,Fully Furnished,5,187.6,65711,4758779,95176,26173
+2025-01-21,New Cairo,Premium,Urban,Chalet,206,4,3,3,1,0,0,1,1,0,Semi Finished,Fully Furnished,4,20.8,25405,5233371,104667,28784
+2024-11-30,Nasr City,Standard,Urban,Villa,287,7,6,3,0,0,0,1,0,0,Semi Finished,Unfurnished,4,11.4,22756,6661583,133232,36639
+2025-01-02,New Cairo,Premium,Urban,Chalet,262,1,1,1,1,0,0,0,1,0,Semi Finished,Partly Furnished,12,25.4,32433,8497428,169949,46736
+2025-03-07,Alexandria,Standard,Urban,Chalet,301,3,3,2,0,0,1,1,0,0,Luxury Finished,Unfurnished,2,199.4,41769,12572539,251451,69149
+2024-10-16,6th of October,Standard,Urban,Penthouse,278,4,5,12,0,0,0,1,0,1,Fully Finished,Unfurnished,2,36.5,17914,4980146,99603,27391
+2024-01-22,Nasr City,Standard,Urban,Penthouse,222,2,2,12,0,0,0,1,1,0,Fully Finished,Unfurnished,7,10.8,17375,3857348,77147,21215
+2024-01-17,North Coast,Premium,Coastal,Duplex,488,4,3,2,1,0,0,1,0,1,Fully Finished,Unfurnished,0,282.1,48636,23734587,474692,154275
+2025-09-15,New Cairo,Premium,Urban,Apartment,284,1,1,8,1,0,0,1,1,0,Luxury Finished,Unfurnished,11,24.5,23332,6626201,132524,43070
+2024-03-05,North Coast,Premium,Coastal,Chalet,122,2,2,4,1,0,0,1,0,0,Fully Finished,Partly Furnished,0,240.2,96990,11832817,236656,65080
+2025-08-25,6th of October,Standard,Urban,Chalet,384,3,3,2,1,0,0,1,1,0,Fully Finished,Fully Furnished,1,36.3,39690,15240859,304817,83825
+2024-04-24,Ain Sokhna,Premium,Coastal,Villa,81,5,5,3,0,0,1,1,1,0,Fully Finished,Partly Furnished,1,105.3,120000,9914400,198288,54529
+2026-03-12,Maadi,Premium,Urban,Chalet,382,4,3,2,0,0,0,0,1,0,Luxury Finished,Unfurnished,1,13.1,59612,22771740,455435,125245
+2025-03-12,Heliopolis,Premium,Urban,Duplex,253,5,4,4,0,0,0,1,1,1,Fully Finished,Unfurnished,17,9.2,19765,5000505,100010,32503
+2024-01-18,North Coast,Premium,Coastal,Chalet,243,3,3,1,1,0,1,1,0,0,Fully Finished,Unfurnished,2,220.2,60200,14628637,292573,80458
+2025-11-06,Sheikh Zayed,Premium,Urban,Villa,172,5,6,3,1,0,0,1,1,0,Fully Finished,Fully Furnished,7,28.2,63096,11069624,221392,60883
+2024-03-02,Ain Sokhna,Premium,Coastal,Chalet,124,3,3,3,1,0,1,1,0,0,Luxury Finished,Fully Furnished,9,117.3,120000,14880000,297600,81840
+2024-03-22,Alexandria,Standard,Urban,Penthouse,60,3,3,12,0,0,0,1,1,1,Fully Finished,Unfurnished,14,216.9,18493,1109577,22192,6103
+2024-11-22,North Coast,Premium,Coastal,Penthouse,247,4,4,15,1,0,0,1,1,0,Fully Finished,Fully Furnished,1,223.5,56754,14018188,280364,77100
+2024-01-09,Alexandria,Standard,Urban,Apartment,223,2,1,2,0,0,0,1,0,1,Semi Finished,Partly Furnished,1,164.5,18061,4027511,80550,26179
+2024-10-27,North Coast,Premium,Coastal,Apartment,349,1,1,1,0,0,0,1,0,0,Semi Finished,Unfurnished,5,214.5,27613,9636999,192740,62640
+2024-05-01,Nasr City,Standard,Urban,Chalet,414,4,3,1,0,0,0,0,1,0,Luxury Finished,Partly Furnished,5,10.0,24162,10003092,200062,55017
+2025-10-29,Sheikh Zayed,Premium,Urban,Penthouse,120,2,2,15,1,0,0,1,0,1,Fully Finished,Unfurnished,1,28.6,33227,3987290,79746,21930
+2025-11-26,Maadi,Premium,Urban,Villa,483,7,6,2,1,0,0,0,0,0,Luxury Finished,Fully Furnished,7,12.6,79949,39387602,787752,216632
+2024-04-01,Ain Sokhna,Premium,Coastal,Villa,293,5,5,2,1,0,1,1,1,0,Core & Shell,Fully Furnished,8,123.8,104825,31327899,626558,172303
+2024-03-20,Maadi,Premium,Urban,Duplex,381,4,3,4,1,0,0,1,1,0,Core & Shell,Unfurnished,12,15.9,26652,10154405,203088,66004
+2024-02-23,Haram,Standard,Urban,Penthouse,243,3,2,12,0,0,0,1,0,1,Fully Finished,Unfurnished,11,7.6,21784,5293519,105870,29114
+2024-12-02,Sheikh Zayed,Premium,Urban,Chalet,451,3,2,3,0,0,0,0,1,0,Fully Finished,Unfurnished,0,32.5,24008,10827595,216552,59552
+2025-02-05,Ain Sokhna,Premium,Coastal,Chalet,177,4,3,1,1,0,1,0,1,0,Fully Finished,Partly Furnished,4,117.4,120000,21240000,424800,116820
+2024-03-05,Ain Sokhna,Premium,Coastal,Penthouse,354,4,4,10,1,0,1,1,0,1,Fully Finished,Unfurnished,3,111.7,79344,28087681,561754,154482
+2026-01-14,New Cairo,Premium,Urban,Apartment,217,1,1,12,0,0,0,1,0,1,Semi Finished,Unfurnished,0,21.9,18904,4102257,82045,26665
+2026-01-05,Heliopolis,Premium,Urban,Chalet,112,2,2,3,1,0,0,0,1,0,Fully Finished,Partly Furnished,11,11.1,85083,9529338,190587,52411
+2025-09-12,New Cairo,Premium,Urban,Villa,69,5,5,2,0,1,0,0,1,0,Semi Finished,Partly Furnished,3,26.8,69287,4876401,97528,26820
+2024-07-05,Nasr City,Standard,Urban,Duplex,219,3,3,6,0,0,0,1,1,1,Semi Finished,Unfurnished,9,7.5,13757,3012840,60257,19583
+2024-06-08,Sheikh Zayed,Premium,Urban,Duplex,425,3,3,5,1,0,0,1,1,1,Fully Finished,Unfurnished,13,28.7,29048,12345210,246904,80244
+2025-07-29,Heliopolis,Premium,Urban,Duplex,264,4,3,5,1,0,0,1,0,1,Fully Finished,Partly Furnished,14,11.0,27066,7145493,142910,46446
+2024-11-28,North Coast,Premium,Coastal,Villa,71,5,5,2,0,0,0,1,1,0,Fully Finished,Unfurnished,10,222.9,101508,7351232,147025,40432
+2025-08-15,Sheikh Zayed,Premium,Urban,Villa,307,7,6,3,0,1,0,1,1,0,Luxury Finished,Fully Furnished,12,37.0,60211,18854519,377090,103700
+2025-04-05,Alexandria,Standard,Urban,Duplex,108,4,3,5,0,0,0,0,1,1,Core & Shell,Unfurnished,17,141.4,21853,2360098,47202,15341
+2025-07-03,New Cairo,Premium,Urban,Villa,408,7,6,3,1,1,0,1,1,0,Fully Finished,Unfurnished,3,21.7,76434,31808753,636175,174948
+2024-05-18,Maadi,Premium,Urban,Apartment,402,1,1,4,0,0,0,1,0,1,Semi Finished,Unfurnished,1,15.6,18929,7609410,152188,49461
+2024-07-16,Alexandria,Standard,Urban,Penthouse,487,3,4,15,0,0,1,1,1,1,Luxury Finished,Fully Furnished,7,231.4,30247,14730192,294604,81016
+2024-01-09,Alexandria,Standard,Urban,Apartment,166,1,1,1,0,0,0,0,1,1,Fully Finished,Partly Furnished,17,226.5,16688,2770288,55406,18007
+2025-02-21,Nasr City,Standard,Urban,Duplex,397,4,3,8,0,0,0,1,1,1,Fully Finished,Unfurnished,1,11.6,17337,6882778,137656,44738
+2024-09-29,6th of October,Standard,Urban,Penthouse,142,3,3,15,1,0,0,1,1,1,Luxury Finished,Unfurnished,8,38.3,23207,3295390,65908,18125
+2025-07-07,Maadi,Premium,Urban,Duplex,238,5,4,6,1,0,0,0,1,1,Fully Finished,Unfurnished,15,13.9,27944,6650600,133012,43229
+2025-10-01,New Cairo,Premium,Urban,Villa,277,6,6,3,1,0,0,1,0,0,Fully Finished,Unfurnished,9,27.5,46129,13033385,260668,71684
+2024-01-04,New Cairo,Premium,Urban,Duplex,276,2,2,8,0,0,0,0,1,1,Fully Finished,Partly Furnished,5,28.7,21070,5815401,116308,37800
+2024-04-29,Ain Sokhna,Premium,Coastal,Penthouse,464,4,3,13,0,0,1,1,1,1,Fully Finished,Partly Furnished,10,146.1,55355,25684528,513691,141265
+2024-04-02,Heliopolis,Premium,Urban,Apartment,83,1,1,12,0,0,0,1,1,1,Semi Finished,Unfurnished,21,13.0,25515,2117719,42354,13765
+2025-11-09,New Cairo,Premium,Urban,Duplex,490,3,3,5,1,0,0,1,1,1,Semi Finished,Unfurnished,11,27.8,16596,8132183,162644,52859
+2025-02-04,Alexandria,Standard,Urban,Penthouse,399,2,2,12,0,0,0,1,1,1,Fully Finished,Unfurnished,12,181.1,19970,7967987,159360,43824
+2025-02-28,6th of October,Standard,Urban,Duplex,352,3,2,1,1,0,0,1,0,1,Fully Finished,Partly Furnished,6,38.1,27429,9655046,193101,62758
+2026-04-10,Heliopolis,Premium,Urban,Duplex,100,4,4,1,1,0,0,1,0,1,Luxury Finished,Partly Furnished,2,12.0,25779,2577948,51559,16757
+2026-01-16,Sheikh Zayed,Premium,Urban,Chalet,295,3,2,2,1,0,0,1,1,0,Core & Shell,Partly Furnished,0,23.9,36508,10769905,215398,59234
+2025-08-10,Ain Sokhna,Premium,Coastal,Apartment,72,1,1,1,1,0,0,1,0,1,Luxury Finished,Unfurnished,6,118.3,68410,4925496,98510,32016
+2025-02-07,Heliopolis,Premium,Urban,Penthouse,159,5,5,10,0,0,0,1,0,0,Fully Finished,Fully Furnished,1,11.1,43180,6865688,137314,37761
+2025-10-28,Alexandria,Standard,Urban,Apartment,225,1,1,5,0,0,0,1,0,1,Semi Finished,Partly Furnished,20,205.3,14368,3232754,64655,21013
+2025-06-30,New Cairo,Premium,Urban,Duplex,168,3,3,2,0,0,0,0,0,1,Fully Finished,Partly Furnished,2,25.6,29680,4986223,99724,32410
+2024-01-31,Sheikh Zayed,Premium,Urban,Apartment,275,1,1,10,0,0,0,1,1,0,Fully Finished,Fully Furnished,2,30.8,26401,7260291,145206,47192
+2025-12-17,6th of October,Standard,Urban,Duplex,385,4,4,4,1,0,0,1,1,1,Luxury Finished,Unfurnished,2,33.1,20631,7943015,158860,51630
+2024-03-02,Heliopolis,Premium,Urban,Duplex,369,3,3,1,1,0,0,1,1,1,Semi Finished,Unfurnished,15,14.8,26744,9868473,197369,64145
+2025-02-06,Heliopolis,Premium,Urban,Duplex,294,3,3,4,0,0,0,1,1,0,Fully Finished,Unfurnished,0,11.9,41500,12200881,244018,79306
+2025-03-07,Alexandria,Standard,Urban,Apartment,177,1,1,9,0,0,0,0,1,1,Fully Finished,Partly Furnished,0,216.6,24015,4250698,85014,27630
+2024-10-10,Haram,Standard,Urban,Penthouse,103,4,5,10,0,0,0,1,0,1,Luxury Finished,Unfurnished,19,8.0,18148,1869237,37385,10281
+2026-01-24,Haram,Standard,Urban,Penthouse,224,3,3,15,0,0,0,1,0,1,Fully Finished,Unfurnished,9,6.6,13934,3121110,62422,17166
+2025-09-02,Maadi,Premium,Urban,Apartment,415,1,1,7,1,0,0,1,0,1,Semi Finished,Unfurnished,9,15.8,19155,7949476,158990,51672
+2024-07-01,Haram,Standard,Urban,Chalet,468,4,3,3,0,0,0,0,1,0,Fully Finished,Partly Furnished,11,7.7,21927,10261923,205238,56441
+2025-11-04,Maadi,Premium,Urban,Apartment,327,2,1,1,0,0,0,1,1,1,Fully Finished,Partly Furnished,9,10.4,16641,5441685,108834,35371
+2024-12-13,Nasr City,Standard,Urban,Penthouse,230,3,3,12,0,0,0,1,0,1,Fully Finished,Partly Furnished,11,11.1,20143,4632826,92657,25481
+2025-07-06,Haram,Standard,Urban,Apartment,399,2,2,8,0,0,0,1,0,1,Fully Finished,Unfurnished,6,9.6,9660,3854185,77084,25052
+2024-08-17,New Cairo,Premium,Urban,Duplex,245,3,3,6,0,0,0,1,0,1,Semi Finished,Unfurnished,10,25.2,22805,5587129,111743,36316
+2025-10-16,Maadi,Premium,Urban,Penthouse,229,4,3,13,1,0,0,1,1,0,Luxury Finished,Fully Furnished,12,15.5,42764,9792937,195859,53861
+2024-12-08,Alexandria,Standard,Urban,Villa,480,4,4,1,0,1,0,0,0,0,Semi Finished,Unfurnished,6,223.0,32336,15831774,316635,87075
+2024-07-04,Ain Sokhna,Premium,Coastal,Penthouse,212,4,4,13,1,0,0,1,1,1,Semi Finished,Fully Furnished,13,127.3,69763,14789789,295796,81344
+2024-12-31,Ain Sokhna,Premium,Coastal,Villa,66,7,6,3,0,1,1,0,0,0,Fully Finished,Unfurnished,11,120.3,120000,8078400,161568,44431
+2025-07-08,Heliopolis,Premium,Urban,Duplex,194,2,2,4,0,0,0,1,1,0,Semi Finished,Partly Furnished,4,13.0,34337,6661292,133226,43298
+2024-04-12,North Coast,Premium,Coastal,Apartment,276,1,1,6,1,0,0,1,1,1,Fully Finished,Fully Furnished,14,260.3,42236,11657004,233140,75771
+2024-12-13,Maadi,Premium,Urban,Chalet,191,4,3,1,0,0,0,1,1,0,Fully Finished,Unfurnished,10,11.0,39661,7575253,151505,41664
+2024-11-19,6th of October,Standard,Urban,Penthouse,216,2,2,14,0,0,0,1,1,1,Luxury Finished,Partly Furnished,3,30.3,21917,4733978,94680,26037
+2024-01-16,Ain Sokhna,Premium,Coastal,Duplex,277,2,2,7,0,0,0,1,0,1,Fully Finished,Unfurnished,0,117.8,61928,17154022,343080,111501
+2025-01-27,Haram,Standard,Urban,Apartment,178,1,1,3,0,0,0,1,1,1,Fully Finished,Partly Furnished,18,7.6,17856,3178393,63568,20660
+2024-07-01,North Coast,Premium,Coastal,Duplex,493,3,2,7,0,0,0,1,1,0,Semi Finished,Unfurnished,9,189.8,34520,17018312,340366,110619
+2024-07-31,Alexandria,Standard,Urban,Apartment,118,1,1,5,0,0,0,1,1,1,Fully Finished,Unfurnished,7,212.7,20742,2447586,48952,15909
+2024-04-29,Ain Sokhna,Premium,Coastal,Villa,85,4,5,3,1,0,0,1,1,0,Fully Finished,Partly Furnished,12,124.1,120000,10404000,208080,57222
+2024-05-07,Haram,Standard,Urban,Chalet,360,4,3,4,0,0,0,1,0,0,Semi Finished,Unfurnished,7,7.1,17582,6329350,126587,34811
+2024-01-20,Heliopolis,Premium,Urban,Duplex,410,3,3,7,1,0,0,1,1,0,Fully Finished,Unfurnished,9,11.3,29234,11985760,239715,77907
+2024-08-07,New Cairo,Premium,Urban,Apartment,234,1,1,7,1,0,0,1,1,1,Fully Finished,Partly Furnished,5,25.0,19839,4642404,92848,30176
+2026-04-09,Maadi,Premium,Urban,Duplex,116,4,4,5,1,0,0,0,0,1,Semi Finished,Unfurnished,4,12.1,33747,3914619,78292,25445
+2024-03-10,Sheikh Zayed,Premium,Urban,Villa,300,6,5,3,1,1,0,1,0,0,Luxury Finished,Unfurnished,0,29.4,63347,19384251,387685,106613
+2025-06-05,Heliopolis,Premium,Urban,Duplex,367,4,4,7,0,0,0,0,1,0,Semi Finished,Fully Furnished,10,11.5,26999,9908504,198170,64405
+2025-04-22,North Coast,Premium,Coastal,Apartment,493,1,1,5,0,0,0,1,1,1,Fully Finished,Unfurnished,1,225.2,46984,23163244,463265,150561
+2025-06-21,Haram,Standard,Urban,Penthouse,105,5,5,15,0,0,0,1,0,1,Semi Finished,Fully Furnished,11,7.9,14565,1529299,30586,8411
+2026-01-20,Maadi,Premium,Urban,Villa,137,4,4,3,0,1,0,0,1,0,Luxury Finished,Unfurnished,16,12.7,74209,10369965,207399,57035
+2025-05-01,6th of October,Standard,Urban,Penthouse,67,3,3,12,1,0,0,1,0,1,Luxury Finished,Unfurnished,3,32.2,18340,1228768,24575,6758
+2025-05-10,New Cairo,Premium,Urban,Apartment,299,1,1,4,0,0,0,0,0,1,Fully Finished,Fully Furnished,1,23.2,28596,8550353,171007,55577
+2025-08-02,Sheikh Zayed,Premium,Urban,Chalet,410,4,3,1,1,0,0,1,0,0,Semi Finished,Unfurnished,10,29.1,45653,18717787,374356,102948
+2025-01-29,Maadi,Premium,Urban,Apartment,331,1,1,3,1,0,0,1,1,1,Fully Finished,Unfurnished,8,15.3,26563,8792338,175847,57150
+2024-01-27,6th of October,Standard,Urban,Duplex,107,3,2,1,0,0,0,0,1,1,Fully Finished,Fully Furnished,12,34.3,21210,2269418,45388,14751
+2024-12-24,Haram,Standard,Urban,Apartment,391,2,1,4,0,0,0,1,0,1,Luxury Finished,Partly Furnished,8,7.3,16952,6628227,132565,43083
+2025-10-06,Alexandria,Standard,Urban,Villa,78,6,6,2,0,1,1,1,0,0,Fully Finished,Partly Furnished,1,231.3,74409,5920018,118400,32560
+2024-04-25,Ain Sokhna,Premium,Coastal,Villa,213,6,5,2,1,1,0,1,1,0,Luxury Finished,Partly Furnished,0,112.3,102642,22299962,445999,122650
+2025-09-25,6th of October,Standard,Urban,Penthouse,118,3,2,12,0,0,0,1,1,1,Fully Finished,Fully Furnished,1,34.6,30569,3607094,72142,19839
+2024-04-28,Heliopolis,Premium,Urban,Villa,477,5,5,1,0,1,0,1,1,0,Luxury Finished,Fully Furnished,26,12.9,46237,22496044,449921,123728
+2025-07-22,North Coast,Premium,Coastal,Penthouse,421,3,3,11,1,0,1,0,0,1,Fully Finished,Fully Furnished,6,224.3,67643,28477823,569556,156628
+2025-04-01,Nasr City,Standard,Urban,Apartment,486,2,1,11,0,0,0,1,0,1,Fully Finished,Fully Furnished,11,11.0,12577,6112638,122253,39732
+2024-07-11,Nasr City,Standard,Urban,Villa,401,3,3,1,0,0,0,1,0,0,Semi Finished,Unfurnished,13,9.4,25395,10387078,207742,57129
+2024-04-19,Alexandria,Standard,Urban,Penthouse,133,4,4,13,0,0,0,0,0,1,Fully Finished,Unfurnished,6,182.0,31547,4195738,83915,23077
+2024-08-31,Haram,Standard,Urban,Chalet,275,4,3,4,0,0,0,0,0,0,Fully Finished,Partly Furnished,11,9.0,20148,5540635,110813,30473
+2025-11-09,Sheikh Zayed,Premium,Urban,Chalet,337,2,1,3,0,0,0,0,1,0,Luxury Finished,Fully Furnished,0,25.4,51089,17217011,344340,94694
+2024-04-02,Alexandria,Standard,Urban,Penthouse,423,3,3,13,0,0,1,1,0,1,Luxury Finished,Unfurnished,9,197.1,17288,7312970,146259,40221
+2025-04-03,Haram,Standard,Urban,Duplex,324,4,4,7,0,0,0,1,1,0,Fully Finished,Unfurnished,13,8.7,8964,2904436,58089,18879
+2024-01-15,Ain Sokhna,Premium,Coastal,Chalet,93,4,3,1,1,0,1,1,1,0,Semi Finished,Fully Furnished,14,112.2,106696,9922740,198455,54575
+2025-03-08,Alexandria,Standard,Urban,Penthouse,386,5,5,12,0,0,1,1,0,1,Fully Finished,Unfurnished,8,220.7,21948,8471864,169437,46595
+2024-01-24,Nasr City,Standard,Urban,Penthouse,153,3,3,13,0,0,0,1,0,1,Fully Finished,Fully Furnished,14,9.7,17357,2655614,53112,14606
+2024-05-29,New Cairo,Premium,Urban,Chalet,405,3,3,3,1,0,0,1,0,0,Fully Finished,Fully Furnished,8,26.5,39182,15868857,317377,87279
+2025-06-13,Nasr City,Standard,Urban,Penthouse,240,2,2,10,0,0,0,1,1,1,Luxury Finished,Fully Furnished,13,8.7,19919,4780549,95611,26293
+2024-10-06,Nasr City,Standard,Urban,Apartment,173,2,1,1,0,0,0,0,1,1,Fully Finished,Unfurnished,0,10.2,17072,2953528,59071,19198
+2024-01-26,Haram,Standard,Urban,Penthouse,463,4,4,10,0,0,0,1,0,1,Fully Finished,Fully Furnished,9,7.0,13763,6372292,127446,35048
+2025-12-24,Alexandria,Standard,Urban,Apartment,448,2,1,5,0,0,0,1,1,1,Core & Shell,Unfurnished,16,201.8,15849,7100314,142006,46152
+2024-11-19,New Cairo,Premium,Urban,Apartment,337,1,1,8,1,0,0,1,0,1,Core & Shell,Partly Furnished,3,24.5,20474,6899675,137994,44848
+2024-06-01,North Coast,Premium,Coastal,Penthouse,484,4,4,11,1,0,1,1,0,1,Fully Finished,Partly Furnished,5,223.0,90796,43945094,878902,241698
+2024-03-06,North Coast,Premium,Coastal,Chalet,208,4,3,1,1,0,0,1,0,0,Luxury Finished,Partly Furnished,0,233.1,90589,18842420,376848,103633
+2024-02-15,6th of October,Standard,Urban,Chalet,168,4,3,2,0,0,0,1,1,0,Fully Finished,Partly Furnished,0,34.9,36574,6144374,122887,33794
+2025-07-16,Ain Sokhna,Premium,Coastal,Villa,99,5,5,3,1,1,0,1,1,0,Fully Finished,Unfurnished,8,129.8,120000,12117600,242352,66647
+2024-05-02,Heliopolis,Premium,Urban,Duplex,338,2,3,8,0,0,0,1,0,1,Semi Finished,Unfurnished,17,11.8,24755,8367095,167342,54386
+2024-07-10,Nasr City,Standard,Urban,Villa,175,5,5,3,0,1,0,0,1,0,Semi Finished,Unfurnished,23,11.0,43491,7763121,155262,42697
+2024-09-06,North Coast,Premium,Coastal,Apartment,427,2,2,5,0,0,0,1,1,1,Semi Finished,Unfurnished,0,158.7,38115,16275212,325504,105789
+2025-11-05,Alexandria,Standard,Urban,Chalet,383,4,3,4,0,0,0,0,0,0,Fully Finished,Partly Furnished,12,177.6,27728,10619869,212397,58409
+2024-01-01,6th of October,Standard,Urban,Penthouse,444,3,3,10,1,0,0,1,0,1,Fully Finished,Unfurnished,0,36.9,22883,10160266,203205,55881
+2025-10-19,North Coast,Premium,Coastal,Chalet,99,2,2,3,0,0,1,1,1,0,Luxury Finished,Partly Furnished,6,239.0,120000,11880000,237600,65340
+2025-01-13,Nasr City,Standard,Urban,Villa,83,5,4,2,0,0,0,0,0,0,Luxury Finished,Partly Furnished,21,10.0,53148,4499472,89989,24747
+2026-02-07,Haram,Standard,Urban,Duplex,382,5,4,1,0,0,0,0,0,1,Fully Finished,Fully Furnished,18,7.5,14038,5362556,107251,34857
+2024-04-19,Alexandria,Standard,Urban,Apartment,240,1,1,9,0,0,0,1,0,1,Fully Finished,Unfurnished,12,223.2,13177,3162535,63251,20556
+2025-01-10,Nasr City,Standard,Urban,Penthouse,128,3,3,14,0,0,0,1,1,1,Fully Finished,Unfurnished,12,9.9,19999,2559918,51198,14080
+2026-04-12,Heliopolis,Premium,Urban,Apartment,372,1,1,6,1,0,0,0,0,1,Fully Finished,Unfurnished,0,10.1,18784,6987663,139753,45420
+2026-01-27,Maadi,Premium,Urban,Penthouse,372,2,2,10,0,0,0,1,0,0,Luxury Finished,Unfurnished,15,13.4,35600,13243142,264863,72837
+2025-12-11,North Coast,Premium,Coastal,Penthouse,376,2,2,13,1,0,1,0,0,1,Fully Finished,Unfurnished,7,184.9,64403,24215633,484313,133186
+2024-07-20,6th of October,Standard,Urban,Duplex,391,4,4,5,1,0,0,1,0,1,Luxury Finished,Unfurnished,6,37.8,24237,9476672,189533,61598
+2025-03-07,Alexandria,Standard,Urban,Penthouse,456,2,2,12,0,0,1,1,0,0,Fully Finished,Fully Furnished,8,256.4,31231,14241384,284828,78328
+2024-11-04,Heliopolis,Premium,Urban,Apartment,171,1,1,2,1,0,0,1,1,1,Fully Finished,Unfurnished,3,13.6,31728,5425479,108510,35266
+2024-12-11,Alexandria,Standard,Urban,Chalet,106,3,3,1,0,0,1,1,1,0,Fully Finished,Unfurnished,12,216.0,44285,4694205,93884,25818
+2024-04-07,North Coast,Premium,Coastal,Penthouse,369,3,4,12,0,0,1,0,1,1,Fully Finished,Unfurnished,5,238.6,102367,37773297,755466,207753
+2024-09-16,North Coast,Premium,Coastal,Apartment,331,1,1,2,0,0,0,1,0,1,Fully Finished,Unfurnished,0,213.8,33995,11252183,225044,73139
+2025-07-14,Ain Sokhna,Premium,Coastal,Villa,261,5,5,3,1,1,0,1,1,0,Fully Finished,Fully Furnished,7,122.9,120000,31946400,638928,175705
+2024-11-17,Sheikh Zayed,Premium,Urban,Apartment,198,2,2,2,1,0,0,1,1,1,Fully Finished,Unfurnished,0,31.3,24448,4840635,96813,31464
+2025-07-17,Haram,Standard,Urban,Apartment,332,1,1,4,0,0,0,1,0,1,Semi Finished,Unfurnished,0,7.5,9103,3022110,60442,19644
+2026-03-23,Alexandria,Standard,Urban,Chalet,464,2,2,1,0,0,0,0,0,0,Luxury Finished,Partly Furnished,7,249.2,35062,16268736,325375,89478
+2024-04-28,Maadi,Premium,Urban,Apartment,380,1,1,9,0,0,0,1,1,1,Fully Finished,Unfurnished,11,17.7,23526,8940060,178801,58110
+2026-01-24,Alexandria,Standard,Urban,Chalet,351,4,3,4,0,0,0,1,1,0,Semi Finished,Fully Furnished,11,227.9,19077,6696026,133921,36828
+2026-01-06,Alexandria,Standard,Urban,Villa,163,5,5,1,0,0,0,1,1,0,Luxury Finished,Fully Furnished,2,206.8,33095,5502374,110047,30263
+2025-05-14,Ain Sokhna,Premium,Coastal,Chalet,257,4,3,4,1,0,1,1,0,0,Semi Finished,Unfurnished,3,120.5,68853,17695293,353906,97324
+2025-07-04,Haram,Standard,Urban,Penthouse,185,4,4,14,0,0,0,1,0,1,Core & Shell,Unfurnished,14,9.9,17100,3163418,63268,17399
+2024-05-28,Sheikh Zayed,Premium,Urban,Chalet,228,3,3,4,1,0,0,1,1,0,Fully Finished,Fully Furnished,6,33.0,63548,14488844,289777,79689
+2024-05-09,Nasr City,Standard,Urban,Duplex,304,4,4,3,0,0,0,1,0,1,Fully Finished,Partly Furnished,0,9.8,22008,6690314,133806,43487
+2024-07-25,New Cairo,Premium,Urban,Apartment,135,1,1,5,1,0,0,1,0,1,Core & Shell,Fully Furnished,11,29.5,25295,3414828,68297,22196
+2025-09-22,Ain Sokhna,Premium,Coastal,Apartment,396,3,3,1,0,0,0,1,0,1,Fully Finished,Partly Furnished,1,105.6,43236,17121455,342429,111289
+2025-03-16,Haram,Standard,Urban,Duplex,91,5,4,8,0,0,0,1,0,1,Semi Finished,Unfurnished,14,8.5,20043,1823879,36478,11855
+2025-04-12,Nasr City,Standard,Urban,Villa,428,7,6,3,0,0,0,1,1,0,Semi Finished,Unfurnished,4,9.4,28463,12425917,248518,68343
+2024-09-23,Nasr City,Standard,Urban,Chalet,137,3,3,4,0,0,0,0,1,0,Semi Finished,Unfurnished,9,10.0,27000,3699044,73981,20345
+2025-05-18,New Cairo,Premium,Urban,Villa,248,6,6,1,1,1,0,0,1,0,Luxury Finished,Fully Furnished,3,29.2,58812,14877060,297541,81824
+2025-04-04,Nasr City,Standard,Urban,Chalet,472,4,3,3,0,0,0,1,0,0,Luxury Finished,Fully Furnished,2,9.9,26103,12320495,246410,67763
+2025-12-08,Alexandria,Standard,Urban,Apartment,492,1,1,10,0,0,0,1,0,1,Luxury Finished,Unfurnished,18,216.9,14513,7140160,142803,46411
+2024-03-28,6th of October,Standard,Urban,Penthouse,252,2,2,15,1,0,0,1,1,1,Fully Finished,Unfurnished,0,33.7,19445,4900070,98001,26950
+2025-07-30,Maadi,Premium,Urban,Penthouse,299,5,4,10,1,0,0,1,0,1,Luxury Finished,Unfurnished,8,16.6,34678,10368654,207373,57028
+2025-02-26,6th of October,Standard,Urban,Chalet,263,2,2,3,1,0,0,1,1,0,Fully Finished,Unfurnished,0,35.1,25837,6795120,135902,37373
+2026-03-16,Haram,Standard,Urban,Apartment,207,2,1,4,0,0,0,1,1,1,Semi Finished,Unfurnished,7,8.2,8157,1688440,33769,10975
+2025-11-18,Ain Sokhna,Premium,Coastal,Villa,435,7,6,3,1,0,1,1,0,0,Semi Finished,Fully Furnished,5,131.3,101797,45167410,903348,248421
+2026-03-10,North Coast,Premium,Coastal,Chalet,173,4,3,2,1,0,1,0,1,0,Fully Finished,Unfurnished,7,196.2,93876,16240538,324811,89323
+2024-07-28,6th of October,Standard,Urban,Chalet,269,4,3,4,1,0,0,0,1,0,Fully Finished,Unfurnished,0,27.7,22134,5954117,119082,32748
+2025-11-29,North Coast,Premium,Coastal,Duplex,172,2,2,8,1,0,0,1,0,0,Fully Finished,Unfurnished,8,264.8,49908,8584138,171683,55797
+2025-03-03,Heliopolis,Premium,Urban,Chalet,199,3,2,2,1,0,0,1,1,0,Luxury Finished,Partly Furnished,13,9.7,70920,14113074,282261,77622
+2025-08-24,Maadi,Premium,Urban,Apartment,64,1,1,12,1,0,0,1,1,1,Fully Finished,Fully Furnished,9,11.7,38322,2452580,49052,15942
+2025-08-23,Heliopolis,Premium,Urban,Chalet,92,4,3,2,0,0,0,1,1,0,Fully Finished,Unfurnished,11,12.9,67525,6212318,124246,34168
+2024-02-12,Alexandria,Standard,Urban,Chalet,273,4,3,3,0,0,1,1,0,0,Fully Finished,Partly Furnished,7,190.5,32330,8826053,176521,48543
+2025-09-16,Ain Sokhna,Premium,Coastal,Duplex,348,2,2,5,1,0,0,1,1,0,Core & Shell,Unfurnished,3,121.4,44175,15372946,307459,99924
+2025-11-10,Nasr City,Standard,Urban,Chalet,187,3,2,1,0,0,0,0,1,0,Fully Finished,Unfurnished,16,11.2,25033,4681155,93623,25746
+2025-10-26,North Coast,Premium,Coastal,Duplex,88,4,4,6,0,0,0,1,1,1,Fully Finished,Unfurnished,4,252.3,61418,5404790,108096,35131
+2024-03-27,Haram,Standard,Urban,Apartment,116,1,2,11,0,0,0,1,1,1,Fully Finished,Unfurnished,11,5.8,16480,1911647,38233,12426
+2025-03-09,Haram,Standard,Urban,Apartment,381,1,1,9,0,0,0,1,0,1,Semi Finished,Unfurnished,11,7.7,10549,4019136,80383,26124
+2024-04-12,Haram,Standard,Urban,Penthouse,471,2,2,11,0,0,0,1,1,0,Fully Finished,Unfurnished,18,8.3,12619,5943668,118873,32690
+2026-01-18,Sheikh Zayed,Premium,Urban,Villa,484,5,5,2,0,1,0,0,0,0,Fully Finished,Partly Furnished,8,33.0,46679,23044613,460892,126745
+2025-02-19,New Cairo,Premium,Urban,Duplex,130,2,2,5,1,0,0,0,0,0,Core & Shell,Unfurnished,13,30.1,31595,4107402,82148,26698
+2024-08-18,6th of October,Standard,Urban,Villa,157,7,6,2,1,1,0,0,1,0,Semi Finished,Fully Furnished,8,39.8,52762,8449289,168986,46471
+2025-12-08,Sheikh Zayed,Premium,Urban,Duplex,339,3,2,3,1,0,0,1,1,1,Fully Finished,Unfurnished,11,32.9,27745,9405417,188108,61135
+2024-09-25,Maadi,Premium,Urban,Villa,486,7,6,3,0,0,0,1,1,0,Semi Finished,Partly Furnished,14,12.9,64972,32207908,644158,177143
+2025-12-22,Maadi,Premium,Urban,Duplex,100,3,3,8,0,0,0,0,1,1,Semi Finished,Unfurnished,23,14.3,29120,2911974,58239,18928
+2024-11-13,Nasr City,Standard,Urban,Duplex,462,4,4,8,0,0,0,1,1,1,Luxury Finished,Unfurnished,9,8.0,14683,6783484,135670,44093
+2024-11-23,Sheikh Zayed,Premium,Urban,Penthouse,349,3,3,10,1,0,0,1,1,1,Fully Finished,Fully Furnished,1,28.8,37943,13242257,264845,72832
+2024-07-18,6th of October,Standard,Urban,Chalet,325,4,3,3,0,0,0,1,1,0,Fully Finished,Fully Furnished,3,29.0,28989,9421298,188426,51817
+2025-07-18,New Cairo,Premium,Urban,Apartment,159,1,1,8,1,0,0,1,1,1,Fully Finished,Partly Furnished,0,23.0,24653,3919800,78396,25479
+2024-12-03,New Cairo,Premium,Urban,Chalet,213,2,2,1,1,0,0,1,1,0,Fully Finished,Unfurnished,1,26.5,49472,10537588,210752,57957
+2025-04-13,Haram,Standard,Urban,Penthouse,138,5,4,11,0,0,0,1,0,1,Fully Finished,Unfurnished,1,7.4,15492,2137944,42759,11759
+2025-08-23,Maadi,Premium,Urban,Chalet,107,3,3,1,0,0,0,0,0,0,Fully Finished,Partly Furnished,10,13.5,55307,5917887,118358,32548
+2024-09-03,North Coast,Premium,Coastal,Duplex,157,4,3,4,0,0,0,1,1,1,Fully Finished,Fully Furnished,0,246.4,61807,9703664,194073,63074
+2025-05-11,New Cairo,Premium,Urban,Apartment,360,1,1,4,1,0,0,1,0,1,Semi Finished,Unfurnished,1,27.1,23634,8508287,170166,55304
+2024-11-20,Ain Sokhna,Premium,Coastal,Apartment,196,1,1,12,0,0,0,1,1,1,Fully Finished,Unfurnished,9,131.4,48871,9578626,191573,62261
+2024-03-20,New Cairo,Premium,Urban,Villa,479,4,3,3,1,0,0,0,1,0,Luxury Finished,Partly Furnished,16,22.4,56478,27594107,551882,151768
+2024-02-09,Haram,Standard,Urban,Apartment,389,1,1,6,0,0,0,1,1,1,Fully Finished,Unfurnished,19,8.0,11582,4505525,90110,29286
+2025-11-04,Maadi,Premium,Urban,Villa,478,3,3,1,1,0,0,1,1,0,Luxury Finished,Unfurnished,9,14.9,45931,22394282,447886,123169
+2025-09-24,Heliopolis,Premium,Urban,Apartment,471,1,1,8,0,0,0,1,0,1,Fully Finished,Partly Furnished,1,10.4,22600,10644682,212894,69190
+2025-01-29,Alexandria,Standard,Urban,Chalet,469,4,3,4,0,0,1,1,0,0,Semi Finished,Partly Furnished,10,207.1,38109,17872923,357458,98301
+2024-10-11,North Coast,Premium,Coastal,Duplex,332,5,4,4,1,0,0,1,1,1,Semi Finished,Unfurnished,3,239.2,39651,13164198,263284,85567
+2025-06-16,Alexandria,Standard,Urban,Apartment,229,2,1,6,0,0,0,1,0,1,Fully Finished,Unfurnished,19,209.7,16125,3692653,73853,24002
+2025-09-05,Nasr City,Standard,Urban,Penthouse,227,4,4,15,0,0,0,1,1,1,Fully Finished,Fully Furnished,13,9.3,25047,5685739,113715,31272
+2025-05-23,New Cairo,Premium,Urban,Penthouse,210,5,4,14,1,0,0,1,0,0,Fully Finished,Fully Furnished,12,28.6,36648,7696122,153922,42329
+2024-02-09,Nasr City,Standard,Urban,Apartment,425,2,2,11,0,0,0,1,0,1,Fully Finished,Partly Furnished,14,9.2,21545,9156716,183134,59519
