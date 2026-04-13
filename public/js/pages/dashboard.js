@@ -48,8 +48,10 @@ class PageDashboard {
     const modelStats = document.getElementById('modelStats');
     if (modelStats) {
       modelStats.innerHTML = `
-        <div style="font-size:11px;color:var(--slate)">Train R² ${model.metrics?.r2?.toFixed(3) ?? 'N/A'} · RMSE ${model.metrics?.rmse?.toLocaleString() ?? 'N/A'}</div>
-        <div style="font-size:11px;color:var(--slate)">Test R² ${model.metrics?.test_r2?.toFixed(3) ?? 'N/A'} · Test RMSE ${model.metrics?.test_rmse?.toLocaleString() ?? 'N/A'}</div>
+        <div style="font-size:10px;color:var(--slate3);margin-bottom:6px">RANDOM FOREST REGRESSION</div>
+        <div style="font-size:11px;color:var(--txt)">Train R² ${model.metrics?.r2?.toFixed(3) ?? 'N/A'}</div>
+        <div style="font-size:11px;color:var(--txt)">Test R² ${model.metrics?.test_r2?.toFixed(3) ?? 'N/A'}</div>
+        <div style="font-size:10px;color:var(--slate2);margin-top:6px">RMSE: ${model.metrics?.test_rmse?.toLocaleString() ?? 'N/A'} EGP/m²</div>
       `;
     }
 
@@ -110,6 +112,31 @@ class PageDashboard {
           duration: 2000,
           easing: 'easeOutQuart'
         }
+      }
+    });
+
+    const importance = model.metrics?.featureImportance || [];
+    this.createChart('cDrivers', {
+      type: 'bar',
+      data: {
+        labels: importance.map(f => f.name.replace('is_city_','City: ').replace('is_type_','Type: ').replace('is_compound_','').replace(/_/g,' ')),
+        datasets: [{
+          label: 'Relative Impact',
+          data: importance.map(f => f.score),
+          backgroundColor: importance.map((_,i) => `rgba(212, 174, 82, ${0.8 - i*0.065})`),
+          borderRadius: 4,
+          indexAxis: 'y',
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { display: false },
+          y: { grid: { display: false }, ticks: { font: { size: 9 }, color: 'rgba(133,141,168,.8)' } }
+        },
+        animation: { duration: 1500, easing: 'easeOutExpo' }
       }
     });
 

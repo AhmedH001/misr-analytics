@@ -1,5 +1,6 @@
-const Mat = require('./matrix');
-const { buildStats, mean } = require('./stats');
+const { mean } = require('./stats');
+const { RandomForestRegression } = require('ml-random-forest');
+function buildStats() {} // Dummy to avoid error if called somewhere else, though stats service is better
 const { canonicalCity, canonicalType, normalizeStr } = require('./csv');
 
 const DELIVERY_FACTOR = { 0:1.00, 6:0.97, 12:0.93, 18:0.90, 24:0.87, 36:0.82, 48:0.78 };
@@ -20,9 +21,9 @@ function topCategories(values, limit = 6) {
 
 function buildFeatureCategories(rows) {
   return {
-    cities: topCategories(rows.map(r => r.city), 6),
-    property_types: topCategories(rows.map(r => r.property_type), 6),
-    compounds: topCategories(rows.map(r => r.compound).filter(Boolean), 10),
+    cities: topCategories(rows.map(r => r.city), 15),
+    property_types: topCategories(rows.map(r => r.property_type), 10),
+    compounds: topCategories(rows.map(r => r.compound).filter(Boolean), 40),
   };
 }
 
@@ -48,8 +49,8 @@ function splitRows(rows, ratio = 0.8) {
   return { train: copy.slice(0, splitAt), test: copy.slice(splitAt) };
 }
 
-function evaluatePredictions(X, y, w) {
-  const preds = X.map(row => row.reduce((sum, v, i) => sum + v * w[i], 0));
+function evaluatePredictions(model, X, y) {
+  const preds = model.predict(X);
   const n = y.length;
   const yBar = mean(y);
   let ssRes = 0, ssTot = 0, mae = 0, bias = 0;
@@ -119,7 +120,7 @@ module.exports = {
 
     const means = Array(nF).fill(0);
     const stds  = Array(nF).fill(1);
-    for (let i = 1; i <= 9; i++) {
+    for (let i = 1; i <= Math.min(9, nF - 1); i++) {
       const vals = rawX.map(x => x[i]);
       means[i] = mean(vals);
       const variance = mean(vals.map(v => (v - means[i]) ** 2));
@@ -127,25 +128,42 @@ module.exports = {
     }
 
     const Xtrain = rawX.map(x => normalize(x, means, stds));
-    const Xt = Mat.T(Xtrain);
-    const XtX = Mat.mul(Xt, Xtrain);
-    for (let i = 0; i < nF; i++) XtX[i][i] += 0.001;
-    const XtXi = Mat.inv(XtX);
-    const Xty = Mat.mulV(Xt, yTrain);
-    const w = Mat.mulV(XtXi, Xty);
+    
+    // Train Random Forest
+    console.log(`🌲 Training Random Forest with ${trainSet.length} samples...`);
+    const options = {
+      seed: 42,
+      maxFeatures: 0.8,
+      replacement: true,
+      nEstimators: 100, // Balanced speed/accuracy
+      treeOptions: {
+        maxDepth: 15,
+        minSamplesLeaf: 3
+      }
+    };
+    const modelInstance = new RandomForestRegression(options);
+    modelInstance.train(Xtrain, yTrain);
 
-    const trainMetrics = evaluatePredictions(Xtrain, yTrain, w);
+    // Get Feature Importance
+    const importanceRaw = modelInstance.featureImportance();
+    const featureImportance = featureNames.map((name, i) => ({
+      name,
+      score: importanceRaw[i] || 0
+    })).sort((a, b) => b.score - a.score).slice(0, 10);
+
+    const trainMetrics = evaluatePredictions(modelInstance, Xtrain, yTrain);
 
     const Xtest = testSet.map(r => normalize(featureVec(r, categories), means, stds));
     const yTest = testSet.map(r => r.price_per_m2);
-    const testMetrics = evaluatePredictions(Xtest, yTest, w);
+    const testMetrics = evaluatePredictions(modelInstance, Xtest, yTest);
 
     const resSd = Math.sqrt(trainMetrics.rmse ** 2 * trainSet.length / Math.max(trainSet.length - nF, 1));
 
-    console.log(`✓ Model  Train R²=${trainMetrics.r2.toFixed(3)}  RMSE=${Math.round(trainMetrics.rmse)} EGP/m²  train=${trainSet.length} test=${testSet.length}`);
+    console.log(`✓ RF Model  Train R²=${trainMetrics.r2.toFixed(3)}  RMSE=${Math.round(trainMetrics.rmse)} EGP/m²`);
 
     return {
-      w, means, stds, categories, featureNames,
+      rf: modelInstance,
+      means, stds, categories, featureNames, featureImportance,
       r2: trainMetrics.r2,
       rmse: trainMetrics.rmse,
       mae: trainMetrics.mae,
@@ -181,8 +199,9 @@ module.exports = {
     }, model.categories);
 
     const norm = normalize(raw, model.means, model.stds);
-    let basePpm = norm.reduce((s,v,i) => s + v*model.w[i], 0);
-    basePpm = Math.max(5000, Math.min(200000, basePpm));
+    const predsArray = model.rf.predict([norm]);
+    let basePpm = predsArray[0];
+    basePpm = Math.max(5000, Math.min(250000, basePpm));
 
     const keys = DELIVERY_MONTHS.slice();
     const nearDel = keys.reduce((p, k) =>

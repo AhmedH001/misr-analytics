@@ -1,7 +1,8 @@
 // Rental Advisor & ROR Calculator Page
 class PageRental {
-  static init(stats) {
+  static init(stats, model) {
     this.stats = stats;
+    this.model = model;
     this.setupForm();
     this.setupMortgageToggle();
   }

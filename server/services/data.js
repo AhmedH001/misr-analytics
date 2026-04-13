@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const csv = require('./csv');
 
-const DEFAULT_DATA_FILE = path.join(__dirname, '../../egypt_real_estate_ml_dataset_v3.csv');
+const DEFAULT_DATA_FILE = path.join(__dirname, '../../egypt_real_estate_ml_dataset_v4.csv');
 
 function buildDemoRows() {
   const cities  = ['Cairo','Giza','Alexandria','North Coast'];

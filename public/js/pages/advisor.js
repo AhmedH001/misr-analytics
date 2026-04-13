@@ -22,7 +22,13 @@ class PageAdvisor {
     const badge = document.getElementById('modelMetaTxt');
     if (this.model && badge) {
       const m = this.model.metrics;
-      badge.innerHTML = `Train R²=${(m.r2*1000).toFixed(0)}/1000<br/>Test R²=${(m.test_r2*1000).toFixed(0)}/1000<br/>n=${m.nSamples?.toLocaleString()}`;
+      badge.innerHTML = `
+        <div style="font-family:'JetBrains Mono';line-height:1.4">
+          <span style="color:var(--gold)">R²: ${(m.test_r2 || 0).toFixed(3)}</span><br/>
+          <span>RMSE: ${Math.round(m.test_rmse || 0).toLocaleString()}</span><br/>
+          <span style="opacity:0.6;font-size:8.5px">${m.nSamples?.toLocaleString()} samples (v4)</span>
+        </div>
+      `;
     }
   }
 

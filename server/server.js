@@ -79,6 +79,7 @@ app.get('/api/stats', (_, res) => {
       nSamples: STATE.model.nSamples,
       nTrain: STATE.model.nTrain,
       nTest: STATE.model.nTest,
+      featureImportance: STATE.model.featureImportance,
     },
     source: STATE.source,
   });
@@ -104,6 +105,7 @@ app.get('/api/model', (_, res) => {
       nSamples: model.nSamples,
       nTrain: model.nTrain,
       nTest: model.nTest,
+      featureImportance: model.featureImportance,
     },
   });
 });

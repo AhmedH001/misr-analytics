@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>DART AI Real estate — Egypt Real Estate Intelligence</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
@@ -1340,7 +1342,7 @@
       <div class="gem">D</div>
       <div>
         <span class="brand-txt">DART AI Real estate</span>
-        <span class="brand-sub">v3</span>
+        <span class="brand-sub">v4 (Enterprise)</span>
       </div>
     </a>
     <div class="topbar-r">
@@ -1380,8 +1382,8 @@
             <div class="ph-s">Enter your unit details — get an instant pricing assessment against the market</div>
           </div>
           <div id="modelBadge" style="text-align:right">
-            <div class="pill">OLS Regression</div><br />
-            <span style="font-size:9.5px;color:var(--slate3)" id="modelMetaTxt">Loading model…</span>
+            <div class="pill">Random Forest Engine</div><br />
+            <span style="font-size:9.5px;color:var(--slate3)" id="modelMetaTxt">Engine initialized with v4 dataset</span>
           </div>
         </div>
 
@@ -1607,9 +1609,25 @@
           </div>
           <div class="card">
             <div class="ch">
+              <div class="ct">AI Price Drivers</div><span class="badge" style="background:var(--brgold);color:var(--gold)">Importance</span>
+            </div>
+            <div class="ch-wrap" style="height:210px"><canvas id="cDrivers"></canvas></div>
+          </div>
+        </div>
+
+        <div class="g12">
+          <div class="card">
+            <div class="ch">
+              <div class="ct">Model Insights</div><span class="badge">Random Forest</span>
+            </div>
+            <div id="modelStats" style="margin-bottom:10px"></div>
+            <span style="font-size:10px;color:var(--slate3)">Random Forest Regression provides higher accuracy by modeling non-linear trends.</span>
+          </div>
+          <div class="card">
+            <div class="ch">
               <div class="ct">By Property Type</div>
             </div>
-            <div class="ch-wrap" style="height:210px"><canvas id="cType"></canvas></div>
+            <div class="ch-wrap" style="height:140px"><canvas id="cType"></canvas></div>
           </div>
         </div>
         <div class="g2">
