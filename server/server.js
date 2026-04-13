@@ -1,15 +1,15 @@
 'use strict';
 const express = require('express');
-const fs      = require('fs');
-const multer  = require('multer');
-const path    = require('path');
+const fs = require('fs');
+const multer = require('multer');
+const path = require('path');
 
-const csvService  = require('./services/csv');
+const csvService = require('./services/csv');
 const modelService = require('./services/model');
 const statsService = require('./services/stats');
-const dataService  = require('./services/data');
+const dataService = require('./services/data');
 
-const app    = express();
+const app = express();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 60 * 1024 * 1024 } });
 
 app.use(express.json({ limit: '10mb' }));
@@ -19,11 +19,11 @@ app.use(express.static(path.join(__dirname, '../public')));
 // GLOBAL STATE
 // ───────────────────────────────────────────────────────────────────
 const STATE = {
-  rows:   [],
+  rows: [],
   colMap: {},
-  model:  null,
-  stats:  null,
-  ready:  false,
+  model: null,
+  stats: null,
+  ready: false,
   source: 'demo',
 };
 
@@ -34,11 +34,11 @@ function bootstrap() {
   const data = dataService.loadDataset();
   const parsed = csvService.sanitizeAndValidate(data.rows, data.colMap);
 
-  STATE.rows   = data.rows;
+  STATE.rows = data.rows;
   STATE.colMap = data.colMap;
-  STATE.stats  = statsService.buildStats(parsed);
-  STATE.model  = modelService.trainModel(parsed);
-  STATE.ready  = true;
+  STATE.stats = statsService.buildStats(parsed);
+  STATE.model = modelService.trainModel(parsed);
+  STATE.ready = true;
   STATE.source = data.source;
 
   console.log(`✓ Dataset ready — ${data.rows.length.toLocaleString()} rows | avg ${STATE.stats.avgPpm.toLocaleString()} EGP/m² | source=${data.source}`);
@@ -49,11 +49,11 @@ function bootstrap() {
 // ───────────────────────────────────────────────────────────────────
 
 app.get('/api/health', (_, res) => res.json({
-  ok:     true,
-  ready:  STATE.ready,
+  ok: true,
+  ready: STATE.ready,
   source: STATE.source,
-  rows:   STATE.stats?.totalRows ?? 0,
-  model:  STATE.model ? { r2: STATE.model.r2, rmse: STATE.model.rmse } : null,
+  rows: STATE.stats?.totalRows ?? 0,
+  model: STATE.model ? { r2: STATE.model.r2, rmse: STATE.model.rmse } : null,
 }));
 
 app.get('/api/stats', (_, res) => {
@@ -62,11 +62,11 @@ app.get('/api/stats', (_, res) => {
   res.json({
     totalRows: s.totalRows, validRows: s.validRows,
     avgPpm: s.avgPpm, avgPrice: s.avgPrice, avgArea: s.avgArea, avgUsd: s.avgUsd,
-    monthly:    s.monthly,
+    monthly: s.monthly,
     usdByMonth: s.usdByMonth,
-    byCity:     s.byCity,
-    byType:     s.byType,
-    byBeds:     s.byBeds,
+    byCity: s.byCity,
+    byType: s.byType,
+    byBeds: s.byBeds,
     byCompound: s.byCompound,
     distribution: s.distribution,
     model: {
@@ -121,20 +121,20 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
   try {
     const { rows, colMap } = csvService.parseCSV(req.file.buffer);
     const parsed = csvService.sanitizeAndValidate(rows, colMap);
-    STATE.rows   = rows;
+    STATE.rows = rows;
     STATE.colMap = colMap;
-    STATE.stats  = statsService.buildStats(parsed);
-    STATE.model  = modelService.trainModel(parsed);
-    STATE.ready  = true;
+    STATE.stats = statsService.buildStats(parsed);
+    STATE.model = modelService.trainModel(parsed);
+    STATE.ready = true;
     STATE.source = req.file.originalname;
     console.log(`✓ Uploaded "${req.file.originalname}" — ${rows.length} rows`);
     res.json({
-      ok:      true,
-      rows:    rows.length,
-      filename:req.file.originalname,
-      colMap:  Object.fromEntries(Object.entries(colMap).map(([k,v])=>[k, v ?? '⚠ not found'])),
-      stats:   { avgPpm: STATE.stats.avgPpm, byCity: STATE.stats.byCity, byType: STATE.stats.byType },
-      model:   { r2: STATE.model.r2, rmse: STATE.model.rmse, nSamples: STATE.model.nSamples },
+      ok: true,
+      rows: rows.length,
+      filename: req.file.originalname,
+      colMap: Object.fromEntries(Object.entries(colMap).map(([k, v]) => [k, v ?? '⚠ not found'])),
+      stats: { avgPpm: STATE.stats.avgPpm, byCity: STATE.stats.byCity, byType: STATE.stats.byType },
+      model: { r2: STATE.model.r2, rmse: STATE.model.rmse, nSamples: STATE.model.nSamples },
     });
   } catch (err) {
     console.error('Upload error:', err.message);
@@ -147,22 +147,22 @@ app.post('/api/predict', (req, res) => {
   try {
     const b = req.body;
     const input = {
-      area_m2:             parseFloat(b.area_m2),
-      bedrooms:            parseInt  (b.bedrooms, 10),
-      bathrooms:           parseInt  (b.bathrooms, 10),
-      property_type:       String    (b.property_type || ''),
-      city:                String    (b.city || ''),
-      compound:            String    (b.compound || ''),
-      distance_to_center:  parseFloat(b.distance_to_center),
-      luxury_score:        parseFloat(b.luxury_score),
-      usd_to_egp_rate:     parseFloat(b.usd_to_egp_rate),
-      iron:                parseFloat(b.iron),
-      cement:              parseFloat(b.cement),
-      month:               parseInt  (b.month, 10),
-      delivery_months:     parseInt  (b.delivery_months, 10),
-      finishing:           String    (b.finishing || 'finished'),
-      entered_price:       parseFloat(b.entered_price),
-      project_avg_price:   parseFloat(b.project_avg_price) || 0,
+      area_m2: parseFloat(b.area_m2),
+      bedrooms: parseInt(b.bedrooms, 10),
+      bathrooms: parseInt(b.bathrooms, 10),
+      property_type: String(b.property_type || ''),
+      city: String(b.city || ''),
+      compound: String(b.compound || ''),
+      distance_to_center: parseFloat(b.distance_to_center),
+      luxury_score: parseFloat(b.luxury_score),
+      usd_to_egp_rate: parseFloat(b.usd_to_egp_rate),
+      iron: parseFloat(b.iron),
+      cement: parseFloat(b.cement),
+      month: parseInt(b.month, 10),
+      delivery_months: parseInt(b.delivery_months, 10),
+      finishing: String(b.finishing || 'finished'),
+      entered_price: parseFloat(b.entered_price),
+      project_avg_price: parseFloat(b.project_avg_price) || 0,
       num_listings_in_project: parseFloat(b.num_listings_in_project) || 0,
     };
 
@@ -256,10 +256,10 @@ app.post('/api/rental-predict', (req, res) => {
     )));
 
     let rorLabel, rorEmoji;
-    if (rorScore >= 75)     { rorLabel = 'Excellent Investment'; rorEmoji = '🏆'; }
-    else if (rorScore >= 55) { rorLabel = 'Good Return';          rorEmoji = '✅'; }
-    else if (rorScore >= 35) { rorLabel = 'Average Return';       rorEmoji = '⚖️'; }
-    else                     { rorLabel = 'Below Market';          rorEmoji = '⚠️'; }
+    if (rorScore >= 75) { rorLabel = 'Excellent Investment'; rorEmoji = '🏆'; }
+    else if (rorScore >= 55) { rorLabel = 'Good Return'; rorEmoji = '✅'; }
+    else if (rorScore >= 35) { rorLabel = 'Average Return'; rorEmoji = '⚖️'; }
+    else { rorLabel = 'Below Market'; rorEmoji = '⚠️'; }
 
     res.json({
       ok: true,
@@ -296,7 +296,7 @@ app.post('/api/rental-predict', (req, res) => {
 // ───────────────────────────────────────────────────────────────────
 // START
 // ───────────────────────────────────────────────────────────────────
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 bootstrap();
 app.listen(PORT, () => {
   console.log(`\n🏛  DART AI Real estate  →  http://localhost:${PORT}\n`);

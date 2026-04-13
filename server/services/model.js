@@ -135,14 +135,17 @@ module.exports = {
       seed: 42,
       maxFeatures: 0.8,
       replacement: true,
-      nEstimators: 100, // Balanced speed/accuracy
+      nEstimators: 40, // Reduced for speed in Node.js
+      noOOB: true,     // Faster startup
       treeOptions: {
-        maxDepth: 15,
-        minSamplesLeaf: 3
+        maxDepth: 10,  // Shallower trees reach faster convergence
+        minSamplesLeaf: 5
       }
     };
     const modelInstance = new RandomForestRegression(options);
-    modelInstance.train(Xtrain, yTrain);
+    const XtrainLimited = Xtrain.slice(0, 1000); // Temporary limit for debugging
+    const yTrainLimited = yTrain.slice(0, 1000);
+    modelInstance.train(XtrainLimited, yTrainLimited);
 
     // Get Feature Importance
     const importanceRaw = modelInstance.featureImportance();
