@@ -133,19 +133,28 @@ module.exports = {
     console.log(`🌲 Training Random Forest with ${trainSet.length} samples...`);
     const options = {
       seed: 42,
-      maxFeatures: 0.8,
+      maxFeatures: 0.9,
       replacement: true,
-      nEstimators: 40, // Reduced for speed in Node.js
-      noOOB: true,     // Faster startup
+      nEstimators: 20, // Low number of trees for speed
+      noOOB: true,
       treeOptions: {
-        maxDepth: 10,  // Shallower trees reach faster convergence
-        minSamplesLeaf: 5
+        maxDepth: 8,   // Shallow trees to avoid stack issues/hanging
+        minSamplesLeaf: 10
       }
     };
+    console.log(`📡 Feature vector width: ${featureNames.length} columns`);
+    
+    // Safety check for NaN values
+    const validPairs = Xtrain.map((f, i) => ({f, p: yTrain[i]}))
+      .filter(pair => !isNaN(pair.p) && pair.f.every(v => !isNaN(v)));
+    
+    const XtrainLimited = validPairs.map(p => p.f).slice(0, 3000); 
+    const yTrainLimited = validPairs.map(p => p.p).slice(0, 3000);
+    
+    console.log(`🌲 Training RF on ${XtrainLimited.length} samples...`);
     const modelInstance = new RandomForestRegression(options);
-    const XtrainLimited = Xtrain.slice(0, 1000); // Temporary limit for debugging
-    const yTrainLimited = yTrain.slice(0, 1000);
     modelInstance.train(XtrainLimited, yTrainLimited);
+    console.log(`✓ RF training complete`);
 
     // Get Feature Importance
     const importanceRaw = modelInstance.featureImportance();

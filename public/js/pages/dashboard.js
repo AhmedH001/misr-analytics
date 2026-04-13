@@ -186,6 +186,17 @@ class PageDashboard {
 
     const usdKeys = Object.keys(stats.usdByMonth || {}).sort();
     const usdData = usdKeys.map(k => stats.usdByMonth[k]);
+    
+    // Create professional gradient
+    const usdCtx = document.getElementById('cUsd');
+    let gradient = 'rgba(192,90,74,0.22)';
+    if (usdCtx && usdCtx.getContext) {
+      const ctx = usdCtx.getContext('2d');
+      gradient = ctx.createLinearGradient(0, 0, 0, 180);
+      gradient.addColorStop(0, 'rgba(192,90,74,0.4)');
+      gradient.addColorStop(1, 'rgba(192,90,74,0.01)');
+    }
+
     this.createChart('cUsd', {
       type: 'line',
       data: {
@@ -193,16 +204,33 @@ class PageDashboard {
         datasets: [{
           label: 'USD / EGP Rate',
           data: usdData,
-          borderColor: 'rgba(192,90,74,0.9)',
-          backgroundColor: 'rgba(192,90,74,0.22)',
+          borderColor: '#C05A4A',
+          backgroundColor: gradient,
           fill: true,
-          tension: 0.25,
-          pointRadius: 3,
+          tension: 0, // Stepped look is often better for currency rates
+          stepped: true,
+          pointRadius: 2,
+          pointBackgroundColor: '#C05A4A',
+          borderWidth: 2,
         }]
       },
       options: { 
         maintainAspectRatio: false, 
-        plugins: { legend: { display: false } },
+        plugins: { 
+          legend: { display: false },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+          }
+        },
+        scales: {
+          x: { grid: { display: false } },
+          y: { 
+            position: 'right',
+            grid: { color: 'rgba(255,255,255,0.05)' },
+            border: { dash: [4, 4] }
+          }
+        },
         animation: {
           duration: 2500,
           easing: 'easeOutQuint'
