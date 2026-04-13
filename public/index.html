@@ -124,15 +124,15 @@
       text-decoration: none;
     }
 
-    /* Dart pixel logo mark */
+    /* Dart logo mark */
     .dart-logo {
-      width: 32px;
-      height: 32px;
+      width: 38px;
+      height: 38px;
       flex-shrink: 0;
       position: relative;
     }
 
-    .dart-logo svg { width:100%; height:100% }
+    .dart-logo img { width:100%; height:100%; object-fit:contain }
 
     .brand-txt {
       font-size: 15px;
@@ -853,21 +853,8 @@
 
   <header class="topbar">
     <a class="brand" href="#">
-      <!-- Dart pixel logo mark (two-tone blue squares) -->
       <div class="dart-logo">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2"  y="2"  width="12" height="12" rx="2" fill="#2650fa"/>
-          <rect x="18" y="2"  width="6"  height="6"  rx="1" fill="#26bff8"/>
-          <rect x="2"  y="18" width="6"  height="6"  rx="1" fill="#26bff8" opacity=".7"/>
-          <rect x="18" y="18" width="12" height="12" rx="2" fill="#2650fa" opacity=".85"/>
-          <rect x="10" y="10" width="12" height="12" rx="2" fill="url(#g1)"/>
-          <defs>
-            <linearGradient id="g1" x1="10" y1="10" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#2650fa"/>
-              <stop offset="1" stop-color="#26bff8"/>
-            </linearGradient>
-          </defs>
-        </svg>
+        <img src="js/assets/dart-tech-logo.png" alt="DART Logo" />
       </div>
       <div>
         <span class="brand-txt">DART AI Real Estate</span>
