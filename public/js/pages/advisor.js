@@ -80,6 +80,7 @@ class PageAdvisor {
   }
 
   static collectListInput() {
+    const defaultMonth = new Date().getMonth() + 1;
     return {
       area_m2: parseFloat(document.getElementById('fl_area').value) || 150,
       bedrooms: parseInt(document.getElementById('fl_beds').value, 10) || 3,
@@ -90,10 +91,10 @@ class PageAdvisor {
       compound: document.getElementById('fl_compound')?.value?.trim() || '',
       distance_to_center: parseFloat(document.getElementById('fl_dist').value) || 25,
       luxury_score: parseFloat(document.getElementById('fl_luxury').value) / 100,
-      usd_to_egp_rate: parseFloat(document.getElementById('fl_usd').value) || 51.9,
-      iron: parseFloat(document.getElementById('fl_iron').value) || 37500,
-      cement: parseFloat(document.getElementById('fl_cement').value) || 3600,
-      month: parseInt(document.getElementById('fl_month').value, 10) || 6,
+      usd_to_egp_rate: 51.9, // Auto-populated default
+      iron: 37500,           // Auto-populated default
+      cement: 3600,          // Auto-populated default
+      month: defaultMonth,   // Current month
       delivery_months: parseInt(document.getElementById('fl_delivery').value, 10) || 0,
       finishing: document.getElementById('fl_finishing').value,
       entered_price: 0,

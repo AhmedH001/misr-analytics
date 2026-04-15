@@ -1,15 +1,67 @@
 // ─── Rental Advisor & ROR Calculator ───────────────────────────────────────
 class PageRental {
 
+  static _activeTab = 'tenant';
+
   static init(stats, model) {
     this.stats = stats;
     this.model = model;
     this.setupForm();
     this.setupMortgageToggle();
     this.setupTypeChange();
+    this.switchTab('tenant'); // Initialize default state
   }
 
   // ── Setup ─────────────────────────────────────────────────────────────────
+
+  static switchTab(tabId) {
+    this._activeTab = tabId;
+
+    // Toggle active state on buttons
+    document.querySelectorAll('#pg-rental .adv-tab-bar .adv-tab').forEach(btn => {
+      if (btn.id === `rtab-${tabId}`) btn.classList.add('on');
+      else btn.classList.remove('on');
+    });
+
+    const isTenant = tabId === 'tenant';
+
+    // Show/hide sections
+    const purchaseWrap = document.getElementById('r_purchase_wrap');
+    const operatingSec = document.getElementById('r_operating_sec');
+    const mortgageSec = document.getElementById('r_mortgage_sec');
+    const submitBtn = document.getElementById('rentalSubmitBtn');
+
+    if (purchaseWrap) purchaseWrap.style.display = isTenant ? 'none' : 'block';
+    if (operatingSec) operatingSec.style.display = isTenant ? 'none' : 'block';
+    if (mortgageSec) mortgageSec.style.display = isTenant ? 'none' : 'block';
+
+    if (submitBtn) {
+      submitBtn.innerHTML = isTenant ? '🔍 &nbsp;Assess Rent' : '📈 &nbsp;Calculate Yield';
+    }
+
+    // Update banner/subtitle
+    const subtitle = document.getElementById('rentalSubtitle');
+    if (subtitle) {
+      subtitle.innerHTML = isTenant 
+        ? 'Evaluate if the asked rent is fair based on local market insights.'
+        : 'Estimate yield, net income &amp; ROR — powered by math or Groq AI';
+    }
+    
+    // Clear result panel when switching
+    const panel = document.getElementById('rentalResultPanel');
+    if (panel) {
+      panel.innerHTML = `
+        <div class="card result-empty">
+          <span class="result-empty-ico">${isTenant ? '🔍' : '📈'}</span>
+          <div class="result-empty-t">${isTenant ? 'Awaiting Rent Assessment' : 'Awaiting Rental Analysis'}</div>
+          <div class="result-empty-s">${isTenant 
+            ? 'Fill in property details and the asked monthly rent<br/>to get an AI assessment of market fairness.' 
+            : 'Fill in your property details and rental income<br />to get a full ROR, yield breakdown &amp; AI market insights.'}
+          </div>
+        </div>
+      `;
+    }
+  }
 
   static setupForm() {
     document.getElementById('rentalSubmitBtn')
@@ -69,7 +121,7 @@ class PageRental {
         `<div class="alert ae"><span>✕</span><span>${err.message}</span></div>`;
     } finally {
       btn.disabled = false;
-      btn.innerHTML = '◈ &nbsp;Calculate ROR';
+      btn.innerHTML = this._activeTab === 'tenant' ? '🔍 &nbsp;Assess Rent' : '📈 &nbsp;Calculate Yield';
     }
   }
 
@@ -78,11 +130,12 @@ class PageRental {
   static collectInput() {
     const useMortgage = document.getElementById('r_use_mortgage')?.checked;
     const amenities = [...document.querySelectorAll('.r_amenity:checked')].map(c => c.value);
+    const isTenant = this._activeTab === 'tenant';
 
     return {
       // Core
       area_m2: parseFloat(document.getElementById('r_area').value) || 0,
-      purchase_price: parseFloat(document.getElementById('r_purchase').value) || 0,
+      purchase_price: isTenant ? 0 : parseFloat(document.getElementById('r_purchase').value) || 0,
       monthly_rent: parseFloat(document.getElementById('r_rent').value) || 0,
       // Property identity
       property_type: document.getElementById('r_type').value,
@@ -98,19 +151,22 @@ class PageRental {
       parking: document.getElementById('r_parking')?.value || 'No',
       amenities,
       // Operating costs
-      management_fees_pct: parseFloat(document.getElementById('r_mgmt').value) || 10,
-      maintenance_pct: parseFloat(document.getElementById('r_maint').value) || 1,
-      vacancy_pct: parseFloat(document.getElementById('r_vacancy').value) || 8,
+      management_fees_pct: isTenant ? 10 : parseFloat(document.getElementById('r_mgmt').value) || 10,
+      maintenance_pct: isTenant ? 1 : parseFloat(document.getElementById('r_maint').value) || 1,
+      vacancy_pct: isTenant ? 8 : parseFloat(document.getElementById('r_vacancy').value) || 8,
       // Mortgage
-      down_payment_pct: useMortgage ? parseFloat(document.getElementById('r_dp').value) || 30 : 100,
-      mortgage_rate_pct: useMortgage ? parseFloat(document.getElementById('r_mrate').value) || 0 : 0,
-      loan_term_years: useMortgage ? parseFloat(document.getElementById('r_term').value) || 20 : 0,
+      down_payment_pct: (!isTenant && useMortgage) ? parseFloat(document.getElementById('r_dp').value) || 30 : 100,
+      mortgage_rate_pct: (!isTenant && useMortgage) ? parseFloat(document.getElementById('r_mrate').value) || 0 : 0,
+      loan_term_years: (!isTenant && useMortgage) ? parseFloat(document.getElementById('r_term').value) || 20 : 0,
     };
   }
 
   // ── RF mode: delegate to backend ─────────────────────────────────────────
 
   static async handleRF(input) {
+    if (this._activeTab === 'tenant') {
+      throw new Error('Tenant Rent Assessment requires Groq AI Mode. Please enable LLM in Settings to get fair market intelligence.');
+    }
     const result = await APIService.rentalPredict(input);
     this.displayResult(result, input, false);
   }
