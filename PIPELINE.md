@@ -48,10 +48,14 @@ This parallel pipeline focuses on financial performance:
    - Calculates **Gross Yield**, **Net Yield**, and **Cash-on-Cash** returns.
    - Computes a custom **ROR (Return on Rent) Score** based on payback years and leverage efficiency.
    - Generates an **Annual Cashflow Waterfall** visualization.
-2. **AI Market Intelligence (The "Context"):**
-   - If Groq Mode is enabled, the property stats are sent to **Llama 3.3 70B**.
-   - **Context Injection:** The system prepends a "Cairo Geography Context" (district-level rent tiers) to the prompt.
-   - **Output:** The AI returns a structured JSON containing demand levels, tenant profiles, and liquidity risks.
+2. **AI Market Intelligence (Groq Integration):**
+   - **Engine:** Integrated with the **Groq Cloud API** using the `llama-3.3-70b-versatile` model for ultra-low latency inference.
+   - **Grounding without Web Search:** Since LLMs have a knowledge cutoff, the system uses **Context Injection** to ground the AI. We feed the model a specific "Geography Reference" block (hardcoded in `rental.js`) containing current rental tiers for major Cairo districts (Zamalek, Maadi, New Cairo, etc.).
+   - **Structured Reasoning:** The AI is instructed via a strict JSON schema to analyze the mathematical results from Phase 1 and provide qualitative insights:
+     - **Demand Level:** High/Medium/Low based on location and property type.
+     - **Tenant Profile:** Who is the likely renter (e.g., "Expat families" vs "Young professionals").
+     - **Liquidity Rating:** How fast the unit can be rented out.
+   - **Zero-Latency Logic:** By using Groq's LPU (Language Processing Unit), the AI analysis appears almost instantly alongside the mathematical results.
 
 ## 5. Frontend & Visualization
 **Handlers:** `public/js/app.js`, `public/js/pages/*.js`
