@@ -1,6 +1,6 @@
-# MISR Analytics — Egypt Real Estate Intelligence Platform
+# DART AI Real Estate — Egypt Real Estate Intelligence Platform
 
-A Node.js + Express application with a server-side OLS regression model for real estate price prediction.
+An advanced real estate analytics and forecasting platform using server-side Random Forest Regression and AI-driven market intelligence.
 
 ## Quick Start
 
@@ -32,20 +32,21 @@ misr-analytics/
 │   ├── server.js              ← Main Express app & API endpoints
 │   └── services/
 │       ├── csv.js             ← CSV parsing, validation, data cleaning
-│       ├── model.js           ← OLS training & prediction logic
+│       ├── model.js           ← Random Forest training & feature importance
 │       ├── stats.js           ← Market statistics & aggregation
-│       ├── matrix.js          ← Gauss-Jordan matrix inversion
-│       └── data.js            ← Dataset loading & demo generation
+│       ├── matrix.js          ← Linear algebra utilities
+│       └── data.js            ← Dataset loading & fallback management
 └── public/
-    ├── index.html             ← Clean HTML shell (Chart.js, responsive)
+    ├── index.html             ← Modern SPA shell (Bootstrap 5 grid, Lucide icons)
     └── js/
-        ├── app.js             ← Main controller & routing
+        ├── app.js             ← Main controller, routing, theme management
         ├── services/
-        │   └── api.js         ← Centralized HTTP client layer
+        │   └── api.js         ← Centralized HTTP client (Price & Rental API)
         └── pages/
-            ├── advisor.js     ← Price Advisor page
-            ├── dashboard.js   ← Market Dashboard page
-            ├── upload.js      ← Data Upload page
+            ├── advisor.js     ← Price Advisor (Pricing & ROI)
+            ├── rental.js      ← Rental Advisor (ROR & AI Intelligence)
+            ├── dashboard.js   ← Market Dashboard (KPIs & Trends)
+            ├── upload.js      ← Data Management & retraining
             └── market.js      ← Market Analysis page
 ```
 
@@ -58,10 +59,10 @@ misr-analytics/
 - Sanitizes and validates rows (price range, area, luxury score)
 
 **`server/services/model.js`**
-- Trains OLS regression with proper train/test validation (80/20 split)
-- Computes train & test R², RMSE, MAE, and bias metrics
-- Generates dynamic category features (top 6 cities, property types, compounds)
-- Applies delivery and finishing adjustments server-side
+- Trains **Random Forest Regression** with proper train/test validation (80/20 split)
+- Computes Feature Importance to identify primary price drivers
+- Generates dynamic category features (top 15 cities, 10 property types, 40 compounds)
+- Applies delivery and finishing adjustments based on market-standard factors
 
 **`server/services/stats.js`**
 - Aggregates statistics by city, property type, bedrooms, compound
@@ -80,10 +81,11 @@ misr-analytics/
 ### Frontend Pages
 
 Each page is self-contained and handles its own initialization & DOM updates:
-- **Price Advisor** — Form input, call `/api/predict`, display verdict & comparables
-- **Dashboard** — Market KPIs, monthly price trends, charts (Chart.js)
-- **Upload** — Drag-drop CSV, download sample data, retraining status
-- **Market Analysis** — Variable sensitivity, USD correlation, cost drivers
+- **Price Advisor** — Form assessment, call `/api/predict`, display verdict & ROI analysis
+- **Rental Advisor** — Yield & ROR calculator, AI-driven rent estimates (Groq/Llama 3.3)
+- **Dashboard** — Market KPIs, monthly price trends, interactive charts (Chart.js)
+- **Upload** — Live CSV management, dataset downloads, model retraining status
+- **Market Analysis** — Variable sensitivity, USD correlation, material cost drivers
 
 ### API Endpoints
 
@@ -92,9 +94,10 @@ Each page is self-contained and handles its own initialization & DOM updates:
 | `GET` | `/api/health` | Server status + model R² & RMSE |
 | `GET` | `/api/stats` | Market statistics (KPIs, trends, aggregates) |
 | `GET` | `/api/model` | Model info (features, categories, adjustments, metrics) |
-| `GET` | `/api/download-data` | Download the dataset as CSV |
-| `POST` | `/api/upload` | Upload CSV → parse, validate, retrain model |
-| `POST` | `/api/predict` | Predict price for a unit with confidence interval |
+| `GET` | `/api/download-data` | Download the active dataset as CSV |
+| `POST` | `/api/upload` | Upload CSV → parse, validate, retrain Random Forest |
+| `POST` | `/api/predict` | Predict unit price with confidence interval & ROI |
+| `POST` | `/api/rental-predict` | Calculate Yield, ROR, and financial break-even |
 
 ### Prediction Input (`POST /api/predict`)
 
@@ -141,23 +144,56 @@ Response includes:
 - **model_metrics** — Train R², Test R², RMSE, MAE, bias, sample counts
 - **adjustments** — delivery & finishing factors applied
 
+### Rental Advisor Input (`POST /api/rental-predict`)
+
+Request body (JSON):
+```json
+{
+  "area_m2": 150,
+  "purchase_price": 5000000,
+  "monthly_rent": 25000,
+  "city": "Cairo",
+  "property_type": "Apartment",
+  "furnished": "furnished",
+  "management_fees_pct": 10,
+  "maintenance_pct": 1,
+  "vacancy_pct": 8,
+  "down_payment_pct": 30,
+  "mortgage_rate_pct": 12.5,
+  "loan_term_years": 10
+}
+```
+
+### Rental Advisor Output
+
+Response includes:
+- **gross_yield** / **net_yield** / **cash_on_cash** (Percentages)
+- **ror_score** — Total investment score (0-100)
+- **annual** — Detailed breakdown (Gross Rent, Vacancy, Mortgage, Net Cashflow)
+- **market** — Market rent benchmarks and estimates
+- **payback_years** / **break_even_rent**
+
 ---
 
 ## ML Model Details
 
-**Algorithm:** Ordinary Least Squares with Ridge regularisation (λ=0.001)
+**Algorithm:** Random Forest Regression (via `ml-random-forest`)
+
+**Key Configuration:**
+- 20 Estimators (Trees) for responsive training performance
+- Max Depth: 8 (to ensure generalization and avoid overfitting)
+- 80/20 Train/Test Split with random shuffling
 
 **Features (Dynamic):**
 - Base: area_m2, bedrooms, bathrooms, distance_to_center, luxury_score, usd_to_egp_rate
-- Scaled: iron/1000, cement/1000
-- Cyclical: month_sin, month_cos (sine/cosine encoding for seasonality)
-- Categorical: Top 6 cities + Top 6 property types + Top 10 compounds (one-hot)
+- Materials: Iron (1000s EGP), Cement (1000s EGP)
+- Cyclical: month_sin, month_cos (Sine/Cosine encoding for seasonality)
+- Categorical: Top 15 Cities + Top 10 Types + Top 40 Compounds (One-Hot Encoded)
 
-**Training & Validation:**
-- ✅ Train/test split (80/20) for proper generalization metrics
-- ✅ Computes Train R², Test R², RMSE, MAE, bias on test set
-- ✅ Feature normalization (zero-mean, unit-variance) on continuous features
-- ✅ Ridge regularization prevents overfitting
+**Feature Importance & Metrics:**
+- ✅ Automated Feature Importance ranking (Visible in Market Analysis)
+- ✅ Computes R², RMSE, MAE, and Bias on both sets
+- ✅ Confidence Intervals (±1.5σ) adjusted for project-specific data density
 
 **Adjustments (Post-Model):**
 - **Delivery discount**: Off-plan properties trade at 0–48 month bands
@@ -174,6 +210,30 @@ Response includes:
 
 ---
 
+## Rental Advisor & Yield Engine
+
+The **Rental Advisor** provides deep financial analysis for buy-to-let investments.
+
+**Financial Indicators:**
+- **Gross Yield**: Total annual rent as % of purchase price.
+- **Net Yield**: Annual rent minus operating costs (management, maintenance).
+- **Cash-on-Cash (CoC)**: Leveraged return based on down payment and mortgage.
+- **Break-even Rent**: Minimum monthly rent required to cover all costs.
+- **Payback Period**: Est. years to recover the purchase price.
+
+**AI Market Intelligence (Optional):**
+- **Engine**: Integrated with **Groq (Llama 3.3)** for real-time rental estimates.
+- **Context**: Localised data on Cairo's premium vs. budget districts.
+- **Insights**: Demand levels, tenant profiles, and liquidity ratings.
+
+**Financial Variables:**
+- **Management Fees**: Typical range 5–15% of annual rent.
+- **Maintenance**: Typically 0.5–2% of property value annually.
+- **Vacancy Rates**: Adjusted for regional demand (e.g., 8–12% for North Coast).
+- **Mortgage**: Full support for down payment, amortised interest, and loan terms.
+
+---
+
 ## CSV Format & Data Upload
 
 **Supported columns** (auto-detected, case-insensitive):
@@ -184,12 +244,12 @@ distance_to_center, material_costs_iron, material_costs_cement, latitude, longit
 ```
 
 **Upload workflow:**
-1. Drag-drop or click to upload a CSV file
-2. Server parses, validates, and cleans data
-3. Builds dynamic categories (top cities/types/compounds)
-4. Trains OLS model with train/test validation
-5. Computes model metrics and displays results
-6. Model is live and ready for predictions
+1. Drag-drop or click to upload a CSV file (e.g., `v4_dataset`).
+2. Server parses, validates, and cleans the records.
+3. Automatically identifies top 15 cities and 40 compounds for one-hot encoding.
+4. Trains **Random Forest** model with train/test validation.
+5. Computes Feature Importance scores for all variables.
+6. Model is hot-swapped and ready for immediate inference.
 
 **Download sample data:**
 - Click **"Download Sample Data (CSV)"** button in Upload page
@@ -207,16 +267,18 @@ distance_to_center, material_costs_iron, material_costs_cement, latitude, longit
 ## Development & Deployment
 
 **Tech Stack:**
-- Backend: Node.js 18+ with Express.js
-- Frontend: HTML5, CSS3 (custom design), Chart.js for visualization
-- No databases — all data in memory (suitable for MVP/demo)
-- No dependencies for ML — pure JavaScript OLS implementation
+- **Backend**: Node.js 18+ with Express.js
+- **Frontend**: Modern ES6+, Bootstrap 5 (Grid), Lucide Icons
+- **ML Engine**: `ml-random-forest` (Random Forest Regression)
+- **AI Intelligence**: **Groq Cloud API** (Llama 3.3 70B)
+- **Visualization**: Chart.js 4.x (Monthly Trends, Statistics)
+- **Design**: Modern Dark/Light theme with CSS Variables (Glassmorphism & Skeletons)
 
 **File Organization:**
-- `server/services/` — Modular backend (CSV, model, stats, matrix, data)
-- `public/js/services/` — Centralized API layer
-- `public/js/pages/` — Self-contained frontend pages (advisor, dashboard, upload, market)
-- `public/index.html` — Clean HTML shell with CSS variables for theming
+- `server/services/` — Modular backend (CSV, Random Forest Model, Stats, Matrix)
+- `public/js/services/` — API layer (Predict, Rental, Upload)
+- `public/js/pages/` — Component-based pages (Rental Advisor, Price Advisor, etc.)
+- `public/index.html` — Modern shell with dynamic theme management
 
 **To extend the model:**
 1. Add features in `server/services/model.js` → `featureVec()`
