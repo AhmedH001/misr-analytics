@@ -20,15 +20,24 @@ class PageAdvisor {
 
   static updateModelBadge() {
     const badge = document.getElementById('modelMetaTxt');
-    if (this.model && badge) {
+    if (!badge) return;
+    const s = AppSettings.get();
+    if (s.modelMode === 'llm' && s.groqApiKey) {
+      badge.innerHTML = `
+        <div style="font-family:'JetBrains Mono';line-height:1.4">
+          <span style="color:var(--blue)">⚡ Groq AI Mode</span><br/>
+          <span style="opacity:0.6;font-size:8.5px">${(s.groqModel || '').split('-').slice(0, 3).join(' ')}</span>
+        </div>`;
+    } else if (s.modelMode === 'llm') {
+      badge.innerHTML = `<div style="font-family:'JetBrains Mono';line-height:1.4"><span style="color:var(--amb)">⚠ Set API Key</span></div>`;
+    } else if (this.model) {
       const m = this.model.metrics;
       badge.innerHTML = `
         <div style="font-family:'JetBrains Mono';line-height:1.4">
           <span style="color:var(--gold)">R²: ${(m.test_r2 || 0).toFixed(3)}</span><br/>
           <span>RMSE: ${Math.round(m.test_rmse || 0).toLocaleString()}</span><br/>
           <span style="opacity:0.6;font-size:8.5px">${m.nSamples?.toLocaleString()} samples (v4)</span>
-        </div>
-      `;
+        </div>`;
     }
   }
 
@@ -49,8 +58,7 @@ class PageAdvisor {
            <div class="skeleton" style="height: 24px; margin-bottom: 12px"></div>
            <div class="skeleton" style="height: 24px; margin-bottom: 12px"></div>
            <div class="skeleton" style="height: 24px;"></div>
-        </div>
-      `;
+        </div>`;
 
       await new Promise(resolve => setTimeout(resolve, 600));
 
@@ -68,11 +76,16 @@ class PageAdvisor {
         month: parseInt(document.getElementById('f_month').value, 10),
         delivery_months: parseInt(document.getElementById('f_delivery').value, 10),
         finishing: document.getElementById('f_finishing').value,
-        entered_price: parseFloat(document.getElementById('f_price').value),
+        entered_price: parseFloat(document.getElementById('f_price').value) || 0,
       };
 
-      const result = await APIService.predict(input);
-      this.displayResult(result);
+      const settings = AppSettings.get();
+      if (settings.modelMode === 'llm' && settings.groqApiKey) {
+        await this.handleLLM(input, settings);
+      } else {
+        const result = await APIService.predict(input);
+        this.displayResult(result);
+      }
     } catch (err) {
       const resultPanel = document.getElementById('resultPanel');
       resultPanel.innerHTML = `<div class="alert ae"><span>✕</span><span>${err.message}</span></div>`;
@@ -81,6 +94,327 @@ class PageAdvisor {
         btn.disabled = false;
         btn.textContent = 'Assess Price';
       }
+    }
+  }
+
+  // ── LLM mode entry point ─────────────────────────────────────────────────
+  static async handleLLM(input, settings) {
+    // Scenario A: user entered a price → assess fairness
+    // Scenario B: no price entered → listing recommendation
+    const scenario = (input.entered_price > 0) ? 'assess' : 'list';
+    const ai = await this.callGroq(input, scenario, settings);
+    this.displayLLMResult(ai, input, scenario, settings);
+  }
+
+  // ── Groq API call ────────────────────────────────────────────────────────
+  static async callGroq(input, scenario, settings) {
+    const deliveryLabel = input.delivery_months === 0
+      ? 'Immediate delivery / Ready to move in'
+      : `${input.delivery_months} months from now (off-plan / future delivery)`;
+
+    const finishingMap = {
+      finished: 'Fully Finished (turnkey)',
+      semi: 'Semi-Finished (walls & floors done, no kitchen/fixtures)',
+      core: 'Core & Shell (raw concrete, unfinished)',
+    };
+    const finishingLabel = finishingMap[input.finishing] || input.finishing;
+    const luxuryPct = Math.round(input.luxury_score * 100);
+
+    const commonDetails = `PROPERTY DETAILS:
+- Type: ${input.property_type}
+- Location: ${input.city}
+- Area: ${input.area_m2} m²
+- Bedrooms: ${input.bedrooms} | Bathrooms: ${input.bathrooms}
+- Finishing Level: ${finishingLabel}
+- Delivery Status: ${deliveryLabel}
+- Luxury / Spec Score: ${luxuryPct}/100
+- Distance to City Centre: ${input.distance_to_center} km
+- Current USD/EGP Rate: ${input.usd_to_egp_rate}
+- Iron price: ${input.iron.toLocaleString()} EGP/ton | Cement: ${input.cement.toLocaleString()} EGP/ton`;
+
+    let taskBlock, jsonSchema;
+
+    if (scenario === 'assess') {
+      const enteredPpm = Math.round(input.entered_price / input.area_m2);
+      taskBlock = `TASK — PRICE ASSESSMENT:
+The seller is asking ${input.entered_price.toLocaleString()} EGP total (${enteredPpm.toLocaleString()} EGP/m²).
+Assess whether this asking price is fair, overpriced, or underpriced for this exact property and location in the current Egyptian market.`;
+
+      jsonSchema = `{
+  "verdict": "<fair|underpriced|overpriced|significantly_underpriced|significantly_overpriced>",
+  "verdict_label": "<Fair Price|Underpriced|Overpriced|Significantly Underpriced|Significantly Overpriced>",
+  "verdict_emoji": "<↓↓|↓|✓|↑|↑↑>",
+  "fair_price_low": <integer EGP, lower bound of fair range>,
+  "fair_price_high": <integer EGP, upper bound of fair range>,
+  "fair_price_mid": <integer EGP, your best single estimate of fair value>,
+  "fair_ppm": <integer, fair price per m² in EGP>,
+  "gap_pct": <number, e.g. +15.5 means 15.5% overpriced, -8.2 means 8.2% underpriced>,
+  "location_analysis": "<2-3 sentences about typical price levels in this specific area, comparing to nearby comparable areas>",
+  "assessment_summary": "<3-4 sentences explaining your verdict with concrete market reasoning>",
+  "key_price_drivers": ["<positive or negative factor 1>", "<factor 2>", "<factor 3>"],
+  "negotiation_tip": "<1-2 sentences of practical negotiation advice for the buyer or seller based on verdict>",
+  "market_outlook": "<1-2 sentences short-term price direction for this area and type>",
+  "comparable_areas": "<mention 1-2 comparable neighbourhoods and their typical price range for context>"
+}`;
+    } else {
+      // listing scenario
+      taskBlock = `TASK — LISTING PRICE RECOMMENDATION:
+The owner wants to SELL this unit and needs a recommended listing price.
+Provide BOTH a cash price (immediate payment) and an instalment price (if delivery is ${input.delivery_months} months away).
+A cash buyer pays upfront now; an instalment buyer pays in stages over the delivery period — price the instalment option accordingly (typically 10-20% premium depending on delivery horizon).
+Also factor the finishing level: a core/shell unit is worth significantly less than fully finished.`;
+
+      const installNote = input.delivery_months === 0
+        ? 'Note: Immediate delivery — instalment price should be minimal premium (~5%) over cash since there is no wait.'
+        : `Note: ${input.delivery_months}-month delivery — instalment premium should reflect the wait and financing cost.`;
+
+      taskBlock += `\n${installNote}`;
+
+      jsonSchema = `{
+  "cash_price_low": <integer EGP, minimum recommended cash sale price>,
+  "cash_price_high": <integer EGP, maximum recommended cash sale price>,
+  "cash_price_mid": <integer EGP, ideal cash listing price>,
+  "cash_ppm": <integer, cash price per m²>,
+  "installment_price_low": <integer EGP, minimum instalment price>,
+  "installment_price_high": <integer EGP, maximum instalment price>,
+  "installment_price_mid": <integer EGP, ideal instalment listing price>,
+  "installment_ppm": <integer, instalment price per m²>,
+  "installment_premium_pct": <number, % premium of instalment over cash, e.g. 15 means 15% more>,
+  "cash_discount_note": "<what typical cash discount sellers offer in this market and why>",
+  "finishing_impact": "<how this finishing level affects pricing, what finishing upgrade would add, and typical buyer expectations>",
+  "location_analysis": "<2-3 sentences about demand and price levels in ${input.city}, with context vs nearby areas>",
+  "listing_strategy": "<3-4 sentences: how to position, market, and negotiate for this specific unit>",
+  "key_price_drivers": ["<the most impactful positive or negative factor>", "<factor 2>", "<factor 3>"],
+  "best_buyer_profile": "<who is the ideal buyer — investor, end-user, expat, etc. and why>",
+  "market_outlook": "<1-2 sentences: expected price direction for this area in next 12 months>",
+  "time_to_sell_estimate": "<estimated typical time to close at this price in this area>"
+}`;
+    }
+
+    const prompt = `You are a senior Egyptian real estate valuation expert with encyclopaedic knowledge of every Cairo district and price differential — you know that Maadi commands higher rents and prices than Helwan, that Zamalek and Garden City are among Cairo's premium locations, that New Cairo (5th Settlement, Rehab, Madinaty) has surged, that areas like Shorouk, Obour, and October City have different buyer demographics, that Heliopolis is established premium whereas Ain Sokhna is a second-home market, and so on. You also deeply understand how construction cost indices (iron, cement), USD/EGP rate, delivery timeline, and finishing level impact Egyptian property values in 2024-2025.
+
+${commonDetails}
+
+${taskBlock}
+
+Respond ONLY with a valid JSON object — no markdown, no backticks, no extra text, just the JSON:
+${jsonSchema}`;
+
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${settings.groqApiKey}`,
+      },
+      body: JSON.stringify({
+        model: settings.groqModel || 'llama-3.3-70b-versatile',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 1800,
+        temperature: 0.15,
+      }),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err?.error?.message || `Groq API error ${res.status}`);
+    }
+
+    const data = await res.json();
+    const text = data.choices?.[0]?.message?.content || '';
+    const clean = text.replace(/```json|```/g, '').trim();
+    try {
+      return JSON.parse(clean);
+    } catch {
+      throw new Error('AI returned an unreadable response — please try again.');
+    }
+  }
+
+  // ── Display LLM result ────────────────────────────────────────────────────
+  static displayLLMResult(ai, input, scenario, settings) {
+    const panel = document.getElementById('resultPanel');
+    const modelShort = (settings.groqModel || '').split('-').slice(0, 3).join(' ') || 'Groq AI';
+
+    const llmTag = `<span style="font-size:8px;padding:2px 9px;border-radius:20px;background:rgba(38,80,250,.12);border:1px solid rgba(38,80,250,.3);color:var(--blue);font-weight:600;letter-spacing:.5px">⚡ ${modelShort}</span>`;
+
+    const fmt = v => Math.round(v).toLocaleString();
+
+    if (scenario === 'assess') {
+      // ── Verdict colours
+      const verdictColors = {
+        significantly_underpriced: '#52B07A',
+        underpriced: '#7AD4A0',
+        fair: '#D4AE52',
+        overpriced: '#D4834A',
+        significantly_overpriced: '#C05A4A',
+      };
+      const vColor = verdictColors[ai.verdict] || 'var(--gold)';
+      const gapSign = ai.gap_pct > 0 ? '+' : '';
+      const gapColor = ai.gap_pct > 7 ? 'var(--red)' : ai.gap_pct < -7 ? 'var(--grn)' : 'var(--amb)';
+      const enteredPpm = Math.round(input.entered_price / input.area_m2);
+
+      panel.innerHTML = `
+        <!-- AI Verdict Card -->
+        <div class="card" style="margin-bottom:13px;border-color:${vColor}40;background:linear-gradient(135deg,${vColor}0a 0%,${vColor}04 100%)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:36px;height:36px;border-radius:10px;background:${vColor}22;display:flex;align-items:center;justify-content:center;font-size:18px">${ai.verdict_emoji}</div>
+              <div>
+                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--slate3)">AI Market Assessment</div>
+                <div style="font-size:18px;font-weight:700;color:${vColor};margin-top:2px">${ai.verdict_label}</div>
+              </div>
+            </div>
+            ${llmTag}
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+            <div style="background:var(--bg3);border-radius:8px;padding:10px 12px;text-align:center">
+              <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate3);margin-bottom:4px">Your Price / m²</div>
+              <div style="font-size:16px;font-weight:700;color:var(--txt);font-family:'JetBrains Mono'">${fmt(enteredPpm)}</div>
+              <div style="font-size:8px;color:var(--slate3)">EGP/m²</div>
+            </div>
+            <div style="background:var(--bg3);border-radius:8px;padding:10px 12px;text-align:center">
+              <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate3);margin-bottom:4px">Fair Price / m²</div>
+              <div style="font-size:16px;font-weight:700;color:var(--gold);font-family:'JetBrains Mono'">${fmt(ai.fair_ppm)}</div>
+              <div style="font-size:8px;color:var(--slate3)">EGP/m²</div>
+            </div>
+            <div style="background:var(--bg3);border-radius:8px;padding:10px 12px;text-align:center">
+              <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate3);margin-bottom:4px">Gap</div>
+              <div style="font-size:16px;font-weight:700;color:${gapColor};font-family:'JetBrains Mono'">${gapSign}${ai.gap_pct?.toFixed(1)}%</div>
+              <div style="font-size:8px;color:var(--slate3)">vs fair value</div>
+            </div>
+          </div>
+
+          <div style="background:var(--bg3);border-radius:8px;padding:12px;margin-bottom:12px">
+            <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate3);margin-bottom:6px">Fair Value Range</div>
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+              <div style="font-family:'JetBrains Mono';font-size:13px;color:var(--txt2)">${fmt(ai.fair_price_low)} EGP</div>
+              <div style="flex:1;height:4px;background:var(--br);border-radius:2px;position:relative;min-width:60px">
+                <div style="position:absolute;left:0;right:0;top:0;height:100%;background:linear-gradient(90deg,var(--grn),var(--amb),var(--red));border-radius:2px;opacity:.4"></div>
+                <div style="position:absolute;top:-4px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--bg);transform:translateX(-6px);left:50%"></div>
+              </div>
+              <div style="font-family:'JetBrains Mono';font-size:13px;color:var(--txt2)">${fmt(ai.fair_price_high)} EGP</div>
+            </div>
+            <div style="text-align:center;margin-top:6px;font-size:11px;color:var(--gold);font-weight:600">Mid: ${fmt(ai.fair_price_mid)} EGP</div>
+          </div>
+
+          <div style="font-size:11px;color:var(--txt2);line-height:1.65;padding:12px;background:var(--bg3);border-radius:8px;margin-bottom:10px">${ai.assessment_summary}</div>
+        </div>
+
+        <!-- Location & Drivers -->
+        <div class="card" style="margin-bottom:13px">
+          <div class="ch"><div class="ct">Location Analysis</div></div>
+          <div style="font-size:11px;color:var(--txt2);line-height:1.65;margin-bottom:12px">${ai.location_analysis}</div>
+          ${ai.comparable_areas ? `<div style="font-size:10px;color:var(--slate);line-height:1.5;padding:8px 10px;background:var(--bg3);border-radius:6px;margin-bottom:12px">📍 ${ai.comparable_areas}</div>` : ''}
+          <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate3);margin-bottom:8px;font-weight:600">Key Price Drivers</div>
+          ${(ai.key_price_drivers || []).map(d =>
+        `<div style="font-size:10.5px;color:var(--txt2);padding:6px 0;border-bottom:1px solid var(--br);display:flex;gap:7px;line-height:1.45"><span style="color:var(--gold);flex-shrink:0">→</span>${d}</div>`
+      ).join('')}
+        </div>
+
+        <!-- Negotiation & Outlook -->
+        <div class="card">
+          <div class="ch"><div class="ct">Advice &amp; Outlook</div></div>
+          ${ai.negotiation_tip ? `
+          <div style="padding:12px;background:rgba(38,80,250,.06);border-radius:8px;border-left:2px solid var(--blue);margin-bottom:10px">
+            <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:4px;font-weight:600">💡 Negotiation Tip</div>
+            <div style="font-size:11px;color:var(--txt2);line-height:1.55">${ai.negotiation_tip}</div>
+          </div>` : ''}
+          ${ai.market_outlook ? `
+          <div style="padding:12px;background:var(--bg3);border-radius:8px">
+            <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--slate3);margin-bottom:4px;font-weight:600">Market Outlook</div>
+            <div style="font-size:11px;color:var(--txt2);line-height:1.55">${ai.market_outlook}</div>
+          </div>` : ''}
+        </div>`;
+
+    } else {
+      // ── Listing recommendation scenario
+      const hasInstalment = input.delivery_months > 0;
+      const premiumLabel = hasInstalment
+        ? `+${ai.installment_premium_pct?.toFixed(1) || '—'}% instalment premium`
+        : 'Immediate delivery (~5% instalment premium)';
+
+      panel.innerHTML = `
+        <!-- Listing Price Recommendation -->
+        <div class="card" style="margin-bottom:13px;border-color:rgba(38,80,250,.25);background:linear-gradient(135deg,rgba(38,80,250,.05) 0%,rgba(38,191,248,.03) 100%)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:36px;height:36px;border-radius:10px;background:rgba(38,80,250,.15);display:flex;align-items:center;justify-content:center;font-size:18px">🏷️</div>
+              <div>
+                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--slate3)">AI Listing Recommendation</div>
+                <div style="font-size:15px;font-weight:700;color:var(--txt);margin-top:2px">${input.city} · ${input.area_m2} m²</div>
+              </div>
+            </div>
+            ${llmTag}
+          </div>
+
+          <!-- Cash Price -->
+          <div style="background:rgba(82,176,122,.08);border:1px solid rgba(82,176,122,.25);border-radius:10px;padding:14px;margin-bottom:10px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+              <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#52B07A;font-weight:700">💵 Cash Price (Immediate Payment)</div>
+              <div style="font-size:8px;color:var(--slate3);font-family:'JetBrains Mono'">${fmt(ai.cash_ppm)} EGP/m²</div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap">
+              <div style="font-size:11px;color:var(--slate3);font-family:'JetBrains Mono'">${fmt(ai.cash_price_low)} –</div>
+              <div style="font-size:26px;font-weight:800;color:#52B07A;font-family:'JetBrains Mono'">${fmt(ai.cash_price_mid)}</div>
+              <div style="font-size:11px;color:var(--slate3);font-family:'JetBrains Mono'">– ${fmt(ai.cash_price_high)} EGP</div>
+            </div>
+            ${ai.cash_discount_note ? `<div style="font-size:10px;color:var(--slate);margin-top:6px;line-height:1.4">${ai.cash_discount_note}</div>` : ''}
+          </div>
+
+          <!-- Instalment Price -->
+          <div style="background:rgba(38,80,250,.06);border:1px solid rgba(38,80,250,.2);border-radius:10px;padding:14px;margin-bottom:12px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+              <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:700">📅 Instalment Price (${input.delivery_months === 0 ? 'Ready' : input.delivery_months + ' mo delivery'})</div>
+              <div style="font-size:8px;color:var(--slate3);font-family:'JetBrains Mono'">${fmt(ai.installment_ppm)} EGP/m²</div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap">
+              <div style="font-size:11px;color:var(--slate3);font-family:'JetBrains Mono'">${fmt(ai.installment_price_low)} –</div>
+              <div style="font-size:26px;font-weight:800;color:var(--blue);font-family:'JetBrains Mono'">${fmt(ai.installment_price_mid)}</div>
+              <div style="font-size:11px;color:var(--slate3);font-family:'JetBrains Mono'">– ${fmt(ai.installment_price_high)} EGP</div>
+            </div>
+            <div style="font-size:10px;color:var(--slate);margin-top:6px">${premiumLabel}</div>
+          </div>
+
+          <!-- Finishing impact -->
+          ${ai.finishing_impact ? `
+          <div style="padding:10px 12px;background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.18);border-radius:8px;margin-bottom:12px">
+            <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--amb);margin-bottom:4px;font-weight:600">🏗️ Finishing Level Impact</div>
+            <div style="font-size:10.5px;color:var(--txt2);line-height:1.5">${ai.finishing_impact}</div>
+          </div>` : ''}
+        </div>
+
+        <!-- Location & Strategy -->
+        <div class="card" style="margin-bottom:13px">
+          <div class="ch"><div class="ct">Location &amp; Market Analysis</div></div>
+          <div style="font-size:11px;color:var(--txt2);line-height:1.65;margin-bottom:12px">${ai.location_analysis}</div>
+          <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate3);margin-bottom:8px;font-weight:600">Key Price Drivers</div>
+          ${(ai.key_price_drivers || []).map(d =>
+        `<div style="font-size:10.5px;color:var(--txt2);padding:6px 0;border-bottom:1px solid var(--br);display:flex;gap:7px;line-height:1.45"><span style="color:var(--gold);flex-shrink:0">→</span>${d}</div>`
+      ).join('')}
+        </div>
+
+        <!-- Listing Strategy & Buyer Profile -->
+        <div class="card">
+          <div class="ch"><div class="ct">Listing Strategy</div></div>
+          <div style="font-size:11px;color:var(--txt2);line-height:1.65;margin-bottom:12px">${ai.listing_strategy}</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            ${ai.best_buyer_profile ? `
+            <div style="background:var(--bg3);border-radius:8px;padding:10px 12px">
+              <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--slate3);margin-bottom:4px">Ideal Buyer</div>
+              <div style="font-size:10.5px;color:var(--txt2);line-height:1.45">${ai.best_buyer_profile}</div>
+            </div>` : ''}
+            ${ai.time_to_sell_estimate ? `
+            <div style="background:var(--bg3);border-radius:8px;padding:10px 12px">
+              <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--slate3);margin-bottom:4px">Estimated Time to Sell</div>
+              <div style="font-size:10.5px;color:var(--txt2);line-height:1.45">${ai.time_to_sell_estimate}</div>
+            </div>` : ''}
+          </div>
+          ${ai.market_outlook ? `
+          <div style="margin-top:10px;padding:10px 12px;background:rgba(38,191,248,.06);border-radius:8px;border-left:2px solid var(--cyan)">
+            <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--cyan);margin-bottom:3px;font-weight:600">Market Outlook</div>
+            <div style="font-size:10.5px;color:var(--txt2);line-height:1.5">${ai.market_outlook}</div>
+          </div>` : ''}
+        </div>`;
     }
   }
 
@@ -291,7 +625,7 @@ class PageAdvisor {
       + '</div></div>';
   }
 
-  // ── DISPLAY RESULT ────────────────────────────────────────────────
+  // ── DISPLAY RESULT (RF mode) ──────────────────────────────────────────────
   static displayResult(result) {
     var panel = document.getElementById('resultPanel');
     var v = result.verdict;
@@ -365,6 +699,6 @@ class PageAdvisor {
   }
 
   static onActive() {
-    // Called when page becomes active
+    this.updateModelBadge();
   }
 }

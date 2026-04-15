@@ -1997,6 +1997,8 @@
     <div class="nb" id="mob_nb_dashboard" onclick="navMob('dashboard',this)"><span class="ni">◉</span>Dashboard</div>
     <div class="sg">Tools</div>
     <div class="nb" id="mob_nb_rental" onclick="navMob('rental',this)"><span class="ni">🏠</span>Rental Advisor</div>
+    <div class="sg">Settings</div>
+    <div class="nb" id="nb_settings" onclick="nav('settings',this)"><span class="ni">⚙</span>AI Settings</div>
     <div class="sg">Data</div>
     <div class="nb" id="mob_nb_upload" onclick="navMob('upload',this)"><span class="ni">⬆</span>Upload Data</div>
     <div class="nb" id="mob_nb_market" onclick="navMob('market',this)"><span class="ni">◍</span>Market Analysis</div>
@@ -2021,6 +2023,9 @@
     <div class="mob-nav-item" id="mbn_upload" onclick="navMob('upload',null,'mbn_upload')">
       <span class="mni">⬆</span><span>Upload</span>
     </div>
+    <div class="mob-nav-item" id="mbn_settings" onclick="navMob('settings',null,'mbn_settings')">
+      <span class="mni">⚙</span><span>Settings</span>
+    </div>
     <div class="mob-nav-item" id="mbn_market" onclick="navMob('market',null,'mbn_market')">
       <span class="mni">◍</span><span>Market</span>
     </div>
@@ -2035,6 +2040,9 @@
 
       <div class="sg">Tools</div>
       <div class="nb" id="nb_rental" onclick="nav('rental',this)"><span class="ni">🏠</span>Rental Advisor</div>
+
+      <div class="sg">Settings</div>
+      <div class="nb" id="mob_nb_settings" onclick="navMob('settings',this)"><span class="ni">⚙</span>AI Settings</div>
 
       <div class="sg">Data</div>
       <div class="nb" id="nb_upload" onclick="nav('upload',this)"><span class="ni">⬆</span>Upload Data</div>
@@ -2536,7 +2544,7 @@
         <div class="ph">
           <div>
             <div class="ph-h">🏠 Rental Advisor</div>
-            <div class="ph-s">Estimate rental yield, net income, and Return on Rent (ROR) score for any unit</div>
+            <div class="ph-s">Estimate yield, net income &amp; ROR — powered by math or Groq AI</div>
           </div>
           <div id="rentalModelBadge" style="text-align:right">
             <span class="pill">Yield &amp; ROR Engine</span>
@@ -2547,26 +2555,67 @@
           <!-- LEFT: FORM -->
           <div>
             <div class="card">
+
+              <!-- ── Property Details ── -->
               <div class="form-section">
                 <div class="form-section-title">Property Details</div>
                 <div class="frow f2">
                   <div>
                     <label>Property Type</label>
                     <select id="r_type">
-                      <option value="Villa">Villa</option>
-                      <option value="Apartment" selected>Apartment</option>
-                      <option value="Chalet">Chalet</option>
-                      <option value="Townhouse">Townhouse</option>
-                      <option value="Duplex">Duplex</option>
-                      <option value="Penthouse">Penthouse</option>
-                      <option value="Studio">Studio</option>
+                      <optgroup label="Residential">
+                        <option value="Apartment" selected>Apartment</option>
+                        <option value="Villa">Villa</option>
+                        <option value="Chalet">Chalet</option>
+                        <option value="Townhouse">Townhouse</option>
+                        <option value="Duplex">Duplex</option>
+                        <option value="Penthouse">Penthouse</option>
+                        <option value="Studio">Studio</option>
+                      </optgroup>
+                      <optgroup label="Commercial">
+                        <option value="Office">Office</option>
+                        <option value="Shop">Shop / Retail</option>
+                        <option value="Clinic">Clinic</option>
+                        <option value="Showroom">Showroom</option>
+                        <option value="Warehouse">Warehouse</option>
+                      </optgroup>
                     </select>
                   </div>
                   <div>
                     <label>Area (m²)</label>
-                    <input type="number" id="r_area" placeholder="e.g. 120" min="20" max="2000" />
+                    <input type="number" id="r_area" placeholder="e.g. 120" min="10" max="5000" />
                   </div>
                 </div>
+
+                <!-- Beds / Baths (hidden for commercial) -->
+                <div class="frow f2" id="r_bedsbaths_row">
+                  <div>
+                    <label>Bedrooms</label>
+                    <select id="r_beds">
+                      <option value="0">Studio / Open</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3" selected>3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6+</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label>Bathrooms</label>
+                    <select id="r_baths_r">
+                      <option value="1">1</option>
+                      <option value="2" selected>2</option>
+                      <option value="3">3</option>
+                      <option value="4">4+</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ── Location & Condition ── -->
+              <div class="form-section">
+                <div class="form-section-title">Location &amp; Condition</div>
                 <div class="frow f2">
                   <div>
                     <label>City / Governorate</label>
@@ -2574,21 +2623,130 @@
                       <option>Cairo</option>
                       <option>Giza</option>
                       <option>Alexandria</option>
-                      <option>North Coast</option>
                       <option>New Administrative Capital</option>
+                      <option>North Coast</option>
                       <option>Ain Sokhna</option>
+                      <option>Sharm El-Sheikh</option>
+                      <option>Hurghada</option>
+                      <option>Mansoura</option>
+                      <option>Tanta</option>
+                      <option>Other</option>
                     </select>
                   </div>
                   <div>
-                    <label>Furnished?</label>
-                    <select id="r_furnished">
-                      <option value="unfurnished">Unfurnished</option>
-                      <option value="furnished">Furnished</option>
+                    <label>District / Compound (optional)</label>
+                    <input type="text" id="r_district" placeholder="e.g. Maadi, Zayed, Palm Hills" />
+                  </div>
+                </div>
+                <div class="frow f3">
+                  <div>
+                    <label>Floor</label>
+                    <select id="r_floor">
+                      <option value="Ground">Ground</option>
+                      <option value="1">1st</option>
+                      <option value="2">2nd</option>
+                      <option value="3">3rd</option>
+                      <option value="4-7">4–7</option>
+                      <option value="8-15">8–15</option>
+                      <option value="16+">16+</option>
+                      <option value="Last">Top / Roof</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label>Building Age</label>
+                    <select id="r_building_age">
+                      <option value="New">New / Off-plan</option>
+                      <option value="1-3 years">1–3 yrs</option>
+                      <option value="3-7 years">3–7 yrs</option>
+                      <option value="7-15 years">7–15 yrs</option>
+                      <option value="15+ years">15+ yrs</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label>Condition</label>
+                    <select id="r_condition">
+                      <option value="Brand New">Brand New</option>
+                      <option value="Excellent" selected>Excellent</option>
+                      <option value="Good">Good</option>
+                      <option value="Average">Average</option>
+                      <option value="Needs Work">Needs Work</option>
                     </select>
                   </div>
                 </div>
               </div>
 
+              <!-- ── Features ── -->
+              <div class="form-section">
+                <div class="form-section-title">Features &amp; Amenities</div>
+                <div class="frow f3">
+                  <div>
+                    <label>Furnished</label>
+                    <select id="r_furnished">
+                      <option value="unfurnished">Unfurnished</option>
+                      <option value="semi-furnished">Semi-furnished</option>
+                      <option value="furnished">Fully Furnished</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label>View</label>
+                    <select id="r_view">
+                      <option value="Street">Street</option>
+                      <option value="Garden">Garden / Landscape</option>
+                      <option value="Pool">Pool</option>
+                      <option value="Nile">Nile / River</option>
+                      <option value="Sea">Sea / Beach</option>
+                      <option value="City">City Skyline</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label>Parking</label>
+                    <select id="r_parking">
+                      <option value="No">No Parking</option>
+                      <option value="1 Space" selected>1 Space</option>
+                      <option value="2 Spaces">2 Spaces</option>
+                      <option value="Garage">Private Garage</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- Amenities checkboxes -->
+                <div style="margin-top:10px">
+                  <label style="margin-bottom:7px;display:block">Building Amenities</label>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+                    <label
+                      style="display:flex;align-items:center;gap:7px;text-transform:none;font-size:11px;color:var(--txt2);letter-spacing:0;margin:0;font-weight:400;cursor:pointer">
+                      <input type="checkbox" class="r_amenity" value="Security"
+                        style="width:auto;accent-color:var(--blue)"> Security 24/7
+                    </label>
+                    <label
+                      style="display:flex;align-items:center;gap:7px;text-transform:none;font-size:11px;color:var(--txt2);letter-spacing:0;margin:0;font-weight:400;cursor:pointer">
+                      <input type="checkbox" class="r_amenity" value="Gym" style="width:auto;accent-color:var(--blue)">
+                      Gym
+                    </label>
+                    <label
+                      style="display:flex;align-items:center;gap:7px;text-transform:none;font-size:11px;color:var(--txt2);letter-spacing:0;margin:0;font-weight:400;cursor:pointer">
+                      <input type="checkbox" class="r_amenity" value="Swimming Pool"
+                        style="width:auto;accent-color:var(--blue)"> Swimming Pool
+                    </label>
+                    <label
+                      style="display:flex;align-items:center;gap:7px;text-transform:none;font-size:11px;color:var(--txt2);letter-spacing:0;margin:0;font-weight:400;cursor:pointer">
+                      <input type="checkbox" class="r_amenity" value="Elevator"
+                        style="width:auto;accent-color:var(--blue)"> Elevator
+                    </label>
+                    <label
+                      style="display:flex;align-items:center;gap:7px;text-transform:none;font-size:11px;color:var(--txt2);letter-spacing:0;margin:0;font-weight:400;cursor:pointer">
+                      <input type="checkbox" class="r_amenity" value="Generator"
+                        style="width:auto;accent-color:var(--blue)"> Generator
+                    </label>
+                    <label
+                      style="display:flex;align-items:center;gap:7px;text-transform:none;font-size:11px;color:var(--txt2);letter-spacing:0;margin:0;font-weight:400;cursor:pointer">
+                      <input type="checkbox" class="r_amenity" value="Concierge"
+                        style="width:auto;accent-color:var(--blue)"> Concierge
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ── Financials ── -->
               <div class="form-section">
                 <div class="form-section-title">Financials</div>
                 <div class="frow f2">
@@ -2603,6 +2761,7 @@
                 </div>
               </div>
 
+              <!-- ── Operating Costs ── -->
               <div class="form-section">
                 <div class="form-section-title">Operating Costs</div>
                 <div class="frow f3">
@@ -2621,13 +2780,15 @@
                 </div>
               </div>
 
+              <!-- ── Mortgage ── -->
               <div class="form-section">
                 <div class="form-section-title">Leverage (Optional)</div>
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:11px">
                   <input type="checkbox" id="r_use_mortgage" style="width:auto;accent-color:var(--blue)" />
                   <label
-                    style="text-transform:none;font-size:12px;color:var(--txt2);letter-spacing:0;margin:0;font-weight:500">Include
-                    mortgage / financing</label>
+                    style="text-transform:none;font-size:12px;color:var(--txt2);letter-spacing:0;margin:0;font-weight:500;cursor:pointer">
+                    Include mortgage / financing
+                  </label>
                 </div>
                 <div id="mortgageBox" style="display:none">
                   <div class="frow f3">
@@ -2658,8 +2819,223 @@
             <div class="card result-empty">
               <span class="result-empty-ico">🏠</span>
               <div class="result-empty-t">Awaiting Rental Analysis</div>
-              <div class="result-empty-s">Enter your unit details and rental income<br />to get a full ROR &amp; yield
-                breakdown.</div>
+              <div class="result-empty-s">Fill in your property details and rental income<br />to get a full ROR, yield
+                breakdown &amp; AI market insights.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pg" id="pg-settings">
+        <div class="ph">
+          <div>
+            <div class="ph-h">⚙ AI Model Settings</div>
+            <div class="ph-s">Switch the Rental Advisor between Random Forest math and Groq LLM intelligence</div>
+          </div>
+          <div id="settingsStatusBadge" style="text-align:right">
+            <span class="pill">🌲 Random Forest Active</span>
+          </div>
+        </div>
+
+        <div class="advisor-grid">
+          <!-- LEFT: CONFIG -->
+          <div>
+            <div class="card">
+              <div class="form-section">
+                <div class="form-section-title">Prediction Engine</div>
+
+                <!-- RF Option -->
+                <label id="rfModeCard"
+                  style="display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:var(--r2);border:1px solid var(--br);margin-bottom:10px;cursor:pointer;transition:border-color .2s,background .2s">
+                  <input type="radio" name="model_mode" id="mode_rf" value="rf"
+                    style="width:auto;margin-top:3px;accent-color:var(--blue)" />
+                  <div>
+                    <div style="font-size:13px;font-weight:600;color:var(--txt);margin-bottom:4px">🌲 Random Forest
+                      (Default)</div>
+                    <div style="font-size:11px;color:var(--txt2);line-height:1.55">Uses trained ML model on Egyptian
+                      real estate data for pure mathematical ROR calculations. No API key needed. Works offline. Best
+                      for quick number-crunching.</div>
+                  </div>
+                </label>
+
+                <!-- LLM Option -->
+                <label id="llmModeCard"
+                  style="display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:var(--r2);border:1px solid var(--br);cursor:pointer;transition:border-color .2s,background .2s">
+                  <input type="radio" name="model_mode" id="mode_llm" value="llm"
+                    style="width:auto;margin-top:3px;accent-color:var(--blue)" />
+                  <div>
+                    <div style="font-size:13px;font-weight:600;color:var(--txt);margin-bottom:4px">⚡ Groq LLM (AI Mode)
+                    </div>
+                    <div style="font-size:11px;color:var(--txt2);line-height:1.55">Combines exact financial math with
+                      Groq LLM market intelligence — demand analysis, appreciation outlook, risks &amp; personalised
+                      recommendations. Requires a free Groq API key.</div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Groq Config (shown when LLM selected) -->
+              <div id="llmConfigSection" style="display:none">
+                <div class="form-section" style="border-top:1px solid var(--br);padding-top:16px;margin-top:4px">
+                  <div class="form-section-title">Groq API Configuration</div>
+
+                  <div style="margin-bottom:14px">
+                    <label>API Key</label>
+                    <div style="display:flex;gap:8px">
+                      <input type="password" id="settings_groq_key" placeholder="gsk_…"
+                        style="flex:1;font-family:'JetBrains Mono';font-size:11px;letter-spacing:.5px" />
+                      <button id="toggleKeyVisibility"
+                        style="padding:0 12px;background:var(--bg3);border:1px solid var(--br);border-radius:var(--r2);cursor:pointer;font-size:14px;color:var(--txt2)">👁</button>
+                    </div>
+                    <div style="font-size:9.5px;color:var(--slate3);margin-top:5px">
+                      Get a free key at <a href="https://console.groq.com" target="_blank"
+                        style="color:var(--blue)">console.groq.com</a> —
+                      stored only in your browser's localStorage, never sent to our servers.
+                    </div>
+                  </div>
+
+                  <div style="margin-bottom:14px">
+                    <label>Model</label>
+                    <select id="settings_groq_model">
+                      <option value="llama-3.3-70b-versatile">Llama 3.3 70B Versatile (Recommended)</option>
+                      <option value="llama-3.1-8b-instant">Llama 3.1 8B Instant (Fastest)</option>
+                      <option value="llama3-70b-8192">Llama 3 70B</option>
+                      <option value="mixtral-8x7b-32768">Mixtral 8×7B</option>
+                      <option value="gemma2-9b-it">Gemma 2 9B</option>
+                    </select>
+                  </div>
+
+                  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                    <button id="settingsTestBtn"
+                      style="padding:8px 16px;background:var(--bg3);border:1px solid var(--br);border-radius:var(--r2);color:var(--txt2);font-size:11px;font-weight:500;cursor:pointer;transition:border-color .2s">
+                      Test Connection
+                    </button>
+                    <span id="groqTestStatus" style="font-size:10.5px;font-weight:500"></span>
+                  </div>
+                </div>
+              </div>
+
+              <button id="settingsSaveBtn" class="btn btn-g"
+                style="width:100%;padding:12px;font-size:13px;margin-top:10px">
+                ✦ &nbsp;Save Settings
+              </button>
+            </div>
+          </div>
+
+          <!-- RIGHT: INFO PANEL -->
+          <div>
+            <!-- Comparison table -->
+            <div class="card" style="margin-bottom:13px">
+              <div class="ch">
+                <div class="ct">Feature Comparison</div>
+              </div>
+              <table style="width:100%;font-size:11px;border-collapse:collapse">
+                <thead>
+                  <tr>
+                    <th
+                      style="text-align:left;padding:8px 6px;border-bottom:1px solid var(--br);color:var(--slate3);font-size:8.5px;letter-spacing:1px;text-transform:uppercase;font-weight:600">
+                      Feature</th>
+                    <th
+                      style="text-align:center;padding:8px 6px;border-bottom:1px solid var(--br);color:var(--slate3);font-size:8.5px;letter-spacing:1px;text-transform:uppercase;font-weight:600">
+                      🌲 RF</th>
+                    <th
+                      style="text-align:center;padding:8px 6px;border-bottom:1px solid var(--br);color:var(--blue);font-size:8.5px;letter-spacing:1px;text-transform:uppercase;font-weight:600">
+                      ⚡ Groq</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);color:var(--txt2)">Yield &amp; ROR Math
+                    </td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--grn)">✓
+                    </td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--grn)">✓
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);color:var(--txt2)">Market Analysis</td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--slate3)">
+                      Basic</td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--grn)">
+                      AI-Powered</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);color:var(--txt2)">Demand Forecast</td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--red)">✕
+                    </td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--grn)">✓
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);color:var(--txt2)">Risk Assessment</td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--red)">✕
+                    </td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--grn)">✓
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);color:var(--txt2)">Recommendations</td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--red)">✕
+                    </td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--grn)">✓
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);color:var(--txt2)">Capital Appreciation
+                    </td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--red)">✕
+                    </td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--grn)">✓
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);color:var(--txt2)">Tenant Profiling
+                    </td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--red)">✕
+                    </td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--grn)">✓
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);color:var(--txt2)">Works Offline</td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--grn)">✓
+                    </td>
+                    <td style="padding:8px 6px;border-bottom:1px solid var(--br);text-align:center;color:var(--red)">✕
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 6px;color:var(--txt2)">API Key Required</td>
+                    <td style="padding:8px 6px;text-align:center;color:var(--grn)">No</td>
+                    <td style="padding:8px 6px;text-align:center;color:var(--amb)">Free key</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Groq info card -->
+            <div class="card card-glass">
+              <div class="ch">
+                <div class="ct">About Groq</div>
+              </div>
+              <div style="font-size:11px;color:var(--txt2);line-height:1.65;margin-bottom:12px">
+                Groq provides ultra-fast LLM inference on specialised hardware. The free tier is generous enough for
+                daily investment analysis — no credit card required.
+              </div>
+              <div class="adj-row">
+                <div class="adj-label">Free Tier</div>
+                <div class="adj-val tg">30 requests / min</div>
+              </div>
+              <div class="adj-row">
+                <div class="adj-label">Typical Latency</div>
+                <div class="adj-val tg">1–3 seconds</div>
+              </div>
+              <div class="adj-row">
+                <div class="adj-label">Data Retention</div>
+                <div class="adj-val" style="color:var(--txt2)">Not stored by Groq</div>
+              </div>
+              <div class="adj-row" style="border-bottom:none">
+                <div class="adj-label">Best Model</div>
+                <div class="adj-val" style="color:var(--txt2)">Llama 3.3 70B Versatile</div>
+              </div>
             </div>
           </div>
         </div>
@@ -2673,6 +3049,7 @@
   <script src="/js/pages/dashboard.js"></script>
   <script src="/js/pages/upload.js"></script>
   <script src="/js/pages/market.js"></script>
+  <script src="/js/pages/settings.js"></script>
   <script src="/js/pages/rental.js"></script>
   <script src="/js/app.js"></script>
 

@@ -72,6 +72,7 @@ class AppController {
       PageDashboard.init(stats, model);
       PageUpload.init();
       PageMarket.init(stats);
+      PageSettings.init();
       PageRental.init(stats);
     } catch (err) {
       console.error('Failed to load initial data:', err);
