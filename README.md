@@ -81,8 +81,12 @@ misr-analytics/
 ### Frontend Pages
 
 Each page is self-contained and handles its own initialization & DOM updates:
-- **Price Advisor** — Form assessment, call `/api/predict`, display verdict & ROI analysis
-- **Rental Advisor** — Yield & ROR calculator, AI-driven rent estimates (Groq/Llama 3.3)
+- **Price Advisor** — Dual-scenario unit valuer:
+  - **Assess a Price (Buyer/Investor)**: Analyzes if an asking price is fair while factoring in forward-looking economic conditions and due diligence.
+  - **List a Unit (Seller)**: Streamlined form delivering immediate pricing based on the current market state, removing the need for macroeconomic forecasting.
+- **Rental Advisor** — Dual-scenario rental intelligence (powered by math & Groq AI):
+  - **Assess Rent (Tenant)**: Evaluates if an asked monthly rent is fair based on localized district context, bypassing irrelevant yield indicators.
+  - **Calculate Yield (Landlord)**: Full investment calculator tracking Purchase Price, Operating Costs, and Mortgage Leverage to compute net yields, Cash-on-Cash, and overall Return on Rent (ROR).
 - **Dashboard** — Market KPIs, monthly price trends, interactive charts (Chart.js)
 - **Upload** — Live CSV management, dataset downloads, model retraining status
 - **Market Analysis** — Variable sensitivity, USD correlation, material cost drivers
