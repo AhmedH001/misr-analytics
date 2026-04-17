@@ -10,6 +10,15 @@ class PageRental {
     this.setupMortgageToggle();
     this.setupTypeChange();
     this.switchTab('tenant'); // Initialize default state
+    this._updateExtraFeaturesVisibility();
+  }
+
+  // ── Extra Features textarea — shown only in LLM mode ─────────────────────
+  static _updateExtraFeaturesVisibility() {
+    const s = AppSettings.get();
+    const isLLM = s.modelMode === 'llm' && !!s.groqApiKey;
+    const el = document.getElementById('r_extra_features_wrap');
+    if (el) el.style.display = isLLM ? 'block' : 'none';
   }
 
   // ── Setup ─────────────────────────────────────────────────────────────────
@@ -42,11 +51,11 @@ class PageRental {
     // Update banner/subtitle
     const subtitle = document.getElementById('rentalSubtitle');
     if (subtitle) {
-      subtitle.innerHTML = isTenant 
+      subtitle.innerHTML = isTenant
         ? 'Evaluate if the asked rent is fair based on local market insights.'
         : 'Estimate yield, net income &amp; ROR — powered by math or Groq AI';
     }
-    
+
     // Clear result panel when switching
     const panel = document.getElementById('rentalResultPanel');
     if (panel) {
@@ -54,9 +63,9 @@ class PageRental {
         <div class="card result-empty">
           <span class="result-empty-ico">${isTenant ? '🔍' : '📈'}</span>
           <div class="result-empty-t">${isTenant ? 'Awaiting Rent Assessment' : 'Awaiting Rental Analysis'}</div>
-          <div class="result-empty-s">${isTenant 
-            ? 'Fill in property details and the asked monthly rent<br/>to get an AI assessment of market fairness.' 
-            : 'Fill in your property details and rental income<br />to get a full ROR, yield breakdown &amp; AI market insights.'}
+          <div class="result-empty-s">${isTenant
+          ? 'Fill in property details and the asked monthly rent<br/>to get an AI assessment of market fairness.'
+          : 'Fill in your property details and rental income<br />to get a full ROR, yield breakdown &amp; AI market insights.'}
           </div>
         </div>
       `;
@@ -158,6 +167,7 @@ class PageRental {
       down_payment_pct: (!isTenant && useMortgage) ? parseFloat(document.getElementById('r_dp').value) || 30 : 100,
       mortgage_rate_pct: (!isTenant && useMortgage) ? parseFloat(document.getElementById('r_mrate').value) || 0 : 0,
       loan_term_years: (!isTenant && useMortgage) ? parseFloat(document.getElementById('r_term').value) || 20 : 0,
+      extra_features: document.getElementById('r_extra_features')?.value?.trim() || '',
     };
   }
 
@@ -312,7 +322,7 @@ ${bedsLine}
 - Furnished: ${inp.furnished}
 - View: ${inp.view}
 - Parking: ${inp.parking}
-- Amenities: ${amenitiesLine}`;
+- Amenities: ${amenitiesLine}${inp.extra_features ? `\n- Additional context: ${inp.extra_features}` : ''}`;
 
     let financialsBlock = '';
     if (inp.purchase_price > 0) {
@@ -763,5 +773,6 @@ ${jsonSchema}`;
     } else {
       badge.innerHTML = `<span class="pill">Yield &amp; ROR Engine</span>`;
     }
+    this._updateExtraFeaturesVisibility();
   }
 }

@@ -12,6 +12,7 @@ class PageAdvisor {
     this.activeTab = 'assess';
     this._setupButtons();
     this.updateModelBadge();
+    this._updateExtraFeaturesVisibility();
   }
 
   // ── Wire submit buttons ───────────────────────────────────────────────────
@@ -38,6 +39,16 @@ class PageAdvisor {
     this.updateModelBadge();
   }
 
+  // ── Extra Features textarea — shown only in LLM mode ─────────────────────
+  static _updateExtraFeaturesVisibility() {
+    const s = AppSettings.get();
+    const isLLM = s.modelMode === 'llm' && !!s.groqApiKey;
+    ['f_extra_features_wrap', 'fl_extra_features_wrap'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = isLLM ? 'block' : 'none';
+    });
+  }
+
   // ── Model badge ───────────────────────────────────────────────────────────
   static updateModelBadge() {
     const badge = document.getElementById('modelBadge');
@@ -55,6 +66,7 @@ class PageAdvisor {
       const m = this.model.metrics || {};
       meta.innerHTML = `R² ${(m.test_r2 || 0).toFixed(3)} · RMSE ${Math.round(m.test_rmse || 0).toLocaleString()} · ${(m.nSamples || 0).toLocaleString()} rows`;
     }
+    this._updateExtraFeaturesVisibility();
   }
 
   // ── Form data collectors ──────────────────────────────────────────────────
@@ -76,6 +88,7 @@ class PageAdvisor {
       delivery_months: parseInt(document.getElementById('f_delivery').value, 10) || 0,
       finishing: document.getElementById('f_finishing').value,
       entered_price: parseFloat(document.getElementById('f_price').value) || 0,
+      extra_features: document.getElementById('f_extra_features')?.value?.trim() || '',
     };
   }
 
@@ -98,6 +111,7 @@ class PageAdvisor {
       delivery_months: parseInt(document.getElementById('fl_delivery').value, 10) || 0,
       finishing: document.getElementById('fl_finishing').value,
       entered_price: 0,
+      extra_features: document.getElementById('fl_extra_features')?.value?.trim() || '',
     };
   }
 
@@ -277,7 +291,7 @@ Construction: Iron=${input.iron.toLocaleString()} EGP/ton · Cement=${input.ceme
 - Type: ${input.property_type} | Location: ${locationLine || input.city} | Compound: ${input.compound || 'N/A'}
 - Area: ${input.area_m2} m² | Beds: ${input.bedrooms} | Baths: ${input.bathrooms}
 - Finishing: ${finishingLabel} | Delivery: ${deliveryLabel}
-- Luxury score: ${luxuryPct}/100 | Distance to centre: ${input.distance_to_center} km`;
+- Luxury score: ${luxuryPct}/100 | Distance to centre: ${input.distance_to_center} km${input.extra_features ? `\n- Additional context: ${input.extra_features}` : ''}`;
 
     const futureSchema = `"future_projection": {
     "yr1_price": <integer EGP — estimated unit value in 1 year>,
@@ -678,5 +692,6 @@ ${schema}`;
 
   static onActive() {
     this.updateModelBadge();
+    this._updateExtraFeaturesVisibility();
   }
 }
